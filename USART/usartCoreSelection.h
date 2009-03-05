@@ -36,12 +36,23 @@
 #define USARTCORESELECTION_H_
 
 #include <stdbool.h>
+#include <avr/io.h>
 
 #if defined(__DOXYGEN__)
 #	define USART_NUM_PORT 0 /*!< Number of port available per core */
+#	define XCLK0_DDR DDRA /*!< Data Direction Register for clock source pin of USART 0. */
+#	define XCLK0_DDx DDA0 /*!< Pin index for clock source pin of USART 0. */
+#	define XCLK1_DDR DDRA /*!< Data Direction Register for clock source pin of USART 1. */
+#	define XCLK1_DDx DDA0 /*!< Pin index for clock source pin of USART 1. */
+#	define XCLK2_DDR DDRA /*!< Data Direction Register for clock source pin of USART 2. */
+#	define XCLK2_DDx DDA0 /*!< Pin index for clock source pin of USART 2. */
+#	define XCLK3_DDR DDRA /*!< Data Direction Register for clock source pin of USART 3. */
+#	define XCLK3_DDx DDA0 /*!< Pin index for clock source pin of USART 3. */
 #else
 #	if defined (__AVR_ATmega8__)
 #		define USART_NUM_PORT 1
+#		define XCLK0_DDR DDRD
+#		define XCLK0_DDx DDD4
 #	endif
 #endif
 #endif /* USARTCORESELECTION_H_ */
