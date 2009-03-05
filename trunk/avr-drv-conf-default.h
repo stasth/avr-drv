@@ -58,4 +58,8 @@
 #	define USART_BUILD false
 #endif
 
+#ifndef CAN_BUILD
+#	define CAN_BUILD false
+#endif
+
 #endif /* AVRDRVDEFAULT_H_ */

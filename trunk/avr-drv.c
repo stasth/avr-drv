@@ -41,6 +41,10 @@
 #	include "ADC/adc.c"
 #endif
 
+#if CAN_BUILD == true
+#	include "CAN/can.c"
+#endif
+
 #if USART_BUILD == true
 #	include "USART/usart.c"
 #endif
