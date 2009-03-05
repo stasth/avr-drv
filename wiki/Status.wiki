@@ -3,6 +3,12 @@
 
 = Project status =
 
+I would like to support all AVR device, however, since it is a simple personal project, I will only support devices that I regularly use. 
+
 || *AVR device* || *USART* || *ADC* ||
 || ATmega8      || 90%     ||  0%   ||
+|| ATmega16     ||  0%     ||  0%   ||
+|| ATmega32     ||  0%     ||  0%   ||
 || ATmega128    ||  0%     ||  0%   ||
+|| ATmega1280   ||  0%     ||  0%   ||
+|| AT90CAN128   ||  0%     ||  0%   ||
