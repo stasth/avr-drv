@@ -65,7 +65,6 @@ MCU = atmega8
 F_CPU = 14745600
 
 AVR_DRV_DIR = ../../..
-OSCCLK = $(F_CPU)
 
 
 # Output format. (can be srec, ihex, binary)
