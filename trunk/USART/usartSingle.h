@@ -41,19 +41,19 @@ int usartSingleSetParity(USART_Parity_t partity);
 int usartSingleSetStopBit(USART_StopBit_t stopBit);
 int usartSingleSetMode(USART_Mode_t mode);
 
-void usartSingleEnableRx(_Bool enable);
-void usartSingleEnableTx(_Bool enable);
+int usartSingleEnableRx(_Bool enable);
+int usartSingleEnableTx(_Bool enable);
 
 int usartSinglePutc(char data);
 int usartSingleGetc(char* data);
 
 _Bool usartSingleIsTx(void);
 
-void usartSingleEnableRxInt(_Bool enable);
-void usartSingleEnableTxBufInt(_Bool enable);
-void usartSingleEnableTxCmpInt(_Bool enable);
+int usartSingleEnableRxInt(_Bool enable);
+int usartSingleEnableTxBufInt(_Bool enable);
+int usartSingleEnableTxCmpInt(_Bool enable);
 
-void usartSinglePutcISR(char data);
+int usartSinglePutcISR(char data);
 int usartSingleGetcISR(char *data);
 
 #endif /* USARTSINGLE_H_ */

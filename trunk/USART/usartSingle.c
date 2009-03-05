@@ -53,6 +53,7 @@
 
 #define USART_RX_ERR_MASK	0x1C //0b0001 1100 //TODO Check these value
 #define USART_RX_CHAR_IN	0x80 //0b1000 0000
+
 int usartSingleSetBaudRate(uint32_t baudRate) {
 	uint16_t uwBaud = (((OSCCLK) + 8UL * (baudRate)) / (16UL * (baudRate))
 			- 1UL);
@@ -164,20 +165,24 @@ int usartSingleSetMode(USART_Mode_t mode) {
 	return 0;
 }
 
-void usartSingleEnableRx(_Bool enable) {
+int usartSingleEnableRx(_Bool enable) {
 	if (true == enable) {
 		UCSRB |= _BV(RXEN);
 	} else {
 		UCSRB &= ~_BV(RXEN);
 	}
+
+	return 0;
 }
 
-void usartSingleEnableTx(_Bool enable) {
+int usartSingleEnableTx(_Bool enable) {
 	if (true == enable) {
 		UCSRB |= _BV(TXEN);
 	} else {
 		UCSRB &= ~_BV(TXEN);
 	}
+
+	return 0;
 }
 
 int usartSinglePutc(char data) {
@@ -240,32 +245,40 @@ _Bool usartSingleIsTx(void) {
 	}
 }
 
-void usartSingleEnableRxInt(_Bool enable) {
+int usartSingleEnableRxInt(_Bool enable) {
 	if (true == enable) {
 		UCSRB |= _BV(RXCIE);
 	} else {
 		UCSRB &= ~_BV(RXCIE);
 	}
+
+	return 0;
 }
 
-void usartSingleEnableTxBufInt(_Bool enable) {
+int usartSingleEnableTxBufInt(_Bool enable) {
 	if (true == enable) {
 		UCSRB |= _BV(UDRIE);
 	} else {
 		UCSRB &= ~_BV(UDRIE);
 	}
+
+	return 0;
 }
 
-void usartSingleEnableTxCmpInt(_Bool enable) {
+int usartSingleEnableTxCmpInt(_Bool enable) {
 	if (true == enable) {
 		UCSRB |= _BV(TXCIE);
 	} else {
 		UCSRB &= ~_BV(TXCIE);
 	}
+
+	return 0;
 }
 
-void usartSinglePutcISR(char data) {
+int usartSinglePutcISR(char data) {
 	UDR = data;
+
+	return 0;
 }
 
 int usartSingleGetcISR(char *data) {
