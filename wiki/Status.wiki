@@ -5,10 +5,10 @@
 
 I would like to support all AVR device, however, since it is a simple personal project, I will only support devices that I regularly use. 
 
-|| *AVR device* || *USART* || *ADC* ||
-|| ATmega8      || 90%     ||  100% ||
-|| ATmega16     ||  0%     ||  0%   ||
-|| ATmega32     ||  0%     ||  100% ||
-|| ATmega128    ||  0%     ||  100% ||
-|| ATmega1280   ||  0%     ||  100% ||
-|| AT90CAN128   ||  0%     ||  100% ||
+|| *AVR device* || *USART* || *ADC* || *SPI* || *TWI* || *CAN* ||
+|| ATmega8      || 90%     ||  100% ||  0%   ||  0%   ||  0%   ||
+|| ATmega16     ||  0%     ||  0%   ||  0%   ||  0%   ||  0%   ||
+|| ATmega32     ||  0%     ||  100% ||  0%   ||  0%   ||  0%   ||
+|| ATmega128    ||  0%     ||  100% ||  0%   ||  0%   ||  0%   ||
+|| ATmega1280   ||  0%     ||  100% ||  0%   ||  0%   ||  0%   ||
+|| AT90CAN128   ||  0%     ||  100% ||  0%   ||  0%   ||  0%   ||
