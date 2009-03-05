@@ -45,8 +45,12 @@
 #	include "ADC/adc.h"
 #endif
 
+#if CAN_BUILD == true
+#	include "CAN/can.h"
+#endif
+
 #if SPI_BUILD == true
-#	include "SPI/spiCore.h"
+#	include "SPI/spi.h"
 #endif
 
 #if USART_BUILD == true
