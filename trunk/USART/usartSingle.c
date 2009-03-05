@@ -44,8 +44,6 @@
 #include "usartDef.h"
 #include "xtal/xtal.h"
 
-#include <assert.h>
-
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -55,25 +53,26 @@
 #define USART_RX_CHAR_IN	0x80 //0b1000 0000
 
 int usartSingleSetBaudRate(uint32_t baudRate) {
-	uint16_t uwBaud = (((OSCCLK) + 8UL * (baudRate)) / (16UL * (baudRate))
+	uint32_t uiClk = xtalGetClockFreq();
+	uint16_t uwBaud = (((uiClk) + 8UL * (baudRate)) / (16UL * (baudRate))
 			- 1UL);
 	_Bool useX2 = false;
 
-	if (100 * (OSCCLK) > (16 * ((uwBaud) + 1)) * (100 * (baudRate) + (baudRate)
+	if (100 * (uiClk) > (16 * ((uwBaud) + 1)) * (100 * (baudRate) + (baudRate)
 			* (2))) {
-		uwBaud = (((OSCCLK) + 4UL * (baudRate)) / (8UL * (baudRate)) - 1UL);
+		uwBaud = (((uiClk) + 4UL * (baudRate)) / (8UL * (baudRate)) - 1UL);
 		useX2 = true;
-	} else if (100 * (OSCCLK) < (16 * ((uwBaud) + 1)) * (100 * (baudRate)
+	} else if (100 * (uiClk) < (16 * ((uwBaud) + 1)) * (100 * (baudRate)
 			- (baudRate) * (2))) {
-		uwBaud = (((OSCCLK) + 4UL * (baudRate)) / (8UL * (baudRate)) - 1UL);
+		uwBaud = (((uiClk) + 4UL * (baudRate)) / (8UL * (baudRate)) - 1UL);
 		useX2 = true;
 	}
 
-	if (100 * (OSCCLK) > (16 * ((uwBaud) + 1)) * (100 * (baudRate) + (baudRate)
+	if (100 * (uiClk) > (16 * ((uwBaud) + 1)) * (100 * (baudRate) + (baudRate)
 			* (2))) {
 		errno = EBAUDRATE;
 		return -1;
-	} else if (100 * (OSCCLK) < (16 * ((uwBaud) + 1)) * (100 * (baudRate)
+	} else if (100 * (uiClk) < (16 * ((uwBaud) + 1)) * (100 * (baudRate)
 			- (baudRate) * (2))) {
 		errno = EBAUDRATE;
 		return -1;
