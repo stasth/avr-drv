@@ -4,9 +4,9 @@
  This file will build all module that are activated in the user configuration file.
  This should be the only file compiled by the user of AVR-drv.
 
- \author Frédéric Nadeau
+ \author FrÃ©dÃ©ric Nadeau
 
- \warning Copyright (c) 2008 Frédéric Nadeau
+ \warning Copyright (c) 2008 FrÃ©dÃ©ric Nadeau
  All rights reserved.
 
 

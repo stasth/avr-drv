@@ -1,9 +1,9 @@
 /*! \file adc.h
  \brief Function definition for ADC module.
 
- \author Frédéric Nadeau
+ \author FrÃ©dÃ©ric Nadeau
 
- \warning Copyright (c) 2008 Frédéric Nadeau
+ \warning Copyright (c) 2008 FrÃ©dÃ©ric Nadeau
  All rights reserved.
 
 

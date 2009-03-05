@@ -3,9 +3,9 @@
 
  This file does nothing in particular. It only includes file to be compiled.
 
- \author Frédéric Nadeau
+ \author FrÃ©dÃ©ric Nadeau
 
- \warning Copyright (c) 2008 Frédéric Nadeau
+ \warning Copyright (c) 2008 FrÃ©dÃ©ric Nadeau
  All rights reserved.
 
 

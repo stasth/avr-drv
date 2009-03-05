@@ -1,9 +1,9 @@
 /* \file xtal.h
  \brief //TODO Fill me
 
- \author Frédéric Nadeau
+ \author FrÃ©dÃ©ric Nadeau
 
- \warning Copyright (c) 2008 Frédéric Nadeau
+ \warning Copyright (c) 2008 FrÃ©dÃ©ric Nadeau
  All rights reserved.
 
 
