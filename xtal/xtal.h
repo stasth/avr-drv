@@ -34,6 +34,15 @@
 #ifndef XTAL_H_
 #define XTAL_H_
 
-#define OSCCLK F_CPU
+
+#include "avr-drv.h"
+
+#include <stdint.h>
+
+#if CLKPRESCALER_BUILD == true
+uint32_t xtalGetClockFreq(void);
+#else
+#	define xtalGetClockFreq() F_CPU
+#endif
 
 #endif /* XTAL_H_ */
