@@ -42,6 +42,10 @@
 
 #include <stdbool.h>
 
+#ifndef CLKPRESCALER_BUILD
+#	define CLKPRESCALER_BUILD false
+#endif
+
 #ifndef ADC_BUILD
 #	define ADC_BUILD false
 #endif
