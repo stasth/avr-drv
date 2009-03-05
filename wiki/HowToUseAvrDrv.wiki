@@ -1,0 +1,12 @@
+#summary Howto use AVR-drv
+
+= Howto use AVR-drv =
+
+It is simple to use AVR-drv in your project.
+  * Download AVR-drv and place in, as example, c:\AVR-drv
+  * Add "AVR_DRV_DIR = c:/AVR-drv" at top of your Makefile
+  * Add "$(AVR_DRV_DIR)/avr-drv.c" to your source list in your Makefile
+  * Add "$(AVR_DRV_DIR)" to the EXTRAINCDIRS variable in your Makefile
+  * Create a file name "avr-drv-conf.h", see example for samples
+
+Voilà, your done. Now simply make some code that use AVR-drv.
