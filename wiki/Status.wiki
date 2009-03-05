@@ -1,0 +1,8 @@
+#summary Module Status
+#labels Featured
+
+= Project status =
+
+|| *AVR device* || *USART* || *ADC* ||
+|| ATmega8      || 90%     ||  0%   ||
+|| ATmega128    ||  0%     ||  0%   ||
