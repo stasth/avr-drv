@@ -35,15 +35,18 @@
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include "can.h"
+
 #include <assert.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <avr/io.h>
 
-#include "can.h"
-
 #define CAN_MINTQ							8
 #define CAN_MAXTQ							25
+
+//TODO Removed ASSERTs
 
 /************************************************/
 /*     CAN General Control Register CANGCON     */
@@ -1048,7 +1051,7 @@ void canClearAllMOb(void)
 uint8_t canGetFreeMObNumber(uint8_t *ubFreeMOb)
 {
 	uint8_t ubCurrentMOb;
-	uint8_t ubRetVal= FALSE;
+	uint8_t ubRetVal= false;
 
 	ubCurrentMOb = CANPAGE;//Save current value
 	for (*ubFreeMOb = 0; *ubFreeMOb < 15; (*ubFreeMOb)++)
@@ -1056,7 +1059,7 @@ uint8_t canGetFreeMObNumber(uint8_t *ubFreeMOb)
 		canWriteMObNumber(*ubFreeMOb);
 		if ((CANCDMOB & 0xC0) == 0x00) //! Disable configuration
 		{
-			ubRetVal = TRUE;
+			ubRetVal = true;
 			break;
 		}
 	}
@@ -1103,11 +1106,11 @@ uint8_t canSetBaudRate(uint32_t ulBaudrate, uint8_t ubSamplingRate,
 
 	if (ubDivider == (ubBRP + 1) * (ubTprs + ubTphs1 + ubTphs2 + 1))
 	{
-		return TRUE;
+		return true;
 	}
 	else
 	{
-		return FALSE;
+		return false;
 	}
 }
 
