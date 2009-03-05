@@ -1,20 +1,10 @@
 /*! \file usartSingle.h
  \brief This is the core file for device with a single USART.
 
- Part of the following code is derived from setbaud.h found in avr-libc
- project ditributed under WinAVR20081205.
-
- The following copyright are included to respect the license of AVR-Libc.
-
- Copyright (c) 2007  Cliff Lawson
- Copyright (c) 2007  Carlos Lamas
- All rights reserved.
-
  \author Frédéric Nadeau
 
  \warning Copyright (c) 2008 Frédéric Nadeau
  All rights reserved.
-
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
@@ -38,11 +28,11 @@
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
  */
+
 #include "avr-drv-errno.h"
+#include "usartBaudRate.h"
 #include "usartDef.h"
-#include "xtal/xtal.h"
 
 #include <stdbool.h>
 #include <stdlib.h>
@@ -53,41 +43,28 @@
 #define USART_RX_CHAR_IN	0x80 //0b1000 0000
 
 int usartSingleSetBaudRate(uint32_t baudRate) {
-	uint32_t uiClk = xtalGetClockFreq();
-	uint16_t uwBaud = (((uiClk) + 8UL * (baudRate)) / (16UL * (baudRate))
-			- 1UL);
-	_Bool useX2 = false;
 
-	if (100 * (uiClk) > (16 * ((uwBaud) + 1)) * (100 * (baudRate) + (baudRate)
-			* (2))) {
-		uwBaud = (((uiClk) + 4UL * (baudRate)) / (8UL * (baudRate)) - 1UL);
-		useX2 = true;
-	} else if (100 * (uiClk) < (16 * ((uwBaud) + 1)) * (100 * (baudRate)
-			- (baudRate) * (2))) {
-		uwBaud = (((uiClk) + 4UL * (baudRate)) / (8UL * (baudRate)) - 1UL);
-		useX2 = true;
+	uint16_t uwBaud;
+	int result = usartBaudRateGetUBRR(baudRate, 2,USART_Mode_Async, &uwBaud);
+
+	if(0 <= result)
+	{
+		UBRRH = uwBaud >> 8;
+		UBRRL = uwBaud;
+
+		if (1 == result) {
+			UCSRC |= _BV(1<<U2X);
+			result = 0;
+		} else {
+			UCSRC &= ~(_BV(1<<U2X));
+		}
+		result = 0;
 	}
+	else
+	{}
 
-	if (100 * (uiClk) > (16 * ((uwBaud) + 1)) * (100 * (baudRate) + (baudRate)
-			* (2))) {
-		errno = EBAUDRATE;
-		return -1;
-	} else if (100 * (uiClk) < (16 * ((uwBaud) + 1)) * (100 * (baudRate)
-			- (baudRate) * (2))) {
-		errno = EBAUDRATE;
-		return -1;
-	}
 
-	UBRRH = uwBaud >> 8;
-	UBRRL = uwBaud;
-
-	if (true == useX2) {
-		UCSRC |= _BV(1<<U2X);
-	} else {
-		UCSRC &= ~(_BV(1<<U2X));
-	}
-
-	return 0;
+	return result;
 }
 
 int usartSingleSetNumBit(USART_NumBits_t numBit) {
@@ -160,7 +137,24 @@ int usartSingleSetStopBit(USART_StopBit_t stopBit) {
 }
 
 int usartSingleSetMode(USART_Mode_t mode) {
-	//TODO handle mode, Async, Sync, etc.
+	switch(mode)
+	{
+	case USART_Mode_Async:
+		UCSRC &= ~(_BV(UMSEL));
+		break;
+	case USART_Mode_SyncMaster:
+		UCSRC = _BV(UMSEL);
+		XCK0_DDR |= _BV(XCK0_DDx);
+		break;
+	case USART_Mode_SyncSlave:
+		UCSRC = _BV(UMSEL);
+		XCK0_DDR &= ~(_BV(XCK0_DDx));
+		break;
+	default:
+		errno = EINVAL;
+		return -1;
+		break;
+	}
 	return 0;
 }
 

@@ -1,11 +1,10 @@
-/*! \file usart.c
- \brief At build time, this file will build the appropriate core.
+/*! \file usartBaudRate.h
+ \brief Function definition for usartBaudRate.
 
  \author Frédéric Nadeau
 
  \warning Copyright (c) 2008 Frédéric Nadeau
  All rights reserved.
-
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
@@ -31,12 +30,26 @@
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "usartCoreSelection.h"
+#ifndef USARTBAUDRATE_H_
+#define USARTBAUDRATE_H_
 
-#if USART_NUM_PORT == 1
-#	include "usartSingle.c"
-#else
-#	include "usartMulti.c"
-#endif
+#include "usartDef.h"
 
-#include "usartBaudRate.c"
+#include <stdint.h>
+
+/*! \fn int usartBaudRateGetUBRR(uint32_t uiBaudRate, uint8_t ubTol, USART_Mode_t mode, uint16_t* puwUbrr)
+ *  \brief  Compute value for UBRR.
+ *
+ *  \param  uiBaudRate Desired baud rate.
+ *  \param  ubTol Mismatch tolerance. 2 should be use, witch mean 2%.
+ *  \param  mode Whether it is Asyn or Sync USART mode.
+ *  \param  puwUbrr Pointer to where UBRR value will be saved.
+ *  \return On success, value can be 0 or 1. If value is 0, X2 mode shall be desactivated and if
+ *          it is 1, it shall be activated. Value -1 indicate that an error occurred.
+ *          See \c errno for detail on error.\n
+ *          #EINVAL Invalid argument was provided.\n
+ *          #EBAUDRATE Desired baud rate can not be achieved.
+ */
+int usartBaudRateGetUBRR(uint32_t uiBaudRate, uint8_t ubTol, USART_Mode_t mode, uint16_t* puwUbrr);
+
+#endif /* USARTBAUDRATE_H_ */
