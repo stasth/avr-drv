@@ -1,9 +1,9 @@
 /*! \file usart.h
  \brief Function definition for USART module.
 
- \author Frédéric Nadeau
+ \author FrÃ©dÃ©ric Nadeau
 
- \warning Copyright (c) 2008 Frédéric Nadeau
+ \warning Copyright (c) 2008 FrÃ©dÃ©ric Nadeau
  All rights reserved.
 
 

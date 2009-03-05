@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2008 Frédéric Nadeau
+ Copyright (c) 2008 FrÃ©dÃ©ric Nadeau
  All rights reserved.
 
 

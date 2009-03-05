@@ -1,13 +1,13 @@
 /*! \file can.c
  \brief API for Atmel CAN module.
 
- \author Frédéric Nadeau
- \author François-Pierre Pépin
+ \author FrÃ©dÃ©ric Nadeau
+ \author Franï¿½ois-Pierre Pï¿½pin
  \author Sy Sech Vong
 
  \warning Copyright (c) 2008
- Frédéric Nadeau
- François-Pierre Pépin
+ FrÃ©dÃ©ric Nadeau
+ Franï¿½ois-Pierre Pï¿½pin
  Sy Sech Vong
  All rights reserved.
 
@@ -1016,7 +1016,7 @@ uint16_t canReadTimeStamp(void)
 }
 
 /***************************************************************************************
- * Données de Message Object (Mob)
+ * Donnï¿½es de Message Object (Mob)
  ***************************************************************************************/
 
 uint8_t canReadDataMessageObject(void)

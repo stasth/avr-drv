@@ -11,9 +11,9 @@
  All rights reserved.
 
 
- \author Frédéric Nadeau
+ \author FrÃ©dÃ©ric Nadeau
 
- \warning Copyright (c) 2008 Frédéric Nadeau
+ \warning Copyright (c) 2008 FrÃ©dÃ©ric Nadeau
  Copyright (c) 2007  Cliff Lawson
  Copyright (c) 2007  Carlos Lamas
  All rights reserved.

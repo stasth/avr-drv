@@ -1,8 +1,3 @@
-/*
- *  $Id$
- *  $Date$
- */
-
 /*! \file avr-drv-conf-default.h
  \brief Default configuration file.
 
