@@ -50,6 +50,10 @@
 #	include "CAN/can.c"
 #endif
 
+#if SPI_BUILD == true
+#	include "SPI/spi.c"
+#endif
+
 #if USART_BUILD == true
 #	include "USART/usart.c"
 #endif
