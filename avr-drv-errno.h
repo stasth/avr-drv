@@ -42,10 +42,9 @@
 #define EBAUDRATE 128 /*!< Requested baud rate is not attainable. */
 #define ETXDISABLED 129 /*!< Transmission is not enabled. */
 #define ERXDISABLED 130 /*!< Reception is not enabled. */
-#define ERXPARITY 131
-#define ERXOVERRUN 132
-#define ERXFRAM 133
-#define ERXMULTI 134
-
+#define ERXPARITY 131 /*!< Parity error on reception. */
+#define ERXOVERRUN 132 /*!< Reception buffer overrun. */
+#define ERXFRAM 133 /*!< Framing error on reception. */
+#define ERXMULTI 134 /*!< Multiple error cause on reception. */
 
 #endif /* AVRDRVERRNO_H_ */
