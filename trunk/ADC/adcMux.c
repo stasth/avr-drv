@@ -36,6 +36,8 @@
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "avr-drv-errno.h"
+
 #if defined(__DOXYGEN__)
 #	define MUX_MASK /*!< ADMUX register mask for MUX bits. */
 #else
@@ -45,9 +47,13 @@
 #		define MUX_MASK ((1 << MUX3) | (1 << MUX2) | (1 << MUX1) | (1 << MUX0))
 #	endif
 #endif
-void adcSelectInput(ADC_InputChannelSelection_t channel)
+int adcSelectInput(ADC_InputChannelSelection_t channel)
 {
-	assert (channel < ADC_ChanInvalid);
+	if (channel >= ADC_ChanInvalid)
+	{
+		errno = EINVAL;
+		return -1;
+	}
 
 	ADMUX &= ~MUX_MASK;
 	ADMUX |= channel;
@@ -61,4 +67,5 @@ void adcSelectInput(ADC_InputChannelSelection_t channel)
 
 #endif
 
+	return 0;
 }
