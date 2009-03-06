@@ -30,14 +30,14 @@
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <assert.h>
+#include "adcCoreSelection.h"
+#include "adcDef.h"
+#include "avr-drv-errno.h"
+
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <avr/io.h>
-
-#include "adcCoreSelection.h"
-#include "adcDef.h"
 
 #if defined(ADC_AutoTrigger)
 
@@ -47,12 +47,18 @@
 #	define TARGET_REG SFIOR
 #endif
 
-void adcTriggerSource(ADC_TriggerSource_t trigger)
+int adcTriggerSource(ADC_TriggerSource_t trigger)
 {
-	assert (trigger < ADC_TriggerSourceInvalid);
+	if (trigger >= ADC_TriggerSourceInvalid)
+	{
+		errno = EINVAL;
+		return -1;
+	}
 
 	TARGET_REG &= ~((1 << ADTS2) | (1 << ADTS1) | (1 << ADTS0));
 	TARGET_REG |= trigger;
+
+	return 0;
 }
 
 void adcTriggerEnable(_Bool trigEn)
@@ -66,9 +72,15 @@ void adcTriggerEnable(_Bool trigEn)
 
 #else
 
-void adcTriggerSource(ADC_TriggerSource_t trigger)
+int adcTriggerSource(ADC_TriggerSource_t trigger)
 {
-	assert (trigger == ADC_FreeRunning);
+	if (trigger != ADC_FreeRunning)
+	{
+		errno = EINVAL;
+		return -1;
+	}
+
+	return 0;
 }
 
 void adcTriggerEnable(_Bool trigEn)

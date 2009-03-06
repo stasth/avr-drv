@@ -43,8 +43,10 @@
  *  \warning Not all device have the same voltage reference.
  *
  *  \param ref Voltage reference to be used.
+ *  \return 0 if successful or -1 if an error occured. See errno for detail:\
+ *  #EINVAL Invalid argument.
  */
-void adcSelectVref(ADC_VoltageRef_t ref);
+int adcSelectVref(ADC_VoltageRef_t ref);
 
 /*! \fn void adcSelectInput(ADC_InputChannelSelection_t channel)
  *  \brief Select input channel of the ADC.
@@ -52,8 +54,10 @@ void adcSelectVref(ADC_VoltageRef_t ref);
  *  \warning Not all device have the same input channel.
  *
  *  \param channel Selected channel.
+ *  \return 0 if successful or -1 if an error occured. See errno for detail:\
+ *  #EINVAL Invalid argument.
  */
-void adcSelectInput(ADC_InputChannelSelection_t channel);
+int adcSelectInput(ADC_InputChannelSelection_t channel);
 
 /*! \fn void adcLeftAdjust(_Bool adjust)
  *  \brief Select how conversion result will be stored in register.
@@ -74,8 +78,10 @@ void adcLeftAdjust(_Bool adjust);
  *  \brief Select ADC core clock prescaler.
  *
  *  \param prescaler Prescaler clock. See #ADC_Prescaler_t for option list.
+ *  \return 0 if successful or -1 if an error occured. See errno for detail:\
+ *  #EINVAL Invalid argument.
  */
-void adcPrescalerSelection(ADC_Prescaler_t prescaler);
+int adcPrescalerSelection(ADC_Prescaler_t prescaler);
 
 /*! \fn void adcEnable(_Bool status)
  *  \brief Enable or disable ADC core.
@@ -129,8 +135,10 @@ uint8_t adcReadLow(void);
  *  The function has been left for these device only for API compatibility.
  *
  *  \param trigger Trigger source. See #ADC_TriggerSource_t for option list.
+ *  \return 0 if successful or -1 if an error occured. See errno for detail:\
+ *  #EINVAL Invalid argument.
  */
-void adcTriggerSource (ADC_TriggerSource_t trigger);
+int adcTriggerSource (ADC_TriggerSource_t trigger);
 
 /*! \fn void adcTriggerEnable(_Bool trigEn)
  *  \brief Enable or disable the auto trigger.

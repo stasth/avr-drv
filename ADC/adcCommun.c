@@ -41,7 +41,8 @@
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <assert.h>
+#include "avr-drv-errno.h"
+
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -74,12 +75,18 @@ void adcLeftAdjust(_Bool adjust)
 	}
 }
 
-void adcPrescalerSelection(ADC_Prescaler_t prescaler)
+int adcPrescalerSelection(ADC_Prescaler_t prescaler)
 {
-	assert (prescaler < ADC_DivFactorInvalid);
+	if (prescaler >= ADC_DivFactorInvalid)
+	{
+		errno = EINVAL;
+		return -1;
+	}
 
 	ADCSRA &= ~((1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0));
 	ADCSRA |= prescaler;
+
+	return 0;
 }
 
 uint16_t adcRead(void)
@@ -108,12 +115,18 @@ void adcClearIntFlag(void)
 	ADCSRA |= _BV(ADIF);
 }
 
-void adcSelectVref(ADC_VoltageRef_t ref)
+int adcSelectVref(ADC_VoltageRef_t ref)
 {
-	assert (ref < ADC_VrefInvalid);
+	if (ref >= ADC_VrefInvalid)
+	{
+		errno = EINVAL;
+		return -1;
+	}
 
 	ADMUX &= ~(1 << REFS1 | 1 << REFS0);
 	ADMUX |= ref << REFS0;
+
+	return 0;
 }
 
 void adcStartConversion(void)
