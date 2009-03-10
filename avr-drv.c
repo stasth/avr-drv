@@ -1,4 +1,4 @@
-/* Copyright (c) 2008, Frédéric Nadeau
+/* Copyright (c) 2008,2009 Frédéric Nadeau
    All rights reserved.
 
    Redistribution and use in source and binary forms,
