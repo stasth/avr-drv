@@ -1,4 +1,4 @@
-/* Copyright (c) 2005 Anatoly Sokolov 
+/* Copyright (c) 2005 Anatoly Sokolov
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
@@ -35,7 +35,7 @@
 #ifndef _AVR_IOM2561_H_
 #define _AVR_IOM2561_H_ 1
 
-#include <avr/iomxx0_1.h>
+#include "avr_mod/iomxx0_1.h"
 
 /* Constants */
 #define SPM_PAGESIZE    256
@@ -82,7 +82,7 @@
 /* Lock Bits */
 #define __LOCK_BITS_EXIST
 #define __BOOT_LOCK_BITS_0_EXIST
-#define __BOOT_LOCK_BITS_1_EXIST 
+#define __BOOT_LOCK_BITS_1_EXIST
 
 
 /* Signature */

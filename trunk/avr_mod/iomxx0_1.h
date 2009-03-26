@@ -1,4 +1,4 @@
-/* Copyright (c) 2005 Anatoly Sokolov 
+/* Copyright (c) 2005 Anatoly Sokolov
    Copyright (c) 2009, Frédéric Nadeau
    All rights reserved.
 
@@ -47,7 +47,7 @@
 #  define _AVR_IOXXX_H_ "iomxx0_1.h"
 #else
 #  error "Attempt to include more than one <avr/ioXXX.h> file."
-#endif 
+#endif
 
 #if defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
 # define __ATmegaxx0__
@@ -300,7 +300,7 @@
 #define TOV5    0
 
 #define PCIFR   _SFR_IO8(0x1B)
-#if defined(__ATmegaxx0__) 
+#if defined(__ATmegaxx0__)
 # define PCIF2  2
 #endif /* __ATmegaxx0__ */
 #define PCIF1   1
@@ -323,7 +323,7 @@
 #define INT4    4
 #define INT3    3
 #define INT2    2
-#define INT1    1 
+#define INT1    1
 #define INT0    0
 
 #define GPIOR0  _SFR_IO8(0x1E)
@@ -557,7 +557,7 @@
 #define PCINT9  1
 #define PCINT8  0
 
-#if defined(__ATmegaxx0__) 
+#if defined(__ATmegaxx0__)
 # define PCMSK2 _SFR_MEM8(0x6D)
 # define PCINT23 7
 # define PCINT22 6
@@ -1252,7 +1252,7 @@
 
 /* Reserved [0x12E..0x12F] */
 
-#if defined(__ATmegaxx0__) 
+#if defined(__ATmegaxx0__)
 
 # define UCSR3A _SFR_MEM8(0x130)
 # define RXC3   7
@@ -1721,6 +1721,26 @@
 #define PORT_PCINT2 PORTB
 #define PIN_PCINT2 PINB
 #define PCINT2_IDX 2
+
+#define DDR_SCK DDRB
+#define PORT_SCK PORTB
+#define PIN_SCK PINB
+#define SCK_IDX 1
+
+#define DDR_SS DDRB
+#define PORT_SS PORTB
+#define PIN_SS PINB
+#define SS_IDX 0
+
+#define DDR_MISO DDRB
+#define PORT_MISO PORTB
+#define PIN_MISO PINB
+#define MISO_IDX 3
+
+#define DDR_MOSI DDRB
+#define PORT_MOSI PORTB
+#define PIN_MOSI PINB
+#define MOSI_IDX 2
 
 #define DDR_T0 DDRD
 #define PORT_T0 PORTD

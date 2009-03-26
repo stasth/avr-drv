@@ -47,7 +47,7 @@
 #  error "Attempt to include more than one <avr/ioXXX.h> file."
 #endif
 
-#include <avr/sfr_defs.h>
+#include "avr_mod/sfr_defs.h"
 
 #ifndef __ASSEMBLER__
 #  define _MMIO_BYTE_STRUCT(mem_addr,type) (*(volatile type *)(mem_addr))
@@ -5219,7 +5219,7 @@ struct __reg_TST_RX_LENGTH {
 /* Lock Bits */
 
 #define __BOOT_LOCK_BITS_0_EXIST
-#define __BOOT_LOCK_BITS_1_EXIST 
+#define __BOOT_LOCK_BITS_1_EXIST
 #define __LOCK_BITS_EXIST
 
 

@@ -31,7 +31,7 @@
 #ifndef _AVR_POWER_H_
 #define _AVR_POWER_H_   1
 
-#include <avr/io.h>
+#include "avr_mod/io.h"
 #include <stdint.h>
 
 
@@ -40,20 +40,20 @@
 
 \code #include <avr/power.h>\endcode
 
-Many AVRs contain a Power Reduction Register (PRR) or Registers (PRRx) that 
-allow you to reduce power consumption by disabling or enabling various on-board 
+Many AVRs contain a Power Reduction Register (PRR) or Registers (PRRx) that
+allow you to reduce power consumption by disabling or enabling various on-board
 peripherals as needed.
 
 There are many macros in this header file that provide an easy interface
 to enable or disable on-board peripherals to reduce power. See the table below.
 
 \note Not all AVR devices have a Power Reduction Register (for example
-the ATmega128). On those devices without a Power Reduction Register, these 
+the ATmega128). On those devices without a Power Reduction Register, these
 macros are not available.
 
 \note Not all AVR devices contain the same peripherals (for example, the LCD
-interface), or they will be named differently (for example, USART and 
-USART0). Please consult your device's datasheet, or the header file, to 
+interface), or they will be named differently (for example, USART and
+USART0). Please consult your device's datasheet, or the header file, to
 find out which macros are applicable to your device.
 
 */
@@ -478,7 +478,7 @@ do { \
 || defined(__AVR_ATmega1280__) \
 || defined(__AVR_ATmega1281__) \
 || defined(__AVR_ATmega2560__) \
-|| defined(__AVR_ATmega2561__) 
+|| defined(__AVR_ATmega2561__)
 
 #define power_adc_enable()      (PRR0 &= (uint8_t)~(1 << PRADC))
 #define power_adc_disable()     (PRR0 |= (uint8_t)(1 << PRADC))
@@ -1280,7 +1280,7 @@ without a Clock Prescale Register, these macros are not available.
 
 
 /** \addtogroup avr_power
-\code 
+\code
 typedef enum
 {
     clock_div_1 = 0,

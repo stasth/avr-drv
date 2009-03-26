@@ -35,7 +35,7 @@
 #ifndef _AVR_IOM164_H_
 #define _AVR_IOM164_H_ 1
 
-#include <avr/iomxx4.h>
+#include "avr_mod/iomxx4.h"
 
 /* Constants */
 #define SPM_PAGESIZE    128
@@ -82,7 +82,7 @@
 /* Lock Bits */
 #define __LOCK_BITS_EXIST
 #define __BOOT_LOCK_BITS_0_EXIST
-#define __BOOT_LOCK_BITS_1_EXIST 
+#define __BOOT_LOCK_BITS_1_EXIST
 
 
 #endif /* _AVR_IOM164_H_ */
