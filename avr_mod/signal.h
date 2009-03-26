@@ -34,6 +34,6 @@
 #define _AVR_SIGNAL_H_
 
 #warning "This header file is obsolete.  Use <avr/interrupt.h>."
-#include <avr/interrupt.h>
+#include "avr_mod/interrupt.h"
 
 #endif /* _AVR_SIGNAL_H_ */

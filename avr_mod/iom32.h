@@ -46,7 +46,7 @@
 #  define _AVR_IOXXX_H_ "iom32.h"
 #else
 #  error "Attempt to include more than one <avr/ioXXX.h> file."
-#endif 
+#endif
 
 /* I/O registers */
 
@@ -685,7 +685,7 @@
 /* Lock Bits */
 #define __LOCK_BITS_EXIST
 #define __BOOT_LOCK_BITS_0_EXIST
-#define __BOOT_LOCK_BITS_1_EXIST 
+#define __BOOT_LOCK_BITS_1_EXIST
 
 
 /* Signature */
@@ -709,6 +709,11 @@
 #define PORT_MISO PORTB
 #define PIN_MISO PINB
 #define MISO_IDX 6
+
+#define DDR_SCK DDRB
+#define PORT_SCK PORTB
+#define PIN_SCK PINB
+#define SCK_IDX 7
 
 #define DDR_T1 DDRB
 #define PORT_T1 PORTB

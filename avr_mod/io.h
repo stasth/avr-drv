@@ -32,8 +32,8 @@
 /* $Id: io.h,v 1.72 2009/03/20 05:54:41 arcanum Exp $ */
 
 /** \file */
-/** \defgroup avr_io <avr/io.h>: AVR device-specific IO definitions
-    \code #include <avr/io.h> \endcode
+/** \defgroup avr_io "avr_mod/io.h": AVR device-specific IO definitions
+    \code #include "avr_mod/io.h" \endcode
 
     This header file includes the apropriate IO definitions for the
     device that has been specified by the <tt>-mmcu=</tt> compiler
@@ -45,11 +45,11 @@
     but most of the details come from the respective include file.
 
     Note that this file always includes the following files:
-    \code 
-    #include <avr/sfr_defs.h>
-    #include <avr/portpins.h>
-    #include <avr/common.h>
-    #include <avr/version.h>
+    \code
+    #include "avr_mod/sfr_defs.h"
+    #include "avr_mod/portpins.h"
+    #include "avr_mod/common.h"
+    #include "avr_mod/version.h"
     \endcode
     See \ref avr_sfr for more details about that header file.
 
@@ -71,8 +71,8 @@
     <br>
     - \b XRAMEND
     <br>
-    The last possible RAM location that is addressable. This is equal to 
-    RAMEND for devices that do not allow for external RAM. For devices 
+    The last possible RAM location that is addressable. This is equal to
+    RAMEND for devices that do not allow for external RAM. For devices
     that allow external RAM, this will be larger than RAMEND.
     <br>
     - \b E2END
@@ -86,289 +86,289 @@
     - \b SPM_PAGESIZE
     <br>
     For devices with bootloader support, the flash pagesize
-    (in bytes) to be used for the \c SPM instruction. 
+    (in bytes) to be used for the \c SPM instruction.
     - \b E2PAGESIZE
     <br>
     The size of the EEPROM page.
-    
+
 */
 
 #ifndef _AVR_IO_H_
 #define _AVR_IO_H_
 
-#include <avr/sfr_defs.h>
+#include "avr_mod/sfr_defs.h"
 
 #if defined (__AVR_AT94K__)
-#  include <avr/ioat94k.h>
+#  include "avr_mod/ioat94k.h"
 #elif defined (__AVR_AT43USB320__)
-#  include <avr/io43u32x.h>
+#  include "avr_mod/io43u32x.h"
 #elif defined (__AVR_AT43USB355__)
-#  include <avr/io43u35x.h>
+#  include "avr_mod/io43u35x.h"
 #elif defined (__AVR_AT76C711__)
-#  include <avr/io76c711.h>
+#  include "avr_mod/io76c711.h"
 #elif defined (__AVR_AT86RF401__)
-#  include <avr/io86r401.h>
+#  include "avr_mod/io86r401.h"
 #elif defined (__AVR_AT90PWM1__)
-#  include <avr/io90pwm1.h>
+#  include "avr_mod/io90pwm1.h"
 #elif defined (__AVR_AT90PWM2__)
-#  include <avr/io90pwmx.h>
+#  include "avr_mod/io90pwmx.h"
 #elif defined (__AVR_AT90PWM2B__)
-#  include <avr/io90pwm2b.h>
+#  include "avr_mod/io90pwm2b.h"
 #elif defined (__AVR_AT90PWM3__)
-#  include <avr/io90pwmx.h>
+#  include "avr_mod/io90pwmx.h"
 #elif defined (__AVR_AT90PWM3B__)
-#  include <avr/io90pwm3b.h>
+#  include "avr_mod/io90pwm3b.h"
 #elif defined (__AVR_AT90PWM216__)
-#  include <avr/io90pwm216.h>
+#  include "avr_mod/io90pwm216.h"
 #elif defined (__AVR_AT90PWM316__)
-#  include <avr/io90pwm316.h>
+#  include "avr_mod/io90pwm316.h"
 #elif defined (__AVR_AT90PWM81__)
-#  include <avr/io90pwm81.h>
+#  include "avr_mod/io90pwm81.h"
 #elif defined (__AVR_ATmega16M1__)
-#  include <avr/iom16m1.h>
+#  include "avr_mod/iom16m1.h"
 #elif defined (__AVR_ATmega16U4__)
-#  include <avr/iom16u4.h>
+#  include "avr_mod/iom16u4.h"
 #elif defined (__AVR_ATmega32C1__)
-#  include <avr/iom32c1.h>
+#  include "avr_mod/iom32c1.h"
 #elif defined (__AVR_ATmega32M1__)
-#  include <avr/iom32m1.h>
+#  include "avr_mod/iom32m1.h"
 #elif defined (__AVR_ATmega32U4__)
-#  include <avr/iom32u4.h>
+#  include "avr_mod/iom32u4.h"
 #elif defined (__AVR_ATmega32U6__)
-#  include <avr/iom32u6.h>
+#  include "avr_mod/iom32u6.h"
 #elif defined (__AVR_ATmega64C1__)
-#  include <avr/iom64c1.h>
+#  include "avr_mod/iom64c1.h"
 #elif defined (__AVR_ATmega64M1__)
-#  include <avr/iom64m1.h>
+#  include "avr_mod/iom64m1.h"
 #elif defined (__AVR_ATmega128__)
-#  include <avr/iom128.h>
+#  include "avr_mod/iom128.h"
 #elif defined (__AVR_ATmega1280__)
-#  include <avr/iom1280.h>
+#  include "avr_mod/iom1280.h"
 #elif defined (__AVR_ATmega1281__)
-#  include <avr/iom1281.h>
+#  include "avr_mod/iom1281.h"
 #elif defined (__AVR_ATmega1284P__)
-#  include <avr/iom1284p.h>
+#  include "avr_mod/iom1284p.h"
 #elif defined (__AVR_ATmega128RFA1__)
-#  include <avr/iom128rfa1.h>
+#  include "avr_mod/iom128rfa1.h"
 #elif defined (__AVR_ATmega2560__)
-#  include <avr/iom2560.h>
+#  include "avr_mod/iom2560.h"
 #elif defined (__AVR_ATmega2561__)
-#  include <avr/iom2561.h>
+#  include "avr_mod/iom2561.h"
 #elif defined (__AVR_AT90CAN32__)
-#  include <avr/iocan32.h>
+#  include "avr_mod/iocan32.h"
 #elif defined (__AVR_AT90CAN64__)
-#  include <avr/iocan64.h>
+#  include "avr_mod/iocan64.h"
 #elif defined (__AVR_AT90CAN128__)
-#  include <avr/iocan128.h>
+#  include "avr_mod/iocan128.h"
 #elif defined (__AVR_AT90USB82__)
-#  include <avr/iousb82.h>
+#  include "avr_mod/iousb82.h"
 #elif defined (__AVR_AT90USB162__)
-#  include <avr/iousb162.h>
+#  include "avr_mod/iousb162.h"
 #elif defined (__AVR_AT90USB646__)
-#  include <avr/iousb646.h>
+#  include "avr_mod/iousb646.h"
 #elif defined (__AVR_AT90USB647__)
-#  include <avr/iousb647.h>
+#  include "avr_mod/iousb647.h"
 #elif defined (__AVR_AT90USB1286__)
-#  include <avr/iousb1286.h>
+#  include "avr_mod/iousb1286.h"
 #elif defined (__AVR_AT90USB1287__)
-#  include <avr/iousb1287.h>
+#  include "avr_mod/iousb1287.h"
 #elif defined (__AVR_ATmega64__)
-#  include <avr/iom64.h>
+#  include "avr_mod/iom64.h"
 #elif defined (__AVR_ATmega640__)
-#  include <avr/iom640.h>
+#  include "avr_mod/iom640.h"
 #elif defined (__AVR_ATmega644__)
-#  include <avr/iom644.h>
+#  include "avr_mod/iom644.h"
 #elif defined (__AVR_ATmega644P__)
-#  include <avr/iom644.h>
+#  include "avr_mod/iom644.h"
 #elif defined (__AVR_ATmega645__)
-#  include <avr/iom645.h>
+#  include "avr_mod/iom645.h"
 #elif defined (__AVR_ATmega6450__)
-#  include <avr/iom6450.h>
+#  include "avr_mod/iom6450.h"
 #elif defined (__AVR_ATmega649__)
-#  include <avr/iom649.h>
+#  include "avr_mod/iom649.h"
 #elif defined (__AVR_ATmega6490__)
-#  include <avr/iom6490.h>
+#  include "avr_mod/iom6490.h"
 #elif defined (__AVR_ATmega103__)
-#  include <avr/iom103.h>
+#  include "avr_mod/iom103.h"
 #elif defined (__AVR_ATmega32__)
-#  include <avr/iom32.h>
+#  include "avr_mod/iom32.h"
 #elif defined (__AVR_ATmega323__)
-#  include <avr/iom323.h>
+#  include "avr_mod/iom323.h"
 #elif defined (__AVR_ATmega324P__)
-#  include <avr/iom324.h>
+#  include "avr_mod/iom324.h"
 #elif defined (__AVR_ATmega325__)
-#  include <avr/iom325.h>
+#  include "avr_mod/iom325.h"
 #elif defined (__AVR_ATmega325P__)
-#  include <avr/iom325.h>
+#  include "avr_mod/iom325.h"
 #elif defined (__AVR_ATmega3250__)
-#  include <avr/iom3250.h>
+#  include "avr_mod/iom3250.h"
 #elif defined (__AVR_ATmega3250P__)
-#  include <avr/iom3250.h>
+#  include "avr_mod/iom3250.h"
 #elif defined (__AVR_ATmega328P__)
-#  include <avr/iom328p.h>
+#  include "avr_mod/iom328p.h"
 #elif defined (__AVR_ATmega329__)
-#  include <avr/iom329.h>
+#  include "avr_mod/iom329.h"
 #elif defined (__AVR_ATmega329P__)
-#  include <avr/iom329.h>
+#  include "avr_mod/iom329.h"
 #elif defined (__AVR_ATmega3290__)
-#  include <avr/iom3290.h>
+#  include "avr_mod/iom3290.h"
 #elif defined (__AVR_ATmega3290P__)
-#  include <avr/iom3290.h>
+#  include "avr_mod/iom3290.h"
 #elif defined (__AVR_ATmega32HVB__)
-#  include <avr/iom32hvb.h>
+#  include "avr_mod/iom32hvb.h"
 #elif defined (__AVR_ATmega406__)
-#  include <avr/iom406.h>
+#  include "avr_mod/iom406.h"
 #elif defined (__AVR_ATmega16__)
-#  include <avr/iom16.h>
+#  include "avr_mod/iom16.h"
 #elif defined (__AVR_ATmega161__)
-#  include <avr/iom161.h>
+#  include "avr_mod/iom161.h"
 #elif defined (__AVR_ATmega162__)
-#  include <avr/iom162.h>
+#  include "avr_mod/iom162.h"
 #elif defined (__AVR_ATmega163__)
-#  include <avr/iom163.h>
+#  include "avr_mod/iom163.h"
 #elif defined (__AVR_ATmega164P__)
-#  include <avr/iom164.h>
+#  include "avr_mod/iom164.h"
 #elif defined (__AVR_ATmega165__)
-#  include <avr/iom165.h>
+#  include "avr_mod/iom165.h"
 #elif defined (__AVR_ATmega165P__)
-#  include <avr/iom165p.h>
+#  include "avr_mod/iom165p.h"
 #elif defined (__AVR_ATmega168__)
-#  include <avr/iom168.h>
+#  include "avr_mod/iom168.h"
 #elif defined (__AVR_ATmega168P__)
-#  include <avr/iom168p.h>
+#  include "avr_mod/iom168p.h"
 #elif defined (__AVR_ATmega169__)
-#  include <avr/iom169.h>
+#  include "avr_mod/iom169.h"
 #elif defined (__AVR_ATmega169P__)
-#  include <avr/iom169p.h>
+#  include "avr_mod/iom169p.h"
 #elif defined (__AVR_ATmega8HVA__)
-#  include <avr/iom8hva.h>
+#  include "avr_mod/iom8hva.h"
 #elif defined (__AVR_ATmega16HVA__)
-#  include <avr/iom16hva.h>
+#  include "avr_mod/iom16hva.h"
 #elif defined (__AVR_ATmega8__)
-#  include <avr/iom8.h>
+#  include "avr_mod/iom8.h"
 #elif defined (__AVR_ATmega48__)
-#  include <avr/iom48.h>
+#  include "avr_mod/iom48.h"
 #elif defined (__AVR_ATmega48P__)
-#  include <avr/iom48p.h>
+#  include "avr_mod/iom48p.h"
 #elif defined (__AVR_ATmega88__)
-#  include <avr/iom88.h>
+#  include "avr_mod/iom88.h"
 #elif defined (__AVR_ATmega88P__)
-#  include <avr/iom88p.h>
+#  include "avr_mod/iom88p.h"
 #elif defined (__AVR_ATmega8515__)
-#  include <avr/iom8515.h>
+#  include "avr_mod/iom8515.h"
 #elif defined (__AVR_ATmega8535__)
-#  include <avr/iom8535.h>
+#  include "avr_mod/iom8535.h"
 #elif defined (__AVR_AT90S8535__)
-#  include <avr/io8535.h>
+#  include "avr_mod/io8535.h"
 #elif defined (__AVR_AT90C8534__)
-#  include <avr/io8534.h>
+#  include "avr_mod/io8534.h"
 #elif defined (__AVR_AT90S8515__)
-#  include <avr/io8515.h>
+#  include "avr_mod/io8515.h"
 #elif defined (__AVR_AT90S4434__)
-#  include <avr/io4434.h>
+#  include "avr_mod/io4434.h"
 #elif defined (__AVR_AT90S4433__)
-#  include <avr/io4433.h>
+#  include "avr_mod/io4433.h"
 #elif defined (__AVR_AT90S4414__)
-#  include <avr/io4414.h>
+#  include "avr_mod/io4414.h"
 #elif defined (__AVR_ATtiny22__)
-#  include <avr/iotn22.h>
+#  include "avr_mod/iotn22.h"
 #elif defined (__AVR_ATtiny26__)
-#  include <avr/iotn26.h>
+#  include "avr_mod/iotn26.h"
 #elif defined (__AVR_AT90S2343__)
-#  include <avr/io2343.h>
+#  include "avr_mod/io2343.h"
 #elif defined (__AVR_AT90S2333__)
-#  include <avr/io2333.h>
+#  include "avr_mod/io2333.h"
 #elif defined (__AVR_AT90S2323__)
-#  include <avr/io2323.h>
+#  include "avr_mod/io2323.h"
 #elif defined (__AVR_AT90S2313__)
-#  include <avr/io2313.h>
+#  include "avr_mod/io2313.h"
 #elif defined (__AVR_ATtiny2313__)
-#  include <avr/iotn2313.h>
+#  include "avr_mod/iotn2313.h"
 #elif defined (__AVR_ATtiny13__)
-#  include <avr/iotn13.h>
+#  include "avr_mod/iotn13.h"
 #elif defined (__AVR_ATtiny13A__)
-#  include <avr/iotn13a.h>
+#  include "avr_mod/iotn13a.h"
 #elif defined (__AVR_ATtiny25__)
-#  include <avr/iotn25.h>
+#  include "avr_mod/iotn25.h"
 #elif defined (__AVR_ATtiny45__)
-#  include <avr/iotn45.h>
+#  include "avr_mod/iotn45.h"
 #elif defined (__AVR_ATtiny85__)
-#  include <avr/iotn85.h>
+#  include "avr_mod/iotn85.h"
 #elif defined (__AVR_ATtiny24__)
-#  include <avr/iotn24.h>
+#  include "avr_mod/iotn24.h"
 #elif defined (__AVR_ATtiny44__)
-#  include <avr/iotn44.h>
+#  include "avr_mod/iotn44.h"
 #elif defined (__AVR_ATtiny84__)
-#  include <avr/iotn84.h>
+#  include "avr_mod/iotn84.h"
 #elif defined (__AVR_ATtiny261__)
-#  include <avr/iotn261.h>
+#  include "avr_mod/iotn261.h"
 #elif defined (__AVR_ATtiny461__)
-#  include <avr/iotn461.h>
+#  include "avr_mod/iotn461.h"
 #elif defined (__AVR_ATtiny861__)
-#  include <avr/iotn861.h>
+#  include "avr_mod/iotn861.h"
 #elif defined (__AVR_ATtiny43U__)
-#  include <avr/iotn43u.h>
+#  include "avr_mod/iotn43u.h"
 #elif defined (__AVR_ATtiny48__)
-#  include <avr/iotn48.h>
+#  include "avr_mod/iotn48.h"
 #elif defined (__AVR_ATtiny88__)
-#  include <avr/iotn88.h>
+#  include "avr_mod/iotn88.h"
 #elif defined (__AVR_ATtiny87__)
-#  include <avr/iotn87.h>
+#  include "avr_mod/iotn87.h"
 #elif defined (__AVR_ATtiny167__)
-#  include <avr/iotn167.h>
+#  include "avr_mod/iotn167.h"
 #elif defined (__AVR_AT90SCR100__)
-#  include <avr/io90scr100.h>
+#  include "avr_mod/io90scr100.h"
 #elif defined (__AVR_ATxmega16A4__)
-#  include <avr/iox16a4.h>
+#  include "avr_mod/iox16a4.h"
 #elif defined (__AVR_ATxmega16D4__)
-#  include <avr/iox16d4.h>
+#  include "avr_mod/iox16d4.h"
 #elif defined (__AVR_ATxmega32A4__)
-#  include <avr/iox32a4.h>
+#  include "avr_mod/iox32a4.h"
 #elif defined (__AVR_ATxmega32D4__)
-#  include <avr/iox32d4.h>
+#  include "avr_mod/iox32d4.h"
 #elif defined (__AVR_ATxmega64A1__)
-#  include <avr/iox64a1.h>
+#  include "avr_mod/iox64a1.h"
 #elif defined (__AVR_ATxmega64A3__)
-#  include <avr/iox64a3.h>
+#  include "avr_mod/iox64a3.h"
 #elif defined (__AVR_ATxmega128A1__)
-#  include <avr/iox128a1.h>
+#  include "avr_mod/iox128a1.h"
 #elif defined (__AVR_ATxmega128A3__)
-#  include <avr/iox128a3.h>
+#  include "avr_mod/iox128a3.h"
 #elif defined (__AVR_ATxmega192A3__)
-#  include <avr/iox192a3.h>
+#  include "avr_mod/iox192a3.h"
 #elif defined (__AVR_ATxmega256A3__)
-#  include <avr/iox256a3.h>
+#  include "avr_mod/iox256a3.h"
 #elif defined (__AVR_ATxmega256A3B__)
-#  include <avr/iox256a3b.h>
+#  include "avr_mod/iox256a3b.h"
 #elif defined (__AVR_ATA6289__)
-#  include <avr/ioa6289.h>
+#  include "avr_mod/ioa6289.h"
 /* avr1: the following only supported for assembler programs */
 #elif defined (__AVR_ATtiny28__)
-#  include <avr/iotn28.h>
+#  include "avr_mod/iotn28.h"
 #elif defined (__AVR_AT90S1200__)
-#  include <avr/io1200.h>
+#  include "avr_mod/io1200.h"
 #elif defined (__AVR_ATtiny15__)
-#  include <avr/iotn15.h>
+#  include "avr_mod/iotn15.h"
 #elif defined (__AVR_ATtiny12__)
-#  include <avr/iotn12.h>
+#  include "avr_mod/iotn12.h"
 #elif defined (__AVR_ATtiny11__)
-#  include <avr/iotn11.h>
+#  include "avr_mod/iotn11.h"
 #else
 #  if !defined(__COMPILING_AVR_LIBC__)
 #    warning "device type not defined"
 #  endif
 #endif
 
-#include <avr/portpins.h>
+#include "avr_mod/portpins.h"
 
-#include <avr/common.h>
+#include "avr_mod/common.h"
 
-#include <avr/version.h>
+#include "avr_mod/version.h"
 
 /* Include fuse.h after individual IO header files. */
-#include <avr/fuse.h>
+#include "avr_mod/fuse.h"
 
 /* Include lock.h after individual IO header files. */
-#include <avr/lock.h>
+#include "avr_mod/lock.h"
 
 #endif /* _AVR_IO_H_ */

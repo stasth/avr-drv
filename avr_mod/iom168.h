@@ -33,7 +33,7 @@
 #ifndef _AVR_IOM168_H_
 #define _AVR_IOM168_H_ 1
 
-#include <avr/iomx8.h>
+#include "avr_mod/iomx8.h"
 
 /* Constants */
 #define SPM_PAGESIZE 128
@@ -79,7 +79,7 @@
 /* Lock Bits */
 #define __LOCK_BITS_EXIST
 #define __BOOT_LOCK_BITS_0_EXIST
-#define __BOOT_LOCK_BITS_1_EXIST 
+#define __BOOT_LOCK_BITS_1_EXIST
 
 
 /* Signature */

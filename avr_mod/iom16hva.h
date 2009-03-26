@@ -1,4 +1,4 @@
-/* Copyright (c) 2007, Anatoly Sokolov 
+/* Copyright (c) 2007, Anatoly Sokolov
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
@@ -35,7 +35,7 @@
 #ifndef _AVR_IOM16HVA_H_
 #define _AVR_IOM16HVA_H_ 1
 
-#include <avr/iomxxhva.h>
+#include "avr_mod/iomxxhva.h"
 
 /* Constants */
 #define SPM_PAGESIZE 128
