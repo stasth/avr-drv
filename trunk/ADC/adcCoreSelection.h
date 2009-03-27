@@ -48,7 +48,7 @@
 #ifndef ADCCORESELECTION_H_
 #define ADCCORESELECTION_H_
 
-#include "avr_mod/io.h" //\TODO If avr-libc accept pin description, change me.
+#include <avr/io.h>
 
 
 #if !(defined(ADCSRA)  || defined(ADMUX)  || defined(ADCW) || defined(ADCH) || defined(ADCL))

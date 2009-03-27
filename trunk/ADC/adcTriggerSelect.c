@@ -37,11 +37,11 @@
 #include "adcCoreSelection.h"
 #include "adcDef.h"
 #include "avr-drv-errno.h"
-#include "avr_mod/io.h" //\TODO If avr-libc accept pin description, change me.
 
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <avr/io.h>
 
 #if defined(ADC_AutoTrigger)
 

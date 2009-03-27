@@ -39,9 +39,9 @@
 
  \author Frédéric Nadeau
  */
-
 #include "avr-drv-errno.h"
-#include "avr_mod/io.h" //\TODO If avr-libc accept pin description, change me.
+
+#include <avr/io.h>
 
 #if defined(__DOXYGEN__)
 #	define MUX_MASK /*!< ADMUX register mask for MUX bits. */
