@@ -39,7 +39,8 @@
  \author Frédéric Nadeau
  */
 #include "avr-drv.h"
-#include "avr_mod/io.h" //\TODO If avr-libc accept pin description, change me.
+
+#include <avr/io.h>
 
 #if defined(DIDR0)
 
