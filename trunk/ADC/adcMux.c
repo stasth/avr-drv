@@ -1,4 +1,4 @@
-/* Copyright (c) 2008,2009 Frédéric Nadeau
+/* Copyright (c) 2008-2010 Frédéric Nadeau
    All rights reserved.
 
    Redistribution and use in source and binary forms,
@@ -54,12 +54,14 @@
 #endif
 int adcSelectInput(ADC_InputChannelSelection_t channel)
 {
+#ifndef NDEBUG
 	if (channel >= ADC_ChanInvalid)
 	{
 		errno = EINVAL;
 		return -1;
 	}
-
+#endif
+	//Clear mask and set value
 	ADMUX &= ~MUX_MASK;
 	ADMUX |= channel;
 
@@ -69,7 +71,6 @@ int adcSelectInput(ADC_InputChannelSelection_t channel)
 	{
 		ADCSRB |= _BV(MUX5);
 	}
-
 #endif
 
 	return 0;

@@ -1,4 +1,4 @@
-/* Copyright (c) 2008,2009 Frédéric Nadeau
+/* Copyright (c) 2008-2010 Frédéric Nadeau
    All rights reserved.
 
    Redistribution and use in source and binary forms,
@@ -71,11 +71,16 @@ typedef enum ADC_VoltageRef_e
 {
 	ADC_VrefAtAREF = 0, ADC_VrefAtAVCC,
 #if !defined(ADC_1_1Vref)
-	ADC_VrefReserved,
+	ADC_VrefReserved_10,
 #else
 	ADC_VrefInternal_1_1,
 #endif
-	ADC_VrefInternal_2_56, ADC_VrefInvalid
+#if !defined(ADC_2_56Vref)
+	ADC_VrefReserved_11,
+#else
+	ADC_VrefInternal_2_56,
+#endif
+	ADC_VrefInvalid
 } ADC_VoltageRef_t;
 #endif
 
