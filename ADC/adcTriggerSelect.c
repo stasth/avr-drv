@@ -1,4 +1,4 @@
-/* Copyright (c) 2008,2009 Frédéric Nadeau
+/* Copyright (c) 2008-2010 Frédéric Nadeau
    All rights reserved.
 
    Redistribution and use in source and binary forms,
@@ -31,6 +31,8 @@
 
 /*! \file adcTriggerSelect.c
  \brief This file handle Trigger module of the ADC.
+
+ \todo This module need rewrite.
 
  \author Frédéric Nadeau
  */
@@ -89,10 +91,13 @@ int adcTriggerSource(ADC_TriggerSource_t trigger)
 
 void adcTriggerEnable(_Bool trigEn)
 {
-	ADCSRA &= ~_BV(ADFR);
 	if(trigEn != false)
 	{
 		ADCSRA |= _BV(ADFR);
+	}
+	else
+	{
+		ADCSRA &= ~_BV(ADFR);
 	}
 }
 

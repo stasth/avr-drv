@@ -1,4 +1,4 @@
-/* Copyright (c) 2008,2009 Frédéric Nadeau
+/* Copyright (c) 2008-2010 Frédéric Nadeau
    All rights reserved.
 
    Redistribution and use in source and binary forms,
@@ -53,41 +53,56 @@
 
 void adcEnable(_Bool status)
 {
-	ADCSRA &= ~_BV(ADEN);
 	if(status != false)
 	{
 		ADCSRA |= _BV(ADEN);
+	}
+	{
+		ADCSRA &= ~_BV(ADEN);
 	}
 }
 
 void adcInterruptEnable(_Bool intEn)
 {
-	ADCSRA &= ~_BV(ADIE);
 	if(intEn != false)
 	{
 		ADCSRA |= _BV(ADIE);
+	}
+	else
+	{
+		ADCSRA &= ~_BV(ADIE);
 	}
 }
 
 void adcLeftAdjust(_Bool adjust)
 {
-	ADMUX &= ~_BV(ADLAR);
 	if(adjust != false)
 	{
 		ADMUX |= _BV(ADLAR);
 	}
+	else
+	{
+		ADMUX &= ~_BV(ADLAR);
+	}
 }
 
+//This function assume that ADPS2 == (ADPS0 + 2) && ADPS1 == (ADPS0 + 1)
+//It seems it is always the case
+#if !(ADPS2 == (ADPS0 + 2) && ADPS1 == (ADPS0 + 1))
+#	error "adcPrescalerSelection needs to be rewritten for this device"
+#endif
 int adcPrescalerSelection(ADC_Prescaler_t prescaler)
 {
+#ifndef NDEBUG
 	if (prescaler >= ADC_DivFactorInvalid)
 	{
 		errno = EINVAL;
 		return -1;
 	}
+#endif
 
-	ADCSRA &= ~((1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0));
-	ADCSRA |= prescaler;
+	ADCSRA &= ~(_BV(ADPS2) | _BV(ADPS1) | _BV(ADPS0));
+	ADCSRA |= prescaler << ADPS0;
 
 	return 0;
 }
@@ -118,13 +133,21 @@ void adcClearIntFlag(void)
 	ADCSRA |= _BV(ADIF);
 }
 
+
+//This function assume that REFS1 == (REFS0 + 1)
+//It seems it is always the case
+#if REFS1 != (REFS0 +1)
+#	error "adcSelectVref needs to be rewritten for this device"
+#endif
 int adcSelectVref(ADC_VoltageRef_t ref)
 {
+#ifndef NDEBUG
 	if (ref >= ADC_VrefInvalid)
 	{
 		errno = EINVAL;
 		return -1;
 	}
+#endif
 
 	ADMUX &= ~(1 << REFS1 | 1 << REFS0);
 	ADMUX |= ref << REFS0;
@@ -134,6 +157,6 @@ int adcSelectVref(ADC_VoltageRef_t ref)
 
 void adcStartConversion(void)
 {
-	ADCSRA |= 1 << ADSC;
+	ADCSRA |= _BV(ADSC);
 }
 
