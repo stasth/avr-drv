@@ -1,4 +1,4 @@
-/* Copyright (c) 2008,2009 Frédéric Nadeau
+/* Copyright (c) 2008-2010 Frédéric Nadeau
    All rights reserved.
 
    Redistribution and use in source and binary forms,
@@ -41,7 +41,7 @@
 #include <stdint.h>
 #include "adcDef.h"
 
-/*! \fn void adcSelectVref(ADC_VoltageRef_t ref)
+/*! \fn void adc_select_vref(ADC_VoltageRef_t ref)
  *  \brief Select voltage reference to be used by the ADC.
  *
  *  \warning Not all device have the same voltage reference.
@@ -50,9 +50,9 @@
  *  \return 0 if successful or -1 if an error occured. See errno for detail:\
  *  #EINVAL Invalid argument.
  */
-int adcSelectVref(ADC_VoltageRef_t ref);
+int adc_select_vref(ADC_VoltageRef_t ref);
 
-/*! \fn void adcSelectInput(ADC_InputChannelSelection_t channel)
+/*! \fn void adc_select_input(ADC_InputChannelSelection_t channel)
  *  \brief Select input channel of the ADC.
  *
  *  \warning Not all device have the same input channel.
@@ -61,40 +61,40 @@ int adcSelectVref(ADC_VoltageRef_t ref);
  *  \return 0 if successful or -1 if an error occured. See errno for detail:\
  *  #EINVAL Invalid argument.
  */
-int adcSelectInput(ADC_InputChannelSelection_t channel);
+int adc_select_input(ADC_InputChannelSelection_t channel);
 
-/*! \fn void adcLeftAdjust(_Bool adjust)
+/*! \fn void adc_left_adjust(_Bool adjust)
  *  \brief Select how conversion result will be stored in register.
  *
  *  For 8-bits result, use:
- *  \li \c adcLeftAdjust(true)
- *  \li #adcReadHigh()
+ *  \li \c adc_left_adjust(true)
+ *  \li #adc_read_high()
  *
  *	For 10-bits result, use:
- *  \li \c adcLeftAdjust(false)
- *  \li #adcRead()
+ *  \li \c adc_left_adjust(false)
+ *  \li #adc_read()
  *
  *  \param adjust Alignment of the result register.
  */
-void adcLeftAdjust(_Bool adjust);
+void adc_left_adjust(_Bool adjust);
 
-/*! \fn void adcPrescalerSelection(ADC_Prescaler_t prescaler)
+/*! \fn void adc_prescaler_selection(ADC_Prescaler_t prescaler)
  *  \brief Select ADC core clock prescaler.
  *
  *  \param prescaler Prescaler clock. See #ADC_Prescaler_t for option list.
  *  \return 0 if successful or -1 if an error occured. See errno for detail:\
  *  #EINVAL Invalid argument.
  */
-int adcPrescalerSelection(ADC_Prescaler_t prescaler);
+int adc_prescaler_selection(ADC_Prescaler_t prescaler);
 
-/*! \fn void adcEnable(_Bool status)
+/*! \fn void adc_enable(_Bool status)
  *  \brief Enable or disable ADC core.
  *
  *  \param status Status of the ADC core.
  */
-void adcEnable(_Bool status);
+void adc_enable(_Bool status);
 
-/*! \fn void adcInterruptEnable (_Bool intEn)
+/*! \fn void adc_interrupt_enable (_Bool intEn)
  *  \brief Enable or disable ADC core interrupt.
  *
  *  \warning Interrupt service routine are not provided by AVR-drv.
@@ -102,35 +102,35 @@ void adcEnable(_Bool status);
  *
  *  \param intEn New interrupt status.
  */
-void adcInterruptEnable (_Bool intEn);
+void adc_interrupt_enable (_Bool intEn);
 
-/*! \fn void adcStartConversion(void)
+/*! \fn void adc_start_conversion(void)
  *  \brief Start a conversion.
  */
-void adcStartConversion(void);
+void adc_start_conversion(void);
 
-/*! \fn uint16_t adcRead(void)
+/*! \fn uint16_t adc_read(void)
  *  \brief Read conversion result register.
  *
  *  \return Value in the conversion result register.
  */
-uint16_t adcRead(void);
+uint16_t adc_read(void);
 
-/*! \fn uint8_t adcReadHigh(void)
+/*! \fn uint8_t adc_read_high(void)
  *  \brief Read high byte of the conversion result register.
  *
  *  \return Value in the high byte of the conversion result register.
  */
-uint8_t adcReadHigh(void);
+uint8_t adc_read_high(void);
 
-/*! \fn uint8_t adcReadLow(void)
+/*! \fn uint8_t adc_read_low(void)
  *  \brief Read low byte of the conversion result register.
  *
  *  \return Value in the low byte of the conversion result register.
  */
-uint8_t adcReadLow(void);
+uint8_t adc_read_low(void);
 
-/*! \fn void adcTriggerSource (ADC_TriggerSource_t trigger)
+/*! \fn void adc_set_trigger_source (ADC_TriggerSource_t trigger)
  *  \brief Set the auto trigger source.
  *
  *  \warning Not all device have the trigger source.
@@ -142,9 +142,9 @@ uint8_t adcReadLow(void);
  *  \return 0 if successful or -1 if an error occured. See errno for detail:\
  *  #EINVAL Invalid argument.
  */
-int adcTriggerSource (ADC_TriggerSource_t trigger);
+int adc_set_trigger_source (ADC_TriggerSource_t trigger);
 
-/*! \fn void adcTriggerEnable(_Bool trigEn)
+/*! \fn void adc_trigger_enable(_Bool trigEn)
  *  \brief Enable or disable the auto trigger.
  *
  *  \warning For devices like \c ATmega8 and \c ATmega128,
@@ -152,10 +152,10 @@ int adcTriggerSource (ADC_TriggerSource_t trigger);
  *
  *  \param trigEn Trigger enable/disable.
  */
-void adcTriggerEnable(_Bool trigEn);
+void adc_trigger_enable(_Bool trigEn);
 
 #if defined(__DOXYGEN__)
-/*! \fn void adcDigitalInputDisable(ADC_DigitalChannel_t chanList)
+/*! \fn void adc_digital_input_disable(ADC_DigitalChannel_t chanList)
  *  \brief Disable digital input for selected channel.
  *
  *  \warning Devices that do not support this feature will not have
@@ -163,9 +163,9 @@ void adcTriggerEnable(_Bool trigEn);
  *
  *  \param chanList List of channel that will have digital input disabled.
  */
-void adcDigitalInputDisable(ADC_DigitalChannel_t chanList);
+void adc_digital_input_disable(ADC_DigitalChannel_t chanList);
 
-/*! \fn void adcDigitalInputEnable(ADC_DigitalChannel_t chanList)
+/*! \fn void adc_digital_input_enable(ADC_DigitalChannel_t chanList)
  *  \brief Enable digital input for selected channel.
  *
  *  \warning Devices that do not support this feature will not have
@@ -174,12 +174,12 @@ void adcDigitalInputDisable(ADC_DigitalChannel_t chanList);
  *  \param chanList List of channel that will have digital input enabled.
  */
 
-void adcDigitalInputEnable(ADC_DigitalChannel_t chanList);
+void adc_digital_input_enable(ADC_DigitalChannel_t chanList);
 #endif
 
 #if defined(ADC_DigitalInput)
-void adcDigitalInputDisable(ADC_DigitalChannel_t chanList);
-void adcDigitalInputEnable(ADC_DigitalChannel_t chanList);
+void adc_digital_input_disable(ADC_DigitalChannel_t chanList);
+void adc_digital_input_enable(ADC_DigitalChannel_t chanList);
 #endif
 
 #endif /*ADC_H_*/

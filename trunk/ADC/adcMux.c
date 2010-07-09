@@ -52,7 +52,7 @@
 #		define MUX_MASK ((1 << MUX3) | (1 << MUX2) | (1 << MUX1) | (1 << MUX0))
 #	endif
 #endif
-int adcSelectInput(ADC_InputChannelSelection_t channel)
+int adc_select_input(ADC_InputChannelSelection_t channel)
 {
 #ifndef NDEBUG
 	if (channel >= ADC_ChanInvalid)

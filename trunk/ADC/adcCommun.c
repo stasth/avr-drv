@@ -51,7 +51,7 @@
 #include <stdint.h>
 #include <avr/io.h>
 
-void adcEnable(_Bool status)
+void adc_enable(_Bool status)
 {
 	if(status != false)
 	{
@@ -62,7 +62,7 @@ void adcEnable(_Bool status)
 	}
 }
 
-void adcInterruptEnable(_Bool intEn)
+void adc_interrupt_enable(_Bool intEn)
 {
 	if(intEn != false)
 	{
@@ -74,7 +74,7 @@ void adcInterruptEnable(_Bool intEn)
 	}
 }
 
-void adcLeftAdjust(_Bool adjust)
+void adc_left_adjust(_Bool adjust)
 {
 	if(adjust != false)
 	{
@@ -91,7 +91,7 @@ void adcLeftAdjust(_Bool adjust)
 #if !(ADPS2 == (ADPS0 + 2) && ADPS1 == (ADPS0 + 1))
 #	error "adcPrescalerSelection needs to be rewritten for this device"
 #endif
-int adcPrescalerSelection(ADC_Prescaler_t prescaler)
+int adc_prescaler_selection(ADC_Prescaler_t prescaler)
 {
 #ifndef NDEBUG
 	if (prescaler >= ADC_DivFactorInvalid)
@@ -107,17 +107,17 @@ int adcPrescalerSelection(ADC_Prescaler_t prescaler)
 	return 0;
 }
 
-uint16_t adcRead(void)
+uint16_t adc_read(void)
 {
 	return ADCW;
 }
 
-uint8_t adcReadHigh(void)
+uint8_t adc_read_high(void)
 {
 	return ADCH;
 }
 
-uint8_t adcReadLow(void)
+uint8_t adc_read_low(void)
 {
 	return ADCL;
 }
@@ -139,7 +139,7 @@ void adcClearIntFlag(void)
 #if REFS1 != (REFS0 +1)
 #	error "adcSelectVref needs to be rewritten for this device"
 #endif
-int adcSelectVref(ADC_VoltageRef_t ref)
+int adc_select_vref(ADC_VoltageRef_t ref)
 {
 #ifndef NDEBUG
 	if (ref >= ADC_VrefInvalid)
@@ -155,7 +155,7 @@ int adcSelectVref(ADC_VoltageRef_t ref)
 	return 0;
 }
 
-void adcStartConversion(void)
+void adc_start_conversion(void)
 {
 	ADCSRA |= _BV(ADSC);
 }

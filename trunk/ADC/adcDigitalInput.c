@@ -1,4 +1,4 @@
-/* Copyright (c) 2008,2009 Frédéric Nadeau
+/* Copyright (c) 2008-2010 Frédéric Nadeau
    All rights reserved.
 
    Redistribution and use in source and binary forms,
@@ -44,7 +44,7 @@
 
 #if defined(DIDR0)
 
-void adcDigitalInputDisable(ADC_DigitalChannel_t chanList)
+void adc_digital_input_disable(ADC_DigitalChannel_t chanList)
 {
 	DIDR0 |= (uint8_t)chanList;
 #if defined(DIDR2)
@@ -53,7 +53,7 @@ void adcDigitalInputDisable(ADC_DigitalChannel_t chanList)
 
 }
 
-void adcDigitalInputEnable(ADC_DigitalChannel_t chanList)
+void adc_digital_input_enable(ADC_DigitalChannel_t chanList)
 {
 	DIDR0 &= ~((uint8_t)chanList);
 #if defined(DIDR2)
