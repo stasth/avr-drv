@@ -53,7 +53,7 @@
 #	define TARGET_REG SFIOR
 #endif
 
-int adcTriggerSource(ADC_TriggerSource_t trigger)
+int adc_set_trigger_source(ADC_TriggerSource_t trigger)
 {
 	if (trigger >= ADC_TriggerSourceInvalid)
 	{
@@ -67,7 +67,7 @@ int adcTriggerSource(ADC_TriggerSource_t trigger)
 	return 0;
 }
 
-void adcTriggerEnable(_Bool trigEn)
+void adc_trigger_enable(_Bool trigEn)
 {
 	TARGET_REG &= ~_BV(ADATE);
 	if(trigEn != false)
@@ -78,7 +78,7 @@ void adcTriggerEnable(_Bool trigEn)
 
 #else
 
-int adcTriggerSource(ADC_TriggerSource_t trigger)
+int adc_set_trigger_source(ADC_TriggerSource_t trigger)
 {
 	if (trigger != ADC_FreeRunning)
 	{
@@ -89,7 +89,7 @@ int adcTriggerSource(ADC_TriggerSource_t trigger)
 	return 0;
 }
 
-void adcTriggerEnable(_Bool trigEn)
+void adc_trigger_enable(_Bool trigEn)
 {
 	if(trigEn != false)
 	{
