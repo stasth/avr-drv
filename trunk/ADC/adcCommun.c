@@ -57,6 +57,7 @@ void adc_enable(_Bool status)
 	{
 		ADCSRA |= _BV(ADEN);
 	}
+	else
 	{
 		ADCSRA &= ~_BV(ADEN);
 	}
