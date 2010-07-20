@@ -173,7 +173,6 @@ void adc_digital_input_disable(ADC_DigitalChannel_t chanList);
  *
  *  \param chanList List of channel that will have digital input enabled.
  */
-
 void adc_digital_input_enable(ADC_DigitalChannel_t chanList);
 #endif
 
