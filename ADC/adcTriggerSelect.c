@@ -47,6 +47,7 @@
 
 #if defined(ADC_AutoTrigger)
 
+//So far, only ATmega16, 16A and 32A uses SFIOR for ADTSx.
 #ifdef ADCSRB
 #	define TARGET_REG ADCSRB
 #else
@@ -55,11 +56,13 @@
 
 int adc_set_trigger_source(ADC_TriggerSource_t trigger)
 {
+#ifndef NDEBUG
 	if (trigger >= ADC_TriggerSourceInvalid)
 	{
 		errno = EINVAL;
 		return -1;
 	}
+#endif
 
 	TARGET_REG &= ~((1 << ADTS2) | (1 << ADTS1) | (1 << ADTS0));
 	TARGET_REG |= trigger;
@@ -69,10 +72,13 @@ int adc_set_trigger_source(ADC_TriggerSource_t trigger)
 
 void adc_trigger_enable(_Bool trigEn)
 {
-	TARGET_REG &= ~_BV(ADATE);
 	if(trigEn != false)
 	{
-		TARGET_REG |= _BV(ADATE);
+		ADCSRA |= _BV(ADATE);
+	}
+	else
+	{
+		ADCSRA &= ~_BV(ADATE);
 	}
 }
 
@@ -80,11 +86,13 @@ void adc_trigger_enable(_Bool trigEn)
 
 int adc_set_trigger_source(ADC_TriggerSource_t trigger)
 {
+#ifndef NDEBUG
 	if (trigger != ADC_FreeRunning)
 	{
 		errno = EINVAL;
 		return -1;
 	}
+#endif
 
 	return 0;
 }
