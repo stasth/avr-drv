@@ -44,120 +44,154 @@
 
  \author Frédéric Nadeau
  */
-#include "avr-drv-errno.h"
-
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <avr/io.h>
 
+#include "adcDef.h"
+
 void adc_enable(_Bool status)
 {
-	if(status != false)
-	{
-		ADCSRA |= _BV(ADEN);
-	}
-	else
-	{
-		ADCSRA &= ~_BV(ADEN);
-	}
+    if (status != false)
+    {
+        ADCSRA |= _BV(ADEN);
+    }
+    else
+    {
+        ADCSRA &= ~_BV(ADEN);
+    }
 }
 
 void adc_interrupt_enable(_Bool intEn)
 {
-	if(intEn != false)
-	{
-		ADCSRA |= _BV(ADIE);
-	}
-	else
-	{
-		ADCSRA &= ~_BV(ADIE);
-	}
+    if (intEn != false)
+    {
+        ADCSRA |= _BV(ADIE);
+    }
+    else
+    {
+        ADCSRA &= ~_BV(ADIE);
+    }
 }
 
+#if !defined(__AVR_ATtiny4__) \
+&& !defined(__AVR_ATtiny5__) \
+&& !defined(__AVR_ATtiny9__) \
+&& !defined(__AVR_ATtiny10__)
 void adc_left_adjust(_Bool adjust)
 {
-	if(adjust != false)
-	{
-		ADMUX |= _BV(ADLAR);
-	}
-	else
-	{
-		ADMUX &= ~_BV(ADLAR);
-	}
+    if (adjust != false)
+    {
+        ADMUX |= _BV(ADLAR);
+    }
+    else
+    {
+        ADMUX &= ~_BV(ADLAR);
+    }
 }
+#endif
 
 //This function assume that ADPS2 == (ADPS0 + 2) && ADPS1 == (ADPS0 + 1)
 //It seems it is always the case
 #if !(ADPS2 == (ADPS0 + 2) && ADPS1 == (ADPS0 + 1))
-#	error "adcPrescalerSelection needs to be rewritten for this device"
+#	error "adc_prescaler_selection needs to be rewritten for this device"
 #endif
-int adc_prescaler_selection(ADC_Prescaler_t prescaler)
+void adc_prescaler_selection(adc_prescaler_t prescaler)
 {
-#ifndef NDEBUG
-	if (prescaler >= ADC_DivFactorInvalid)
-	{
-		errno = EINVAL;
-		return -1;
-	}
-#endif
-
-	ADCSRA &= ~(_BV(ADPS2) | _BV(ADPS1) | _BV(ADPS0));
-	ADCSRA |= prescaler << ADPS0;
-
-	return 0;
+    ADCSRA &= ~(_BV(ADPS2) | _BV(ADPS1) | _BV(ADPS0));
+    ADCSRA |= prescaler << ADPS0;
 }
 
+#if !defined(__AVR_ATtiny4__) \
+&& !defined(__AVR_ATtiny5__) \
+&& !defined(__AVR_ATtiny9__) \
+&& !defined(__AVR_ATtiny10__)
 uint16_t adc_read(void)
 {
-	return ADCW;
+    return ADCW;
 }
 
 uint8_t adc_read_high(void)
 {
-	return ADCH;
+    return ADCH;
 }
+#endif
 
 uint8_t adc_read_low(void)
 {
-	return ADCL;
+    return ADCL;
 }
 
 _Bool adcReadIntFlag(void)
 {
-	return (ADCSRA & _BV(ADIF)) == 0 ? false:true;
+    return (ADCSRA & _BV(ADIF)) == 0 ? false : true;
 }
 
 void adcClearIntFlag(void)
 {
-	//Write a logical 1 to clear the flag
-	ADCSRA |= _BV(ADIF);
+    //Write a logical 1 to clear the flag
+    ADCSRA |= _BV(ADIF);
 }
 
-
-//This function assume that REFS1 == (REFS0 + 1)
-//It seems it is always the case
-#if REFS1 != (REFS0 +1)
-#	error "adcSelectVref needs to be rewritten for this device"
+#if defined(REFS0) && defined(REFS1)
+#   define ADC_REFS_MASK (_BV(REFS0) | _BV(REFS1))
+#   define ADC_REFS0_IDX (REFS0)
+#   if REFS1 != (REFS0 + 1)
+#       error "REFS0 and REFS1 are not contiguous, device shall be coded separately"
 #endif
-int adc_select_vref(ADC_VoltageRef_t ref)
+#elif defined(REFS0)
+#   define ADC_REFS_MASK (_BV(REFS0))
+#   define ADC_REFS0_IDX (REFS0)
+#elif defined(REFS)
+#   define ADC_REFS_MASK (_BV(REFS))
+#   define ADC_REFS0_IDX (REFS)
+#else
+#   error "Error finding REFS mask for your device"
+#endif
+
+
+void adc_select_vref(adc_voltage_ref_t ref)
 {
-#ifndef NDEBUG
-	if (ref >= ADC_VrefInvalid)
-	{
-		errno = EINVAL;
-		return -1;
-	}
+#if !defined(REFS2)
+    ADMUX &= ~(ADC_REFS_MASK);
+    ADMUX |= ref << ADC_REFS0_IDX;
+#else
+    ADMUX &= ~(ADC_REFS_MASK);
+    ADMUX |= (ref & 0x03) << ADC_REFS0_IDX;
+#   if defined(__AVR_ATtiny25__) \
+    || defined(__AVR_ATtiny45__) \
+    || defined(__AVR_ATtiny85__)
+    if(ref & 0x04)
+    {
+        ADMUX |= _BV(REFS2);
+    }
+    else
+    {
+        ADMUX &= ~_BV(REFS2);
+    }
+#   elif defined(__AVR_ATtiny261__) \
+    || defined(__AVR_ATtiny261A__) \
+    || defined(__AVR_ATtiny461__) \
+    || defined(__AVR_ATtiny461A__) \
+    || defined(__AVR_ATtiny861__) \
+    || defined(__AVR_ATtiny861A__)
+    if(ref & 0x04)
+    {
+        ADCSRB |= _BV(REFS2);
+    }
+    else
+    {
+        ADCSRB &= ~_BV(REFS2);
+    }
+#   else
+#       error "REFS2 is not coded for this device"
+#   endif
 #endif
-
-	ADMUX &= ~(1 << REFS1 | 1 << REFS0);
-	ADMUX |= ref << REFS0;
-
-	return 0;
 }
 
 void adc_start_conversion(void)
 {
-	ADCSRA |= _BV(ADSC);
+    ADCSRA |= _BV(ADSC);
 }
 

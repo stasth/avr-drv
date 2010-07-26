@@ -36,77 +36,75 @@
 
  \author Frédéric Nadeau
  */
-#include "adcCoreSelection.h"
-#include "adcDef.h"
-#include "avr-drv-errno.h"
 
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <avr/io.h>
 
-#if defined(ADC_AutoTrigger)
+#include "adcDef.h"
+
+#if !defined(__AVR_ATmega8__) \
+&& !defined(__AVR_ATmega103__) \
+&& !defined(__AVR_ATmega128__) \
+&& !defined(__AVR_ATmega163__) \
+&& !defined(__AVR_ATmega323__) \
+&& !defined(__AVR_ATtiny15__) \
+&& !defined(__AVR_ATtiny26__)
 
 //So far, only ATmega16, 16A and 32A uses SFIOR for ADTSx.
-#ifdef ADCSRB
-#	define TARGET_REG ADCSRB
+#if defined(__AVR_ATmega16__) \
+|| defined(__AVR_ATmega32__)
+#   define TARGET_REG SFIOR
 #else
-#	define TARGET_REG SFIOR
+#   define TARGET_REG ADCSRB
 #endif
 
-int adc_set_trigger_source(ADC_TriggerSource_t trigger)
+//Check if all ADTS are next to each others and define mask
+#if defined(ADTS3)
+#   define ADTS_MASK (_BV(ADTS3) | _BV(ADTS2) | _BV(ADTS1) | _BV(ADTS0))
+#   if !(ADTS3 == (ADTS0 + 3) && ADTS2 == (ADTS0 + 2) && ADTS1 == (ADTS0 + 1))
+#       error "adc_set_trigger_source needs to be rewritten for this device: ADTS3"
+#   endif
+#elif defined(ADTS2)
+#   define ADTS_MASK (_BV(ADTS2) | _BV(ADTS1) | _BV(ADTS0))
+#   if !(ADTS2 == (ADTS0 + 2) && ADTS1 == (ADTS0 + 1))
+#       error "adc_set_trigger_source needs to be rewritten for this device: ADTS2"
+#   endif
+#else
+    error "adc_set_trigger_source needs to be rewritten for this device"
+#endif
+
+void adc_set_trigger_source(adc_trigger_source_t trigger)
 {
-#ifndef NDEBUG
-	if (trigger >= ADC_TriggerSourceInvalid)
-	{
-		errno = EINVAL;
-		return -1;
-	}
-#endif
-
-	TARGET_REG &= ~((1 << ADTS2) | (1 << ADTS1) | (1 << ADTS0));
-	TARGET_REG |= trigger;
-
-	return 0;
+    TARGET_REG &= ~ADTS_MASK;
+    TARGET_REG |= trigger;
 }
 
 void adc_trigger_enable(_Bool trigEn)
 {
-	if(trigEn != false)
-	{
-		ADCSRA |= _BV(ADATE);
-	}
-	else
-	{
-		ADCSRA &= ~_BV(ADATE);
-	}
+    if(trigEn != false)
+    {
+        ADCSRA |= _BV(ADATE);
+    }
+    else
+    {
+        ADCSRA &= ~_BV(ADATE);
+    }
 }
 
 #else
 
-int adc_set_trigger_source(ADC_TriggerSource_t trigger)
-{
-#ifndef NDEBUG
-	if (trigger != ADC_FreeRunning)
-	{
-		errno = EINVAL;
-		return -1;
-	}
-#endif
-
-	return 0;
-}
-
 void adc_trigger_enable(_Bool trigEn)
 {
-	if(trigEn != false)
-	{
-		ADCSRA |= _BV(ADFR);
-	}
-	else
-	{
-		ADCSRA &= ~_BV(ADFR);
-	}
+    if(trigEn != false)
+    {
+        ADCSRA |= _BV(ADFR);
+    }
+    else
+    {
+        ADCSRA &= ~_BV(ADFR);
+    }
 }
 
 #endif

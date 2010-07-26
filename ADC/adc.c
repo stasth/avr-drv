@@ -36,7 +36,7 @@
 
  \author Frédéric Nadeau
  */
-#include "adcDef.h"
+
 #include "adcCommun.c"
 #include "adcDigitalInput.c"
 #include "adcMux.c"

@@ -39,39 +39,43 @@
 
  \author Frédéric Nadeau
  */
-#include "avr-drv-errno.h"
 
 #include <avr/io.h>
 
+#include "adcDef.h"
+
 #if defined(__DOXYGEN__)
-#	define MUX_MASK /*!< ADMUX register mask for MUX bits. */
+#   define MUX_MASK /*!< ADMUX register mask for MUX bits. */
 #else
-#	if defined(MUX4)
-#		define MUX_MASK ((1 << MUX4) | (1 << MUX3) | (1 << MUX2) | (1 << MUX1) | (1 << MUX0))
-#	else
-#		define MUX_MASK ((1 << MUX3) | (1 << MUX2) | (1 << MUX1) | (1 << MUX0))
-#	endif
+#   if defined(MUX4)
+#       define MUX_MASK ((1 << MUX4) | (1 << MUX3) | (1 << MUX2) | (1 << MUX1) | (1 << MUX0))
+#       if !(MUX4 == (MUX0 + 4) && MUX3 == (MUX0 + 3) && MUX2 == (MUX0 + 2) && MUX1 == (MUX0 + 1))
+#           error "adc_select_input needs to be rewritten for this device"
+#       endif
+#   elif defined(MUX3)
+#       if !(MUX3 == (MUX0 + 3) && MUX2 == (MUX0 + 2) && MUX1 == (MUX0 + 1))
+#           error "adc_select_input needs to be rewritten for this device"
+#       endif
+#       define MUX_MASK ((1 << MUX3) | (1 << MUX2) | (1 << MUX1) | (1 << MUX0))
+#   else
+#       error "ADC multiplexer not coded for this device"
+#   endif
 #endif
-int adc_select_input(ADC_InputChannelSelection_t channel)
+
+void adc_select_input(adc_input_channel_t channel)
 {
-#ifndef NDEBUG
-	if (channel >= ADC_ChanInvalid)
-	{
-		errno = EINVAL;
-		return -1;
-	}
-#endif
-	//Clear mask and set value
-	ADMUX &= ~MUX_MASK;
-	ADMUX |= channel;
+    //Clear mask and set value
+    ADMUX &= ~MUX_MASK;
+    ADMUX |= channel;
 
 #if defined(MUX5)
-	ADCSRB &= ~_BV(MUX5);
-	if(channel >= ADC_Chan_8)
-	{
-		ADCSRB |= _BV(MUX5);
-	}
+    if(channel >= 0x100)
+    {
+        ADCSRB |= _BV(MUX5);
+    }
+    else
+    {
+        ADCSRB &= ~_BV(MUX5);
+    }
 #endif
-
-	return 0;
 }
