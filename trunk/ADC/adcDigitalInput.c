@@ -38,27 +38,34 @@
 
  \author Frédéric Nadeau
  */
-#include "avr-drv.h"
 
 #include <avr/io.h>
 
+#include "adcDef.h"
+
+
 #if defined(DIDR0)
 
-void adc_digital_input_disable(ADC_DigitalChannel_t chanList)
+void adc_digital_input_disable(adc_digital_channel_t chanList)
 {
-	DIDR0 |= (uint8_t)chanList;
-#if defined(DIDR2)
-	DIDR2 |= (uint8_t)(chanList>>8);
-#endif
-
+    DIDR0 |= (uint8_t)chanList;
+#   if defined(DIDR1)
+    DIDR1 |= (uint8_t)(chanList>>8);
+#   endif
+#   if defined(DIDR2)
+    DIDR2 |= (uint8_t)(chanList>>16);
+#   endif
 }
 
-void adc_digital_input_enable(ADC_DigitalChannel_t chanList)
+void adc_digital_input_enable(adc_digital_channel_t chanList)
 {
-	DIDR0 &= ~((uint8_t)chanList);
-#if defined(DIDR2)
-	DIDR2 &= ~((uint8_t)(chanList>>8));
-#endif
+    DIDR0 &= ~((uint8_t)chanList);
+#   if defined(DIDR1)
+    DIDR1 &= ~((uint8_t)(chanList>>8));
+#   endif
+#   if defined(DIDR2)
+    DIDR2 &= ~((uint8_t)(chanList>>16));
+#   endif
 }
 
 #endif
