@@ -12,6 +12,7 @@ This page covers the ADC module.
   * ADNCDIS: ADC Noise Canceller Disable
   * ADSSEN: ADC Single Shot Enable on PSC’s synchronization signals
   * ADASCR: Analog to Digital Conversion on Amplified Channel Start Conversion Request Bit
+  * AMISCR – Analog Miscellaneous Control Register
 
 = Supported devices =
 
