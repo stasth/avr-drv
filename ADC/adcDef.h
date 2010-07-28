@@ -60,7 +60,8 @@ typedef enum adc_prescaler_e adc_prescaler_t;
 enum adc_voltage_ref_e
 {
     adc_voltage_ref_aref = 0, /*!< ADC use Aref PIN as voltage reference. */
-    adc_voltage_ref_avcc, /*!< ADC use VCC as voltage reference. */
+    adc_voltage_ref_avcc_wcap, /*!< ADC use VCC as voltage reference with capacitor on AREF pin. */
+    adc_voltage_ref_avcc_wocap, /*!< ADC use VCC as voltage reference without capacitor on AREF pin. */
     adc_voltage_ref_internal_1_1_wcap, /*!< ADC use internal 1.1 Voltage reference. */
     adc_voltage_ref_internal_2_56_wcap, /*!< ADC use internal 2.56 Voltage reference. */
     adc_voltage_ref_internal_2_56_wocap, /*!< ADC use internal 2.56 Voltage reference. */
@@ -72,7 +73,14 @@ enum adc_voltage_ref_e
  * by the device used.
  * */
 typedef enum adc_voltage_ref_e adc_voltage_ref_t;
-
+#elif defined(__AVR_AT90PWM81__)
+typedef enum adc_voltage_ref_e
+{
+    adc_voltage_ref_aref = 0,
+    adc_voltage_ref_avcc_wcap,
+    adc_voltage_ref_internal_2_56_wcap,
+    adc_voltage_ref_internal_2_56_wocap
+}adc_voltage_ref_t;
 #elif defined(__AVR_AT90CAN32__) \
 || defined(__AVR_AT90CAN64__) \
 || defined(__AVR_AT90CAN128__) \
@@ -80,14 +88,102 @@ typedef enum adc_voltage_ref_e adc_voltage_ref_t;
 || defined(__AVR_AT90PWM2__) \
 || defined(__AVR_AT90PWM2B__) \
 || defined(__AVR_AT90PWM3__) \
-|| defined(__AVR_AT90PWM3B__)
+|| defined(__AVR_AT90PWM3B__) \
+|| defined(__AVR_AT90PWM216__) \
+|| defined(__AVR_AT90PWM316__) \
+|| defined(__AVR_AT90USB646__) \
+|| defined(__AVR_AT90USB647__) \
+|| defined(__AVR_AT90USB1286__) \
+|| defined(__AVR_AT90USB1287__)\
+|| defined(__AVR_ATmega8__) \
+|| defined(__AVR_ATmega16__) \
+|| defined(__AVR_ATmega16A__) \
+|| defined(__AVR_ATmega16U4__) \
+|| defined(__AVR_ATmega32__) \
+|| defined(__AVR_ATmega32A__) \
+|| defined(__AVR_ATmega32U4__) \
+|| defined(__AVR_ATmega32U6__) \
+|| defined(__AVR_ATmega64__) \
+|| defined(__AVR_ATmega64A__) \
+|| defined(__AVR_ATmega128__) \
+|| defined(__AVR_ATmega163__) \
+|| defined(__AVR_ATmega323__)
 typedef enum adc_voltage_ref_e
 {
     adc_voltage_ref_aref = 0,
-    adc_voltage_ref_avcc,
+    adc_voltage_ref_avcc_wcap,
     adc_voltage_ref_internal_2_56_wcap = 3,
 }adc_voltage_ref_t;
-
+#elif  (__AVR_ATmega16M1__) \
+|| defined (__AVR_ATmega32C1__) \
+|| defined (__AVR_ATmega32M1__) \
+|| defined (__AVR_ATmega64C1__) \
+|| defined (__AVR_ATmega64M1__)
+typedef enum adc_voltage_ref_e
+{
+    adc_voltage_ref_avcc_wocap = 1,
+    adc_voltage_ref_internal_2_56_wocap = 3,
+    adc_voltage_ref_aref,
+    adc_voltage_ref_avcc_wcap,
+    adc_voltage_ref_internal_2_56_wcap = 7,
+}adc_voltage_ref_t;
+#elif defined(__AVR_ATmega48__) \
+|| defined(__AVR_ATmega48A__) \
+|| defined(__AVR_ATmega48P__) \
+|| defined(__AVR_ATmega48PA__) \
+|| defined(__AVR_ATmega88__) \
+|| defined(__AVR_ATmega88A__) \
+|| defined(__AVR_ATmega88P__) \
+|| defined(__AVR_ATmega88PA__) \
+|| defined(__AVR_ATmega165__) \
+|| defined(__AVR_ATmega165A__) \
+|| defined(__AVR_ATmega165P__) \
+|| defined(__AVR_ATmega168__) \
+|| defined(__AVR_ATmega168A__) \
+|| defined(__AVR_ATmega168P__) \
+|| defined(__AVR_ATmega168PA__) \
+|| defined (__AVR_ATmega169__) \
+|| defined (__AVR_ATmega169A__) \
+|| defined (__AVR_ATmega169P__) \
+|| defined (__AVR_ATmega169PA__) \
+|| defined(__AVR_ATmega325__) \
+|| defined(__AVR_ATmega325A__) \
+|| defined(__AVR_ATmega325P__) \
+|| defined(__AVR_ATmega328__) \
+|| defined(__AVR_ATmega328P__) \
+|| defined(__AVR_ATmega645__) \
+|| defined(__AVR_ATmega645A__) \
+|| defined(__AVR_ATmega645P__) \
+|| defined(__AVR_ATmega3250__) \
+|| defined(__AVR_ATmega3250A__) \
+|| defined(__AVR_ATmega3250P__) \
+|| defined(__AVR_ATmega6450__) \
+|| defined(__AVR_ATmega6450A__) \
+|| defined(__AVR_ATmega6450P__)
+typedef enum adc_voltage_ref_e
+{
+    adc_voltage_ref_aref = 0,
+    adc_voltage_ref_avcc_wcap,
+    adc_voltage_ref_internal_1_1_wcap = 3,
+}adc_voltage_ref_t;
+#elif defined(__AVR_ATmega164A__) \
+|| defined(__AVR_ATmega164P__) \
+|| defined(__AVR_ATmega324A__) \
+|| defined(__AVR_ATmega324P__) \
+|| defined(__AVR_ATmega324PA__) \
+|| defined(__AVR_ATmega644P__) \
+|| defined(__AVR_ATmega644A__) \
+|| defined(__AVR_ATmega1284__) \
+|| defined(__AVR_ATmega1284P__)
+typedef enum adc_voltage_ref_e
+{
+    adc_voltage_ref_aref = 0,
+    adc_voltage_ref_avcc_wcap,
+    adc_voltage_ref_internal_1_1_wcap,
+    adc_voltage_ref_internal_2_56_wcap
+}adc_voltage_ref_t;
+#elif defined(__AVR_ATmega103__)
+    //adc_voltage_ref_t not define for those device
 #else
 #   error "adc_voltage_ref_t not defined for your device"
 #endif
@@ -108,20 +204,62 @@ enum adc_trigger_source_e
 
 /*! List of available trigger source typedef. */
 typedef enum adc_trigger_source_e adc_trigger_source_t;
-#elif defined(__AVR_ATmega8__) \
-|| defined(__AVR_ATmega103__) \
-|| defined(__AVR_ATmega128__) \
-|| defined(__AVR_ATmega163__) \
-|| defined(__AVR_ATmega323__) \
-|| defined(__AVR_ATtiny15__) \
-|| defined(__AVR_ATtiny26__)
-typedef enum adc_trigger_source_e
-{
-    adc_trigger_source_free_running
-} adc_trigger_source_t;
 #elif defined(__AVR_AT90CAN32__) \
 || defined(__AVR_AT90CAN64__) \
-|| defined(__AVR_AT90CAN128__)
+|| defined(__AVR_AT90CAN128__) \
+|| defined(__AVR_AT90USB646__) \
+|| defined(__AVR_AT90USB647__) \
+|| defined(__AVR_AT90USB1286__) \
+|| defined(__AVR_AT90USB1287__) \
+|| defined(__AVR_ATmega16__) \
+|| defined(__AVR_ATmega16A__)\
+|| defined(__AVR_ATmega32__) \
+|| defined(__AVR_ATmega32A__) \
+|| defined(__AVR_ATmega32U6__) \
+|| defined(__AVR_ATmega48__) \
+|| defined(__AVR_ATmega48A__) \
+|| defined(__AVR_ATmega48P__) \
+|| defined(__AVR_ATmega48PA__) \
+|| defined(__AVR_ATmega88__) \
+|| defined(__AVR_ATmega88A__) \
+|| defined(__AVR_ATmega88P__) \
+|| defined(__AVR_ATmega88PA__) \
+|| defined(__AVR_ATmega64__) \
+|| defined(__AVR_ATmega64A__) \
+|| defined(__AVR_ATmega164A__) \
+|| defined(__AVR_ATmega164P__) \
+|| defined(__AVR_ATmega165__) \
+|| defined(__AVR_ATmega165A__) \
+|| defined(__AVR_ATmega165P__) \
+|| defined(__AVR_ATmega168__) \
+|| defined(__AVR_ATmega168A__) \
+|| defined(__AVR_ATmega168P__) \
+|| defined(__AVR_ATmega168PA__) \
+|| defined(__AVR_ATmega169__) \
+|| defined(__AVR_ATmega169A__) \
+|| defined(__AVR_ATmega169P__) \
+|| defined(__AVR_ATmega169PA__) \
+|| defined(__AVR_ATmega324A__) \
+|| defined(__AVR_ATmega324P__) \
+|| defined(__AVR_ATmega324PA__) \
+|| defined(__AVR_ATmega325__) \
+|| defined(__AVR_ATmega325A__) \
+|| defined(__AVR_ATmega325P__) \
+|| defined(__AVR_ATmega328__) \
+|| defined(__AVR_ATmega328P__) \
+|| defined(__AVR_ATmega644P__) \
+|| defined(__AVR_ATmega644A__) \
+|| defined(__AVR_ATmega645__) \
+|| defined(__AVR_ATmega645A__) \
+|| defined(__AVR_ATmega645P__) \
+|| defined(__AVR_ATmega1284__) \
+|| defined(__AVR_ATmega1284P__) \
+|| defined(__AVR_ATmega3250__) \
+|| defined(__AVR_ATmega3250A__) \
+|| defined(__AVR_ATmega3250P__) \
+|| defined(__AVR_ATmega6450__) \
+|| defined(__AVR_ATmega6450A__) \
+|| defined(__AVR_ATmega6450P__)
 typedef enum adc_trigger_source_e
 {
     adc_trigger_source_free_running = 0,
@@ -137,7 +275,7 @@ typedef enum adc_trigger_source_e
 typedef enum adc_trigger_source_e
 {
     adc_trigger_source_free_running = 0,
-    adc_trigger_source_analog_comparator,
+    adc_trigger_source_analog_comparator_0,
     adc_trigger_source_ext_int_request0,
     adc_trigger_source_timer_0_compare_match,
     adc_trigger_source_timer_0_overflow,
@@ -152,11 +290,13 @@ typedef enum adc_trigger_source_e
 #elif defined(__AVR_AT90PWM2__) \
 || defined(__AVR_AT90PWM2B__) \
 || defined(__AVR_AT90PWM3__) \
-|| defined(__AVR_AT90PWM3B__)
+|| defined(__AVR_AT90PWM3B__) \
+|| defined(__AVR_AT90PWM216__) \
+|| defined(__AVR_AT90PWM316__)
 typedef enum adc_trigger_source_e
 {
     adc_trigger_source_free_running = 0,
-    adc_trigger_source_analog_comparator,
+    adc_trigger_source_analog_comparator_0,
     adc_trigger_source_ext_int_request0,
     adc_trigger_source_timer_0_compare_match,
     adc_trigger_source_timer_0_overflow,
@@ -169,6 +309,101 @@ typedef enum adc_trigger_source_e
     adc_trigger_source_analog_comparator_1,
     adc_trigger_source_analog_comparator_2
 } adc_trigger_source_t;
+#elif defined(__AVR_AT90PWM81__)
+typedef enum adc_trigger_source_e
+{
+    adc_trigger_source_free_running = 0,
+    adc_trigger_source_analog_comparator_1,
+    adc_trigger_source_ext_int_request0,
+    adc_trigger_source_timer_1_overflow,
+    adc_trigger_source_timer_1_capture_event,
+    adc_trigger_source_pscrasy_event,
+    adc_trigger_source_psc2asy_event,
+    adc_trigger_source_analog_comparator_2,
+    adc_trigger_source_analog_comparator_3
+} adc_trigger_source_t;
+#elif defined(__AVR_ATmega8__) \
+|| defined(__AVR_ATmega103__) \
+|| defined(__AVR_ATmega128__) \
+|| defined(__AVR_ATmega163__) \
+|| defined(__AVR_ATmega323__) \
+|| defined(__AVR_ATtiny15__) \
+|| defined(__AVR_ATtiny26__)
+typedef enum adc_trigger_source_e
+{
+    adc_trigger_source_free_running
+} adc_trigger_source_t;
+#elif (__AVR_ATmega16M1__) \
+|| defined (__AVR_ATmega32C1__) \
+|| defined (__AVR_ATmega32M1__) \
+|| defined (__AVR_ATmega64C1__) \
+|| defined (__AVR_ATmega64M1__)
+typedef enum adc_trigger_source_e
+{
+    adc_trigger_source_free_running = 0,
+    adc_trigger_source_ext_int_request0,
+    adc_trigger_source_timer_0_compare_match,
+    adc_trigger_source_timer_0_overflow,
+    adc_trigger_source_timer_1_compare_match_b,
+    adc_trigger_source_timer_1_overflow,
+    adc_trigger_source_timer_1_capture_event,
+    adc_trigger_source_psc0asy_event,
+    adc_trigger_source_psc1asy_event,
+    adc_trigger_source_psc2asy_event,
+    adc_trigger_source_analog_comparator_0,
+    adc_trigger_source_analog_comparator_1,
+    adc_trigger_source_analog_comparator_2,
+    adc_trigger_source_analog_comparator_3
+} adc_trigger_source_t;
+#elif (__AVR_ATmega16M1__) \
+|| defined (__AVR_ATmega32C1__) \
+|| defined (__AVR_ATmega32M1__) \
+|| defined (__AVR_ATmega64C1__) \
+|| defined (__AVR_ATmega64M1__)\
+|| defined (__AVR_ATmega16U4__) \
+|| defined (__AVR_ATmega32U4__)
+typedef enum adc_trigger_source_e
+{
+    adc_trigger_source_free_running = 0,
+    adc_trigger_source_analog_comparator,
+    adc_trigger_source_ext_int_request0,
+    adc_trigger_source_timer_0_compare_match,
+    adc_trigger_source_timer_0_overflow,
+    adc_trigger_source_timer_1_compare_match_b,
+    adc_trigger_source_timer_1_overflow,
+    adc_trigger_source_timer_1_capture_event,
+    adc_trigger_source_timer_4_overflow,
+    adc_trigger_source_timer_4_compare_match_a,
+    adc_trigger_source_timer_4_compare_match_b,
+    adc_trigger_source_timer_4_compare_match_d
+} adc_trigger_source_t;
+#elif defined(__AVR_ATmega48__) \
+|| defined(__AVR_ATmega48A__) \
+|| defined(__AVR_ATmega48P__) \
+|| defined(__AVR_ATmega48PA__) \
+|| defined(__AVR_ATmega88__) \
+|| defined(__AVR_ATmega88A__) \
+|| defined(__AVR_ATmega88P__) \
+|| defined(__AVR_ATmega88PA__) \
+|| defined(__AVR_ATmega168__) \
+|| defined(__AVR_ATmega168A__) \
+|| defined(__AVR_ATmega168P__) \
+|| defined(__AVR_ATmega168PA__) \
+|| defined(__AVR_ATmega328__) \
+|| defined(__AVR_ATmega328P__)
+typedef enum adc_trigger_source_e
+{
+    adc_trigger_source_free_running = 0,
+    adc_trigger_source_analog_comparator,
+    adc_trigger_source_ext_int_request0,
+    adc_trigger_source_timer_0_compare_match_a,
+    adc_trigger_source_timer_0_overflow,
+    adc_trigger_source_timer_1_compare_match_b,
+    adc_trigger_source_timer_1_overflow,
+    adc_trigger_source_timer_1_capture_event,
+} adc_trigger_source_t;
+#elif defined(__AVR_ATmega103__)
+    //adc_trigger_source_t not define for those device
 #else
 #   error "adc_trigger_source_t not defined for your device"
 #endif
@@ -207,8 +442,8 @@ enum adc_input_channel_e
     adc_input_channel_p3_n2_1x, /*!< ADC use differential input (pin3 - pin2) * 1. */
     adc_input_channel_p4_n2_1x, /*!< ADC use differential input (pin4 - pin2) * 1. */
     adc_input_channel_p5_n2_1x, /*!< ADC use differential input (pin5 - pin2) * 1. */
-    adc_input_channel_VBG, /*!< ADC use Vbg, Band gap(see documentation for per-device reference). */
-    adc_input_channel_GND, /*!< ADC use ground. */
+    adc_input_channel_vbg, /*!< ADC use Vbg, Band gap(see documentation for per-device reference). */
+    adc_input_channel_gnd, /*!< ADC use ground. */
     adc_input_channel_8, /*!< ADC use ADCpin 8. */
     adc_input_channel_9, /*!< ADC use ADCpin 9. */
     adc_input_channel_10, /*!< ADC use ADCpin 10. */
@@ -254,14 +489,16 @@ typedef enum adc_input_channel_e
     adc_input_channel_5,
     adc_input_channel_6,
     adc_input_channel_7,
-    adc_input_channel_AMP0 = 0x0B,
-    adc_input_channel_VBG = 0x0E,
-    adc_input_channel_GND = 0x0F
+    adc_input_channel_amp0 = 0x0B,
+    adc_input_channel_vbg = 0x0E,
+    adc_input_channel_gnd = 0x0F
 } adc_input_channel_t;
 #elif defined(__AVR_AT90PWM2__) \
 || defined(__AVR_AT90PWM2B__) \
 || defined(__AVR_AT90PWM3__) \
-|| defined(__AVR_AT90PWM3B__)
+|| defined(__AVR_AT90PWM3B__) \
+|| defined(__AVR_AT90PWM216__) \
+|| defined(__AVR_AT90PWM316__)
 typedef enum adc_input_channel_e
 {
     adc_input_channel_0 = 0,
@@ -275,12 +512,12 @@ typedef enum adc_input_channel_e
     adc_input_channel_8,
     adc_input_channel_9,
     adc_input_channel_10,
-    adc_input_channel_AMP0,
-    adc_input_channel_AMP1,
-    adc_input_channel_VBG = 0x0E,
-    adc_input_channel_GND = 0x0F
+    adc_input_channel_amp0,
+    adc_input_channel_amp1,
+    adc_input_channel_vbg = 0x0E,
+    adc_input_channel_gnd = 0x0F
 } adc_input_channel_t;
-#elif defined(__AVR_ATmega8__)
+#elif defined(__AVR_AT90PWM81__)
 typedef enum adc_input_channel_e
 {
     adc_input_channel_0 = 0,
@@ -291,8 +528,14 @@ typedef enum adc_input_channel_e
     adc_input_channel_5,
     adc_input_channel_6,
     adc_input_channel_7,
-    adc_input_channel_VBG = 0x0E,
-    adc_input_channel_GND = 0x0F
+    adc_input_channel_8,
+    adc_input_channel_9,
+    adc_input_channel_10,
+    adc_input_channel_amp0,
+    adc_input_channel_temp_sensor,
+    adc_input_channel_vcc_div_4,
+    adc_input_channel_vbg,
+    adc_input_channel_gnd
 } adc_input_channel_t;
 #elif defined(__AVR_AT90CAN32__) \
 || defined(__AVR_AT90CAN64__) \
@@ -302,14 +545,19 @@ typedef enum adc_input_channel_e
 || defined(__AVR_AT90USB1286__) \
 || defined(__AVR_AT90USB1287__) \
 || defined(__AVR_ATmega16__) \
-|| defined(__AVR_ATmega16__) \
+|| defined(__AVR_ATmega16A__) \
 || defined(__AVR_ATmega32__) \
+|| defined(__AVR_ATmega32A__) \
+|| defined(__AVR_ATmega32U6__) \
 || defined(__AVR_ATmega64__) \
+|| defined(__AVR_ATmega64A__) \
+|| defined(__AVR_ATmega64P__) \
 || defined(__AVR_ATmega128__) \
 || defined(__AVR_ATmega164A__) \
 || defined(__AVR_ATmega164P__) \
 || defined(__AVR_ATmega324A__) \
 || defined(__AVR_ATmega324P__) \
+|| defined(__AVR_ATmega324PA__) \
 || defined(__AVR_ATmega644A__) \
 || defined(__AVR_ATmega644P__) \
 || defined (__AVR_ATmega1284P__) \
@@ -346,8 +594,172 @@ typedef enum adc_input_channel_e
     adc_input_channel_p3_n2_1x,
     adc_input_channel_p4_n2_1x,
     adc_input_channel_p5_n2_1x,
-    adc_input_channel_VBG,
-    adc_input_channel_GND
+    adc_input_channel_vbg,
+    adc_input_channel_gnd
+} adc_input_channel_t;
+#elif defined(__AVR_ATmega8__) \
+|| defined(__AVR_ATmega48__) \
+|| defined(__AVR_ATmega48A__) \
+|| defined(__AVR_ATmega48P__) \
+|| defined(__AVR_ATmega48PA__) \
+|| defined(__AVR_ATmega88__) \
+|| defined(__AVR_ATmega88A__) \
+|| defined(__AVR_ATmega88P__) \
+|| defined(__AVR_ATmega88PA__) \
+|| defined(__AVR_ATmega163__) \
+|| defined(__AVR_ATmega168__) \
+|| defined(__AVR_ATmega168A__) \
+|| defined(__AVR_ATmega168P__) \
+|| defined(__AVR_ATmega168PA__) \
+|| defined(__AVR_ATmega323__) \
+|| defined(__AVR_ATmega325__) \
+|| defined(__AVR_ATmega325A__) \
+|| defined(__AVR_ATmega325P__) \
+|| defined(__AVR_ATmega328__) \
+|| defined(__AVR_ATmega328P__) \
+|| defined(__AVR_ATmega645__) \
+|| defined(__AVR_ATmega645A__) \
+|| defined(__AVR_ATmega645P__) \
+|| defined(__AVR_ATmega3250__) \
+|| defined(__AVR_ATmega3250A__) \
+|| defined(__AVR_ATmega3250P__) \
+|| defined(__AVR_ATmega6450__) \
+|| defined(__AVR_ATmega6450A__) \
+|| defined(__AVR_ATmega6450P__)
+typedef enum adc_input_channel_e
+{
+    adc_input_channel_0 = 0,
+    adc_input_channel_1,
+    adc_input_channel_2,
+    adc_input_channel_3,
+    adc_input_channel_4,
+    adc_input_channel_5,
+    adc_input_channel_6,
+    adc_input_channel_7,
+    adc_input_channel_vbg = 0x0E,
+    adc_input_channel_gnd = 0x0F
+} adc_input_channel_t;
+#elif (__AVR_ATmega16M1__) \
+|| defined (__AVR_ATmega32C1__) \
+|| defined (__AVR_ATmega32M1__) \
+|| defined (__AVR_ATmega64C1__) \
+|| defined (__AVR_ATmega64M1__)
+typedef enum adc_input_channel_e
+{
+    adc_input_channel_0 = 0,
+    adc_input_channel_1,
+    adc_input_channel_2,
+    adc_input_channel_3,
+    adc_input_channel_4,
+    adc_input_channel_5,
+    adc_input_channel_6,
+    adc_input_channel_7,
+    adc_input_channel_8,
+    adc_input_channel_9,
+    adc_input_channel_10,
+    adc_input_channel_temp_sensor,
+    adc_input_channel_vcc_div_4,
+    adc_input_channel_isrc,
+    adc_input_channel_amp0,
+    adc_input_channel_amp1,
+    adc_input_channel_amp2,
+    adc_input_channel_vbg,
+    adc_input_channel_gnd
+} adc_input_channel_t;
+#elif defined(__AVR_ATmega16U4__) \
+|| defined(__AVR_ATmega32U4__)
+typedef enum adc_input_channel_e
+{
+    adc_input_channel_0 = 0,
+    adc_input_channel_1,
+    adc_input_channel_4 = 4,
+    adc_input_channel_5,
+    adc_input_channel_6,
+    adc_input_channel_7,
+    adc_input_channel_p1_n0_10x = 9,
+    adc_input_channel_p1_n0_200x = 0x0A,
+    adc_input_channel_p0_n1_1x = 0x10,
+    adc_input_channel_p4_n1_1x = 0x14,
+    adc_input_channel_vbg = 0x1E,
+    adc_input_channel_gnd,
+    adc_input_channel_8,
+    adc_input_channel_9,
+    adc_input_channel_10,
+    adc_input_channel_11,
+    adc_input_channel_12,
+    adc_input_channel_13,
+    adc_input_channel_p1_n0_40x,
+    adc_input_channel_temp_sensor,
+    adc_input_channel_p4_n0_10x,
+    adc_input_channel_p5_n0_10x,
+    adc_input_channel_p6_n0_10x,
+    adc_input_channel_p7_n0_10x,
+    adc_input_channel_p4_n1_10x,
+    adc_input_channel_p5_n1_10x,
+    adc_input_channel_p6_n1_10x,
+    adc_input_channel_p7_n1_10x,
+    adc_input_channel_p4_n0_40x,
+    adc_input_channel_p5_n0_40x,
+    adc_input_channel_p6_n0_40x,
+    adc_input_channel_p7_n0_40x,
+    adc_input_channel_p4_n1_40x,
+    adc_input_channel_p5_n1_40x,
+    adc_input_channel_p6_n1_40x,
+    adc_input_channel_p7_n1_40x,
+    adc_input_channel_p4_n0_200x,
+    adc_input_channel_p5_n0_200x,
+    adc_input_channel_p6_n0_200x,
+    adc_input_channel_p7_n0_200x,
+    adc_input_channel_p4_n1_200x,
+    adc_input_channel_p5_n1_200x,
+    adc_input_channel_p6_n1_200x,
+    adc_input_channel_p7_n1_200x,
+} adc_input_channel_t;
+#elif defined(__AVR_ATmega103__)
+typedef enum adc_input_channel_e
+{
+    adc_input_channel_0 = 0,
+    adc_input_channel_1,
+    adc_input_channel_2,
+    adc_input_channel_3,
+    adc_input_channel_4,
+    adc_input_channel_5,
+    adc_input_channel_6,
+    adc_input_channel_7
+} adc_input_channel_t;
+#elif defined(__AVR_ATmega165__) \
+|| defined(__AVR_ATmega165A__) \
+|| defined(__AVR_ATmega165P__) \
+|| defined (__AVR_ATmega169__) \
+|| defined (__AVR_ATmega169A__) \
+|| defined (__AVR_ATmega169P__) \
+|| defined (__AVR_ATmega169PA__)
+typedef enum adc_input_channel_e
+{
+    adc_input_channel_0 = 0,
+    adc_input_channel_1,
+    adc_input_channel_2,
+    adc_input_channel_3,
+    adc_input_channel_4,
+    adc_input_channel_5,
+    adc_input_channel_6,
+    adc_input_channel_7,
+    adc_input_channel_p0_n1_1x = 0x10,
+    adc_input_channel_p1_n1_1x,
+    adc_input_channel_p2_n1_1x,
+    adc_input_channel_p3_n1_1x,
+    adc_input_channel_p4_n1_1x,
+    adc_input_channel_p5_n1_1x,
+    adc_input_channel_p6_n1_1x,
+    adc_input_channel_p7_n1_1x,
+    adc_input_channel_p0_n2_1x,
+    adc_input_channel_p1_n2_1x,
+    adc_input_channel_p2_n2_1x,
+    adc_input_channel_p3_n2_1x,
+    adc_input_channel_p4_n2_1x,
+    adc_input_channel_p5_n2_1x,
+    adc_input_channel_vbg,
+    adc_input_channel_gnd
 } adc_input_channel_t;
 #elif defined(__AVR_ATmega640__) \
 || defined(__AVR_ATmega1280__) \
@@ -386,8 +798,8 @@ typedef enum adc_input_channel_e
     adc_input_channel_p3_n2_1x,
     adc_input_channel_p4_n2_1x,
     adc_input_channel_p5_n2_1x,
-    adc_input_channel_VBG,
-    adc_input_channel_GND,
+    adc_input_channel_vbg,
+    adc_input_channel_gnd,
     adc_input_channel_8,
     adc_input_channel_9,
     adc_input_channel_10,
@@ -466,46 +878,104 @@ typedef enum adc_digital_channel_e
     adc_digital_channel_0 = 0x0001,
     adc_digital_channel_1 = 0x0002,
     adc_digital_channel_2 = 0x0004,
-    adc_digital_channel__acmp2d = 0x0004,
+    adc_digital_channel_acmp2d = 0x0004,
     adc_digital_channel_3 = 0x0008,
-    adc_digital_channel__acmpm = 0x0008,
+    adc_digital_channel_acmpm = 0x0008,
     adc_digital_channel_4 = 0x0010,
     adc_digital_channel_5 = 0x0020,
     adc_digital_channel_6 = 0x0040,
     adc_digital_channel_7 = 0x0080,
-    adc_digital_channel__amp0nd = 0x0800,
-    adc_digital_channel__amp0pd = 0x1000,
-    adc_digital_channel__acmp0d = 0x2000,
+    adc_digital_channel_amp0nd = 0x0800,
+    adc_digital_channel_amp0pd = 0x1000,
+    adc_digital_channel_acmp0d = 0x2000,
 }adc_digital_channel_t;
 #elif defined(__AVR_AT90PWM2__) \
 || defined(__AVR_AT90PWM2B__) \
 || defined(__AVR_AT90PWM3__) \
-|| defined(__AVR_AT90PWM3B__)
+|| defined(__AVR_AT90PWM3B__) \
+|| defined(__AVR_AT90PWM216__) \
+|| defined(__AVR_AT90PWM316__)
 typedef enum adc_digital_channel_e
 {
     adc_digital_channel_0 = 0x0001,
     adc_digital_channel_1 = 0x0002,
     adc_digital_channel_2 = 0x0004,
-    adc_digital_channel__acmp2d = 0x0004,
+    adc_digital_channel_acmp2d = 0x0004,
     adc_digital_channel_3 = 0x0008,
-    adc_digital_channel__acmpm = 0x0008,
+    adc_digital_channel_acmpm = 0x0008,
     adc_digital_channel_4 = 0x0010,
     adc_digital_channel_5 = 0x0020,
     adc_digital_channel_6 = 0x0040,
     adc_digital_channel_7 = 0x0080,
     adc_digital_channel_8 = 0x0100,
-    adc_digital_channel__amp1nd = 0x0100,
+    adc_digital_channel_amp1nd = 0x0100,
     adc_digital_channel_9 = 0x0200,
-    adc_digital_channel__amp1pd = 0x0200,
+    adc_digital_channel_amp1pd = 0x0200,
     adc_digital_channel_10 = 0x0400,
-    adc_digital_channel__acmp1d = 0x0400,
-    adc_digital_channel__amp0nd = 0x0800,
-    adc_digital_channel__amp0pd = 0x1000,
-    adc_digital_channel__acmp0d = 0x2000,
+    adc_digital_channel_acmp1d = 0x0400,
+    adc_digital_channel_amp0nd = 0x0800,
+    adc_digital_channel_amp0pd = 0x1000,
+    adc_digital_channel_acmp0d = 0x2000,
+}adc_digital_channel_t;
+#elif defined(__AVR_AT90PWM81__)
+typedef enum adc_digital_channel_e
+{
+    adc_digital_channel_0 = 0x0001,
+    adc_digital_channel_acmp1d = 0x0001,
+    adc_digital_channel_1 = 0x0002,
+    adc_digital_channel_2 = 0x0004,
+    adc_digital_channel_acmp2md = 0x0004,
+    adc_digital_channel_3 = 0x0008,
+    adc_digital_channel_acmpm = 0x0008,
+    adc_digital_channel_4 = 0x0010,
+    adc_digital_channel_acmp3md = 0x0010,
+    adc_digital_channel_5 = 0x0020,
+    adc_digital_channel_acmp2d = 0x0020,
+    adc_digital_channel_7 = 0x0040,
+    adc_digital_channel_amp0nd = 0x0040,
+    adc_digital_channel_8 = 0x0080,
+    adc_digital_channel_amp3d = 0x0080,
+    adc_digital_channel_9 = 0x0100,
+    adc_digital_channel_10 = 0x0200,
+    adc_digital_channel_amp0pd = 0x0400,
+    adc_digital_channel_acmp1md = 0x0800
 }adc_digital_channel_t;
 #elif defined(__AVR_AT90CAN32__) \
 || defined(__AVR_AT90CAN64__) \
-|| defined(__AVR_AT90CAN128__)
+|| defined(__AVR_AT90CAN128__) \
+|| defined(__AVR_AT90USB646__) \
+|| defined(__AVR_AT90USB647__) \
+|| defined(__AVR_AT90USB1286__) \
+|| defined(__AVR_AT90USB1287__) \
+|| defined(__AVR_ATmega32U6__) \
+|| defined(__AVR_ATmega164A__) \
+|| defined(__AVR_ATmega164P__) \
+|| defined(__AVR_ATmega165__) \
+|| defined(__AVR_ATmega165A__) \
+|| defined(__AVR_ATmega165P__) \
+|| defined(__AVR_ATmega169__) \
+|| defined(__AVR_ATmega169A__) \
+|| defined(__AVR_ATmega169P__) \
+|| defined(__AVR_ATmega169PA__) \
+|| defined(__AVR_ATmega324A__) \
+|| defined(__AVR_ATmega324P__) \
+|| defined(__AVR_ATmega324PA__) \
+|| defined(__AVR_ATmega325__) \
+|| defined(__AVR_ATmega325A__) \
+|| defined(__AVR_ATmega325P__) \
+|| defined(__AVR_ATmega644P__) \
+|| defined(__AVR_ATmega644A__) \
+|| defined(__AVR_ATmega645__) \
+|| defined(__AVR_ATmega645A__) \
+|| defined(__AVR_ATmega645P__) \
+|| defined(__AVR_ATmega1284__) \
+|| defined(__AVR_ATmega1284P__) \
+|| defined(__AVR_ATmega3250__) \
+|| defined(__AVR_ATmega3250A__) \
+|| defined(__AVR_ATmega3250P__) \
+|| defined(__AVR_ATmega6450__) \
+|| defined(__AVR_ATmega6450A__) \
+|| defined(__AVR_ATmega6450P__)
 typedef enum adc_digital_channel_e
 {
     adc_digital_channel_0 = 0x0001,
@@ -517,22 +987,76 @@ typedef enum adc_digital_channel_e
     adc_digital_channel_6 = 0x0040,
     adc_digital_channel_7 = 0x0080
 }adc_digital_channel_t;
+#elif (__AVR_ATmega16M1__) \
+|| defined (__AVR_ATmega32C1__) \
+|| defined (__AVR_ATmega32M1__) \
+|| defined (__AVR_ATmega64C1__) \
+|| defined (__AVR_ATmega64M1__)
+typedef enum adc_digital_channel_e
+{
+    adc_digital_channel_0 = 0x0001,
+    adc_digital_channel_acmpn3d = 0x0001,
+    adc_digital_channel_1 = 0x0002,
+    adc_digital_channel_2 = 0x0004,
+    adc_digital_channel_acmp2d = 0x0004,
+    adc_digital_channel_3 = 0x0008,
+    adc_digital_channel_acmpn2d = 0x0008,
+    adc_digital_channel_4 = 0x0010,
+    adc_digital_channel_5 = 0x0020,
+    adc_digital_channel_acmpn0d = 0x0020,
+    adc_digital_channel_6 = 0x0040,
+    adc_digital_channel_acmpn1d = 0x0040,
+    adc_digital_channel_amp2nd = 0x0040,
+    adc_digital_channel_7 = 0x0080,
+    adc_digital_channel_8 = 0x0100,
+    adc_digital_channel_amp1nd = 0x0100,
+    adc_digital_channel_9 = 0x0200,
+    adc_digital_channel_amp1pd = 0x0200,
+    adc_digital_channel_acmp3d = 0x0200,
+    adc_digital_channel_10 = 0x0400,
+    adc_digital_channel_acmp1d = 0x0400,
+    adc_digital_channel_amp0nd = 0x0800,
+    adc_digital_channel_amp0pd = 0x1000,
+    adc_digital_channel_acmp0d = 0x2000,
+    adc_digital_channel_amp2pd = 0x4000
+}adc_digital_channel_t;
 #elif defined (__AVR_ATmega16U4__) \
 || defined (__AVR_ATmega32U4__)
 typedef enum adc_digital_channel_e
 {
-    adc_digital_channel_0 = 0x0001,
-    adc_digital_channel_1 = 0x0002,
-    adc_digital_channel_4 = 0x0010,
-    adc_digital_channel_5 = 0x0020,
-    adc_digital_channel_6 = 0x0040,
-    adc_digital_channel_7 = 0x0080,
-    adc_digital_channel_8 = 0x0100,
-    adc_digital_channel_9 = 0x0200,
-    adc_digital_channel_10 = 0x0400,
-    adc_digital_channel_11 = 0x0800,
-    adc_digital_channel_12 = 0x1000,
-    adc_digital_channel_13 = 0x2000
+    adc_digital_channel_0 = 0x000001,
+    adc_digital_channel_1 = 0x000002,
+    adc_digital_channel_4 = 0x000010,
+    adc_digital_channel_5 = 0x000020,
+    adc_digital_channel_6 = 0x000040,
+    adc_digital_channel_7 = 0x000080,
+    adc_digital_channel_8 = 0x010000,
+    adc_digital_channel_9 = 0x020000,
+    adc_digital_channel_10 = 0x040000,
+    adc_digital_channel_11 = 0x080000,
+    adc_digital_channel_12 = 0x100000,
+    adc_digital_channel_13 = 0x200000
+}adc_digital_channel_t;
+#elif defined(__AVR_ATmega48__) \
+|| defined(__AVR_ATmega48A__) \
+|| defined(__AVR_ATmega48P__) \
+|| defined(__AVR_ATmega48PA__) \
+|| defined(__AVR_ATmega88__) \
+|| defined(__AVR_ATmega88A__) \
+|| defined(__AVR_ATmega88P__) \
+|| defined(__AVR_ATmega88PA__) \
+|| defined(__AVR_ATmega168__) \
+|| defined(__AVR_ATmega168A__) \
+|| defined(__AVR_ATmega168P__) \
+|| defined(__AVR_ATmega168PA__) \
+|| defined(__AVR_ATmega328__) \
+|| defined(__AVR_ATmega328P__)
+typedef enum adc_digital_channel_e
+{
+    adc_digital_channel_0 = 0x000001,
+    adc_digital_channel_1 = 0x000002,
+    adc_digital_channel_4 = 0x000010,
+    adc_digital_channel_5 = 0x000020,
 }adc_digital_channel_t;
 #elif defined(__AVR_ATmega640__) \
 || defined(__AVR_ATmega1280__) \
@@ -541,22 +1065,22 @@ typedef enum adc_digital_channel_e
 || defined(__AVR_ATmega2561__)
 typedef enum adc_digital_channel_e
 {
-    adc_digital_channel_0 = 0x0001,
-    adc_digital_channel_1 = 0x0002,
-    adc_digital_channel_2 = 0x0004,
-    adc_digital_channel_3 = 0x0008,
-    adc_digital_channel_4 = 0x0010,
-    adc_digital_channel_5 = 0x0020,
-    adc_digital_channel_6 = 0x0040,
-    adc_digital_channel_7 = 0x0080,
-    adc_digital_channel_8 = 0x0100,
-    adc_digital_channel_9 = 0x0200,
-    adc_digital_channel_10 = 0x0400,
-    adc_digital_channel_11 = 0x0800,
-    adc_digital_channel_12 = 0x1000,
-    adc_digital_channel_13 = 0x2000,
-    adc_digital_channel_14 = 0x4000,
-    adc_digital_channel_15 = 0x8000
+    adc_digital_channel_0 = 0x000001,
+    adc_digital_channel_1 = 0x000002,
+    adc_digital_channel_2 = 0x000004,
+    adc_digital_channel_3 = 0x000008,
+    adc_digital_channel_4 = 0x000010,
+    adc_digital_channel_5 = 0x000020,
+    adc_digital_channel_6 = 0x000040,
+    adc_digital_channel_7 = 0x000080,
+    adc_digital_channel_8 = 0x010000,
+    adc_digital_channel_9 = 0x020000,
+    adc_digital_channel_10 = 0x040000,
+    adc_digital_channel_11 = 0x080000,
+    adc_digital_channel_12 = 0x100000,
+    adc_digital_channel_13 = 0x200000,
+    adc_digital_channel_14 = 0x400000,
+    adc_digital_channel_15 = 0x800000
 }adc_digital_channel_t;
 #elif defined(__AVR_ATtiny4__) \
 || defined(__AVR_ATtiny5__) \
@@ -569,6 +1093,18 @@ typedef enum adc_digital_channel_e
     adc_digital_channel_2 = 0x0004,
     adc_digital_channel_3 = 0x0008
 }adc_digital_channel_t;
+#elif defined(__AVR_ATmega8__) \
+|| defined(__AVR_ATmega16__) \
+|| defined(__AVR_ATmega16A__) \
+|| defined(__AVR_ATmega32__) \
+|| defined(__AVR_ATmega32A__) \
+|| defined(__AVR_ATmega64__) \
+|| defined(__AVR_ATmega64A__) \
+|| defined(__AVR_ATmega103__) \
+|| defined(__AVR_ATmega128__) \
+|| defined(__AVR_ATmega163__) \
+|| defined(__AVR_ATmega323__)
+    //No Digital Input Disable Register for these devices
 #else
 #   error "adc_digital_channel_t not defined for your device"
 #endif

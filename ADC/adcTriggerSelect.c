@@ -54,7 +54,9 @@
 
 //So far, only ATmega16, 16A and 32A uses SFIOR for ADTSx.
 #if defined(__AVR_ATmega16__) \
-|| defined(__AVR_ATmega32__)
+|| defined(__AVR_ATmega16A__) \
+|| defined(__AVR_ATmega32__) \
+|| defined(__AVR_ATmega32A__)
 #   define TARGET_REG SFIOR
 #else
 #   define TARGET_REG ADCSRB
@@ -93,7 +95,7 @@ void adc_trigger_enable(_Bool trigEn)
     }
 }
 
-#else
+#elif !defined(__AVR_ATmega103__)
 
 void adc_trigger_enable(_Bool trigEn)
 {

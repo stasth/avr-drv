@@ -53,10 +53,15 @@
 #           error "adc_select_input needs to be rewritten for this device"
 #       endif
 #   elif defined(MUX3)
+#       define MUX_MASK ((1 << MUX3) | (1 << MUX2) | (1 << MUX1) | (1 << MUX0))
 #       if !(MUX3 == (MUX0 + 3) && MUX2 == (MUX0 + 2) && MUX1 == (MUX0 + 1))
 #           error "adc_select_input needs to be rewritten for this device"
 #       endif
-#       define MUX_MASK ((1 << MUX3) | (1 << MUX2) | (1 << MUX1) | (1 << MUX0))
+#   elif defined(MUX2)
+#       define MUX_MASK ((1 << MUX2) | (1 << MUX1) | (1 << MUX0))
+#       if !(MUX2 == (MUX0 + 2) && MUX1 == (MUX0 + 1))
+#           error "adc_select_input needs to be rewritten for this device"
+#       endif
 #   else
 #       error "ADC multiplexer not coded for this device"
 #   endif

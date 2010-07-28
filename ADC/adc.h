@@ -48,14 +48,21 @@
 #include <stdint.h>
 #include "adcDef.h"
 
+#if !defined(__AVR_ATmega103__) \
+|| defined(__DOXYGEN__)
 /*! \fn void adc_select_vref(adc_voltage_ref_t ref)
  *  \brief Select voltage reference to be used by the ADC.
  *
  *  \note Not all device share same voltages references.
  *
+ *  \note This function does nothing for ATmega103.
+ *
  *  \param ref Voltage reference to be used.
  */
 void adc_select_vref(adc_voltage_ref_t ref);
+#else
+#   define adc_select_vref(x)
+#endif
 
 /*! \fn void adc_select_input(adc_input_channel_selection_t channel)
  *  \brief Select input channel of the ADC.
@@ -70,6 +77,7 @@ void adc_select_input(adc_input_channel_t channel);
 && !defined(__AVR_ATtiny5__) \
 && !defined(__AVR_ATtiny9__) \
 && !defined(__AVR_ATtiny10__) \
+&& !defined(__AVR_ATmega103__) \
 || defined(__DOXYGEN__)
 /*! \fn void adc_left_adjust(_Bool adjust)
  *  \brief Select how conversion result will be stored in register.
@@ -174,15 +182,23 @@ void adc_set_trigger_source (adc_trigger_source_t trigger);
 #   define adc_set_trigger_source(x)
 #endif
 
+#if !defined(__AVR_ATmega103__) \
+|| defined(__DOXYGEN__)
 /*! \fn void adc_trigger_enable(_Bool trigEn)
  *  \brief Enable or disable the auto trigger.
  *
  *  \note For devices like \c ATmega8 and \c ATmega128,
  *  this function enable the free running mode.
  *
+ *  \note For devices like \c ATmega103,
+ *  this function does nothing.
+ *
  *  \param trigEn Trigger enable/disable.
  */
 void adc_trigger_enable(_Bool trigEn);
+#else
+#   define adc_trigger_enable(x)
+#endif
 
 #if defined(__AVR_AT90CAN32__) \
 || defined(__AVR_AT90CAN64__) \
