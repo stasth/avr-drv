@@ -51,6 +51,12 @@
 
 #include "adcDef.h"
 
+#if defined(__AVR_ATmega103__) \
+|| defined(__AVR_ATmega163__) \
+|| defined(__AVR_ATmega323__)
+#   define ADCSRA ADCSR
+#endif
+
 void adc_enable(_Bool status)
 {
     if (status != false)
@@ -78,7 +84,8 @@ void adc_interrupt_enable(_Bool intEn)
 #if !defined(__AVR_ATtiny4__) \
 && !defined(__AVR_ATtiny5__) \
 && !defined(__AVR_ATtiny9__) \
-&& !defined(__AVR_ATtiny10__)
+&& !defined(__AVR_ATtiny10__) \
+&& !defined(__AVR_ATmega103__)
 void adc_left_adjust(_Bool adjust)
 {
     if (adjust != false)
@@ -134,34 +141,31 @@ void adcClearIntFlag(void)
     ADCSRA |= _BV(ADIF);
 }
 
-#if defined(REFS0) && defined(REFS1)
-#   define ADC_REFS_MASK (_BV(REFS0) | _BV(REFS1))
-#   define ADC_REFS0_IDX (REFS0)
-#   if REFS1 != (REFS0 + 1)
-#       error "REFS0 and REFS1 are not contiguous, device shall be coded separately"
-#endif
-#elif defined(REFS0)
-#   define ADC_REFS_MASK (_BV(REFS0))
-#   define ADC_REFS0_IDX (REFS0)
-#elif defined(REFS)
-#   define ADC_REFS_MASK (_BV(REFS))
-#   define ADC_REFS0_IDX (REFS)
-#else
-#   error "Error finding REFS mask for your device"
-#endif
+#if !defined(__AVR_ATmega103__)
+#   if defined(REFS0) && defined(REFS1)
+#       define ADC_REFS_MASK (_BV(REFS0) | _BV(REFS1))
+#       define ADC_REFS0_IDX (REFS0)
+#       if REFS1 != (REFS0 + 1)
+#           error "REFS0 and REFS1 are not contiguous, device shall be coded separately"
+#       endif
+#   elif defined(REFS0)
+#       define ADC_REFS_MASK (_BV(REFS0))
+#       define ADC_REFS0_IDX (REFS0)
+#   elif defined(REFS)
+#       define ADC_REFS_MASK (_BV(REFS))
+#       define ADC_REFS0_IDX (REFS)
+#   else
+#       error "Error finding REFS mask for your device"
+#   endif
 
 
 void adc_select_vref(adc_voltage_ref_t ref)
 {
-#if !defined(REFS2)
-    ADMUX &= ~(ADC_REFS_MASK);
-    ADMUX |= ref << ADC_REFS0_IDX;
-#else
+#   if defined(__AVR_ATtiny25__) \
+        || defined(__AVR_ATtiny45__) \
+        || defined(__AVR_ATtiny85__)
     ADMUX &= ~(ADC_REFS_MASK);
     ADMUX |= (ref & 0x03) << ADC_REFS0_IDX;
-#   if defined(__AVR_ATtiny25__) \
-    || defined(__AVR_ATtiny45__) \
-    || defined(__AVR_ATtiny85__)
     if(ref & 0x04)
     {
         ADMUX |= _BV(REFS2);
@@ -171,11 +175,13 @@ void adc_select_vref(adc_voltage_ref_t ref)
         ADMUX &= ~_BV(REFS2);
     }
 #   elif defined(__AVR_ATtiny261__) \
-    || defined(__AVR_ATtiny261A__) \
-    || defined(__AVR_ATtiny461__) \
-    || defined(__AVR_ATtiny461A__) \
-    || defined(__AVR_ATtiny861__) \
-    || defined(__AVR_ATtiny861A__)
+        || defined(__AVR_ATtiny261A__) \
+        || defined(__AVR_ATtiny461__) \
+        || defined(__AVR_ATtiny461A__) \
+        || defined(__AVR_ATtiny861__) \
+        || defined(__AVR_ATtiny861A__)
+    ADMUX &= ~(ADC_REFS_MASK);
+    ADMUX |= (ref & 0x03) << ADC_REFS0_IDX;
     if(ref & 0x04)
     {
         ADCSRB |= _BV(REFS2);
@@ -184,11 +190,41 @@ void adc_select_vref(adc_voltage_ref_t ref)
     {
         ADCSRB &= ~_BV(REFS2);
     }
+#   elif defined (__AVR_ATmega16M1__) \
+        || defined (__AVR_ATmega32C1__) \
+        || defined (__AVR_ATmega32M1__) \
+        || defined (__AVR_ATmega64C1__) \
+        || defined (__AVR_ATmega64M1__)
+    ADMUX &= ~(ADC_REFS_MASK);
+    ADMUX |= (ref & 0x03) << ADC_REFS0_IDX;
+    ADCSRB &= ~_BV(ISRCEN);
+    if(ref & 0x04)
+    {
+        ADCSRB |= _BV(AREFEN);
+    }
+    else
+    {
+        ADCSRB &= ~_BV(AREFEN);
+    }
+#   elif defined (__AVR_ATtiny87__) \
+        || defined (__AVR_ATtiny167__)
+    ADMUX &= ~(ADC_REFS_MASK);
+    ADMUX |= (ref & 0x03) << ADC_REFS0_IDX;
+    if(ref & 0x04)
+    {
+        AMISCR |= _BV(AREFEN);
+    }
+    else
+    {
+        AMISCR &= ~_BV(AREFEN);
+    }
 #   else
-#       error "REFS2 is not coded for this device"
+    ADMUX &= ~(ADC_REFS_MASK);
+    ADMUX |= ref << ADC_REFS0_IDX;
 #   endif
-#endif
+
 }
+#endif
 
 void adc_start_conversion(void)
 {
