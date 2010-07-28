@@ -143,3 +143,4 @@ do
     echo "||"$name"||PASS||" | tr [:lower:] [:upper:] | sed 's/MEGA/mega/' | sed 's/TINY/tiny/' >> /tmp/avr-drv-adcoutput
   fi
 done
+MCU=at90can128 OUTDIR=../deliver/at90can128/lib make -s -C ADC clean
