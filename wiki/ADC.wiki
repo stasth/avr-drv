@@ -16,7 +16,9 @@ This page covers the ADC module.
 
 = Supported devices =
 
-List of supported devices:
+*Some devices require modification to the headers since avr-libc 1.7.0 still have errors in them.*
+
+List of supported devices: 68 Pass / 48 Fail
 
 || *Device* || *Build pass* ||
 ||AT90CAN32||PASS||
