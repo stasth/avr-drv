@@ -35,13 +35,6 @@
  This file contains common function for all supported ADC.
  This file may eventually get modified as more AVR device get supported.
 
- Currently only use the following register:
- \li \c ADMUX
- \li \c ADCSRA
- \li \c ADCW
- \li \c ADCH
- \li \c ADCL
-
  \author Frédéric Nadeau
  */
 #include <stdbool.h>
@@ -51,9 +44,11 @@
 
 #include "adcDef.h"
 
+//Those devices uses ADCSR rather than ADCSRA
 #if defined(__AVR_ATmega103__) \
 || defined(__AVR_ATmega163__) \
-|| defined(__AVR_ATmega323__)
+|| defined(__AVR_ATmega323__) \
+|| defined(__AVR_ATtiny26__)
 #   define ADCSRA ADCSR
 #endif
 
@@ -81,9 +76,7 @@ void adc_interrupt_enable(_Bool intEn)
     }
 }
 
-#if !defined(__AVR_ATtiny4__) \
-&& !defined(__AVR_ATtiny5__) \
-&& !defined(__AVR_ATtiny9__) \
+#if !defined(__AVR_ATtiny5__) \
 && !defined(__AVR_ATtiny10__) \
 && !defined(__AVR_ATmega103__)
 void adc_left_adjust(_Bool adjust)
@@ -110,6 +103,7 @@ void adc_prescaler_selection(adc_prescaler_t prescaler)
     ADCSRA |= prescaler << ADPS0;
 }
 
+//Device with 8bits ADC don't get 16bit read nor high byte read.
 #if !defined(__AVR_ATtiny4__) \
 && !defined(__AVR_ATtiny5__) \
 && !defined(__AVR_ATtiny9__) \

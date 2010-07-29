@@ -56,7 +56,8 @@
 #if defined(__AVR_ATmega16__) \
 || defined(__AVR_ATmega16A__) \
 || defined(__AVR_ATmega32__) \
-|| defined(__AVR_ATmega32A__)
+|| defined(__AVR_ATmega32A__) \
+|| defined(__AVR_ATmega8535__)
 #   define TARGET_REG SFIOR
 #else
 #   define TARGET_REG ADCSRB
