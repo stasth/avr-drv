@@ -64,7 +64,7 @@ void adc_select_vref(adc_voltage_ref_t ref);
 #   define adc_select_vref(x)
 #endif
 
-/*! \fn void adc_select_input(adc_input_channel_selection_t channel)
+/*! \fn void adc_select_input(adc_input_channel_t channel)
  *  \brief Select input channel of the ADC.
  *
  *  \note Not all device share same inputs channels.
@@ -100,7 +100,7 @@ void adc_left_adjust(_Bool adjust);
 /*! \fn void adc_prescaler_selection(adc_prescaler_t prescaler)
  *  \brief Select ADC core clock prescaler.
  *
- *  \param prescaler Prescaler clock. See #ADC_Prescaler_t for option list.
+ *  \param prescaler Prescaler clock. See #adc_prescaler_t for option list.
  */
 void adc_prescaler_selection(adc_prescaler_t prescaler);
 
@@ -173,9 +173,9 @@ uint8_t adc_read_low(void);
  *  \note Not all device have the trigger source.
  *  For devices like \c ATmega8 and \c ATmega128, this function does nothing.
  *  The function has been left for these device only for API compatibility.
- *  It should be used with #ADC_FreeRunning.
+ *  It should be used with #adc_trigger_source_free_running.
  *
- *  \param trigger Trigger source. See #ADC_TriggerSource_t for option list.
+ *  \param trigger Trigger source. See #adc_trigger_source_t for option list.
  */
 void adc_set_trigger_source (adc_trigger_source_t trigger);
 #else
