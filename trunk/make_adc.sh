@@ -37,6 +37,7 @@ atmega88p \
 atmega88pa \
 atmega103 \
 atmega128 \
+atmega128rfa1 \
 atmega163 \
 atmega164p \
 atmega164a \
@@ -60,7 +61,6 @@ atmega328 \
 atmega329 \
 atmega329p \
 atmega329pa \
-atmega406 \
 atmega640 \
 atmega644 \
 atmega644a \
@@ -75,7 +75,6 @@ atmega649p \
 atmega1280 \
 atmega1281 \
 atmega1284p \
-atmega128rfa1 \
 atmega2560 \
 atmega2561 \
 atmega3250 \
@@ -88,11 +87,9 @@ atmega6450p \
 atmega6490 \
 atmega6490a \
 atmega6490p \
-atmega8515 \
 atmega8535 \
 attiny13 \
 attiny13a \
-attiny22 \
 attiny24 \
 attiny24a \
 attiny25 \
@@ -110,37 +107,31 @@ attiny167 \
 attiny261 \
 attiny261a \
 attiny461 \
-attiny461a \
 attiny861 \
-attiny861a \
-attiny2313 \
-attiny2313a \
-attiny4313)
+attiny861a)
 
-toupper()
-{
-  local char="$*"
-  out=$(echo $char | tr [:lower:] [:upper:] | sed 's/MEGA/mega/' )
-  local retval=$?
-  echo "$out"
-  unset out char
-  return $retval
-}
-
-rm /tmp/avr-drv-adcoutput
+rm buildDir/avr-drv-adcoutput
 for name in ${AVR_TARGET[@]}
 do
   echo -n "Making ADC librairy for" $name
-  MCU=$name OUTDIR=../deliver/$name/lib make -s -C ADC clean
-  MCU=$name OUTDIR=../deliver/$name/lib make -s -C ADC > /dev/null
+  mkdir -p deliver/lib/$name
+  MCU=$name OUTDIR=../deliver/lib/$name make -s -C ADC clean
+  MCU=$name OUTDIR=../deliver/lib/$name make -s -C ADC 2> /dev/null
   code=$?
   if (( code )); then
     echo -e '\E[31m'"\tFAIL"; tput sgr0
-    echo "||"$name"||FAIL||" | tr [:lower:] [:upper:] | sed 's/MEGA/mega/' | sed 's/TINY/tiny/' >> /tmp/avr-drv-adcoutput
+    echo "||"$name"||FAIL||" | tr [:lower:] [:upper:] | sed 's/MEGA/mega/' | sed 's/TINY/tiny/' >> buildDir/avr-drv-adcoutput
     
   else
     echo -e '\E[32m'"\tPASS"; tput sgr0
-    echo "||"$name"||PASS||" | tr [:lower:] [:upper:] | sed 's/MEGA/mega/' | sed 's/TINY/tiny/' >> /tmp/avr-drv-adcoutput
+    echo "||"$name"||PASS||" | tr [:lower:] [:upper:] | sed 's/MEGA/mega/' | sed 's/TINY/tiny/' >> buildDir/avr-drv-adcoutput
   fi
 done
-MCU=at90can128 OUTDIR=../deliver/at90can128/lib make -s -C ADC clean
+MCU=at90can128 OUTDIR=../deliver/lib/at90can128 make -s -C ADC clean
+mkdir -p deliver/include
+cp -f ADC/*.h deliver/include
+
+echo -n "PASS" `grep -c PASS buildDir/avr-drv-adcoutput`
+echo " FAIL" `grep -c FAIL buildDir/avr-drv-adcoutput`
+
+echo "Done"
