@@ -1,11 +1,13 @@
 #summary Howto use AVR-drv
+#labels Featured
 
 = Howto use AVR-drv =
 
 It is simple to use AVR-drv in your project.
   * Download AVR-drv and place in, as example, /home/user/src/avr-drv
+  * Patch avr-libc *patch is not in SVN at time of writing*
   * Run the make_xxx.sh script
   * In your project link against /home/user/src/avr-drv/deliver/lib/$(MCU)
-  * APIs are located in /home/user/src/avr-drv/deliver/include
+  * APIs(headers for you project) are located in /home/user/src/avr-drv/deliver/include
 
 Voilà, you're done. Now simply make some code that use AVR-drv. ADC example is up-to-date, don't mind the other examples for now.
