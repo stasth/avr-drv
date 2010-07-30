@@ -1,4 +1,4 @@
-/* Copyright (c) 2008,2009 Frédéric Nadeau
+/* Copyright (c) 2008-2010 Frédéric Nadeau
    Copyright (c) 2008 François-Pierre Pépin
    Copyright (c) 2008 Sy Sech Vong
 
@@ -38,207 +38,222 @@
  \author Frédéric Nadeau
  \author François-Pierre Pépin
  \author Sy Sech Vong
+
+ \todo Translate comments in English.
  */
 
 #ifndef CAN_H_
 #define CAN_H_
 
+#include <stdbool.h>
 #include <stdint.h>
 
 
-typedef enum canIntSrc_e//Interrupt source
+enum can_int_src_e//Interrupt source
 {
-	intSrc_AERR_00 = 0x00,
-	intSrc_FERR_00,
-	intSrc_CERR_00,
-	intSrc_SERR_00,
-	intSrc_BERR_00,
-	intSrc_RXOK_00,
-	intSrc_TXOK_00,
-	intSrc_AERR_01 = 0x10,
-	intSrc_FERR_01,
-	intSrc_CERR_01,
-	intSrc_SERR_01,
-	intSrc_BERR_01,
-	intSrc_RXOK_01,
-	intSrc_TXOK_01,
-	intSrc_AERR_02 = 0x20,
-	intSrc_FERR_02,
-	intSrc_CERR_02,
-	intSrc_SERR_02,
-	intSrc_BERR_02,
-	intSrc_RXOK_02,
-	intSrc_TXOK_02,
-	intSrc_AERR_03 = 0x30,
-	intSrc_FERR_03,
-	intSrc_CERR_03,
-	intSrc_SERR_03,
-	intSrc_BERR_03,
-	intSrc_RXOK_03,
-	intSrc_TXOK_03,
-	intSrc_AERR_04 = 0x40,
-	intSrc_FERR_04,
-	intSrc_CERR_04,
-	intSrc_SERR_04,
-	intSrc_BERR_04,
-	intSrc_RXOK_04,
-	intSrc_TXOK_04,
-	intSrc_AERR_05 = 0x50,
-	intSrc_FERR_05,
-	intSrc_CERR_05,
-	intSrc_SERR_05,
-	intSrc_BERR_05,
-	intSrc_RXOK_05,
-	intSrc_TXOK_05,
-	intSrc_AERR_06 = 0x60,
-	intSrc_FERR_06,
-	intSrc_CERR_06,
-	intSrc_SERR_06,
-	intSrc_BERR_06,
-	intSrc_RXOK_06,
-	intSrc_TXOK_06,
-	intSrc_AERR_07 = 0x70,
-	intSrc_FERR_07,
-	intSrc_CERR_07,
-	intSrc_SERR_07,
-	intSrc_BERR_07,
-	intSrc_RXOK_07,
-	intSrc_TXOK_07,
-	intSrc_AERR_08 = 0x80,
-	intSrc_FERR_08,
-	intSrc_CERR_08,
-	intSrc_SERR_08,
-	intSrc_BERR_08,
-	intSrc_RXOK_08,
-	intSrc_TXOK_08,
-	intSrc_AERR_09 = 0x90,
-	intSrc_FERR_09,
-	intSrc_CERR_09,
-	intSrc_SERR_09,
-	intSrc_BERR_09,
-	intSrc_RXOK_09,
-	intSrc_TXOK_09,
-	intSrc_AERR_10 = 0xA0,
-	intSrc_FERR_10,
-	intSrc_CERR_10,
-	intSrc_SERR_10,
-	intSrc_BERR_10,
-	intSrc_RXOK_10,
-	intSrc_TXOK_10,
-	intSrc_AERR_11 = 0xB0,
-	intSrc_FERR_11,
-	intSrc_CERR_11,
-	intSrc_SERR_11,
-	intSrc_BERR_11,
-	intSrc_RXOK_11,
-	intSrc_TXOK_11,
-	intSrc_AERR_12 = 0xC0,
-	intSrc_FERR_12,
-	intSrc_CERR_12,
-	intSrc_SERR_12,
-	intSrc_BERR_12,
-	intSrc_RXOK_12,
-	intSrc_TXOK_12,
-	intSrc_AERR_13 = 0xD0,
-	intSrc_FERR_13,
-	intSrc_CERR_13,
-	intSrc_SERR_13,
-	intSrc_BERR_13,
-	intSrc_RXOK_13,
-	intSrc_TXOK_13,
-	intSrc_AERR_14 = 0xE0,
-	intSrc_FERR_14,
-	intSrc_CERR_14,
-	intSrc_SERR_14,
-	intSrc_BERR_14,
-	intSrc_RXOK_14,
-	intSrc_TXOK_14,
-	intSrc_BOFFI = 0xF0,
-	intSrc_AERG,
-	intSrc_FERG,
-	intSrc_CERG,
-	intSrc_SERG,
-	intSrc_BXOK,
-	intSrc_UNKNOWN = 0xFF,
-} canIntSrc_t;
+	can_int_src_AERR_00 = 0x00,
+	can_int_src_FERR_00,
+	can_int_src_CERR_00,
+	can_int_src_SERR_00,
+	can_int_src_BERR_00,
+	can_int_src_RXOK_00,
+	can_int_src_TXOK_00,
+	can_int_src_AERR_01 = 0x10,
+	can_int_src_FERR_01,
+	can_int_src_CERR_01,
+	can_int_src_SERR_01,
+	can_int_src_BERR_01,
+	can_int_src_RXOK_01,
+	can_int_src_TXOK_01,
+	can_int_src_AERR_02 = 0x20,
+	can_int_src_FERR_02,
+	can_int_src_CERR_02,
+	can_int_src_SERR_02,
+	can_int_src_BERR_02,
+	can_int_src_RXOK_02,
+	can_int_src_TXOK_02,
+	can_int_src_AERR_03 = 0x30,
+	can_int_src_FERR_03,
+	can_int_src_CERR_03,
+	can_int_src_SERR_03,
+	can_int_src_BERR_03,
+	can_int_src_RXOK_03,
+	can_int_src_TXOK_03,
+	can_int_src_AERR_04 = 0x40,
+	can_int_src_FERR_04,
+	can_int_src_CERR_04,
+	can_int_src_SERR_04,
+	can_int_src_BERR_04,
+	can_int_src_RXOK_04,
+	can_int_src_TXOK_04,
+	can_int_src_AERR_05 = 0x50,
+	can_int_src_FERR_05,
+	can_int_src_CERR_05,
+	can_int_src_SERR_05,
+	can_int_src_BERR_05,
+	can_int_src_RXOK_05,
+	can_int_src_TXOK_05,
+	can_int_src_AERR_06 = 0x60,
+	can_int_src_FERR_06,
+	can_int_src_CERR_06,
+	can_int_src_SERR_06,
+	can_int_src_BERR_06,
+	can_int_src_RXOK_06,
+	can_int_src_TXOK_06,
+	can_int_src_AERR_07 = 0x70,
+	can_int_src_FERR_07,
+	can_int_src_CERR_07,
+	can_int_src_SERR_07,
+	can_int_src_BERR_07,
+	can_int_src_RXOK_07,
+	can_int_src_TXOK_07,
+	can_int_src_AERR_08 = 0x80,
+	can_int_src_FERR_08,
+	can_int_src_CERR_08,
+	can_int_src_SERR_08,
+	can_int_src_BERR_08,
+	can_int_src_RXOK_08,
+	can_int_src_TXOK_08,
+	can_int_src_AERR_09 = 0x90,
+	can_int_src_FERR_09,
+	can_int_src_CERR_09,
+	can_int_src_SERR_09,
+	can_int_src_BERR_09,
+	can_int_src_RXOK_09,
+	can_int_src_TXOK_09,
+	can_int_src_AERR_10 = 0xA0,
+	can_int_src_FERR_10,
+	can_int_src_CERR_10,
+	can_int_src_SERR_10,
+	can_int_src_BERR_10,
+	can_int_src_RXOK_10,
+	can_int_src_TXOK_10,
+	can_int_src_AERR_11 = 0xB0,
+	can_int_src_FERR_11,
+	can_int_src_CERR_11,
+	can_int_src_SERR_11,
+	can_int_src_BERR_11,
+	can_int_src_RXOK_11,
+	can_int_src_TXOK_11,
+	can_int_src_AERR_12 = 0xC0,
+	can_int_src_FERR_12,
+	can_int_src_CERR_12,
+	can_int_src_SERR_12,
+	can_int_src_BERR_12,
+	can_int_src_RXOK_12,
+	can_int_src_TXOK_12,
+	can_int_src_AERR_13 = 0xD0,
+	can_int_src_FERR_13,
+	can_int_src_CERR_13,
+	can_int_src_SERR_13,
+	can_int_src_BERR_13,
+	can_int_src_RXOK_13,
+	can_int_src_TXOK_13,
+	can_int_src_AERR_14 = 0xE0,
+	can_int_src_FERR_14,
+	can_int_src_CERR_14,
+	can_int_src_SERR_14,
+	can_int_src_BERR_14,
+	can_int_src_RXOK_14,
+	can_int_src_TXOK_14,
+	can_int_src_BOFFI = 0xF0,
+	can_int_src_AERG,
+	can_int_src_FERG,
+	can_int_src_CERG,
+	can_int_src_SERG,
+	can_int_src_BXOK,
+	can_int_src_UNKNOWN = 0xFF,
+};
 
-/*! \fn void canSetAbortAbort(void)
+typedef enum can_int_src_e can_int_src_t;
+
+enum can_mob_conf_e
+{
+    can_mob_conf_disable,
+    can_mob_conf_enable_transmission,
+    can_mob_conf_enable_reception,
+    can_mob_conf_enable_frame_buffer_reception
+};
+
+typedef enum can_mob_conf_e can_mob_conf_t;
+
+/*! \fn void can_set_abort_request(void)
  *  \brief Force all message boxes to be desactivated.
  *
  * All communication currently ongoing will terminate normally.
  *
  * Flags will not be reset.
  */
-void canSetAbortAbort(void);
+void can_set_abort_request(void);
 
-/*! \fn void canClearAbortAbort(void)
- *  \brief After an #canSetAbortAbort(), this command will reactivate
+/*! \fn void can_clear_abort_request(void)
+ *  \brief After an #can_set_abort_request(), this command will reactivate
  *  message boxes.
  */
-void canClearAbortAbort(void);
+void can_clear_abort_request(void);
 
-/*! \fn void canSetOverloadFrameRequest(void)
+/*! \fn void can_set_overload_frame_request(void)
  *  \brief Force la transmission d'un message de surcharge imm�diatement
  * apr�s la prochaine reception.
  *
  * Le fanions ne se remet pas � z�ro de lui m�me.
  * Pas plus de deux message de surcharge successif ne devrait �tre transmis successivement.
  */
-void canSetOverloadFrameRequest(void);
+void can_set_overload_frame_request(void);
 
-/*! \fn void canClearOverloadFrameRequest(void)
+/*! \fn void can_clear_overload_frame_request(void)
  *  \brief Si une demande d'envois de message de surcharge fut plac� plust�t,
  * cette fonction permet ne plus transmettre de tel message.
  */
-void canClearOverloadFrameRequest(void);
+void can_clear_overload_frame_request(void);
 
-/*! \fn void canEnableTimeTriggerCommunication(void)
+/*! \fn void can_enable_time_trigger_communication(void)
  *  \brief Active la communication bas� sur le temps et non pas les �v�nements.
  */
-void canEnableTimeTriggerCommunication(void);
+void can_enable_time_trigger_communication(void);
 
-/*! \fn void canDisableTimeTriggerCommunication(void)
+/*! \fn void can_disable_time_trigger_communication(void)
  *  \brief D�sctive la communication bas�e sur le temps et
  * active donc la celle bas�e sur les �v�nements.
  */
-void canDisableTimeTriggerCommunication(void);
+void can_disable_time_trigger_communication(void);
 
-/*! \fn void canTTCSyncOnLastBitOfEOF(void)
+/*! \fn void can_ttc_sync_on_last_bit_of_eof(void)
  *  \brief Force la synchronisation de TTC lors du dernier bit de EOF.
  * End Of Frame
  *
  * Seulement utilis� lorsqu'en mode TTC
  */
-void canTTCSyncOnLastBitOfEOF(void);
+void can_ttc_sync_on_last_bit_of_eof(void);
 
-/*! \fn void canTTCSyncOnSOF(void)
+/*! \fn void can_ttc_sync_on_sof(void)
  *  \brief Force la synchronisation de TTC lors de SOF.
  * Start Of Frame
  *
  * Seulement utilis� lorsqu'en mode TTC
  */
-void canTTCSyncOnSOF(void);
+void can_ttc_sync_on_sof(void);
 
-/*! \fn void canEnableListeningMode(void)
+/*! \fn void can_enable_listening_mode(void)
  *  \brief Active le mode d'�coute. Tx est connect� vers l'ext�rieure ainsi que
  * sur Rx.
  */
-void canEnableListeningMode(void);
+void can_enable_listening_mode(void);
 
-/*! \fn void canDisableListeningMode(void)
+/*! \fn void can_disable_listening_mode(void)
  *  \brief D�sactive le mode d'�coute. Rx est connect� vers l'ext�rieure.
  */
-void canDisableListeningMode(void);
+void can_disable_listening_mode(void);
 
-/*! \fn void canSetEnableMode(void)
+/*! \fn void can_set_enable_mode(void)
  *  \brief Le Module can sera activ� suite � la lecture de 11bit.
  *
  * Puisque l'effet de ce fanion n'est pas imm�diat, il vaut mieux lire le bit
  * ENFG du registre CANGSTA afin de connaitre le mode pr�sent d'op�ration.
  */
-void canSetEnableMode(void);
+void can_set_enable_mode(void);
 
-/*! \fn void canSetStandbyMode(void)
+/*! \fn void can_set_standby_mode(void)
  *  \brief La communication en cours se terminera comme pr�vue et le cannal CAN
  * sera suspendu(le bit CONMOB de chaque MOb ne changera pas).  Le transmetteur
  * permet donc la reception de donn�s.  Les registres de reception sont disponible
@@ -247,239 +262,170 @@ void canSetEnableMode(void);
  * Puisque l'effet de ce fanion n'est pas imm�diat, il vaut mieux lire le bit
  * ENFG du registre CANGSTA afin de connaitre le mode pr�sent d'op�ration.
  */
-void canSetStandbyMode(void);
+void can_set_standby_mode(void);
 
-/*! \fn void canRequestReset(void)
+/*! \fn void can_request_reset(void)
  *  \brief Permet au module CAN de faire une remise � z�ro du processeur.
  */
-void canRequestReset(void);
+void can_request_reset(void);
 
-/*! \fn uint8_t canReadOverloadFrameFlag(void)
+/*! \fn _Bool can_is_overload_frame_flag_set(void)
  *  \brief Lit le fanion OVFG
- *  \return 0 Si aucune trame de surcharge est n'envoy�.
- *          1 Si une trame de surcharge est en cour de transmission.
+ *  \return false Si aucune trame de surcharge est n'envoy�.
+ *          true Si une trame de surcharge est en cour de transmission.
  */
-uint8_t canReadOverloadFrameFlag(void);
+_Bool can_is_overload_frame_flag_set(void);
 
-/*! \fn uint8_t canIsTransmitterBusy(void)
+/*! \fn _Bool can_is_transmitter_busy(void)
  *  \brief Lit le fanion TXBSY
- *  \return 0 Si le transmetteur est inactif.
- *          1 Si le transmetteur est occup�.
+ *  \return false Si le transmetteur est inactif.
+ *          true Si le transmetteur est occup�.
  */
-uint8_t canIsTransmitterBusy(void);
+_Bool can_is_transmitter_busy(void);
 
-/*! \fn uint8_t canIsReceiverBusy(void)
+/*! \fn _Bool can_is_receiver_busy(void)
  *  \brief Lit le fanion RXBSY
- *  \return 0 Si le r�cepteur est inactif.
- *          1 Si le r�cepteur est occup�.
+ *  \return false Si le r�cepteur est inactif.
+ *          true Si le r�cepteur est occup�.
  */
-uint8_t canIsReceiverBusy(void);
+_Bool can_is_receiver_busy(void);
 
-/*! \fn uint8_t canIsEnable(void)
+/*! \fn _Bool can_is_enabled(void)
  *  \brief Lit le fanion ENFG.
- *  \return 0 Si le controleur est inactif.
- *          1 Si le controleur est actif.
+ *  \return false Si le controleur est inactif.
+ *          true Si le controleur est actif.
  */
-uint8_t canIsEnable(void);
+_Bool can_is_enabled(void);
 
-/*! \fn uint8_t canIsBusOff(void)
+/*! \fn _Bool can_is_bus_off(void)
  *  \brief Lit le fanion BOFF.
- *  \return 0 Si le bus n'est pas en mode Off.
- *          1 Si le bus est en mode Off.
+ *  \return false Si le bus n'est pas en mode Off.
+ *          true Si le bus est en mode Off.
  */
-uint8_t canIsBusOff(void);
+_Bool can_is_bus_off(void);
 
-/*! \fn uint8_t canIsErrorPassive(void)
+/*! \fn _Bool can_is_error_passive_set(void)
  *  \brief Lit le fanion ERRP.
- *  \return 0 Si le bus n'est pas en mode "Error passive".
- *          1 Si le bus est en mode "Error passive".
+ *  \return false Si le bus n'est pas en mode "Error passive".
+ *          true Si le bus est en mode "Error passive".
  */
-uint8_t canIsErrorPassive(void);
+_Bool can_is_error_passive_set(void);
 
-/*! \fn uint8_t canIsInterrupt(void)
+/*! \fn _Bool can_is_general_interrupt_set(void)
  *  \brief Indique si un fanion d'int�ruption est actif.
  *  \return 0 Si aucune int�ruption n'est en attente.
  *          1 Si une int�ruption est en attente.
  */
-uint8_t canIsInterrupt(void);
+_Bool can_is_general_interrupt_set(void);
 
-uint8_t canReadBusOffInterruptFlag(void);
-void canClearBusOffInterruptFlag(void);
-uint8_t canReadOverrunCANTimerInterruptFlag(void);
-void canClearOverrunCANTimerInterruptFlag(void);
+_Bool can_is_bus_off_interrupt_flag_set(void);
+void can_clear_bus_off_interrupt_flag(void);
+_Bool can_is_overrun_can_timer_interrupt_flag_set(void);
+void can_clear_overrun_can_timer_interrupt_flag(void);
+_Bool can_is_frame_buffer_reveive_interrupt_flag_set(void);
+void can_clear_frame_buffer_reveive_interrupt_flag(void);
+_Bool can_is_stuff_error_general_interrupt_flag_set(void);
+void can_clear_stuff_error_general_interrupt_flag(void);
+_Bool can_is_crc_error_general_interrupt_flag_set(void);
+void can_clear_crc_error_general_interrupt_flag(void);
+_Bool can_is_form_error_general_interrupt_flag_set(void);
+void can_clear_form_error_general_interrupt_flag(void);
+_Bool can_is_ack_error_general_interrupt_flag_set(void);
+void can_clear_ack_error_general_interrupt_flag(void);
 
-uint8_t canReadFrameBufferReveiveInterruptFlag(void);
-
-/*! \fn void canClearFrameBufferReveiveInterruptFlag(void)
- *  \brief Remet � z�ro le fanion de r�ception.
- *
- * Peut seulement �tre remit � z�ro si les deux fnion CONMOB de MOb on �t� r��crit.
- */
-void canClearFrameBufferReveiveInterruptFlag(void);
-
-uint8_t canReadStuffErrorGeneralInterruptFlag(void);
-void canClearStuffErrorGeneralInterruptFlag(void);
-
-uint8_t canReadCRCErrorGeneralInterruptFlag(void);
-
-void canClearCRCErrorGeneralInterruptFlag(void);
-uint8_t canReadFormErrorGeneralInterruptFlag(void);
-
-void canClearFormErrorGeneralInterruptFlag(void);
-uint8_t canReadAckErrorGeneralInterruptFlag(void);
-void canClearAckErrorGeneralInterruptFlag(void);
-
-void canEnableAllInterrupt(void);
-void canDisableAllInterrupt(void);
-void canEnableBusOffInterrupt(void);
-void canDisableBusOffInterrupt(void);
-void canEnableReceiveInterrupt(void);
-void canDisableReceiveInterrupt(void);
-uint8_t canIsReceiveInterruptActive(void);
-void canEnableTransmitInterrupt(void);
-void canDisableTransmitInterrupt(void);
-uint8_t canIsTransmitInterruptActive(void);
-void canEnableMObErrorsInterrupt(void);
-void canDisableMObErrorsInterrupt(void);
-void canEnableFrameBufferInterrupt(void);
-void canDisableFrameBufferInterrupt(void);
-void canEnableGeneralErrorsInterrupt(void);
-void canDisableGeneralErrorsInterrupt(void);
-void canEnableCANTimerOverrunInterrupt(void);
-void canDisableCANTimerOverrunInterrupt(void);
-
-uint8_t canIsMObEnabled(uint8_t uwMOb);
-
-void canEnableInterruptMOb(uint8_t uwMOb);
-void canDisableInterruptMOb(uint8_t uwMOb);
-
-uint8_t canReadStatusInterruptMOb(uint8_t uwMOb);
-
-void canWriteBitTimingRegister1(uint8_t uwData);
-uint8_t canReadBitTimingRegister1(void);
-
-void canWriteReSyncJumpWidth(uint8_t ubData);
-uint8_t canReadReSyncJumpWidth(void);
-void canWritePropagationTimeSegment(uint8_t ubData);
-uint8_t canReadPropagationTimeSegment(void);
-
-void canWritePhaseSegment2(uint8_t ubData);
-uint8_t canReadPhaseSegment2(void);
-void canWritePhaseSegment1(uint8_t ubData);
-uint8_t canReadPhaseSegment1(void);
-void canWriteSamplePoint(uint8_t ubData);
-uint8_t canReadSamplePoint(void);
-
-void canWriteTimerControlRegister(uint8_t ubData);
-uint8_t canReadTimerControlRegister(void);
-
-uint16_t canReadTimerRegister(void);
-
-uint16_t canReadTTCTimerRegister(void);
-
-uint8_t canReadTransmitErrorCounter(void);
-uint8_t canReadReceiveErrorCounter(void);
-
-uint8_t canReadHighestPriorityMObNumber(void);
-void canWriteGeneralPurposeBits(uint8_t ubData);
-uint8_t canReadGeneralPurposeBits(void);
-
-void canWriteMObNumber(uint8_t ubData);
-uint8_t canReadMObNumber(void);
-void canWriteAutoIncrement(uint8_t ubData);
-uint8_t canReadAutoIncrement(void);
-void canWriteFIFOCANDataIndex(uint8_t ubData);
-uint8_t canReadFIFOCANDataIndex(void);
-
-void canWriteDataLengthCodeWarning(uint8_t ubData);
-uint8_t canReadDataLengthCodeWarning(void);
-uint8_t canReadTransmitOKFlag(void);
-void canCleanTransmitOKFlag(void);
-uint8_t canReadReceiveOKFlag(void);
-void canCleanReceiveOKFlag(void);
-uint8_t canReadBitErrorFlag(void);
-void canCleanBitErrorFlag(void);
-uint8_t canReadStuffErrorFlag(void);
-void canCleanStuffErrorFlag(void);
-uint8_t canReadCRCErrorFlag(void);
-void canCleanCRCErrorFlag(void);
-uint8_t canReadFormErrorFlag(void);
-void canCleanFormErrorFlag(void);
-uint8_t canReadAcknowledgementErrorFlag(void);
-void canCleanAcknowledgementErrorFlag(void);
-
-void canWriteConfigurationOfMessageObject(uint8_t ubData);
-uint8_t canReadWriteConfigurationOfMessageObject(void);
-void canSetReplyReadyAndValid(void);
-void canSetReplyNotReady(void);
-uint8_t canReadReplyValidBit(void);
-void canSetIdentifierExtention2A(void);
-void canSetIdentifierExtention2B(void);
-uint8_t canReadIdentifierExtention(void);
-void canWriteDataLengthCode(uint8_t ubData);
-uint8_t canReadDataLengthCode(void);
-
-void canWriteIdentifierTagV2A(uint16_t uwData);
-uint16_t canReadIdentifierTagV2A(void);
-void canWriteIdentifierTagV2B(uint32_t ulData);
-uint32_t canReadIdentifierTagV2B(void);
-void canWriteRemoteTransmissionRequestTag(uint8_t ubData);
-uint8_t canReadRemoteTransmissionRequestTag(void);
-void canWriteReservedBit0Tag(uint8_t ubData);
-uint8_t canReadReservedBit0Tag(void);
-void canWriteReservedBit1Tag(uint8_t ubData);
-uint8_t canReadReservedBit1Tag(void);
-
-void canWriteIdentifierMaskV2A(uint16_t uwData);
-uint16_t canReadIdentifierMaskV2A(void);
-void canWriteIdentifierMaskV2B(uint32_t ulData);
-uint32_t canReadIdentifierMaskV2B(void);
-void canWriteRemoteTransmissionRequestMask(uint8_t ubData);
-uint8_t canReadRemoteTransmissionRequestMask(void);
-void canWriteIdentifierExtensionMask(uint8_t ubData);
-uint8_t canReadIdentifierExtensionMask(void);
-
-uint16_t canReadTimeStamp(void);
-
-/***************************************************************************************
- * Donn�es de Message Object (Mob)
- ***************************************************************************************/
-
-/*! \fn uint8_t canReadDataMessageObject(void)
- *  \brief Avoir 1 octet dans le FIFO de MOb ACTUELLEMENT point� par AT90CANXX (1 des 15
- * MOb disponibles). Index du FIFO incr�mente automatiquement (supposant que
- * AINC = 0 dans le registre CANPAGE).
- *
- */
-uint8_t canReadDataMessageObject(void);
-
-/*! \fn uint8_t canWriteDataMessageObject(void)
- *  \brief Mettre 1 octet dans le FIFO de MOb ACTUELLEMENT point� par AT90CANXX (1 des 15
- * MOb disponibles). Index du FIFO incr�mente automatiquement (supposant que
- * AINC = 0 dans le registre CANPAGE).
- *
- */
-void canWriteDataMessageObject(uint8_t ubData);
-
-/*! \fn void canClearMOb(void)
- *  \brief Effacer les donn�es du MOb ACTUELLEMENT point� par AT90CANXX.
- *
- */
-void canClearMOb(void);
-
-/*! \fn void canClearAllMOb(void)
- *  \brief Effacer les donn�es de TOUS les MObs.
- *
- */
-void canClearAllMOb(void);
-uint8_t canGetFreeMObNumber(uint8_t *ubFreeMOb);
+void can_all_interrupt_enable(_Bool enabled);
+void can_bus_off_interrupt_enable(_Bool enabled);
+void can_receive_interrupt_enable(_Bool enabled);
+_Bool can_is_receive_interrupt_enable(void);
+void can_transmit_interrupt_enable(_Bool enabled);
+_Bool can_is_transmit_interrupt_enable(void);
+void can_mob_errors_interrupt_enable(_Bool enabled);
+void can_frame_buffer_interrupt_enable(void);
+void can_frame_buffer_interrupt_disable(void);
+void can_general_errors_interrupt_enable(void);
+void can_general_errors_interrupt_disable(void);
+void can_can_timer_overrun_interrupt_enable(void);
+void can_can_timer_overrun_interrupt_disable(void);
+_Bool can_is_mob_enabled(uint8_t ubMOb);
+void can_interrupt_mob(uint8_t ubMOb, _Bool enabled);
+_Bool can_is_status_interrupt_mob_flag_set(uint8_t ubMOb);
+void can_set_bit_timing_register1(uint8_t ubData);
+uint8_t can_get_bit_timing_register1(void);
+void can_set_resync_jump_width(uint8_t ubData);
+void can_set_propagation_time_segment(uint8_t ubData);
+void can_set_phase_segment2(uint8_t ubData);
+void can_set_phase_segment1(uint8_t ubData);
+void can_set_sample_point(uint8_t ubData);
+void can_set_timer_control_register(uint8_t ubData);
+uint8_t can_get_timer_control_register(void);
+uint16_t can_get_timer_register(void);
+uint16_t can_get_ttc_timer_register(void);
+uint8_t can_get_transmit_error_counter(void);
+uint8_t can_get_receive_error_counter(void);
+uint8_t can_get_highest_priority_mob_number(void);
+void can_set_general_purpose_bits(uint8_t ubData);
+uint8_t can_get_general_purpose_bits(void);
+void can_set_mob_page(uint8_t ubData);
+uint8_t can_get_mob_page(void);
+void can_set_auto_increment(_Bool enabled);
+_Bool can_get_auto_increment(void);
+void can_set_fifo_can_data_index(uint8_t ubData);
+uint8_t can_get_fifo_can_data_index(void);
+_Bool can_get_data_length_code_warning_flag(void);
+_Bool can_get_transmit_ok_flag(void);
+void can_clear_transmit_ok_flag(void);
+_Bool can_get_receive_ok_flag(void);
+void can_clear_receive_ok_flag(void);
+_Bool can_get_bit_error_flag(void);
+void can_clear_bit_error_flag(void);
+_Bool can_get_stuff_error_flag(void);
+void can_clear_stuff_error_flag(void);
+_Bool can_get_crc_error_flag(void);
+void can_clear_crc_error_flag(void);
+_Bool can_get_form_error_flag(void);
+void can_clear_form_error_flag(void);
+_Bool can_get_acknowledgement_error_flag(void);
+void can_clear_acknowledgement_error_flag(void);
+void can_set_configuration_of_mob(can_mob_conf_t conf);
+void can_set_reply_ready_flag(_Bool isReady);
+void can_set_identifier_extention_2a(void);
+void can_set_identifier_extention_2b(void);
+_Bool can_is_identifier_extention_2b(void);
+void can_set_data_length_code(uint8_t ubData);
+uint8_t can_get_data_length_code(void);
+void can_set_identifier_tag_v2a(uint16_t uwData);
+uint16_t can_get_identifier_tag_v2a(void);
+void can_set_identifier_tag_v2b(uint32_t ulData);
+uint32_t can_get_identifier_tag_v2b(void);
+void can_set_remote_transmission_request_tag(_Bool enabled);
+_Bool can_is_remote_transmission_request_tag_set(void);
+void can_set_reserved_bit_0_tag(_Bool isSet);
+_Bool can_is_reserved_bit_0_tag_set(void);
+void can_set_reserved_bit_1_tag(_Bool isSet);
+_Bool can_is_reserved_bit_1_tag_set(void);
+void can_set_identifier_mask_v2a(uint16_t uwData);
+void can_set_identifier_mask_v2b(uint32_t ulData);
+void can_set_remote_transmission_request_mask_flag(_Bool isSet);
+void can_set_identifier_extension_mask_flag(_Bool isSet);
+uint16_t can_get_time_stamp(void);
+uint8_t can_get_data_mob(void);
+void can_set_data_mob(uint8_t ubData);
+void can_clear_mob(void);
+void can_clear_all_mob(void);
+uint8_t can_get_free_mob_number(uint8_t *ubFreeMOb);
 
 /***************************************************************************************
  * Vitesse de CAN Bus
  ***************************************************************************************/
-uint8_t canSetBaudRate(uint32_t ulBaudrate, uint8_t ubSamplingRate,
+uint8_t can_set_baud_rate(uint32_t ulBaudrate, uint8_t ubSamplingRate,
 		uint8_t ubTsjw);
 
-canIntSrc_t canGetIntSrc(void);
+/*! \fn can_int_src_t can_get_int_src(void)
+ *  \brief Return interrupt source.
+ *  \return Source of interrupt, see #can_int_src_t.
+ *
+ *  \warning This function cannot be used in polling mode. Should be called in a ISR.
+ */
+can_int_src_t can_get_int_src(void);
 
 #endif /*CAN_H_*/

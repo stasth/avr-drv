@@ -1,7 +1,6 @@
-/* Copyright (c) 2008,2009 Frédéric Nadeau
+/* Copyright (c) 2008-2010 Frédéric Nadeau
    Copyright (c) 2008 François-Pierre Pépin
    Copyright (c) 2008 Sy Sech Vong
-
    All rights reserved.
 
    Redistribution and use in source and binary forms,
@@ -38,17 +37,21 @@
  \author Frédéric Nadeau
  \author François-Pierre Pépin
  \author Sy Sech Vong
- */
-#include "can.h"
 
+ \todo Translate comments in English.
+ */
 #include <assert.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <avr/io.h>
 
-#define CAN_MINTQ							8
-#define CAN_MAXTQ							25
+#include "can.h"
+
+#define CAN_MIN_TQ                          8
+#define CAN_MAX_TQ                          25
+
+extern uint32_t xtal_get_clk_freq(void);
 
 //TODO Removed ASSERTs
 
@@ -56,364 +59,338 @@
 /*     CAN General Control Register CANGCON     */
 /************************************************/
 
-void canSetAbortAbort(void)
+void can_set_abort_request(void)
 {
-	CANGCON |= (1<<ABRQ);
+    CANGCON |= (1 << ABRQ);
 }
 
-void canClearAbortAbort(void)
+void can_clear_abort_request(void)
 {
-	CANGCON &= ~(1<<ABRQ);
+    CANGCON &= ~(1 << ABRQ);
 }
 
-void canSetOverloadFrameRequest(void)
+void can_set_overload_frame_request(void)
 {
-	CANGCON |= (1<<OVRQ);
+    CANGCON |= (1 << OVRQ);
 }
 
-void canClearOverloadFrameRequest(void)
+void can_clear_overload_frame_request(void)
 {
-	CANGCON &= ~(1<<OVRQ);
+    CANGCON &= ~(1 << OVRQ);
 }
 
-void canEnableTimeTriggerCommunication(void)
+void can_enable_time_trigger_communication(void)
 {
-	CANGCON |= (1<<TTC);
+    CANGCON |= (1 << TTC);
 }
 
-void canDisableTimeTriggerCommunication(void)
+void can_disable_time_trigger_communication(void)
 {
-	CANGCON &= ~(1<<TTC);
+    CANGCON &= ~(1 << TTC);
 }
 
-void canTTCSyncOnLastBitOfEOF(void)
+void can_ttc_sync_on_last_bit_of_eof(void)
 {
-	CANGCON |= (1<<SYNTTC);
+    CANGCON |= (1 << SYNTTC);
 }
 
-void canTTCSyncOnSOF(void)
+void can_ttc_sync_on_sof(void)
 {
-	CANGCON &= ~(1<<SYNTTC);
+    CANGCON &= ~(1 << SYNTTC);
 }
 
-void canEnableListeningMode(void)
+void can_enable_listening_mode(void)
 {
-	CANGCON |= (1<<LISTEN);
+    CANGCON |= (1 << LISTEN);
 }
 
-void canDisableListeningMode(void)
+void can_disable_listening_mode(void)
 {
-	CANGCON &= ~(1<<LISTEN);
+    CANGCON &= ~(1 << LISTEN);
 }
 
-void canSetEnableMode(void)
+void can_set_enable_mode(void)
 {
-	CANGCON |= (1<<ENASTB);
+    CANGCON |= (1 << ENASTB);
 }
 
-void canSetStandbyMode(void)
+void can_set_standby_mode(void)
 {
-	CANGCON &= ~(1<<ENASTB);
+    CANGCON &= ~(1 << ENASTB);
 }
 
-void canRequestReset(void)
+void can_request_reset(void)
 {
-	CANGCON |= (1<<SWRES);
+    CANGCON |= (1 << SWRES);
 }
 
 /************************************************/
 /*     CAN General Status Register CANGSTA      */
 /************************************************/
 
-uint8_t canReadOverloadFrameFlag(void)
+_Bool can_is_overload_frame_flag_set(void)
 {
-	uint8_t ubRetVal = CANGSTA; //Read register
-	ubRetVal = ubRetVal>>(OVFG); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGSTA,OVFG) == 0 ? false:true;
 }
 
-uint8_t canIsTransmitterBusy(void)
+_Bool can_is_transmitter_busy(void)
 {
-	uint8_t ubRetVal = CANGSTA; //Read register
-	ubRetVal = (ubRetVal & (1<<TXBSY))>>(TXBSY); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGSTA,TXBSY) == 0 ? false:true;
 }
 
-uint8_t canIsReceiverBusy(void)
+_Bool can_is_receiver_busy(void)
 {
-	uint8_t ubRetVal = CANGSTA; //Read register
-	ubRetVal = (ubRetVal & (1<<RXBSY))>>(RXBSY); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGSTA,RXBSY) == 0 ? false:true;
 }
 
-uint8_t canIsEnable(void)
+_Bool can_is_enabled(void)
 {
-	uint8_t ubRetVal = CANGSTA; //Read register
-	ubRetVal = (ubRetVal & (1<<ENFG))>>(ENFG); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGSTA,ENFG) == 0 ? false:true;
 }
 
-uint8_t canIsBusOff(void)
+_Bool can_is_bus_off(void)
 {
-	uint8_t ubRetVal = CANGSTA; //Read register
-	ubRetVal = (ubRetVal & (1<<BOFF))>>(BOFF); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGSTA,BOFF) == 0 ? false:true;
 }
 
-uint8_t canIsErrorPassive(void)
+_Bool can_is_error_passive_set(void)
 {
-	uint8_t ubRetVal = CANGSTA; //Read register
-	ubRetVal = (ubRetVal & (1<<ERRP))>>(ERRP); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGSTA,ERRP) == 0 ? false:true;
 }
 
 /************************************************/
 /*    CAN General Interrupt Register CANGIT     */
 /************************************************/
 
-uint8_t canIsInterrupt(void)
+_Bool can_is_general_interrupt_set(void)
 {
-	uint8_t ubRetVal = CANGIT; //Read register
-	ubRetVal = (ubRetVal & (1<<CANIT))>>(CANIT); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGIT,CANIT) == 0 ? false:true;
 }
 
-uint8_t canReadBusOffInterruptFlag(void)
+_Bool can_is_bus_off_interrupt_flag_set(void)
 {
-	uint8_t ubRetVal = CANGIT; //Read register
-	ubRetVal = (ubRetVal & (1<<BOFFIT))>>(BOFFIT); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGIT,BOFFIT) == 0 ? false:true;
 }
 
-void canClearBusOffInterruptFlag(void)
+void can_clear_bus_off_interrupt_flag(void)
 {
-	CANGIT |= (1<<BOFFIT);
+    CANGIT |= (1 << BOFFIT);
 }
 
-uint8_t canReadOverrunCANTimerInterruptFlag(void)
+_Bool can_is_overrun_can_timer_interrupt_flag_set(void)
 {
-	uint8_t ubRetVal = CANGIT; //Read register
-	ubRetVal = (ubRetVal & (1<<OVRTIM))>>(OVRTIM); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGIT,OVRTIM) == 0 ? false:true;
 }
 
-void canClearOverrunCANTimerInterruptFlag(void)
+void can_clear_overrun_can_timer_interrupt_flag(void)
 {
-	CANGIT |= (1<<OVRTIM);
+    CANGIT |= (1 << OVRTIM);
 }
 
-uint8_t canReadFrameBufferReveiveInterruptFlag(void)
+_Bool can_is_frame_buffer_reveive_interrupt_flag_set(void)
 {
-	uint8_t ubRetVal = CANGIT; //Read register
-	ubRetVal = (ubRetVal & (1<<BXOK))>>(BXOK); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGIT,BXOK) == 0 ? false:true;
 }
 
-void canClearFrameBufferReveiveInterruptFlag(void)
+void can_clear_frame_buffer_reveive_interrupt_flag(void)
 {
-	CANGIT |= (1<<BXOK);
+    CANGIT |= (1 << BXOK);
 }
 
-uint8_t canReadStuffErrorGeneralInterruptFlag(void)
+_Bool can_is_stuff_error_general_interrupt_flag_set(void)
 {
-	uint8_t ubRetVal = CANGIT; //Read register
-	ubRetVal = (ubRetVal & (1<<SERG))>>(SERG); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGIT,SERG) == 0 ? false:true;
 }
 
-void canClearStuffErrorGeneralInterruptFlag(void)
+void can_clear_stuff_error_general_interrupt_flag(void)
 {
-	CANGIT |= (1<<SERG);
+    CANGIT |= (1 << SERG);
 }
 
-uint8_t canReadCRCErrorGeneralInterruptFlag(void)
+_Bool can_is_crc_error_general_interrupt_flag_set(void)
 {
-	uint8_t ubRetVal = CANGIT; //Read register
-	ubRetVal = (ubRetVal & (1<<CERG))>>(CERG); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGIT,CERG) == 0 ? false:true;
 }
 
-void canClearCRCErrorGeneralInterruptFlag(void)
+void can_clear_crc_error_general_interrupt_flag(void)
 {
-	CANGIT |= (1<<CERG);
+    CANGIT |= (1 << CERG);
 }
 
-uint8_t canReadFormErrorGeneralInterruptFlag(void)
+_Bool can_is_form_error_general_interrupt_flag_set(void)
 {
-	uint8_t ubRetVal = CANGIT; //Read register
-	ubRetVal = (ubRetVal & (1<<FERG))>>(FERG); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGIT,FERG) == 0 ? false:true;
 }
 
-void canClearFormErrorGeneralInterruptFlag(void)
+void can_clear_form_error_general_interrupt_flag(void)
 {
-	CANGIT |= (1<<FERG);
+    CANGIT |= (1 << FERG);
 }
 
-uint8_t canReadAckErrorGeneralInterruptFlag(void)
+_Bool can_is_ack_error_general_interrupt_flag_set(void)
 {
-	uint8_t ubRetVal = CANGIT; //Read register
-	ubRetVal = (ubRetVal & (1<<AERG))>>(AERG); //Shit value so we get 1 or 0
-	return ubRetVal;
+    return bit_is_set(CANGIT,AERG) == 0 ? false:true;
 }
 
-void canClearAckErrorGeneralInterruptFlag(void)
+void can_clear_ack_error_general_interrupt_flag(void)
 {
-	CANGIT |= (1<<AERG);
+    CANGIT |= (1 << AERG);
 }
 
 /************************************************/
 /* CAN General Interrupt Enable Register CANGIE */
 /************************************************/
 
-void canEnableAllInterrupt(void)
+void can_all_interrupt_enable(_Bool enabled)
 {
-	CANGIE |= (1<<ENIT);
+    if(enabled == true)
+    {
+        CANGIE |= _BV(ENIT);
+    }
+    else
+    {
+        CANGIE &= ~_BV(ENIT);
+    }
 }
 
-void canDisableAllInterrupt(void)
+void can_bus_off_interrupt_enable(_Bool enabled)
 {
-	CANGIE &= ~(1<<ENIT);
+    if(enabled == true)
+    {
+        CANGIE |= _BV(ENBOFF);
+    }
+    else
+    {
+        CANGIE &= ~_BV(ENBOFF);
+    }
 }
 
-void canEnableBusOffInterrupt(void)
+void can_receive_interrupt_enable(_Bool enabled)
 {
-	CANGIE |= (1<<ENBOFF);
+    if(enabled == true)
+    {
+        CANGIE |= _BV(ENRX);
+    }
+    else
+    {
+        CANGIE &= ~_BV(ENRX);
+    }
 }
 
-void canDisableBusOffInterrupt(void)
+_Bool can_is_receive_interrupt_enable(void)
 {
-	CANGIE &= ~(1<<ENBOFF);
+    return bit_is_set(CANGIE,ENRX) == 0 ? false:true;
 }
 
-void canEnableReceiveInterrupt(void)
+void can_transmit_interrupt_enable(_Bool enabled)
 {
-	CANGIE |= (1<<ENRX);
+    if(enabled == true)
+    {
+        CANGIE |= _BV(ENTX);
+    }
+    else
+    {
+        CANGIE &= ~_BV(ENTX);
+    }
 }
 
-void canDisableReceiveInterrupt(void)
+_Bool can_is_transmit_interrupt_enable(void)
 {
-	CANGIE &= ~(1<<ENRX);
+    return bit_is_set(CANGIE,ENTX) == 0 ? false:true;
 }
 
-uint8_t canIsReceiveInterruptActive(void)
+void can_mob_errors_interrupt_enable(_Bool enabled)
 {
-	uint8_t ubRetVal = CANGIE & (1 << ENRX);
-	ubRetVal = ubRetVal>>ENRX;
-	return ubRetVal;
+    if(enabled == true)
+    {
+        CANGIE |= _BV(ENERR);
+    }
+    else
+    {
+        CANGIE &= ~_BV(ENERR);
+    }
 }
 
-void canEnableTransmitInterrupt(void)
+void can_frame_buffer_interrupt_enable(void)
 {
-	CANGIE |= (1<<ENTX);
+    CANGIE |= (1 << ENBX);
 }
 
-void canDisableTransmitInterrupt(void)
+void can_frame_buffer_interrupt_disable(void)
 {
-	CANGIE &= ~(1<<ENTX);
+    CANGIE &= ~(1 << ENBX);
 }
 
-uint8_t canIsTransmitInterruptActive(void)
+void can_general_errors_interrupt_enable(void)
 {
-	uint8_t ubRetVal = CANGIE & (1 << ENTX);
-	ubRetVal = ubRetVal>>ENTX;
-	return ubRetVal;
+    CANGIE |= (1 << ENERG);
 }
 
-void canEnableMObErrorsInterrupt(void)
+void can_general_errors_interrupt_disable(void)
 {
-	CANGIE |= (1<<ENERR);
+    CANGIE &= ~(1 << ENERG);
 }
 
-void canDisableMObErrorsInterrupt(void)
+void can_can_timer_overrun_interrupt_enable(void)
 {
-	CANGIE &= ~(1<<ENERR);
+    CANGIE |= (1 << ENOVRT);
 }
 
-void canEnableFrameBufferInterrupt(void)
+void can_can_timer_overrun_interrupt_disable(void)
 {
-	CANGIE |= (1<<ENBX);
-}
-
-void canDisableFrameBufferInterrupt(void)
-{
-	CANGIE &= ~(1<<ENBX);
-}
-
-void canEnableGeneralErrorsInterrupt(void)
-{
-	CANGIE |= (1<<ENERG);
-}
-
-void canDisableGeneralErrorsInterrupt(void)
-{
-	CANGIE &= ~(1<<ENERG);
-}
-
-void canEnableCANTimerOverrunInterrupt(void)
-{
-	CANGIE |= (1<<ENOVRT);
-}
-
-void canDisableCANTimerOverrunInterrupt(void)
-{
-	CANGIE &= ~(1<<ENOVRT);
+    CANGIE &= ~(1 << ENOVRT);
 }
 
 /************************************************/
 /*        CAN Enable Mob Register CANENx        */
 /************************************************/
 
-uint8_t canIsMObEnabled(uint8_t ubMOb)
+_Bool can_is_mob_enabled(uint8_t ubMOb)
 {
-	uint8_t uwRetVal = 0;
-	assert(ubMOb < 15);
+    _Bool bRetVal = false;
 
-	if (ubMOb < 8)
-	{
-		uwRetVal = (CANEN2 & (1<<ubMOb))>>(ubMOb);
-	}
-	else
-	{
-		ubMOb = ubMOb - 8;
-		uwRetVal = (CANEN1 & (1<<ubMOb))>>(ubMOb);
-	}
-	return uwRetVal;
+    if (ubMOb < 8)
+    {
+        bRetVal = (CANEN2 & (1 << ubMOb)) >> (ubMOb);
+    }
+    else if(ubMOb < 15)
+    {
+        ubMOb = ubMOb - 8;
+        bRetVal = (CANEN1 & (1 << ubMOb)) >> (ubMOb);
+    }
+    return bRetVal;
 }
 
 /************************************************/
 /*   CAN Enable Interrupt Mob Register CANIEx   */
 /************************************************/
 
-void canEnableInterruptMOb(uint8_t ubMOb)
+void can_interrupt_mob(uint8_t ubMOb, _Bool enabled)
 {
-	assert(ubMOb < 15);
+    if (ubMOb < 8)
+    {
+        if (true == enabled)
+        {
+            CANIE2 |= (1 << ubMOb);
+        }
+        else
+        {
+            CANIE2 &= ~(1 << ubMOb);
+        }
 
-	if (ubMOb < 8)
-	{
-		CANIE2 |= (1<<ubMOb);
-	}
-	else
-	{
-		//ubMOb &= 0x07;
-		ubMOb = ubMOb - 8;
-		CANIE1 |= (1<<ubMOb);
-	}
-}
-
-void canDisableInterruptMOb(uint8_t ubMOb)
-{
-	assert(ubMOb < 15);
-
-	if (ubMOb < 8)
-	{
-		CANIE2 &= ~(1<<ubMOb);
-	}
-	else
-	{
-		ubMOb = ubMOb - 8;
-		CANIE1 &= ~(1<<ubMOb);
-	}
+    }
+    else if (ubMOb < 15)
+    {
+        ubMOb = ubMOb - 8;
+        if(true == enabled)
+        {
+            CANIE1 |= (1 << ubMOb);
+        }
+        else
+        {
+            CANIE1 &= ~(1 << ubMOb);
+        }
+    }
 }
 
 /************************************************/
@@ -421,802 +398,699 @@ void canDisableInterruptMOb(uint8_t ubMOb)
 /************************************************/
 
 /* It returns 1 if has interrupt, 0 else. */
-uint8_t canReadStatusInterruptMOb(uint8_t ubMOb)
+_Bool can_is_status_interrupt_mob_flag_set(uint8_t ubMOb)
 {
-	uint8_t uwRetVal = 0;
-	assert(ubMOb < 15);
+    _Bool bRetVal = false;
 
-	if (ubMOb < 8)
-	{
-		uwRetVal = (CANSIT2 & (1<<ubMOb))>>(ubMOb);
-	}
-	else
-	{
-		ubMOb = ubMOb - 8;
-		uwRetVal = (CANSIT1 & (1<<ubMOb))>>(ubMOb);
-	}
-	return uwRetVal;
+    if (ubMOb < 8)
+    {
+        bRetVal = (CANSIT2 & (1 << ubMOb)) == 0 ? false:true;
+    }
+    else if (ubMOb < 15)
+    {
+        ubMOb = ubMOb - 8;
+        bRetVal = (CANSIT1 & (1 << ubMOb)) == 0 ? false:true;
+    }
+    return bRetVal;
 }
 
 /************************************************/
 /*       CAN Bit Timing Register 1 CANBT1       */
 /************************************************/
 
-void canWriteBitTimingRegister1(uint8_t ubData)
+void can_set_bit_timing_register1(uint8_t ubData)
 {
-	CANBT1 = ubData & 0x7E;
+    CANBT1 = ubData & 0x7E;
 }
 
-uint8_t canReadBitTimingRegister1(void)
+uint8_t can_get_bit_timing_register1(void)
 {
-	return CANBT1;
+    return CANBT1;
 }
 
 /************************************************/
 /*       CAN Bit Timing Register 2 CANBT2       */
 /************************************************/
 
-void canWriteReSyncJumpWidth(uint8_t ubData)
+void can_set_resync_jump_width(uint8_t ubData)
 {
-	assert(ubData < 4);
-	CANBT2 &= ~( (1<<SJW1) | (1<<SJW0) );//Remove current info
-	CANBT2 |= (ubData<<SJW0);
+    assert(ubData < 4);
+    CANBT2 &= ~((1 << SJW1) | (1 << SJW0));//Remove current info
+    CANBT2 |= (ubData << SJW0);
 }
 
-uint8_t canReadReSyncJumpWidth(void)
+void can_set_propagation_time_segment(uint8_t ubData)
 {
-	uint8_t ubRetVal = 0;
-	ubRetVal = CANBT2;
-	ubRetVal &= ( (1<<SJW1) | (1<<SJW0) );
-	ubRetVal = (ubRetVal>>SJW0);
-	return ubRetVal;
-}
-
-void canWritePropagationTimeSegment(uint8_t ubData)
-{
-	assert(ubData < 8);
-	CANBT2 &= ~( (1<<PRS2) | (1<<PRS1) | (1<<PRS0) );//Remove current info
-	CANBT2 |= (ubData<<PRS0);
-}
-
-uint8_t canReadPropagationTimeSegment(void)
-{
-	uint8_t ubRetVal = 0;
-	ubRetVal = CANBT2;
-	ubRetVal &= ( (1<<PRS2) | (1<<PRS1) | (1<<PRS0) );
-	ubRetVal = (ubRetVal>>SJW0);
-	return ubRetVal;
+    assert(ubData < 8);
+    CANBT2 &= ~((1 << PRS2) | (1 << PRS1) | (1 << PRS0));//Remove current info
+    CANBT2 |= (ubData << PRS0);
 }
 
 /************************************************/
 /*       CAN Bit Timing Register 3 CANBT3       */
 /************************************************/
 
-void canWritePhaseSegment2(uint8_t ubData)
+void can_set_phase_segment2(uint8_t ubData)
 {
-	assert(ubData < 8);
-	CANBT3 &= ~( (1<<PHS22) | (1<<PHS21) | (1<<PHS20) );//Remove current info
-	CANBT3 |= (ubData<<PHS20);
+    assert(ubData < 8);
+    CANBT3 &= ~((1 << PHS22) | (1 << PHS21) | (1 << PHS20));//Remove current info
+    CANBT3 |= (ubData << PHS20);
 }
 
-uint8_t canReadPhaseSegment2(void)
+void can_set_phase_segment1(uint8_t ubData)
 {
-	uint8_t ubRetVal = 0;
-	ubRetVal = CANBT3;
-	ubRetVal &= ( (1<<PHS22) | (1<<PHS21) | (1<<PHS20) );
-	ubRetVal = (ubRetVal>>SJW0);
-	return ubRetVal;
+    assert(ubData < 8);
+    CANBT3 &= ~((1 << PHS12) | (1 << PHS11) | (1 << PHS10));//Remove current info
+    CANBT3 |= (ubData << PHS10);
 }
 
-void canWritePhaseSegment1(uint8_t ubData)
+void can_set_sample_point(uint8_t ubData)
 {
-	assert(ubData < 8);
-	CANBT3 &= ~( (1<<PHS12) | (1<<PHS11) | (1<<PHS10) );//Remove current info
-	CANBT3 |= (ubData<<PHS10);
+    assert(ubData < 2);
+    CANBT3 &= ~(1 << SMP);//Remove current info
+    CANBT3 |= (ubData << SMP);
 }
 
-uint8_t canReadPhaseSegment1(void)
-{
-	uint8_t ubRetVal = 0;
-	ubRetVal = CANBT3;
-	ubRetVal &= ( (1<<PHS12) | (1<<PHS11) | (1<<PHS10) );
-	ubRetVal = (ubRetVal>>SJW0);
-	return ubRetVal;
-}
-
-void canWriteSamplePoint(uint8_t ubData)
-{
-	assert(ubData < 2);
-	CANBT3 &= ~(1<<SMP);//Remove current info
-	CANBT3 |= (ubData<<SMP);
-}
-
-uint8_t canReadSamplePoint(void)
-{
-	uint8_t ubRetVal = 0;
-	ubRetVal = CANBT3;
-	ubRetVal &= (1<<SMP);
-	ubRetVal = (ubRetVal>>SMP);
-	return ubRetVal;
-}
 
 /************************************************/
 /*     CAN Timer Control Register CANTCON       */
 /************************************************/
 
-void canWriteTimerControlRegister(uint8_t ubData)
+void can_set_timer_control_register(uint8_t ubData)
 {
-	CANTCON = ubData;
+    CANTCON = ubData;
 }
 
-uint8_t canReadTimerControlRegister(void)
+uint8_t can_get_timer_control_register(void)
 {
-	return CANTCON;
+    return CANTCON;
 }
 
 /************************************************/
 /*          CAN Timer Register CANTIMx          */
 /************************************************/
 
-uint16_t canReadTimerRegister(void)
+uint16_t can_get_timer_register(void)
 {
-	uint16_t uwRetVal = CANTIMH;//Read High byte
-	uwRetVal = uwRetVal<<8;//Allign high byte
-	uwRetVal += CANTIML;//Add low byte
-	return uwRetVal;
+    uint16_t uwRetVal = CANTIMH;//Read High byte
+    uwRetVal = uwRetVal << 8;//Allign high byte
+    uwRetVal += CANTIML;//Add low byte
+    return uwRetVal;
 }
 
 /************************************************/
 /*      CAN TTC Timer Register CANTTCx          */
 /************************************************/
 
-uint16_t canReadTTCTimerRegister(void)
+uint16_t can_get_ttc_timer_register(void)
 {
-	uint16_t uwRetVal = CANTTCH;//Read High byte
-	uwRetVal = uwRetVal<<8;//Allign high byte
-	uwRetVal += CANTTCL;//Add low byte
-	return uwRetVal;
+    uint16_t uwRetVal = CANTTCH;//Read High byte
+    uwRetVal = uwRetVal << 8;//Allign high byte
+    uwRetVal += CANTTCL;//Add low byte
+    return uwRetVal;
 }
 
 /************************************************/
 /*  CAN Transmit Error Counter Register CANTEC  */
 /************************************************/
 
-uint8_t canReadTransmitErrorCounter(void)
+uint8_t can_get_transmit_error_counter(void)
 {
-	return CANTEC;
+    return CANTEC;
 }
 
 /************************************************/
 /*  CAN Receive Error Counter Register CANREC   */
 /************************************************/
 
-uint8_t canReadReceiveErrorCounter(void)
+uint8_t can_get_receive_error_counter(void)
 {
-	return CANTEC;
+    return CANTEC;
 }
 
 /************************************************/
 /*  CAN Highest Priority MOb Register CANHPMOB  */
 /************************************************/
 
-uint8_t canReadHighestPriorityMObNumber(void)
+uint8_t can_get_highest_priority_mob_number(void)
 {
-	uint8_t ubRetVal = CANHPMOB;
-	ubRetVal &= ( (1<<HPMOB3) | (1<<HPMOB2) | (1<<HPMOB1) | (1<<HPMOB0) );
-	ubRetVal = ubRetVal>>HPMOB0;
-	return ubRetVal;
+    uint8_t ubRetVal = CANHPMOB;
+    ubRetVal &= ((1 << HPMOB3) | (1 << HPMOB2) | (1 << HPMOB1) | (1 << HPMOB0));
+    ubRetVal = ubRetVal >> HPMOB0;
+    return ubRetVal;
 }
 
-void canWriteGeneralPurposeBits(uint8_t ubData)
+void can_set_general_purpose_bits(uint8_t ubData)
 {
-	assert(ubData < 16);
-	CANHPMOB &= ~( (1<<CGP3) | (1<<CGP2) | (1<<CGP1) | (1<<CGP0) );//Remove current info
-	CANHPMOB |= (ubData<<CGP0);
+    assert(ubData < 16);
+    CANHPMOB &= ~((1 << CGP3) | (1 << CGP2) | (1 << CGP1) | (1 << CGP0));//Remove current info
+    CANHPMOB |= (ubData << CGP0);
 }
 
-uint8_t canReadGeneralPurposeBits(void)
+uint8_t can_get_general_purpose_bits(void)
 {
-	uint8_t ubRetVal = CANHPMOB;
-	ubRetVal &= ( (1<<CGP3) | (1<<CGP2) | (1<<CGP1) | (1<<CGP0) );
-	ubRetVal = ubRetVal>>HPMOB0;
-	return ubRetVal;
+    uint8_t ubRetVal = CANHPMOB;
+    ubRetVal &= ((1 << CGP3) | (1 << CGP2) | (1 << CGP1) | (1 << CGP0));
+    ubRetVal = ubRetVal >> HPMOB0;
+    return ubRetVal;
 }
 
 /************************************************/
 /*        CAN Page MOb Register CANPAGE         */
 /************************************************/
 
-void canWriteMObNumber(uint8_t ubData)
+void can_set_mob_page(uint8_t ubData)
 {
-	assert(ubData < 15);
-	//CANPAGE &= ~( (1<<MOBNB3) | (1<<MOBNB2) | (1<<MOBNB1) | (1<<MOBNB0) | (0<<AINC) | (1<<INDX2) | (1<<INDX1) | (1<<INDX0));//Remove current info and reset the index
-	CANPAGE &= (1<<AINC);//Remove current MOb and reset the index
-	CANPAGE |= (ubData<<MOBNB0);
+    assert(ubData < 15);
+    CANPAGE &= _BV(AINC);//Remove current MOb and reset the index
+    CANPAGE |= (ubData << MOBNB0);
 }
 
-uint8_t canReadMObNumber(void)
+uint8_t can_get_mob_page(void)
 {
-	uint8_t ubRetVal = CANPAGE;
-	ubRetVal &= ( (1<<MOBNB3) | (1<<MOBNB2) | (1<<MOBNB1) | (1<<MOBNB0) );
-	ubRetVal = ubRetVal>>MOBNB0;
-	return ubRetVal;
+    uint8_t ubRetVal = CANPAGE;
+    ubRetVal &= ((1 << MOBNB3) | (1 << MOBNB2) | (1 << MOBNB1) | (1 << MOBNB0));
+    ubRetVal = ubRetVal >> MOBNB0;
+    return ubRetVal;
 }
 
-void canWriteAutoIncrement(uint8_t ubData)
+void can_set_auto_increment(_Bool enabled)
 {
-	assert(ubData < 2);
-	CANPAGE &= ~(1<<AINC);//Remove current info
-	CANPAGE |= (ubData<<AINC);
+    if(true == enabled)
+    {
+        CANPAGE |= _BV(AINC);
+    }
+    else
+    {
+        CANPAGE &= ~_BV(AINC);//Remove current info
+    }
 }
 
-uint8_t canReadAutoIncrement(void)
+_Bool can_get_auto_increment(void)
 {
-	uint8_t ubRetVal = CANPAGE;
-	ubRetVal &= (1<<AINC);
-	ubRetVal = ubRetVal>>AINC;
-	return ubRetVal;
+    return bit_is_set(CANPAGE,AINC) == 0 ? false:true;
 }
 
-void canWriteFIFOCANDataIndex(uint8_t ubData)
+void can_set_fifo_can_data_index(uint8_t ubData)
 {
-	assert(ubData < 15);
-	CANPAGE &= ~( (1<<INDX2) | (1<<INDX1) | (1<<INDX0) );//Remove current info
-	CANPAGE |= (ubData<<INDX0);
+    assert(ubData < 15);
+    CANPAGE &= ~((1 << INDX2) | (1 << INDX1) | (1 << INDX0));//Remove current info
+    CANPAGE |= (ubData << INDX0);
 }
 
-uint8_t canReadFIFOCANDataIndex(void)
+uint8_t can_get_fifo_can_data_index(void)
 {
-	uint8_t ubRetVal = CANPAGE;
-	ubRetVal &= ( (1<<INDX2) | (1<<INDX1) | (1<<INDX0) );
-	ubRetVal = ubRetVal>>INDX0;
-	return ubRetVal;
+    uint8_t ubRetVal = CANPAGE;
+    ubRetVal &= ((1 << INDX2) | (1 << INDX1) | (1 << INDX0));
+    ubRetVal = ubRetVal >> INDX0;
+    return ubRetVal;
 }
 
 /************************************************/
 /*       CAN MOb Status Register CANSTMOB       */
 /************************************************/
 
-void canWriteDataLengthCodeWarning(uint8_t ubData)
+_Bool can_get_data_length_code_warning_flag(void)
 {
-	assert(ubData < 2);
-	CANSTMOB &= ~(1<<DLCW);//Remove current info
-	CANSTMOB |= (ubData<<DLCW);
+    return bit_is_set(CANSTMOB,DLCW) == 0 ? false:true;
 }
 
-uint8_t canReadDataLengthCodeWarning(void)
+_Bool can_get_transmit_ok_flag(void)
 {
-	uint8_t ubRetVal = CANSTMOB;
-	ubRetVal &= (1<<DLCW);
-	ubRetVal = ubRetVal>>DLCW;
-	return ubRetVal;
+    return bit_is_set(CANSTMOB,TXOK) == 0 ? false:true;
 }
 
-uint8_t canReadTransmitOKFlag(void)
+void can_clear_transmit_ok_flag(void)
 {
-	uint8_t ubRetVal = CANSTMOB;
-	ubRetVal &= (1<<TXOK);
-	ubRetVal = ubRetVal>>TXOK;
-	return ubRetVal;
+    //CANSTMOB |= (1<<TXOK);
+    //Must be read-modify-write rather than the usual write 1 to clear.
+    CANSTMOB &= ~(1 << TXOK);
 }
 
-void canCleanTransmitOKFlag(void)
+_Bool can_get_receive_ok_flag(void)
 {
-	//CANSTMOB |= (1<<TXOK);//must be read-modify-write
-	CANSTMOB &= ~(1<<TXOK);
+    return bit_is_set(CANSTMOB,RXOK) == 0 ? false:true;
 }
 
-uint8_t canReadReceiveOKFlag(void)
+void can_clear_receive_ok_flag(void)
 {
-	uint8_t ubRetVal = CANSTMOB;
-	ubRetVal &= (1<<RXOK);
-	ubRetVal = ubRetVal>>RXOK;
-	return ubRetVal;
+    //CANSTMOB |= (1<<RXOK);
+    //Must be read-modify-write rather than the usual write 1 to clear.
+    CANSTMOB &= ~(1 << RXOK);
 }
 
-void canCleanReceiveOKFlag(void)
+_Bool can_get_bit_error_flag(void)
 {
-	//CANSTMOB |= (1<<RXOK);//must be read-modify-write
-	CANSTMOB &= ~(1<<RXOK);
+    return bit_is_set(CANSTMOB,BERR) == 0 ? false:true;
 }
 
-uint8_t canReadBitErrorFlag(void)
+void can_clear_bit_error_flag(void)
 {
-	uint8_t ubRetVal = CANSTMOB;
-	ubRetVal &= (1<<BERR);
-	ubRetVal = ubRetVal>>BERR;
-	return ubRetVal;
+    //CANSTMOB |= (1 << BERR);
+    //Must be read-modify-write rather than the usual write 1 to clear.
+    CANSTMOB &= ~(1 << BERR);
 }
 
-void canCleanBitErrorFlag(void)
+_Bool can_get_stuff_error_flag(void)
 {
-	CANSTMOB |= (1<<BERR);//must be read-modify-write
+    return bit_is_set(CANSTMOB,SERR) == 0 ? false:true;
 }
 
-uint8_t canReadStuffErrorFlag(void)
+void can_clear_stuff_error_flag(void)
 {
-	uint8_t ubRetVal = CANSTMOB;
-	ubRetVal &= (1<<SERR);
-	ubRetVal = ubRetVal>>SERR;
-	return ubRetVal;
+    //CANSTMOB |= (1 << SERR);
+    //Must be read-modify-write rather than the usual write 1 to clear.
+    CANSTMOB &= ~(1 << SERR);
 }
 
-void canCleanStuffErrorFlag(void)
+_Bool can_get_crc_error_flag(void)
 {
-	CANSTMOB |= (1<<SERR);//must be read-modify-write
+    return bit_is_set(CANSTMOB,CERR) == 0 ? false:true;
 }
 
-uint8_t canReadCRCErrorFlag(void)
+void can_clear_crc_error_flag(void)
 {
-	uint8_t ubRetVal = CANSTMOB;
-	ubRetVal &= (1<<CERR);
-	ubRetVal = ubRetVal>>CERR;
-	return ubRetVal;
+    //CANSTMOB |= (1 << CERR);
+    //Must be read-modify-write rather than the usual write 1 to clear.
+    CANSTMOB &= ~(1 << CERR);
 }
 
-void canCleanCRCErrorFlag(void)
+_Bool can_get_form_error_flag(void)
 {
-	CANSTMOB |= (1<<CERR);//must be read-modify-write
+    return bit_is_set(CANSTMOB,FERR) == 0 ? false:true;
 }
 
-uint8_t canReadFormErrorFlag(void)
+void can_clear_form_error_flag(void)
 {
-	uint8_t ubRetVal = CANSTMOB;
-	ubRetVal &= (1<<FERR);
-	ubRetVal = ubRetVal>>FERR;
-	return ubRetVal;
+    //CANSTMOB |= (1 << FERR);
+    //Must be read-modify-write rather than the usual write 1 to clear.
+    CANSTMOB &= ~(1 << FERR);
 }
 
-void canCleanFormErrorFlag(void)
+_Bool can_get_acknowledgement_error_flag(void)
 {
-	CANSTMOB |= (1<<FERR);//must be read-modify-write
+    return bit_is_set(CANSTMOB,AERR) == 0 ? false:true;
 }
 
-uint8_t canReadAcknowledgementErrorFlag(void)
+void can_clear_acknowledgement_error_flag(void)
 {
-	uint8_t ubRetVal = CANSTMOB;
-	ubRetVal &= (1<<AERR);
-	ubRetVal = ubRetVal>>AERR;
-	return ubRetVal;
-}
-
-void canCleanAcknowledgementErrorFlag(void)
-{
-	CANSTMOB |= (1<<AERR);//must be read-modify-write
+    //CANSTMOB |= (1 << AERR);
+    //Must be read-modify-write rather than the usual write 1 to clear.
+    CANSTMOB &= ~(1 << AERR);
 }
 
 /************************************************/
 /*   CAN MOb Control and DLC register CANCDMOB  */
 /************************************************/
 
-void canWriteConfigurationOfMessageObject(uint8_t ubData)
+void can_set_configuration_of_mob(can_mob_conf_t conf)
 {
-	assert(ubData < 4);
-	CANCDMOB &= ~( (1<<CONMOB1) | (1<<CONMOB0) );//Remove current info
-	CANCDMOB |= (ubData<<CONMOB0);
+    CANCDMOB &= ~((1 << CONMOB1) | (1 << CONMOB0));//Remove current info
+    CANCDMOB |= (conf << CONMOB0);
 }
 
-uint8_t canReadWriteConfigurationOfMessageObject(void)
+void can_set_reply_ready_flag(_Bool isReady)
 {
-	uint8_t ubRetVal = CANCDMOB;
-	ubRetVal &= (1<<CONMOB1) | (1<<CONMOB0);
-	ubRetVal = ubRetVal>>CONMOB0;
-	return ubRetVal;
+    if(true == isReady)
+    {
+        CANCDMOB |= (1 << RPLV);
+    }
+    else
+    {
+        CANCDMOB &= ~(1 << RPLV);
+    }
 }
 
-void canSetReplyReadyAndValid(void)
+void can_set_identifier_extention_2a(void)
 {
-	CANCDMOB |= (1<<RPLV);
+    CANCDMOB &= ~(1 << IDE);
 }
 
-void canSetReplyNotReady(void)
+void can_set_identifier_extention_2b(void)
 {
-	CANCDMOB &= ~(1<<RPLV);
+    CANCDMOB |= (1 << IDE);
 }
 
-uint8_t canReadReplyValidBit(void)
+_Bool can_is_identifier_extention_2b(void)
 {
-	uint8_t ubRetVal = CANCDMOB;
-	ubRetVal &= (1<<RPLV);
-	ubRetVal = ubRetVal>>RPLV;
-	return ubRetVal;
+    return bit_is_set(CANCDMOB,IDE) == 0 ? false:true;
 }
 
-void canSetIdentifierExtention2A(void)
+void can_set_data_length_code(uint8_t ubData)
 {
-	CANCDMOB &= ~(1<<IDE);
+    assert(ubData < 9);
+    CANCDMOB &= ~((1 << DLC3) | (1 << DLC2) | (1 << DLC1) | (1 << DLC0));//Remove current info
+    //CANCDMOB |= (ubData<<DLC0);
+    CANCDMOB |= ubData;
 }
 
-void canSetIdentifierExtention2B(void)
+uint8_t can_get_data_length_code(void)
 {
-	CANCDMOB |= (1<<IDE);
-}
-
-uint8_t canReadIdentifierExtention(void)
-{
-	uint8_t ubRetVal = CANCDMOB;
-	ubRetVal &= (1<<IDE);
-	ubRetVal = ubRetVal>>IDE;
-	return ubRetVal;
-}
-
-void canWriteDataLengthCode(uint8_t ubData)
-{
-	assert(ubData < 9);
-	CANCDMOB &= ~( (1<<DLC3) | (1<<DLC2) | (1<<DLC1) | (1<<DLC0) );//Remove current info
-	//CANCDMOB |= (ubData<<DLC0);
-	CANCDMOB |= ubData;
-}
-
-uint8_t canReadDataLengthCode(void)
-{
-	uint8_t ubRetVal = CANCDMOB;
-	ubRetVal &= (1<<DLC3) | (1<<DLC2) | (1<<DLC1) | (1<<DLC0);
-	ubRetVal = ubRetVal>>DLC0;
-	return ubRetVal;
+    uint8_t ubRetVal = CANCDMOB;
+    ubRetVal &= (1 << DLC3) | (1 << DLC2) | (1 << DLC1) | (1 << DLC0);
+    ubRetVal = ubRetVal >> DLC0;
+    return ubRetVal;
 }
 
 /************************************************/
 /*      CAN Identifier Tag Register CANIDTx     */
 /************************************************/
 
-void canWriteIdentifierTagV2A(uint16_t uwData)
+void can_set_identifier_tag_v2a(uint16_t uwData)
 {
-	CANIDT1 = (uint8_t)(uwData>>3);
-	CANIDT2 = (uint8_t)(uwData<<5);
+    CANIDT1 = (uint8_t) (uwData >> 3);
+    CANIDT2 = (uint8_t) (uwData << 5);
 }
 
-uint16_t canReadIdentifierTagV2A(void)
+uint16_t can_get_identifier_tag_v2a(void)
 {
-	uint16_t uwRetVal = CANIDT1;//Read High byte
-	uwRetVal = uwRetVal<<3;//Allign high byte
-	uwRetVal += (CANIDT2>>5);//Add low byte
-	return uwRetVal;
+    uint16_t uwRetVal = CANIDT1;//Read High byte
+    uwRetVal = uwRetVal << 3;//Allign high byte
+    uwRetVal += (CANIDT2 >> 5);//Add low byte
+    return uwRetVal;
 }
 
-void canWriteIdentifierTagV2B(uint32_t ulData)
+void can_set_identifier_tag_v2b(uint32_t ulData)
 {
-	CANIDT1 = (uint8_t)(ulData>>21);
-	CANIDT2 = (uint8_t)(ulData>>13);
-	CANIDT3 = (uint8_t)(ulData>>5);
-	CANIDT4 &= ~( (1<<IDT4) | (1<<IDT3) | (1<<IDT2) | (1<<IDT1) | (1<<IDT0) );
-	CANIDT4 |= (uint8_t)(ulData<<3);
+    CANIDT1 = (uint8_t) (ulData >> 21);
+    CANIDT2 = (uint8_t) (ulData >> 13);
+    CANIDT3 = (uint8_t) (ulData >> 5);
+    CANIDT4 &= ~((1 << IDT4) | (1 << IDT3) | (1 << IDT2) | (1 << IDT1) | (1
+            << IDT0));
+    CANIDT4 |= (uint8_t) (ulData << 3);
 }
 
-uint32_t canReadIdentifierTagV2B(void)
+uint32_t can_get_identifier_tag_v2b(void)
 {
-	uint32_t ulRetVal = ((uint32_t)CANIDT1<<21);
-	ulRetVal |= ( ((uint32_t) CANIDT2) << 13 );
-	ulRetVal |= ( ((uint32_t) CANIDT3) << 5 );
-	ulRetVal |= (uint32_t)(CANIDT4 >> 3);
-	//ulRetVal |= (uint32_t)(CANIDT2<<13);
-	//ulRetVal |= (uint32_t)(CANIDT3<<5);
-	//ulRetVal |= (uint32_t)(CANIDT4>>3);
-	return ulRetVal;
+    uint32_t ulRetVal = ((uint32_t) CANIDT1 << 21);
+    ulRetVal |= (((uint32_t) CANIDT2) << 13);
+    ulRetVal |= (((uint32_t) CANIDT3) << 5);
+    ulRetVal |= (uint32_t) (CANIDT4 >> 3);
+    return ulRetVal;
 }
 
-void canWriteRemoteTransmissionRequestTag(uint8_t ubData)
+void can_set_remote_transmission_request_tag(_Bool enabled)
 {
-	assert(ubData < 2);
-	CANIDT4 &= ~(1<<RTRTAG);//Remove current info
-	CANIDT4 |= (ubData<<RTRTAG);
+    if(true == enabled)
+    {
+        CANIDT4 |= (1 << RTRTAG);
+    }
+    else
+    {
+        CANIDT4 &= ~(1 << RTRTAG);
+    }
 }
 
-uint8_t canReadRemoteTransmissionRequestTag(void)
+_Bool can_is_remote_transmission_request_tag_set(void)
 {
-	uint8_t ubRetVal = CANIDT4;
-	ubRetVal &= (1<<RTRTAG);
-	ubRetVal = ubRetVal>>RTRTAG;
-	return ubRetVal;
+    return bit_is_set(CANIDT4,RTRTAG) == 0 ? false:true;
 }
 
-void canWriteReservedBit0Tag(uint8_t ubData)
+void can_set_reserved_bit_0_tag(_Bool isSet)
 {
-	assert(ubData < 2);
-	CANIDT4 &= ~(1<<RB0TAG);//Remove current info
-	CANIDT4 |= (ubData<<RB0TAG);
+    if(true == isSet)
+    {
+        CANIDT4 |= (1 << RB0TAG);
+    }
+    else
+    {
+        CANIDT4 &= ~(1 << RB0TAG);
+    }
 }
 
-uint8_t canReadReservedBit0Tag(void)
+_Bool can_is_reserved_bit_0_tag_set(void)
 {
-	uint8_t ubRetVal = CANIDT4;
-	ubRetVal &= (1<<RB0TAG);
-	ubRetVal = ubRetVal>>RB0TAG;
-	return ubRetVal;
+    return bit_is_set(CANIDT4,RB0TAG) == 0 ? false:true;
 }
 
-void canWriteReservedBit1Tag(uint8_t ubData)
+void can_set_reserved_bit_1_tag(_Bool isSet)
 {
-	assert(ubData < 2);
-	CANIDT4 &= ~(1<<RB1TAG);//Remove current info
-	CANIDT4 |= (ubData<<RB1TAG);
+    if(true == isSet)
+    {
+        CANIDT4 |= (1 << RB1TAG);
+    }
+    else
+    {
+        CANIDT4 &= ~(1 << RB1TAG);
+    }
 }
 
-uint8_t canReadReservedBit1Tag(void)
+_Bool can_is_reserved_bit_1_tag_set(void)
 {
-	uint8_t ubRetVal = CANIDT4;
-	ubRetVal &= (1<<RB1TAG);
-	ubRetVal = ubRetVal>>RB1TAG;
-	return ubRetVal;
+    return bit_is_set(CANIDT4,RB1TAG) == 0 ? false:true;
 }
 
 /************************************************/
 /*  CAN Identifier Mask Tag Register CANIDMx    */
 /************************************************/
 
-void canWriteIdentifierMaskV2A(uint16_t uwData)
+void can_set_identifier_mask_v2a(uint16_t uwData)
 {
-	CANIDM1 = (uint8_t)(uwData>>3);
-	CANIDM2 = (uint8_t)(uwData<<5);
+    CANIDM1 = (uint8_t) (uwData >> 3);
+    CANIDM2 = (uint8_t) (uwData << 5);
 }
 
-uint16_t canReadIdentifierMaskV2A(void)
+void can_set_identifier_mask_v2b(uint32_t ulData)
 {
-	uint16_t uwRetVal = CANIDM1;//Read High byte
-	uwRetVal = uwRetVal<<3;//Allign high byte
-	uwRetVal += (CANIDM2>>5);//Add low byte
-	return uwRetVal;
+    CANIDM1 = (uint8_t) (ulData >> 21);
+    CANIDM2 = (uint8_t) (ulData >> 13);
+    CANIDM3 = (uint8_t) (ulData >> 5);
+    CANIDM4 &= ~((1 << IDMSK4) | (1 << IDMSK3) | (1 << IDMSK2) | (1 << IDMSK1)
+            | (1 << IDMSK0));
+    CANIDM4 |= (uint8_t) (ulData << 3);
 }
 
-void canWriteIdentifierMaskV2B(uint32_t ulData)
+void can_set_remote_transmission_request_mask_flag(_Bool isSet)
 {
-	CANIDM1 = (uint8_t)(ulData>>21);
-	CANIDM2 = (uint8_t)(ulData>>13);
-	CANIDM3 = (uint8_t)(ulData>>5);
-	CANIDM4 &= ~( (1<<IDMSK4) | (1<<IDMSK3) | (1<<IDMSK2) | (1<<IDMSK1) | (1
-			<<IDMSK0) );
-	CANIDM4 |= (uint8_t)(ulData<<3);
+    if(true == isSet)
+    {
+        CANIDM4 |= (1 << RTRMSK);
+    }
+    else
+    {
+        CANIDM4 &= ~(1 << RTRMSK);
+    }
 }
 
-uint32_t canReadIdentifierMaskV2B(void)
+void can_set_identifier_extension_mask_flag(_Bool isSet)
 {
-	uint32_t ulRetVal = ((uint32_t)CANIDM1<<21);
-	ulRetVal |= (uint32_t)(CANIDM2<<13);
-	ulRetVal |= (uint32_t)(CANIDM3<<5);
-	ulRetVal |= (uint32_t)(CANIDM4>>3);
-	return ulRetVal;
-}
-
-void canWriteRemoteTransmissionRequestMask(uint8_t ubData)
-{
-	assert(ubData < 2);
-	CANIDM4 &= ~(1<<RTRMSK);//Remove current info
-	CANIDM4 |= (ubData<<RTRMSK);
-}
-
-uint8_t canReadRemoteTransmissionRequestMask(void)
-{
-	uint8_t ubRetVal = CANIDM4;
-	ubRetVal &= (1<<RTRMSK);
-	ubRetVal = ubRetVal>>RTRMSK;
-	return ubRetVal;
-}
-
-void canWriteIdentifierExtensionMask(uint8_t ubData)
-{
-	assert(ubData < 2);
-	CANIDM4 &= ~(1<<IDEMSK);//Remove current info
-	CANIDM4 |= (ubData<<IDEMSK);
-}
-
-uint8_t canReadIdentifierExtensionMask(void)
-{
-	uint8_t ubRetVal = CANIDM4;
-	ubRetVal &= (1<<IDEMSK);
-	ubRetVal = ubRetVal>>IDEMSK;
-	return ubRetVal;
+    if(true == isSet)
+    {
+        CANIDM4 |= (1 << IDEMSK);
+    }
+    else
+    {
+        CANIDM4 &= ~(1 << IDEMSK);
+    }
 }
 
 /************************************************/
 /*       CAN Time Stamp Registers CANSTMx       */
 /************************************************/
 
-uint16_t canReadTimeStamp(void)
+uint16_t can_get_time_stamp(void)
 {
-	uint16_t uwRetVal = CANSTMH;//Read High byte
-	uwRetVal = uwRetVal<<8;//Allign high byte
-	uwRetVal += CANSTML;//Add low byte
-	return uwRetVal;
+    return CANSTM;
 }
 
 /***************************************************************************************
  * Donn�es de Message Object (Mob)
  ***************************************************************************************/
 
-uint8_t canReadDataMessageObject(void)
+uint8_t can_get_data_mob(void)
 {
-	return CANMSG;
+    return CANMSG;
 }
 
-void canWriteDataMessageObject(uint8_t ubData)
+void can_set_data_mob(uint8_t ubData)
 {
-	CANMSG = ubData;
+    CANMSG = ubData;
 }
 
-void canClearMOb(void)
+void can_clear_mob(void)
 {
-	void *ptr;
-	for (ptr=(void*)&CANSTMOB; ptr < (void*)&CANSTML; ptr++)
-	{
-		*(uint8_t*)ptr=0x00;
-	}
+    CANSTMOB = 0;
+    CANCDMOB = 0;
+    CANIDT = 0;
+    CANIDM = 0;
+    CANSTM = 0;
 }
 
-void canClearAllMOb(void)
+void can_clear_all_mob(void)
 {
-	uint8_t i;
-	for (i = 0; i < 15; i++)
-	{
-		canWriteMObNumber(i);
-		canClearMOb();
-	}
+    uint8_t i;
+    for (i = 0; i < 15; i++)
+    {
+        can_set_mob_page(i);
+        can_clear_mob();
+    }
 }
 
-uint8_t canGetFreeMObNumber(uint8_t *ubFreeMOb)
+uint8_t can_get_free_mob_number(uint8_t *ubFreeMOb)
 {
-	uint8_t ubCurrentMOb;
-	uint8_t ubRetVal= false;
+    uint8_t ubCurrentMOb;
+    uint8_t ubRetVal = false;
 
-	ubCurrentMOb = CANPAGE;//Save current value
-	for (*ubFreeMOb = 0; *ubFreeMOb < 15; (*ubFreeMOb)++)
-	{
-		canWriteMObNumber(*ubFreeMOb);
-		if ((CANCDMOB & 0xC0) == 0x00) //! Disable configuration
-		{
-			ubRetVal = true;
-			break;
-		}
-	}
-	CANPAGE = ubCurrentMOb;
-	return ubRetVal;
+    ubCurrentMOb = CANPAGE;//Save current value
+    for (*ubFreeMOb = 0; *ubFreeMOb < 15; (*ubFreeMOb)++)
+    {
+        can_set_mob_page(*ubFreeMOb);
+        if ((CANCDMOB & 0xC0) == 0x00) //! Disable configuration
+        {
+            ubRetVal = true;
+            break;
+        }
+    }
+    CANPAGE = ubCurrentMOb;//Restore page
+    return ubRetVal;
 }
 
-uint8_t canSetBaudRate(uint32_t ulBaudrate, uint8_t ubSamplingRate,
-		uint8_t ubTsjw)
+uint8_t can_set_baud_rate(uint32_t ulBaudrate, uint8_t ubSamplingRate,
+        uint8_t ubTsjw)
 {
-	uint8_t ubDivider;
-	uint8_t ubTbit;
-	uint8_t ubTprs;
-	uint8_t ubTphs1;
-	uint8_t ubTphs2;
-	uint8_t ubBRP = 0;
+    uint8_t ubDivider;
+    uint8_t ubTbit;
+    uint8_t ubTprs;
+    uint8_t ubTphs1;
+    uint8_t ubTphs2;
+    uint8_t ubBRP = 0;
 
-	//TODO remove F_CPU
-	ubDivider = F_CPU / ulBaudrate; /* Trouve le diviseur total de la fr�quence du Can */
+    //TODO remove F_CPU
+    ubDivider = xtal_get_clk_freq() / ulBaudrate; /* Trouve le diviseur total de la fréquence du Can */
 
-	ubTbit = ubDivider;
-	while ( (ubTbit > CAN_MAXTQ) | (ubTbit < CAN_MINTQ))
-	{
-		ubTbit = (ubTbit >> 2);
-		ubBRP++;
-	}
+    ubTbit = ubDivider;
+    while ((ubTbit >= CAN_MAX_TQ) | (ubTbit <= CAN_MIN_TQ))
+    {
+        ubTbit = (ubTbit >> 2);
+        ubBRP++;
+    }
 
-	ubTphs2 = (ubTbit * (100 - ubSamplingRate) / 100);
+    ubTphs2 = (ubTbit * (100 - ubSamplingRate) / 100);
 
-	if (0 == ubBRP)
-	{
-		ubTphs1 = ubTphs2 + 1;
-	}
-	else
-	{
-		ubTphs1 = ubTphs2;
-	}
+    if (0 == ubBRP)
+    {
+        ubTphs1 = ubTphs2 + 1;
+    }
+    else
+    {
+        ubTphs1 = ubTphs2;
+    }
 
-	ubTprs = ubTbit - ubTphs1 - ubTphs2 - 1;
+    ubTprs = ubTbit - ubTphs1 - ubTphs2 - 1;
 
-	CANBT1 = (ubBRP << BRP0);
-	CANBT2 = (ubTprs << PRS0) | (ubTsjw << SJW0);
-	CANBT3 = (ubTphs2 << PHS20) | (ubTphs1 << PHS10) | (1 << SMP);
+    CANBT1 = (ubBRP << BRP0);
+    CANBT2 = (ubTprs << PRS0) | (ubTsjw << SJW0);
+    CANBT3 = (ubTphs2 << PHS20) | (ubTphs1 << PHS10) | (1 << SMP);
 
-	if (ubDivider == (ubBRP + 1) * (ubTprs + ubTphs1 + ubTphs2 + 1))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+    if (ubDivider == (ubBRP + 1) * (ubTprs + ubTphs1 + ubTphs2 + 1))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
-canIntSrc_t canGetIntSrc(void)
+can_int_src_t can_get_int_src(void)
 {
-	if (bit_is_set(CANGIE, ENIT) )//Interrupt are enabled
-	{
-		uint16_t canie;
-		//uint16_t cansit;
-		uint8_t i;
+    if (bit_is_set(CANGIE, ENIT))//Interrupt are enabled
+    {
+        uint16_t canie;
+        //uint16_t cansit;
+        uint8_t i;
 
-		canie = ((uint16_t)CANIE1)<<8;
-		canie |= (uint16_t)CANIE2;
+        canie = ((uint16_t) CANIE1) << 8;
+        canie |= (uint16_t) CANIE2;
 
-		//cansit = CANSIT;
+        //cansit = CANSIT;
 
-		canie &= CANSIT;
+        canie &= CANSIT;
 
-		if (canie != 0)
-		{
-			//Seek interrupt source
-			for (i = 0; i < 15; i++)
-			{
-				if (canie & (1<<i))
-					break;
-			}
+        if (canie != 0)
+        {
+            //Seek interrupt source
+            for (i = 0; i < 15; i++)
+            {
+                if (canie & (1 << i))
+                    break;
+            }
 
-			canWriteMObNumber(i); // Select MOb
+            can_set_mob_page(i); // Select MOb
 
-			if (bit_is_set(CANGIE, ENRX) && bit_is_set(CANSTMOB, RXOK))
-			{
-				return 0x10*i + intSrc_RXOK_00;
-			}
+            if (bit_is_set(CANGIE, ENRX) && bit_is_set(CANSTMOB, RXOK))
+            {
+                return 0x10 * i + can_int_src_RXOK_00;
+            }
 
-			if (bit_is_set(CANGIE, ENTX) && bit_is_set(CANSTMOB, TXOK))
-			{
-				return 0x10*i + intSrc_TXOK_00;
-			}
+            if (bit_is_set(CANGIE, ENTX) && bit_is_set(CANSTMOB, TXOK))
+            {
+                return 0x10 * i + can_int_src_TXOK_00;
+            }
 
-			if (bit_is_set(CANGIE, ENERR) && bit_is_set(CANSTMOB, AERR))
-			{
-				return 0x10*i + intSrc_AERR_00;
-			}
+            if (bit_is_set(CANGIE, ENERR) && bit_is_set(CANSTMOB, AERR))
+            {
+                return 0x10 * i + can_int_src_AERR_00;
+            }
 
-			if (bit_is_set(CANGIE, ENERR) && bit_is_set(CANSTMOB, FERR))
-			{
-				return 0x10*i + intSrc_FERR_00;
-			}
+            if (bit_is_set(CANGIE, ENERR) && bit_is_set(CANSTMOB, FERR))
+            {
+                return 0x10 * i + can_int_src_FERR_00;
+            }
 
-			if (bit_is_set(CANGIE, ENERR) && bit_is_set(CANSTMOB, CERR))
-			{
-				return 0x10*i + intSrc_CERR_00;
-			}
+            if (bit_is_set(CANGIE, ENERR) && bit_is_set(CANSTMOB, CERR))
+            {
+                return 0x10 * i + can_int_src_CERR_00;
+            }
 
-			if (bit_is_set(CANGIE, ENERR) && bit_is_set(CANSTMOB, SERR))
-			{
-				return 0x10*i + intSrc_SERR_00;
-			}
+            if (bit_is_set(CANGIE, ENERR) && bit_is_set(CANSTMOB, SERR))
+            {
+                return 0x10 * i + can_int_src_SERR_00;
+            }
 
-			if (bit_is_set(CANGIE, ENERR) && bit_is_set(CANSTMOB, BERR))
-			{
-				return 0x10*i + intSrc_BERR_00;
-			}
-		}
+            if (bit_is_set(CANGIE, ENERR) && bit_is_set(CANSTMOB, BERR))
+            {
+                return 0x10 * i + can_int_src_BERR_00;
+            }
+        }
 
-		//Bus off interrupt enabled
-		if (bit_is_set(CANGIE, ENBOFF) && bit_is_set(CANGIT, BOFFIT))
-		{
-			return intSrc_BOFFI;
-		}
+        //Bus off interrupt enabled
+        if (bit_is_set(CANGIE, ENBOFF) && bit_is_set(CANGIT, BOFFIT))
+        {
+            return can_int_src_BOFFI;
+        }
 
-		//Stuff error General
-		if (bit_is_set(CANGIE, ENERG) && bit_is_set(CANGIT, SERG))
-		{
-			return intSrc_SERG;
-		}
+        //Stuff error General
+        if (bit_is_set(CANGIE, ENERG) && bit_is_set(CANGIT, SERG))
+        {
+            return can_int_src_SERG;
+        }
 
-		//CAN error General
-		if (bit_is_set(CANGIE, ENERG) && bit_is_set(CANGIT, CERG))
-		{
-			return intSrc_CERG;
-		}
+        //CAN error General
+        if (bit_is_set(CANGIE, ENERG) && bit_is_set(CANGIT, CERG))
+        {
+            return can_int_src_CERG;
+        }
 
-		//Frame error General
-		if (bit_is_set(CANGIE, ENERG) && bit_is_set(CANGIT, FERG))
-		{
-			return intSrc_FERG;
-		}
+        //Frame error General
+        if (bit_is_set(CANGIE, ENERG) && bit_is_set(CANGIT, FERG))
+        {
+            return can_int_src_FERG;
+        }
 
-		//Ack error General
-		if (bit_is_set(CANGIE, ENERG) && bit_is_set(CANGIT, AERG))
-		{
-			return intSrc_AERG;
-		}
+        //Ack error General
+        if (bit_is_set(CANGIE, ENERG) && bit_is_set(CANGIT, AERG))
+        {
+            return can_int_src_AERG;
+        }
 
-		//Frame Buffer Receive Interrupt
-		if (bit_is_set(CANGIE, ENBX) && bit_is_set(CANGIT, BXOK))
-		{
-			return intSrc_BXOK;
-		}
+        //Frame Buffer Receive Interrupt
+        if (bit_is_set(CANGIE, ENBX) && bit_is_set(CANGIT, BXOK))
+        {
+            return can_int_src_BXOK;
+        }
 
-	}
+    }
 
-	return intSrc_UNKNOWN;
+    return can_int_src_UNKNOWN;
 }
