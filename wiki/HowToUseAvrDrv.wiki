@@ -3,10 +3,9 @@
 = Howto use AVR-drv =
 
 It is simple to use AVR-drv in your project.
-  * Download AVR-drv and place in, as example, c:\AVR-drv
-  * Add "AVR_DRV_DIR = c:/AVR-drv" at top of your Makefile
-  * Add "$(AVR_DRV_DIR)/avr-drv.c" to your source list in your Makefile
-  * Add "$(AVR_DRV_DIR)" to the EXTRAINCDIRS variable in your Makefile
-  * Create a file name "avr-drv-conf.h", see example for samples
+  * Download AVR-drv and place in, as example, /home/user/src/avr-drv
+  * Run the make_xxx.sh script
+  * In your project link against /home/user/src/avr-drv/deliver/lib/$(MCU)
+  * APIs are located in /home/user/src/avr-drv/deliver/include
 
-Voilà, your done. Now simply make some code that use AVR-drv.
+Voilà, you're done. Now simply make some code that use AVR-drv. ADC example is up-to-date, don't mind the other examples for now.
