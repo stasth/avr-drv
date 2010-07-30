@@ -1,4 +1,5 @@
 #summary API for the USART driver
+#labels Deprecated
 
 = Introduction =
 
