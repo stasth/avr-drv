@@ -11,19 +11,24 @@ at90pwm3b \
 at90pwm81 \
 at90pwm216 \
 at90pwm316 \
+at90usb82 \
+at90usb162 \
 at90usb646 \
 at90usb647 \
 at90usb1286 \
 at90usb1287 \
 atmega8 \
+atmega8u2 \
 atmega16 \
 atmega16a \
 atmega16hva2 \
 atmega16hvb \
 atmega16m1 \
+atmega16u \
 atmega16u4 \
 atmega32 \
 atmega32c1 \
+atmega32hvb \
 atmega32m1 \
 atmega32u2 \
 atmega32u4 \
@@ -33,6 +38,7 @@ atmega48a \
 atmega48p \
 atmega64 \
 atmega64c1 \
+atmega64hve \
 atmega64m1 \
 atmega88 \
 atmega88a \
@@ -61,8 +67,8 @@ atmega324a \
 atmega324pa \
 atmega325 \
 atmega325p \
-atmega328p \
 atmega328 \
+atmega328p \
 atmega329 \
 atmega329p \
 atmega329pa \
@@ -93,6 +99,7 @@ atmega6450p \
 atmega6490 \
 atmega6490a \
 atmega6490p \
+atmega8135 \
 atmega8535 \
 attiny4 \
 attiny5 \
@@ -103,10 +110,13 @@ attiny12 \
 attiny13 \
 attiny13a \
 attiny15 \
+attiny20 \
 attiny24 \
 attiny24a \
 attiny25 \
 attiny26 \
+attiny28 \
+attiny40 \
 attiny43u \
 attiny44 \
 attiny44a \
@@ -120,8 +130,12 @@ attiny167 \
 attiny261 \
 attiny261a \
 attiny461 \
+attiny461a \
 attiny861 \
-attiny861a)
+attiny861a \
+attiny2313 \
+attiny2313a \
+attiny4313 \)
 
 rm buildDir/avr-drv-tmrcnt0
 for name in ${AVR_TARGET[@]}
