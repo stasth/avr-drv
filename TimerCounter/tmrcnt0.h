@@ -47,6 +47,9 @@ typedef enum tmrcnt0_clk_select_e
 typedef enum tmrcnt0_ouput_compare_channel_e
 {
     tmrcnt0_ouput_compare_channel_a = 0,
+#if defined(__AVR_AT90pwm1__)
+    tmrcnt0_ouput_compare_channel_b
+#endif
 } tmrcnt0_ouput_compare_channel_t;
 
 #if defined(__AVR_AT90can32__) \
@@ -63,6 +66,10 @@ typedef enum tmrcnt0_wgm_e
     tmrcnt0_wgm_pwm_phase_correct_ff_top_btm,
     tmrcnt0_wgm_ctc_ocra_imd_max,
     tmrcnt0_wgm_fast_pwm_ff_top_max
+#if defined(__AVR_AT90pwm1__)
+    tmrcnt0_wgm_pwm_phase_correct_ocra_top_btm = 5,
+    tmrcnt0_wgm_fast_pwm_ocra_top_top = 7
+#endif
 } tmrcnt0_wgm_t;
 
 typedef enum tmrcnt0_com_e
@@ -112,5 +119,6 @@ void tmrcnt0_output_compare_match_int_disable (tmrcnt0_ouput_compare_channel_t c
 
 void tmrcnt0_enable_overflow_int(void);
 void tmrcnt0_disable_overflow_int(void);
+void tmrcnt0_is_overflow_int_flag_set(void);
 
 #endif//TMR_CNT_0_H_

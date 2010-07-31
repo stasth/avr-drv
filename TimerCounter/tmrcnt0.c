@@ -237,6 +237,25 @@ void tmrcnt0_output_compare_match_int_disable(
         break;
     }
 }
+
+_Bool tmrcnt0_is_output_compare_match_int_flag_set(void)
+{
+    _Bool retVal = false;
+    switch (channel)
+    {
+    case tmrcnt0_ouput_compare_channel_a:
+        retVal = bit_is_set(TIFR0,OCF0A) == 0 ? false:true;
+        break;
+#if defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
+        case tmrcnt0_ouput_compare_channel_b:
+            retVal = bit_is_set(TIFR0,OCF0B) == 0 ? false:true;
+        break;
+#endif /* defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) */
+    default:
+        break;
+    }
+    return retVal;
+}
 #endif
 
 void tmrcnt0_enable_overflow_int(void)
@@ -247,4 +266,9 @@ void tmrcnt0_enable_overflow_int(void)
 void tmrcnt0_disable_overflow_int(void)
 {
     TIMSK0 &= ~_BV(TOIE0);
+}
+
+_Bool tmrcnt0_is_overflow_int_flag_set(void)
+{
+    return bit_is_set(TIFR0,TOV0) == 0 ? false:true;
 }
