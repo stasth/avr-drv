@@ -69,7 +69,7 @@ FORMAT = ihex
 
 
 # Target file name (without extension).
-TARGET = tmrcnt0
+# TARGET = tmrcnt0
 
 
 # Object files directory
@@ -114,7 +114,7 @@ DEBUG = dwarf-2
 #     Each directory must be seperated by a space.
 #     Use forward slashes for directory separators.
 #     For a directory that has spaces, enclose it in quotes.
-EXTRAINCDIRS =
+EXTRAINCDIRS = ..
 
 
 # Compiler flag to set the C Standard level.
@@ -237,7 +237,7 @@ MATH_LIB = -lm
 #     Each directory must be seperated by a space.
 #     Use forward slashes for directory separators.
 #     For a directory that has spaces, enclose it in quotes.
-EXTRALIBDIRS = 
+EXTRALIBDIRS =
 
 
 
