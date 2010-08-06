@@ -99,24 +99,17 @@ atmega6450p \
 atmega6490 \
 atmega6490a \
 atmega6490p \
-atmega8135 \
 atmega8535 \
-attiny4 \
-attiny5 \
-attiny9 \
-attiny10 \
 attiny11 \
 attiny12 \
 attiny13 \
 attiny13a \
 attiny15 \
-attiny20 \
 attiny24 \
 attiny24a \
 attiny25 \
 attiny26 \
 attiny28 \
-attiny40 \
 attiny43u \
 attiny44 \
 attiny44a \
@@ -135,7 +128,7 @@ attiny861 \
 attiny861a \
 attiny2313 \
 attiny2313a \
-attiny4313 \)
+attiny4313)
 
 rm buildDir/avr-drv-tmrcnt0
 for name in ${AVR_TARGET[@]}
