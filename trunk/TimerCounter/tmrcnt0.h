@@ -32,6 +32,8 @@
 #ifndef TMR_CNT_0_H_
 #define TMR_CNT_0_H_
 
+#include <stdbool.h>
+
 typedef enum tmrcnt0_clk_select_e
 {
     tmrcnt0_clk_src_halted = 0,
@@ -65,7 +67,7 @@ typedef enum tmrcnt0_wgm_e
     tmrcnt0_wgm_normal_ff_imd_max = 0,
     tmrcnt0_wgm_pwm_phase_correct_ff_top_btm,
     tmrcnt0_wgm_ctc_ocra_imd_max,
-    tmrcnt0_wgm_fast_pwm_ff_top_max
+    tmrcnt0_wgm_fast_pwm_ff_top_max,
 #if defined(__AVR_AT90pwm1__)
     tmrcnt0_wgm_pwm_phase_correct_ocra_top_btm = 5,
     tmrcnt0_wgm_fast_pwm_ocra_top_top = 7
@@ -90,17 +92,23 @@ typedef enum tmrcnt0_com_e
 
 #if defined(__AVR_AT90can32__) \
 || defined(__AVR_AT90can64__) \
-|| defined(__AVR_AT90can128__)
-void tmrcnt0_init(tmrcnt0_wgm_t wgm, tmrcnt0_com_t, com, tmrcnt0_clk_select_t prescale);
+|| defined(__AVR_AT90can128__) \
+|| defined(__AVR_ATmega640__) \
+|| defined(__AVR_ATmega1280__) \
+|| defined(__AVR_ATmega2560__)
+void tmrcnt0_init(tmrcnt0_wgm_t wgm, tmrcnt0_com_t com, tmrcnt0_clk_select_t prescale);
 #else
 void tmrcnt0_init(tmrcnt0_clk_select_t prescale);
 #endif
 
 #if defined(__AVR_AT90can32__) \
 || defined(__AVR_AT90can64__) \
-|| defined(__AVR_AT90can128__)
-void tmrcnt0_set_ouput_compare_pin (tmrcnt0_ouput_compare_channel_t channel, tmrcnt0_com_t mode);
-
+|| defined(__AVR_AT90can128__) \
+|| defined(__AVR_ATmega640__) \
+|| defined(__AVR_ATmega1280__) \
+|| defined(__AVR_ATmega2560__)
+void tmrcnt0_set_ouput_compare_pin_mode (tmrcnt0_ouput_compare_channel_t channel, tmrcnt0_com_t mode);
+void tmrcnt0_set_ouput_compare_pin_as_ouput (tmrcnt0_ouput_compare_channel_t channel, _Bool isOutput);
 void tmrcnt0_force_ouput_compare (tmrcnt0_ouput_compare_channel_t channel);
 #endif
 
@@ -109,16 +117,18 @@ void tmrcnt0_set_timer(uint8_t value);
 
 #if defined(__AVR_AT90can32__) \
 || defined(__AVR_AT90can64__) \
-|| defined(__AVR_AT90can128__)
+|| defined(__AVR_AT90can128__) \
+|| defined(__AVR_ATmega640__) \
+|| defined(__AVR_ATmega1280__) \
+|| defined(__AVR_ATmega2560__)
 uint8_t tmrcnt0_get_output_compare (tmrcnt0_ouput_compare_channel_t channel);
 void tmrcnt0_set_output_compare (tmrcnt0_ouput_compare_channel_t channel, uint8_t value);
-
 void tmrcnt0_output_compare_match_int_enable (tmrcnt0_ouput_compare_channel_t channel);
 void tmrcnt0_output_compare_match_int_disable (tmrcnt0_ouput_compare_channel_t channel);
 #endif
 
 void tmrcnt0_enable_overflow_int(void);
 void tmrcnt0_disable_overflow_int(void);
-void tmrcnt0_is_overflow_int_flag_set(void);
+_Bool tmrcnt0_is_overflow_int_flag_set(void);
 
 #endif//TMR_CNT_0_H_
