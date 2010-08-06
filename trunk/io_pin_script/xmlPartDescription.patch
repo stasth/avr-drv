@@ -1,0 +1,126 @@
+diff -u ../xmlPartDescriptionOriginal/AT90PWM316.xml ../xmlPartDescription/AT90PWM316.xml
+--- ../xmlPartDescriptionOriginal/AT90PWM316.xml	2010-02-25 10:07:20.000000000 -0500
++++ ../xmlPartDescription/AT90PWM316.xml	2010-08-06 14:49:33.804207505 -0400
+@@ -230,7 +230,7 @@
+         <TEXT/>
+       </PIN27>
+       <PIN28>
+-        <NAME>[PB7:ADC4:PSCOUT01:SCK)</NAME>
++        <NAME>[PB7:ADC4:PSCOUT01:SCK]</NAME>
+         <TEXT/>
+       </PIN28>
+       <PIN29>
+@@ -377,7 +377,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PB7:ADC4:PSCOUT01:SCK)</NAME>
++        <NAME>[PB7:ADC4:PSCOUT01:SCK]</NAME>
+         <TEXT/>
+       </PIN32>
+     </SOIC>
+diff -u ../xmlPartDescriptionOriginal/AT90PWM3B.xml ../xmlPartDescription/AT90PWM3B.xml
+--- ../xmlPartDescriptionOriginal/AT90PWM3B.xml	2010-02-25 10:07:20.000000000 -0500
++++ ../xmlPartDescription/AT90PWM3B.xml	2010-08-06 14:50:13.884207973 -0400
+@@ -1934,7 +1934,7 @@
+         <TEXT/>
+       </PIN27>
+       <PIN28>
+-        <NAME>[PB7:ADC4:PSCOUT01:SCK)</NAME>
++        <NAME>[PB7:ADC4:PSCOUT01:SCK]</NAME>
+         <TEXT/>
+       </PIN28>
+       <PIN29>
+@@ -2081,7 +2081,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PB7:ADC4:PSCOUT01:SCK)</NAME>
++        <NAME>[PB7:ADC4:PSCOUT01:SCK]</NAME>
+         <TEXT/>
+       </PIN32>
+     </SOIC>
+diff -u ../xmlPartDescriptionOriginal/AT90PWM3.xml ../xmlPartDescription/AT90PWM3.xml
+--- ../xmlPartDescriptionOriginal/AT90PWM3.xml	2010-02-25 10:07:18.000000000 -0500
++++ ../xmlPartDescription/AT90PWM3.xml	2010-08-06 14:50:03.144207937 -0400
+@@ -1943,7 +1943,7 @@
+         <TEXT/>
+       </PIN27>
+       <PIN28>
+-        <NAME>[PB7:ADC4:PSCOUT01:SCK)</NAME>
++        <NAME>[PB7:ADC4:PSCOUT01:SCK]</NAME>
+         <TEXT/>
+       </PIN28>
+       <PIN29>
+@@ -2090,7 +2090,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PB7:ADC4:PSCOUT01:SCK)</NAME>
++        <NAME>[PB7:ADC4:PSCOUT01:SCK]</NAME>
+         <TEXT/>
+       </PIN32>
+     </SOIC>
+diff -u ../xmlPartDescriptionOriginal/ATmega1280.xml ../xmlPartDescription/ATmega1280.xml
+--- ../xmlPartDescriptionOriginal/ATmega1280.xml	2010-02-25 10:07:34.000000000 -0500
++++ ../xmlPartDescription/ATmega1280.xml	2010-08-06 15:20:33.466706763 -0400
+@@ -436,7 +436,7 @@
+         <DESCRIPTION/>
+       </PIN1>
+       <PIN2>
+-        <PIN_NAME>[RXD:PCINT8]</PIN_NAME>
++        <PIN_NAME>[RXD0:PCINT8]</PIN_NAME>
+         <ALT_NAME>[PE0]</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN2>
+diff -u ../xmlPartDescriptionOriginal/ATmega161.xml ../xmlPartDescription/ATmega161.xml
+--- ../xmlPartDescriptionOriginal/ATmega161.xml	2010-02-25 10:07:40.000000000 -0500
++++ ../xmlPartDescription/ATmega161.xml	2010-08-06 14:53:38.164205729 -0400
+@@ -879,7 +879,7 @@
+         <TEXT/>
+       </PIN4>
+       <PIN5>
+-        <NAME>[PD0:RXD]</NAME>
++        <NAME>[PD0:RXD0]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART receiver is enabled, this pin is configured as an input, regardless of the value of DDRD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN5>
+       <PIN6>
+@@ -887,7 +887,7 @@
+         <TEXT/>
+       </PIN6>
+       <PIN7>
+-        <NAME>[PD1:TXD]</NAME>
++        <NAME>[PD1:TXD0]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART transmitter is enabled, this pin is configured as an output, regardless of the value of DDRD1.</TEXT>
+       </PIN7>
+       <PIN8>
+diff -u ../xmlPartDescriptionOriginal/ATmega2560.xml ../xmlPartDescription/ATmega2560.xml
+--- ../xmlPartDescriptionOriginal/ATmega2560.xml	2010-02-25 10:07:58.000000000 -0500
++++ ../xmlPartDescription/ATmega2560.xml	2010-08-06 14:59:12.494205630 -0400
+@@ -3017,12 +3017,12 @@
+         <DESCRIPTION/>
+       </PIN1>
+       <PIN2>
+-        <PIN_NAME>[RXD:PCINT8]</PIN_NAME>
++        <PIN_NAME>[RXD0:PDI:PCINT8]</PIN_NAME>
+         <ALT_NAME>[PE0]</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN2>
+       <PIN3>
+-        <PIN_NAME>[TXD0]</PIN_NAME>
++        <PIN_NAME>[TXD0:PDO]</PIN_NAME>
+         <ALT_NAME>[PE1]</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN3>
+diff -u ../xmlPartDescriptionOriginal/ATmega640.xml ../xmlPartDescription/ATmega640.xml
+--- ../xmlPartDescriptionOriginal/ATmega640.xml	2010-02-25 10:08:22.000000000 -0500
++++ ../xmlPartDescription/ATmega640.xml	2010-08-06 15:21:53.325456521 -0400
+@@ -436,7 +436,7 @@
+         <DESCRIPTION/>
+       </PIN1>
+       <PIN2>
+-        <PIN_NAME>[RXD:PCINT8]</PIN_NAME>
++        <PIN_NAME>[RXD0:PCINT8]</PIN_NAME>
+         <ALT_NAME>[PE0]</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN2>
