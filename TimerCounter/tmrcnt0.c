@@ -33,18 +33,22 @@
 #include <stdlib.h>
 #include <avr/io.h>
 
+#include <io_pin/io_pin.h>
+
 #include "tmrcnt0.h"
 
 #if defined(__AVR_AT90can32__) \
 || defined(__AVR_AT90can64__) \
 || defined(__AVR_AT90can128__) \
-|| defined(__AVR_ATmega640__)
-void tmrcnt0_init(tmrcnt0_wgm_t wgm, tmrcnt0_com_t, com, tmrcnt0_clk_select_t prescale)
+|| defined(__AVR_ATmega640__) \
+|| defined(__AVR_ATmega1280__) \
+|| defined(__AVR_ATmega2560__)
+void tmrcnt0_init(tmrcnt0_wgm_t wgm, tmrcnt0_clk_select_t prescale)
 {
     /* Force timer to stop */
     TCCR0A &= ~(_BV(CS02) | _BV(CS01) | _BV(CS00));
 
-    switch (mode)
+    switch (wgm)
     {
     case tmrcnt0_wgm_normal_ff_imd_max:
         TCCR0A &= ~(_BV(WGMx1) | _BV(WGMx0));
@@ -109,12 +113,59 @@ void tmrcnt0_init(tmrcnt0_wgm_t wgm, tmrcnt0_com_t, com, tmrcnt0_clk_select_t pr
     }
 }
 #else
+void tmrcnt0_init(tmrcnt0_clk_select_t prescale)
+{
+    /* Force timer to stop */
+    TCCR0A &= ~(_BV(CS02) | _BV(CS01) | _BV(CS00));
+
+    switch (prescale)
+    {
+    case tmrcnt0_clk_src_halted:
+        //We do not need to do anything since timer as been stop already
+        break;
+
+    case tmrcnt0_clk_src_clkio:
+        TCCR0A |= _BV(CS00);
+        break;
+
+    case tmrcnt0_clk_src_clkio_8:
+        TCCR0A |= _BV(CS01);
+        break;
+
+    case tmrcnt0_clk_src_clkio_64:
+        TCCR0A |= (_BV(CS01) | _BV(CS00));
+        break;
+
+    case tmrcnt0_clk_src_clkio_256:
+        TCCR0A |= _BV(CS02);
+        break;
+
+    case tmrcnt0_clk_src_clkio_1024:
+        TCCR0A |= (_BV(CS02) | _BV(CS00));
+        break;
+
+    case tmrcnt0_clk_src_ext_clk_falling_edge:
+        TCCR0A |= (_BV(CS02) | _BV(CS01));
+
+        break;
+
+    case tmrcnt0_clk_src_ext_clk_rising_edge:
+        TCCR0A |= (_BV(CS02) | _BV(CS01) | _BV(CS00));
+        break;
+
+    default:
+        break;
+    }
+}
 #endif
 
 #if defined(__AVR_AT90can32__) \
 || defined(__AVR_AT90can64__) \
-|| defined(__AVR_AT90can128__)
-void tmrcnt0_set_ouput_compare_pin (tmrcnt0_ouput_compare_channel_t channel, tmrcnt0_com_t mode)
+|| defined(__AVR_AT90can128__) \
+|| defined(__AVR_ATmega640__) \
+|| defined(__AVR_ATmega1280__) \
+|| defined(__AVR_ATmega2560__)
+void tmrcnt0_set_ouput_compare_pin_mode (tmrcnt0_ouput_compare_channel_t channel, tmrcnt0_com_t mode)
 {
     switch (channel)
     {
@@ -126,6 +177,37 @@ void tmrcnt0_set_ouput_compare_pin (tmrcnt0_ouput_compare_channel_t channel, tmr
         case tmrcnt0_ouput_compare_channel_b:
         TCCR0A &= ~(_BV(COM0B1) | _BV(COM0B0));
         TCCR0A |= (mode << COM0B0);
+        break;
+#endif /* defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) */
+        default:
+        break;
+    }
+}
+
+void tmrcnt0_set_ouput_compare_pin_as_ouput (tmrcnt0_ouput_compare_channel_t channel, _Bool isOutput)
+{
+    switch (channel)
+    {
+        case tmrcnt0_ouput_compare_channel_a:
+            if(isOutput)
+            {
+                OC0A_DDR |= _BV(OC0A_BIT);
+            }
+            else
+            {
+                OC0A_DDR &= ~_BV(OC0A_BIT);
+            }
+        break;
+#if defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
+        case tmrcnt0_ouput_compare_channel_b:
+            if(isOutput)
+            {
+                OC0B_DDR |= _BV(OC0B_BIT);
+            }
+            else
+            {
+                OC0B_DDR &= ~_BV(OC0B_BIT);
+            }
         break;
 #endif /* defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) */
         default:
@@ -163,7 +245,10 @@ void tmrcnt0_set_timer(uint8_t value)
 
 #if defined(__AVR_AT90can32__) \
 || defined(__AVR_AT90can64__) \
-|| defined(__AVR_AT90can128__)
+|| defined(__AVR_AT90can128__) \
+|| defined(__AVR_ATmega640__) \
+|| defined(__AVR_ATmega1280__) \
+|| defined(__AVR_ATmega2560__)
 uint8_t tmrcnt0_get_output_compare(tmrcnt0_ouput_compare_channel_t channel)
 {
     uint8_t retVal = 0;
