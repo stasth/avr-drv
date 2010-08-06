@@ -128,7 +128,7 @@ do
         getSufix $DEVICE
         
         echo -n Generating header for ${DEVICE}
-        ./avrgcc-header -d ../xmlPartDescription/${DEVICE}.xml -h ../io_pin/${PREFIX}${SUFIX}_pin.h 2> /dev/null
+        ./avrgcc-header -d ../xmlPartDescription/${DEVICE}.xml -h ../io_pin/${PREFIX}${SUFIX}_pin.h &> /dev/null
         echo Done
         
         if [ "$i" -eq 0 ]
@@ -159,4 +159,5 @@ echo "#endif /* _AVR_IO_PIN_H_ */" >> $headerfile
 echo "" >> $headerfile
 
 # Clean up
+echo "Clean up"
 rm ../io_pin/*.log
