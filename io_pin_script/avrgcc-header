@@ -1,0 +1,307 @@
+#! /bin/bash
+# Copyright (c) 2008 Atmel Corporation
+#   All rights reserved.
+#
+#   Redistribution and use in source and binary forms, with or without
+#   modification, are permitted provided that the following conditions are met:
+#
+#   * Redistributions of source code must retain the above copyright
+#     notice, this list of conditions and the following disclaimer.
+#
+#   * Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in
+#     the documentation and/or other materials provided with the
+#     distribution.
+#
+#   * Neither the name of the copyright holders nor the names of
+#     contributors may be used to endorse or promote products derived
+#     from this software without specific prior written permission.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+#  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+#  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+#  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+#  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+#  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+#  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+#  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+#  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+#  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+#  POSSIBILITY OF SUCH DAMAGE.
+
+# This is a modified version of avrgc-header found in AVR-LIBC project.
+# Convert Atmel XML Device file to AVR GCC I/O PIN header file.
+# Needs: xmlstarlet (executable: xml), sed, grep, uniq, mv, rm, echo, sort.
+
+usage() {
+cat << EOF
+usage: $0 -d <xml device file> -h <io header file>
+    -d <xml device file>    XML Device File (Input)
+    -h <io header file>     I/O Header File (Output). 
+                            If file exists, it will be overwritten.
+EOF
+}
+
+
+abort() {
+    echo $@
+    exec /bin/false
+}
+
+
+# Get options
+devicefile=
+headerfile=
+xmega=
+while test $# -gt 0
+do
+    case "$1" in
+    -d) devicefile="$2"; shift;;
+    -h) headerfile="$2"; shift;;
+    -x) xmega="1";;
+    --)	shift; break;;
+    -*) usage; exit 1;;
+     *) break;;         # terminate while loop
+    esac
+    shift
+done
+# all command line switches are processed,
+
+
+# Test parameters.
+if test "$devicefile" = ""; then
+    usage
+    abort "Error: No device file specified."
+fi
+if test "$headerfile" = ""; then 
+    usage
+    abort "Error: No header file specified."
+fi
+
+
+set -x
+
+
+if test -e "$headerfile"; then rm "$headerfile"; fi
+
+
+# Header
+#-------------------
+
+# Get device name.
+DEVICE=$(xml sel -T -t -v /AVRPART/ADMIN/PART_NAME $devicefile)
+
+# todo: upper-case function not found. Use this value in idempotent guard.
+DEVICEUPPER=$(echo $DEVICE | tr [:lower:] [:upper:])
+
+
+# Get the current year to place in copyright statement.
+YEAR=$(date --rfc-3339=date | cut -d '-' -f 1)
+
+cat << eof > $headerfile
+/* Copyright (c) $YEAR Atmel Corporation
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in
+     the documentation and/or other materials provided with the
+     distribution.
+
+   * Neither the name of the copyright holders nor the names of
+     contributors may be used to endorse or promote products derived
+     from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  POSSIBILITY OF SUCH DAMAGE. */
+
+/* \$Id\$ */
+
+/* avr/$headerfile - definitions for ${DEVICE} */
+
+/* This file should only be included from <io_pin/io_pin.h>, never directly. */
+
+#ifndef _AVR_IO_PIN_H_
+#  error "Include <io_pin/io_pin.h> instead of this file."
+#endif
+
+#ifndef _AVR_IO_PINXXX_H_
+#  define _AVR_IO_PINXXX_H_ "$headerfile"
+#else
+#  error "Attempt to include more than one <io_pin/io_pinXXX.h> file."
+#endif 
+
+
+#ifndef _AVR_PIN_${DEVICEUPPER}_H_
+#define _AVR_PIN_${DEVICEUPPER}_H_ 1
+
+
+eof
+
+
+# Device Pin information
+#---------------------------
+# Only available in AVR Studio 4 XML V1 information. V2 does not have this data.
+echo "/* Device Pin Definitions */" >> $headerfile
+# Get all package types.
+PACKAGE_TYPES=$(xml sel -T -t -v '/AVRPART/PACKAGE/PACKAGES' $devicefile | cut -d '[' -f 2 | cut -d ']' -f 1 | cut -d ':' -f 1- --output-delimiter=' ')
+# Determine which package has the most number of pins.
+PACKAGE_MAX=0
+PACKAGE_SELECTED=
+for i in $PACKAGE_TYPES ; do
+    PACKAGE_SIZE=$(xml sel -T -t -v /AVRPART/PACKAGE/${i}/NMB_PIN $devicefile | sed "s,\r,,g")
+    if test $PACKAGE_SIZE -gt $PACKAGE_MAX ; then
+        PACKAGE_MAX=$PACKAGE_SIZE
+        PACKAGE_SELECTED=$i
+    fi
+done
+# Check to make sure that package information is included in the XML file.
+if test -n $PACKAGE_SELECTED ; then
+    # Get list of pins from selected package, and check each pin.
+    PINS=$(xml sel -T -t -m /AVRPART/PACKAGE/$PACKAGE_SELECTED/* -v "name()" -o ' ' $devicefile | sed "s,\r,,g" | sed "s,NMB_PIN,,g")
+    for i in $PINS ; do
+        TARGET=
+        MAP_LIST=
+        
+        # The XML files are inconsistent in their format. Try several options.
+        
+        # Check for NAME tag.
+        NAME=$(xml sel -T -t -m /AVRPART/PACKAGE/$PACKAGE_SELECTED/${i}/NAME -v . -o ' ' $devicefile | sed "s,\r,,g")
+        if test $NAME ; then
+            # Get list of mappings. Inside brackets, colon delimited. The first one in the list is the target information.
+            TARGET=$(echo $NAME | cut -d '[' -f 2 | cut -d ']' -f 1 | cut -d ':' -f 1 --output-delimiter=' ')
+            MAP_LIST=$(echo $NAME | cut -d '[' -f 2 | cut -d ']' -f 1 | cut -d ':' -f 2- --output-delimiter=' ')
+        else
+            # Check for PIN_NAME and ALT_NAME tags.
+            PIN_NAME=$(xml sel -T -t -m /AVRPART/PACKAGE/$PACKAGE_SELECTED/${i}/PIN_NAME -v . -o ' ' $devicefile | sed "s,\r,,g")
+            ALT_NAME=$(xml sel -T -t -m /AVRPART/PACKAGE/$PACKAGE_SELECTED/${i}/ALT_NAME -v . -o ' ' $devicefile | sed "s,\r,,g")
+
+            if test -n "$PIN_NAME" -a -n "$ALT_NAME"  ; then
+                # Determine which field has the target and which has the mappings.
+                TARGET=$ALT_NAME
+                MAP_LIST=$(echo $PIN_NAME | sed "s,^[*]$,&,")
+                
+                TEST_CASE1=$(echo $PIN_NAME | cut -d '[' -f 2 | cut -d ']' -f 1 | cut -d ':' -f 1- --output-delimiter=' ')
+                
+                if [ ${#TEST_CASE1} -eq 3 ]; then
+                    if [ ${TEST_CASE1:0:1} = "P" ]; then
+                        MAP_LIST=$ALT_NAME
+                        TARGET=$PIN_NAME
+                    fi                  
+                fi
+                
+                # Get list of mappings. Inside brackets, colon delimited.
+                MAP_LIST=$(echo $MAP_LIST | cut -d '[' -f 2 | cut -d ']' -f 1 | cut -d ':' -f 1- --output-delimiter=' ')
+                
+                # Make sure target isn't just a blank character.
+                TARGET=$(echo $TARGET | sed "s, ,,g")
+                
+                # Make sure target is not surrounded by []
+                TARGET=$(echo $TARGET | sed "s,\],,g")
+                TARGET=$(echo $TARGET | sed "s,\[,,g")
+            fi
+        fi
+        
+        if test -n "$TARGET" -a -n "$MAP_LIST" ; then
+            # Make transformations on map list.
+            #     Remove active low character signified by single quote
+            #     Replace '+' with "_P"
+            #     Replace '-' with "_N"
+            MAP_LIST=$(echo $MAP_LIST | sed "s,',,g" | sed "s,+,_P,g" | sed "s,-,_N,g")
+
+            #     Remove these pin mappings because they cannot be manipulated by software.
+            for j in TOSC1 TOSC2 PDI PDO TCK TMS TDO TDI AVCC AREF AGND HWB RESET XTAL1 XTAL2 VCC GND NC PEN; do
+                MAP_LIST=$(echo $MAP_LIST | sed "s,${j},,g")
+            done
+
+            TARGET_LETTER=$(echo $TARGET | sed "s,^P,,g" | sed "s,[0-9]$,,g")
+            TARGET_NUMBER=$(echo $TARGET | sed "s,^P[A-Z],,g")
+
+            # Add definitions to map alternate pin names to register definitions.
+            for j in $MAP_LIST ; do
+                echo "#define ${j}_DDR   DDR${TARGET_LETTER}" >> $headerfile
+                echo "#define ${j}_PORT  PORT${TARGET_LETTER}" >> $headerfile
+                echo "#define ${j}_PIN   PIN${TARGET_LETTER}" >> $headerfile
+                echo "#define ${j}_BIT   ${TARGET_NUMBER}" >> $headerfile
+                echo "" >> $headerfile
+            done
+        fi
+    done
+fi
+
+
+# Ending idempotent guard.
+#--------------------------
+echo "#endif /* _AVR_PIN_${DEVICEUPPER}_H_ */" >> $headerfile
+echo "" >> $headerfile
+
+# Convert to Unix line endings.
+#-------------------------------
+sed -i "s,\r\n,\n,g" $headerfile
+
+
+# Set permissions on the file
+#------------------------------
+chmod 644 $headerfile
+
+
+# I/O Header File and XML Device File Verification
+#--------------------------------------------------
+LOGFILE=$headerfile.log
+# Turn off printing of commands for the verification.
+set +ex
+
+if test -e $LOGFILE ; then
+    rm -f $LOGFILE
+fi
+
+echo Checking for package information in XML file... | tee -a $LOGFILE
+PACKAGE_TYPES=$(xml sel -t -v '/AVRPART/PACKAGE/PACKAGES' $devicefile | cut -d ']' -f 1 | cut -d ':' -f 1- --output-delimiter=' ')
+if test -z "$PACKAGE_TYPES" ; then
+    echo "Package types missing from XML file." | tee -a $LOGFILE
+fi
+echo | tee -a $LOGFILE
+
+echo Checking for misspelled preprocessor directives in header file... | tee -a $LOGFILE
+grep "#" $headerfile | cut -d '#' -f 2 | cut -d ' ' -f 1 | sort | uniq | tee -a $LOGFILE
+echo | tee -a $LOGFILE
+
+echo Checking for duplicate definitions in header file... | tee -a $LOGFILE
+grep "#define" $headerfile | cut -d '#' -f 2 | cut -d ' ' -f 2 | sort | uniq -d | uniq | tee -a $LOGFILE
+echo | tee -a $LOGFILE
+
+echo Checking for hyphens in defined names in header file... | tee -a $LOGFILE
+grep "#define" $headerfile | cut -d '#' -f 2 | cut -d ' ' -f 2 | grep '-' | tee -a $LOGFILE
+echo | tee -a $LOGFILE
+
+echo Checking for hyphens in register and bit names in XML device file... | tee -a $LOGFILE
+echo "$REGS_WITH_HYPHENS" | tee -a $LOGFILE
+echo | tee -a $LOGFILE
+
+echo Checking for invalid signature... | tee -a $LOGFILE
+if test "$SIGNATURE_0" = "0x0" -a "$SIGNATURE_1" = "0x0" -a "$SIGNATURE_2" = "0x0" ; then
+    echo "  Invalid signature: ${SIGNATURE_0} ${SIGNATURE_1} ${SIGNATURE_2}" | tee -a $LOGFILE
+fi
+echo | tee -a $LOGFILE
+
+echo Checking for registers that have no associated bit names... | tee -a $LOGFILE
+echo "$REGS_NO_BITNAMES" | tee -a $LOGFILE
+echo | tee -a $LOGFILE
+
+# todo:
+# Properly get all preprocessor directives
+# Check directives against a known dictionary.
