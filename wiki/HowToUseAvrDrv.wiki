@@ -3,11 +3,28 @@
 
 = Howto use AVR-drv =
 
-It is simple to use AVR-drv in your project.
-  * Download AVR-drv and place in, as example, /home/user/src/avr-drv
-  * Patch avr-libc *patch is not in SVN at time of writing*
-  * Run the make_xxx.sh script
-  * In your project link against /home/user/src/avr-drv/deliver/lib/$(MCU)
-  * APIs(headers for you project) are located in /home/user/src/avr-drv/deliver/include
+== Prebuild package ==
 
-Voilà, you're done. Now simply make some code that use AVR-drv. ADC example is up-to-date, don't mind the other examples for now.
+You should grab the package in the download section and extract it in /opt/avr-drv
+
+== Building from source ==
+
+Well, lets face it, this is not the easiest thing, but it is for sure not hard. Machine used to build release is as follow:
+  * Ubuntu 10.04 x64
+  * avr-libc 1.7.0
+
+You will need:
+  * avr-drv source
+  * XML description part from AVR Studio version 4.18 build 700
+  * a rabbit leg
+
+Assuming that avr-drc sources are in /home/user/avr-drv
+  * Place xml in xmlPartDescription directory
+  * Patch avr-libc headers
+  * Patch XML files
+  * Run make.sh
+  * Result is placed in avr-drv directory, you can copy it to /opt/
+
+== Usage == 
+
+Section to come
