@@ -20,8 +20,10 @@ You will need:
 
 Assuming that avr-drc sources are in /home/user/avr-drv
   * Place xml in xmlPartDescription directory
-  * Patch avr-libc headers
-  * Patch XML files
+  * Patch avr-libc headers, more or less
+    * ~/src/avr-libc/trunk/avr-libc/include/avr$ sudo patch -i /home/user/avr-drv/patch/avr-libc_1.7.0.patch 
+  * Patch XML files, more or less
+    * avr-drv/xmlPartDescription$ patch --dry-run -p2 -R -i ../patch/xmlPartDescription.patch
   * Run make.sh
   * Result is placed in avr-drv directory, you can copy it to /opt/
 
