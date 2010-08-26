@@ -11,7 +11,6 @@ This page covers the TWI module.
 List of supported devices: 44 Pass / 6 Fail
 
 || *Device* || *Build pass* ||
-
 ||AT90CAN32||PASS||
 ||AT90CAN64||PASS||
 ||AT90CAN128||PASS||
