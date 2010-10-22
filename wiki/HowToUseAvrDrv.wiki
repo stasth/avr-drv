@@ -15,7 +15,7 @@ Well, lets face it, this is not the easiest thing, but it is for sure not hard. 
 
 You will need:
   * avr-drv source
-  * XML description part from AVR Studio version 4.18 build 700
+  * XML description part from AVR Studio version 4.18 build 716
   * a rabbit leg
 
 Assuming that avr-drc sources are in /home/user/avr-drv
@@ -23,7 +23,7 @@ Assuming that avr-drc sources are in /home/user/avr-drv
   * Patch avr-libc headers, more or less
     * ~/src/avr-libc/trunk/avr-libc/include/avr$ sudo patch -i /home/user/avr-drv/patch/avr-libc_1.7.0.patch 
   * Patch XML files, more or less
-    * avr-drv/xmlPartDescription$ patch --dry-run -p2 -R -i ../patch/xmlPartDescription.patch
+    * avr-drv/xmlPartDescription$ patch -p2 -i ../patch/xmlPartDescription.patch
   * Run make.sh
   * Result is placed in avr-drv directory, you can copy it to /opt/
 
