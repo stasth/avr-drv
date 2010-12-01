@@ -1,0 +1,3 @@
+Place your AVR XML file in this folder.
+XML are provided by Atmel with AVR-Studio.
+avr-drv uses XML from AVR Studio 4.18 build 700.
