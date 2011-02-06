@@ -24,7 +24,7 @@ Assuming that avr-drc sources are in /home/user/avr-drv
     * ~/src/avr-libc/trunk/avr-libc/include/avr$ sudo patch -i /home/user/avr-drv/patch/avr-libc_1.7.0.patch 
   * Patch XML files, more or less
     * avr-drv/xmlPartDescription$ patch -p2 -i ../patch/xmlPartDescription.patch
-  * Run make.sh
+  * Run from src directory, run the makefile
   * Result is placed in avr-drv directory, you can copy it to /opt/
 
 == Usage == 
