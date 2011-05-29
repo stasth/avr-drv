@@ -30,3 +30,5 @@ Assuming that avr-drc sources are in /home/user/avr-drv
 == Usage == 
 
 Section to come
+
+<wiki:gadget url="http://wiki.wikignpi.googlecode.com/hg/gadgets/xhtmlgateway.xml" height="60" width="100%" border="0" up_projectname="avr-drv" up_subversion="svn" up_xhtmlURL="http://avr-drv.googlecode.com/svn/doc/html/index.html"/>
