@@ -1,0 +1,210 @@
+diff -rupN ./iom16m1.h /home/fnadeau/src/avr/iom16m1.h
+--- ./iom16m1.h	2010-08-17 20:28:16.174069292 -0400
++++ /home/fnadeau/src/avr/iom16m1.h	2010-08-17 21:13:44.054069973 -0400
+@@ -1157,6 +1157,8 @@
+ 
+ #define CANIE1 _SFR_MEM8(0xDF)
+ 
++#define CANSIT  _SFR_MEM16(0xE0)
++
+ #define CANSIT2 _SFR_MEM8(0xE0)
+ #define SIT0 0
+ #define SIT1 1
+@@ -1305,6 +1307,9 @@
+ #define CONMOB0 6
+ #define CONMOB1 7
+ 
++/* RegDef:  CAN Identifier Tag Registers*/
++#define CANIDT  _SFR_MEM32(0xF0)
++
+ #define CANIDT4 _SFR_MEM8(0xF0)
+ #define RB0TAG 0
+ #define RB1TAG 1
+@@ -1345,6 +1350,9 @@
+ #define IDT27 6
+ #define IDT28 7
+ 
++/* RegDef:  CAN Identifier Mask Registers */
++#define CANIDM  _SFR_MEM32(0xF4)
++
+ #define CANIDM4 _SFR_MEM8(0xF4)
+ #define IDEMSK 0
+ #define RTRMSK 2
+diff -rupN ./iom16u4.h /home/fnadeau/src/avr/iom16u4.h
+--- ./iom16u4.h	2010-08-17 20:28:16.174069292 -0400
++++ /home/fnadeau/src/avr/iom16u4.h	2010-08-17 20:36:59.386568093 -0400
+@@ -561,7 +561,7 @@
+ #define ADTS0 0
+ #define ADTS1 1
+ #define ADTS2 2
+-#define ADTS3 4
++#define ADTS3 3
+ #define MUX5 5
+ #define ACME 6
+ #define ADHSM 7
+diff -rupN ./iom32c1.h /home/fnadeau/src/avr/iom32c1.h
+--- ./iom32c1.h	2010-08-17 20:28:16.174069292 -0400
++++ /home/fnadeau/src/avr/iom32c1.h	2010-08-17 20:38:29.784068000 -0400
+@@ -906,6 +906,8 @@
+ 
+ #define CANIE1 _SFR_MEM8(0xDF)
+ 
++#define CANSIT  _SFR_MEM16(0xE0)
++
+ #define CANSIT2 _SFR_MEM8(0xE0)
+ #define SIT0 0
+ #define SIT1 1
+@@ -1054,6 +1056,9 @@
+ #define CONMOB0 6
+ #define CONMOB1 7
+ 
++/* RegDef:  CAN Identifier Tag Registers*/
++#define CANIDT  _SFR_MEM32(0xF0)
++
+ #define CANIDT4 _SFR_MEM8(0xF0)
+ #define RB0TAG 0
+ #define RB1TAG 1
+@@ -1094,6 +1099,9 @@
+ #define IDT27 6
+ #define IDT28 7
+ 
++/* RegDef:  CAN Identifier Mask Registers */
++#define CANIDM  _SFR_MEM32(0xF4)
++
+ #define CANIDM4 _SFR_MEM8(0xF4)
+ #define IDEMSK 0
+ #define RTRMSK 2
+diff -rupN ./iom32m1.h /home/fnadeau/src/avr/iom32m1.h
+--- ./iom32m1.h	2010-08-17 20:28:16.174069292 -0400
++++ /home/fnadeau/src/avr/iom32m1.h	2010-08-17 20:39:22.164068636 -0400
+@@ -1180,6 +1180,8 @@
+ 
+ #define CANIE1 _SFR_MEM8(0xDF)
+ 
++#define CANSIT  _SFR_MEM16(0xE0)
++
+ #define CANSIT2 _SFR_MEM8(0xE0)
+ #define SIT0 0
+ #define SIT1 1
+@@ -1328,6 +1330,9 @@
+ #define CONMOB0 6
+ #define CONMOB1 7
+ 
++/* RegDef:  CAN Identifier Tag Registers*/
++#define CANIDT  _SFR_MEM32(0xF0)
++
+ #define CANIDT4 _SFR_MEM8(0xF0)
+ #define RB0TAG 0
+ #define RB1TAG 1
+@@ -1368,6 +1373,9 @@
+ #define IDT27 6
+ #define IDT28 7
+ 
++/* RegDef:  CAN Identifier Mask Registers */
++#define CANIDM  _SFR_MEM32(0xF4)
++
+ #define CANIDM4 _SFR_MEM8(0xF4)
+ #define IDEMSK 0
+ #define RTRMSK 2
+diff -rupN ./iom32u4.h /home/fnadeau/src/avr/iom32u4.h
+--- ./iom32u4.h	2010-08-17 20:28:16.174069292 -0400
++++ /home/fnadeau/src/avr/iom32u4.h	2010-08-17 20:40:40.804068628 -0400
+@@ -540,7 +540,10 @@
+ 
+ #define TIMSK5 _SFR_MEM8(0x73)
+ 
++#ifndef _ASSEMBLER_
+ #define ADC _SFR_MEM16(0x78)
++#endif
++#define ADCW _SFR_MEM16(0x78)
+ 
+ #define ADCL _SFR_MEM8(0x78)
+ #define ADCL0 0
+@@ -576,7 +579,7 @@
+ #define ADTS0 0
+ #define ADTS1 1
+ #define ADTS2 2
+-#define ADTS3 4
++#define ADTS3 3
+ #define MUX5 5
+ #define ACME 6
+ #define ADHSM 7
+diff -rupN ./iom64c1.h /home/fnadeau/src/avr/iom64c1.h
+--- ./iom64c1.h	2010-08-17 20:28:16.194068957 -0400
++++ /home/fnadeau/src/avr/iom64c1.h	2010-08-17 20:41:32.766568745 -0400
+@@ -907,6 +907,8 @@
+ 
+ #define CANIE1 _SFR_MEM8(0xDF)
+ 
++#define CANSIT  _SFR_MEM16(0xE0)
++
+ #define CANSIT2 _SFR_MEM8(0xE0)
+ #define SIT0 0
+ #define SIT1 1
+@@ -1055,6 +1057,9 @@
+ #define CONMOB0 6
+ #define CONMOB1 7
+ 
++/* RegDef:  CAN Identifier Tag Registers*/
++#define CANIDT  _SFR_MEM32(0xF0)
++
+ #define CANIDT4 _SFR_MEM8(0xF0)
+ #define RB0TAG 0
+ #define RB1TAG 1
+@@ -1095,6 +1100,9 @@
+ #define IDT27 6
+ #define IDT28 7
+ 
++/* RegDef:  CAN Identifier Mask Registers */
++#define CANIDM  _SFR_MEM32(0xF4)
++
+ #define CANIDM4 _SFR_MEM8(0xF4)
+ #define IDEMSK 0
+ #define RTRMSK 2
+diff -rupN ./iom64m1.h /home/fnadeau/src/avr/iom64m1.h
+--- ./iom64m1.h	2010-08-17 20:28:16.194068957 -0400
++++ /home/fnadeau/src/avr/iom64m1.h	2010-08-17 20:42:13.966569384 -0400
+@@ -1158,6 +1158,8 @@
+ 
+ #define CANIE1 _SFR_MEM8(0xDF)
+ 
++#define CANSIT  _SFR_MEM16(0xE0)
++
+ #define CANSIT2 _SFR_MEM8(0xE0)
+ #define SIT0 0
+ #define SIT1 1
+@@ -1306,6 +1308,9 @@
+ #define CONMOB0 6
+ #define CONMOB1 7
+ 
++/* RegDef:  CAN Identifier Tag Registers*/
++#define CANIDT  _SFR_MEM32(0xF0)
++
+ #define CANIDT4 _SFR_MEM8(0xF0)
+ #define RB0TAG 0
+ #define RB1TAG 1
+@@ -1346,6 +1351,9 @@
+ #define IDT27 6
+ #define IDT28 7
+ 
++/* RegDef:  CAN Identifier Mask Registers */
++#define CANIDM  _SFR_MEM32(0xF4)
++
+ #define CANIDM4 _SFR_MEM8(0xF4)
+ #define IDEMSK 0
+ #define RTRMSK 2
+diff -rupN ./iotn43u.h /home/fnadeau/src/avr/iotn43u.h
+--- ./iotn43u.h	2010-08-17 20:28:16.214068465 -0400
++++ /home/fnadeau/src/avr/iotn43u.h	2010-08-17 20:42:52.334068020 -0400
+@@ -74,7 +74,10 @@
+ #define ADLAR  4
+ #define ACME   6
+ 
+-#define ADC _SFR_IO16(0x04)
++#ifndef _ASSEMBLER_
++#define ADC _SFR_MEM16(0x04)
++#endif
++#define ADCW _SFR_MEM16(0x04)
+ 
+ #define ADCL _SFR_IO8(0x04)
+ #define ADCL0  0

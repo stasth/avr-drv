@@ -1,0 +1,163 @@
+#! /bin/bash
+# Copyright (c) 2010 Frédéric Nadeau
+#   All rights reserved.
+#
+#   Redistribution and use in source and binary forms, with or without
+#   modification, are permitted provided that the following conditions are met:
+#
+#   * Redistributions of source code must retain the above copyright
+#     notice, this list of conditions and the following disclaimer.
+#
+#   * Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in
+#     the documentation and/or other materials provided with the
+#     distribution.
+#
+#   * Neither the name of the copyright holders nor the names of
+#     contributors may be used to endorse or promote products derived
+#     from this software without specific prior written permission.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+#  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+#  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+#  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+#  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+#  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+#  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+#  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+#  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+#  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+#  POSSIBILITY OF SUCH DAMAGE.
+
+# Build the avr_io.h file
+
+PREFIX=unknown
+SUFIX=unknown
+
+getPrefix() {
+    case "$1" in 
+        AT90PWM*) 
+            PREFIX=io90pwm;;
+        ATmega*) 
+            PREFIX=iom;;
+        AT90CAN*) 
+            PREFIX=iocan;;
+        AT90USB*) 
+            PREFIX=iousb;;
+        ATtiny*) 
+            PREFIX=iotn;;
+        *) 
+            PREFIX=unknown
+esac
+}
+
+getSufix() {
+    case "$1" in 
+        AT90PWM*)  
+            SUFIX=`echo ${1} | sed "s,AT90PWM,," | tr A-Z a-z`;;
+        ATmega*) 
+            SUFIX=`echo ${1} | sed "s,ATmega,," | tr A-Z a-z`;;
+        AT90CAN*) 
+            SUFIX=`echo ${1} | sed "s,AT90CAN,," | tr A-Z a-z`;;
+        AT90USB*) 
+            SUFIX=`echo ${1} | sed "s,AT90USB,," | tr A-Z a-z`;;
+        ATtiny*) 
+            SUFIX=`echo ${1} | sed "s,ATtiny,," | tr A-Z a-z`;;
+        *) 
+            SUFIX=unknown
+esac
+}
+
+headerfile=../io_pin/io_pin.h
+if test -e "$headerfile"; then rm "$headerfile"; fi
+
+# Get device name.
+DEVICES=`find ../xmlPartDescription -name *.xml | sed "s,../xmlPartDescription/,,g" | sed "s,.xml,,g" | sort`
+
+# Get the current year to place in copyright statement.
+YEAR=$(date --rfc-3339=date | cut -d '-' -f 1)
+
+cat << eof > $headerfile
+/* Copyright (c) $YEAR Atmel Corporation
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in
+     the documentation and/or other materials provided with the
+     distribution.
+
+   * Neither the name of the copyright holders nor the names of
+     contributors may be used to endorse or promote products derived
+     from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  POSSIBILITY OF SUCH DAMAGE. */
+
+
+#ifndef _AVR_IO_PIN_H_
+#define _AVR_IO_PIN_H_ 1
+
+eof
+i=0
+for DEVICE in $DEVICES
+do
+
+
+    if [[ $DEVICE == *comp* ]]
+    then
+        continue;
+    fi
+
+    getPrefix $DEVICE
+    if [ "$PREFIX" != 'unknown' ]; then
+        getSufix $DEVICE
+        
+        echo -n Generating header for ${DEVICE}
+        ./avrgcc-header -d ../xmlPartDescription/${DEVICE}.xml -h ../io_pin/${PREFIX}${SUFIX}_pin.h &> /dev/null
+        echo Done
+        
+        if [ "$i" -eq 0 ]
+        then
+            i=1
+            echo "#if defined (__AVR_"$DEVICE"__)" >> $headerfile
+            echo "#  include <io_pin/"$PREFIX$SUFIX"_pin.h>" >> $headerfile 
+        else
+            echo "#elif defined (__AVR_"$DEVICE"__)" >> $headerfile
+            echo "#  include <io_pin/"$PREFIX$SUFIX"_pin.h>" >> $headerfile 
+        fi 
+    fi
+done
+
+cat << eof >> $headerfile
+#else
+#  if !defined(__COMPILING_AVR_LIBC__)
+#    warning "device type not defined"
+#  endif
+#endif
+eof
+
+
+
+# Ending idempotent guard.
+#--------------------------
+echo "#endif /* _AVR_IO_PIN_H_ */" >> $headerfile
+echo "" >> $headerfile
+
+# Clean up
+echo "Clean up"
+rm ../io_pin/*.log

@@ -1,0 +1,3886 @@
+diff -rupN xmlPartDescriptionOriginal/AT90PWM1.xml xmlPartDescription/AT90PWM1.xml
+--- xmlPartDescriptionOriginal/AT90PWM1.xml	2010-11-12 22:18:28.616907928 -0500
++++ xmlPartDescription/AT90PWM1.xml	2010-11-12 22:19:31.113784500 -0500
+@@ -297,7 +297,7 @@
+         <TEXT/>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PD1:PSCIN0:CLK0]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO]</NAME>
+         <TEXT/>
+       </PIN3>
+       <PIN4>
+diff -rupN xmlPartDescriptionOriginal/AT90PWM216.xml xmlPartDescription/AT90PWM216.xml
+--- xmlPartDescriptionOriginal/AT90PWM216.xml	2010-11-12 22:18:28.659792363 -0500
++++ xmlPartDescription/AT90PWM216.xml	2010-11-12 22:20:05.288782134 -0500
+@@ -130,7 +130,7 @@
+         <TEXT/>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PD1:PSCIN0:CLK0]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO]</NAME>
+         <TEXT/>
+       </PIN3>
+       <PIN4>
+diff -rupN xmlPartDescriptionOriginal/AT90PWM2B.xml xmlPartDescription/AT90PWM2B.xml
+--- xmlPartDescriptionOriginal/AT90PWM2B.xml	2010-11-12 22:18:28.681907959 -0500
++++ xmlPartDescription/AT90PWM2B.xml	2010-11-12 22:20:51.785157667 -0500
+@@ -297,7 +297,7 @@
+         <TEXT/>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PD1:PSCIN0:CLK0]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO]</NAME>
+         <TEXT/>
+       </PIN3>
+       <PIN4>
+diff -rupN xmlPartDescriptionOriginal/AT90PWM2.xml xmlPartDescription/AT90PWM2.xml
+--- xmlPartDescriptionOriginal/AT90PWM2.xml	2010-11-12 22:18:28.652792155 -0500
++++ xmlPartDescription/AT90PWM2.xml	2010-11-12 22:21:06.841162296 -0500
+@@ -315,7 +315,7 @@
+         <TEXT/>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PD1:PSCIN0:CLK0]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO]</NAME>
+         <TEXT/>
+       </PIN3>
+       <PIN4>
+diff -rupN xmlPartDescriptionOriginal/AT90PWM316.xml xmlPartDescription/AT90PWM316.xml
+--- xmlPartDescriptionOriginal/AT90PWM316.xml	2010-11-12 22:18:28.688792559 -0500
++++ xmlPartDescription/AT90PWM316.xml	2010-11-13 13:35:54.735580722 -0500
+@@ -230,7 +230,7 @@
+         <TEXT/>
+       </PIN27>
+       <PIN28>
+-        <NAME>[PB7:ADC4:PSCOUT01:SCK)</NAME>
++        <NAME>[PB7:ADC4:PSCOUT01:SCK]</NAME>
+         <TEXT/>
+       </PIN28>
+       <PIN29>
+@@ -246,7 +246,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:PSCIN0:CLK0]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO]</NAME>
+         <TEXT/>
+       </PIN32>
+     </QFN>
+@@ -265,7 +265,7 @@
+         <TEXT/>
+       </PIN3>
+       <PIN4>
+-        <NAME>[PD1:PSCIN0:CLK0]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO]</NAME>
+         <TEXT/>
+       </PIN4>
+       <PIN5>
+@@ -377,7 +377,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PB7:ADC4:PSCOUT01:SCK)</NAME>
++        <NAME>[PB7:ADC4:PSCOUT01:SCK]</NAME>
+         <TEXT/>
+       </PIN32>
+     </SOIC>
+diff -rupN xmlPartDescriptionOriginal/AT90PWM3B.xml xmlPartDescription/AT90PWM3B.xml
+--- xmlPartDescriptionOriginal/AT90PWM3B.xml	2010-11-12 22:18:28.666792547 -0500
++++ xmlPartDescription/AT90PWM3B.xml	2010-11-13 13:36:31.087956056 -0500
+@@ -1934,7 +1934,7 @@
+         <TEXT/>
+       </PIN27>
+       <PIN28>
+-        <NAME>[PB7:ADC4:PSCOUT01:SCK)</NAME>
++        <NAME>[PB7:ADC4:PSCOUT01:SCK]</NAME>
+         <TEXT/>
+       </PIN28>
+       <PIN29>
+@@ -1950,7 +1950,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:PSCIN0:CLK0]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO]</NAME>
+         <TEXT/>
+       </PIN32>
+     </QFN>
+@@ -1969,7 +1969,7 @@
+         <TEXT/>
+       </PIN3>
+       <PIN4>
+-        <NAME>[PD1:PSCIN0:CLK0]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO]</NAME>
+         <TEXT/>
+       </PIN4>
+       <PIN5>
+@@ -2081,7 +2081,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PB7:ADC4:PSCOUT01:SCK)</NAME>
++        <NAME>[PB7:ADC4:PSCOUT01:SCK]</NAME>
+         <TEXT/>
+       </PIN32>
+     </SOIC>
+diff -rupN xmlPartDescriptionOriginal/AT90PWM3.xml xmlPartDescription/AT90PWM3.xml
+--- xmlPartDescriptionOriginal/AT90PWM3.xml	2010-11-12 22:18:28.622908259 -0500
++++ xmlPartDescription/AT90PWM3.xml	2010-11-13 13:37:00.800587061 -0500
+@@ -1943,7 +1943,7 @@
+         <TEXT/>
+       </PIN27>
+       <PIN28>
+-        <NAME>[PB7:ADC4:PSCOUT01:SCK)</NAME>
++        <NAME>[PB7:ADC4:PSCOUT01:SCK]</NAME>
+         <TEXT/>
+       </PIN28>
+       <PIN29>
+@@ -1959,7 +1959,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:PSCIN0:CLK0]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO]</NAME>
+         <TEXT/>
+       </PIN32>
+     </QFN>
+@@ -1978,7 +1978,7 @@
+         <TEXT/>
+       </PIN3>
+       <PIN4>
+-        <NAME>[PD1:PSCIN0:CLK0]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO]</NAME>
+         <TEXT/>
+       </PIN4>
+       <PIN5>
+@@ -2090,7 +2090,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PB7:ADC4:PSCOUT01:SCK)</NAME>
++        <NAME>[PB7:ADC4:PSCOUT01:SCK]</NAME>
+         <TEXT/>
+       </PIN32>
+     </SOIC>
+diff -rupN xmlPartDescriptionOriginal/AT90S4434.xml xmlPartDescription/AT90S4434.xml
+--- xmlPartDescriptionOriginal/AT90S4434.xml	2010-11-12 22:18:28.608908072 -0500
++++ xmlPartDescription/AT90S4434.xml	2010-11-13 13:37:25.034830898 -0500
+@@ -725,7 +725,7 @@
+         <TEXT>MISO: Master data input, slave data output pin for SPI channel. When the SPI is enabled as a master, this pin is configured as an input regardless of the setting of DDB6. When the SPI is enabled as a slave, the data direction of this pin is controlled by DDB6. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB6 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PB7_SCK]</NAME>
++        <NAME>[PB7:SCK]</NAME>
+         <TEXT>SCK: Master clock output, slave clock input pin for SPI channel. When the SPI is enabled as a slave, this pin is configured as an input regardless of the setting of DDB7. When the SPI is enabled as a master, the data direction of this pin is con-trolled by DDB7. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB7 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN3>
+       <PIN4>
+diff -rupN xmlPartDescriptionOriginal/AT90S8535.xml xmlPartDescription/AT90S8535.xml
+--- xmlPartDescriptionOriginal/AT90S8535.xml	2010-11-12 22:18:28.689791917 -0500
++++ xmlPartDescription/AT90S8535.xml	2010-11-13 13:37:42.036581012 -0500
+@@ -729,7 +729,7 @@
+         <TEXT>MISO: Master data input, slave data output pin for SPI channel. When the SPI is enabled as a master, this pin is configured as an input regardless of the setting of DDB6. When the SPI is enabled as a slave, the data direction of this pin is controlled by DDB6. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB6 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PB7_SCK]</NAME>
++        <NAME>[PB7:SCK]</NAME>
+         <TEXT>SCK: Master clock output, slave clock input pin for SPI channel. When the SPI is enabled as a slave, this pin is configured as an input regardless of the setting of DDB7. When the SPI is enabled as a master, the data direction of this pin is con-trolled by DDB7. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB7 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN3>
+       <PIN4>
+diff -rupN xmlPartDescriptionOriginal/AT90USB1286.xml xmlPartDescription/AT90USB1286.xml
+--- xmlPartDescriptionOriginal/AT90USB1286.xml	2010-11-12 22:18:28.605908066 -0500
++++ xmlPartDescription/AT90USB1286.xml	2010-11-13 13:44:44.330580982 -0500
+@@ -684,6 +684,268 @@
+       <DEFINITION>Store Program Memory Read</DEFINITION>
+     </VECTOR38>
+   </INTERRUPT_VECTOR>
++  <PACKAGE>
++    <PACKAGES>[TQFP]</PACKAGES>
++    <TQFP>
++      <NMB_PIN>64</NMB_PIN>
++      <PIN1>
++        <NAME>[PE6:INT6:AIN0]</NAME>
++        <TEXT/>
++      </PIN1>
++      <PIN2>
++        <NAME>[PE7INT7:AIN1:VCON]</NAME>
++        <TEXT/>
++      </PIN2>
++      <PIN3>
++        <NAME>[UVCC]</NAME>
++        <TEXT/>
++      </PIN3>
++      <PIN4>
++        <NAME>[D-]</NAME>
++        <TEXT/>
++      </PIN4>
++      <PIN5>
++        <NAME>[D]</NAME>
++        <TEXT/>
++      </PIN5>
++      <PIN6>
++        <NAME>[UGND]</NAME>
++        <TEXT/>
++      </PIN6>
++      <PIN7>
++        <NAME>[UCAP]</NAME>
++        <TEXT/>
++      </PIN7>
++      <PIN8>
++        <NAME>[VBUS]</NAME>
++        <TEXT/>
++      </PIN8>
++      <PIN9>
++        <NAME>[PE3:IUID]</NAME>
++        <TEXT/>
++      </PIN9>
++      <PIN10>
++        <NAME>[PB0:'SS:PCINT0]</NAME>
++        <TEXT/>
++      </PIN10>
++      <PIN11>
++        <NAME>[PB1:SCK:PCINT1]</NAME>
++        <TEXT/>
++      </PIN11>
++      <PIN12>
++        <NAME>[PB2:MOSI:PCINT2:PDI]</NAME>
++        <TEXT/>
++      </PIN12>
++      <PIN13>
++        <NAME>[PB3:MISO:PCINT3:PDO]</NAME>
++        <TEXT/>
++      </PIN13>
++      <PIN14>
++        <NAME>[PB4:OC2A:PCINT4]</NAME>
++        <TEXT/>
++      </PIN14>
++      <PIN15>
++        <NAME>[PB5:OC1A:PCINT5]</NAME>
++        <TEXT/>
++      </PIN15>
++      <PIN16>
++        <NAME>[PB6:OC1B:PCINT6]</NAME>
++        <TEXT/>
++      </PIN16>
++      <PIN17>
++        <NAME>[PB7:OC0A:OC1C:PCINT7]</NAME>
++        <TEXT/>
++      </PIN17>
++      <PIN18>
++        <NAME>[PE4:INT4:TOSC1]</NAME>
++        <TEXT/>
++      </PIN18>
++      <PIN19>
++        <NAME>[PE5:INT5:TOSC2]</NAME>
++        <TEXT/>
++      </PIN19>
++      <PIN20>
++        <NAME>['RESET]</NAME>
++        <TEXT/>
++      </PIN20>
++      <PIN21>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN21>
++      <PIN22>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN22>
++      <PIN23>
++        <NAME>[XTAL2]</NAME>
++        <TEXT/>
++      </PIN23>
++      <PIN24>
++        <NAME>[XTAL1]</NAME>
++        <TEXT/>
++      </PIN24>
++      <PIN25>
++        <NAME>[PD0:SCL:INT0:OC0B]</NAME>
++        <TEXT/>
++      </PIN25>
++      <PIN26>
++        <NAME>[PD1:SDA:INT1:OC2B]</NAME>
++        <TEXT/>
++      </PIN26>
++      <PIN27>
++        <NAME>[PD2:RXD1:INT2]</NAME>
++        <TEXT/>
++      </PIN27>
++      <PIN28>
++        <NAME>[PD3:TXD1:INT3]</NAME>
++        <TEXT/>
++      </PIN28>
++      <PIN29>
++        <NAME>[PD4:IC1]</NAME>
++        <TEXT/>
++      </PIN29>
++      <PIN30>
++        <NAME>[PD5:XCK1]</NAME>
++        <TEXT/>
++      </PIN30>
++      <PIN31>
++        <NAME>[PD6:T1]</NAME>
++        <TEXT/>
++      </PIN31>
++      <PIN32>
++        <NAME>[PD7:T2]</NAME>
++        <TEXT/>
++      </PIN32>
++      <PIN33>
++        <NAME>[PE0:'WR]</NAME>
++        <TEXT/>
++      </PIN33>
++      <PIN34>
++        <NAME>[PE1:'RD]</NAME>
++        <TEXT/>
++      </PIN34>
++      <PIN35>
++        <NAME>[PC0:A8]</NAME>
++        <TEXT/>
++      </PIN35>
++      <PIN36>
++        <NAME>[PC1:A9]</NAME>
++        <TEXT/>
++      </PIN36>
++      <PIN37>
++        <NAME>[PC2:A10]</NAME>
++        <TEXT/>
++      </PIN37>
++      <PIN38>
++        <NAME>[PC3:A11:T3]</NAME>
++        <TEXT/>
++      </PIN38>
++      <PIN39>
++        <NAME>[PC4:A12:OC3C]</NAME>
++        <TEXT/>
++      </PIN39>
++      <PIN40>
++        <NAME>[PC5:A13:OC3B]</NAME>
++        <TEXT/>
++      </PIN40>
++      <PIN41>
++        <NAME>[PC6:A14:OC3A]</NAME>
++        <TEXT/>
++      </PIN41>
++      <PIN42>
++        <NAME>[PC7:A15:IC3:CLKO]</NAME>
++        <TEXT/>
++      </PIN42>
++      <PIN43>
++        <NAME>[PG2:ALE:'HWB]</NAME>
++        <TEXT/>
++      </PIN43>
++      <PIN44>
++        <NAME>[PA7:AD7]</NAME>
++        <TEXT/>
++      </PIN44>
++      <PIN45>
++        <NAME>[PA6:AD6]</NAME>
++        <TEXT/>
++      </PIN45>
++      <PIN46>
++        <NAME>[PA5:AD5]</NAME>
++        <TEXT/>
++      </PIN46>
++      <PIN47>
++        <NAME>[PA4:AD4]</NAME>
++        <TEXT/>
++      </PIN47>
++      <PIN48>
++        <NAME>[PA3:AD3]</NAME>
++        <TEXT/>
++      </PIN48>
++      <PIN49>
++        <NAME>[PA2:AD2]</NAME>
++        <TEXT/>
++      </PIN49>
++      <PIN50>
++        <NAME>[PA1:AD1]</NAME>
++        <TEXT/>
++      </PIN50>
++      <PIN51>
++        <NAME>[PA0:AD0]</NAME>
++        <TEXT/>
++      </PIN51>
++      <PIN52>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN52>
++      <PIN53>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN53>
++      <PIN54>
++        <NAME>[PF7:ADC7:TDI]</NAME>
++        <TEXT/>
++      </PIN54>
++      <PIN55>
++        <NAME>[PF6:ADC6:TDO]</NAME>
++        <TEXT/>
++      </PIN55>
++      <PIN56>
++        <NAME>[PF5:ADC5:TMS]</NAME>
++        <TEXT/>
++      </PIN56>
++      <PIN57>
++        <NAME>[PF4:ADC4:TCK]</NAME>
++        <TEXT/>
++      </PIN57>
++      <PIN58>
++        <NAME>[PF3:ADC3]</NAME>
++        <TEXT/>
++      </PIN58>
++      <PIN59>
++        <NAME>[PF2:ADC2]</NAME>
++        <TEXT/>
++      </PIN59>
++      <PIN60>
++        <NAME>[PF1:ADC1]</NAME>
++        <TEXT/>
++      </PIN60>
++      <PIN61>
++        <NAME>[PF0:ADC0]</NAME>
++        <TEXT/>
++      </PIN61>
++      <PIN62>
++        <NAME>[AREF]</NAME>
++        <TEXT/>
++      </PIN62>
++      <PIN63>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN63>
++      <PIN64>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN64>
++    </TQFP>
++  </PACKAGE>
+   <MEMORY>
+     <ID>AVRSimMemory8bit.SimMemory8bit</ID>
+     <PROG_FLASH>131072</PROG_FLASH>
+diff -rupN xmlPartDescriptionOriginal/AT90USB1287.xml xmlPartDescription/AT90USB1287.xml
+--- xmlPartDescriptionOriginal/AT90USB1287.xml	2010-11-12 22:18:28.675792336 -0500
++++ xmlPartDescription/AT90USB1287.xml	2010-11-13 13:45:29.268580745 -0500
+@@ -702,6 +702,268 @@
+       <DEFINITION>Store Program Memory Read</DEFINITION>
+     </VECTOR38>
+   </INTERRUPT_VECTOR>
++  <PACKAGE>
++    <PACKAGES>[TQFP]</PACKAGES>
++    <TQFP>
++      <NMB_PIN>64</NMB_PIN>
++      <PIN1>
++        <NAME>[PE6:INT6:AIN0]</NAME>
++        <TEXT/>
++      </PIN1>
++      <PIN2>
++        <NAME>[PE7INT7:AIN1:VCON]</NAME>
++        <TEXT/>
++      </PIN2>
++      <PIN3>
++        <NAME>[UVCC]</NAME>
++        <TEXT/>
++      </PIN3>
++      <PIN4>
++        <NAME>[D-]</NAME>
++        <TEXT/>
++      </PIN4>
++      <PIN5>
++        <NAME>[D]</NAME>
++        <TEXT/>
++      </PIN5>
++      <PIN6>
++        <NAME>[UGND]</NAME>
++        <TEXT/>
++      </PIN6>
++      <PIN7>
++        <NAME>[UCAP]</NAME>
++        <TEXT/>
++      </PIN7>
++      <PIN8>
++        <NAME>[VBUS]</NAME>
++        <TEXT/>
++      </PIN8>
++      <PIN9>
++        <NAME>[PE3:IUID]</NAME>
++        <TEXT/>
++      </PIN9>
++      <PIN10>
++        <NAME>[PB0:'SS:PCINT0]</NAME>
++        <TEXT/>
++      </PIN10>
++      <PIN11>
++        <NAME>[PB1:SCK:PCINT1]</NAME>
++        <TEXT/>
++      </PIN11>
++      <PIN12>
++        <NAME>[PB2:MOSI:PCINT2:PDI]</NAME>
++        <TEXT/>
++      </PIN12>
++      <PIN13>
++        <NAME>[PB3:MISO:PCINT3:PDO]</NAME>
++        <TEXT/>
++      </PIN13>
++      <PIN14>
++        <NAME>[PB4:OC2A:PCINT4]</NAME>
++        <TEXT/>
++      </PIN14>
++      <PIN15>
++        <NAME>[PB5:OC1A:PCINT5]</NAME>
++        <TEXT/>
++      </PIN15>
++      <PIN16>
++        <NAME>[PB6:OC1B:PCINT6]</NAME>
++        <TEXT/>
++      </PIN16>
++      <PIN17>
++        <NAME>[PB7:OC0A:OC1C:PCINT7]</NAME>
++        <TEXT/>
++      </PIN17>
++      <PIN18>
++        <NAME>[PE4:INT4:TOSC1]</NAME>
++        <TEXT/>
++      </PIN18>
++      <PIN19>
++        <NAME>[PE5:INT5:TOSC2]</NAME>
++        <TEXT/>
++      </PIN19>
++      <PIN20>
++        <NAME>['RESET]</NAME>
++        <TEXT/>
++      </PIN20>
++      <PIN21>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN21>
++      <PIN22>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN22>
++      <PIN23>
++        <NAME>[XTAL2]</NAME>
++        <TEXT/>
++      </PIN23>
++      <PIN24>
++        <NAME>[XTAL1]</NAME>
++        <TEXT/>
++      </PIN24>
++      <PIN25>
++        <NAME>[PD0:SCL:INT0:OC0B]</NAME>
++        <TEXT/>
++      </PIN25>
++      <PIN26>
++        <NAME>[PD1:SDA:INT1:OC2B]</NAME>
++        <TEXT/>
++      </PIN26>
++      <PIN27>
++        <NAME>[PD2:RXD1:INT2]</NAME>
++        <TEXT/>
++      </PIN27>
++      <PIN28>
++        <NAME>[PD3:TXD1:INT3]</NAME>
++        <TEXT/>
++      </PIN28>
++      <PIN29>
++        <NAME>[PD4:IC1]</NAME>
++        <TEXT/>
++      </PIN29>
++      <PIN30>
++        <NAME>[PD5:XCK1]</NAME>
++        <TEXT/>
++      </PIN30>
++      <PIN31>
++        <NAME>[PD6:T1]</NAME>
++        <TEXT/>
++      </PIN31>
++      <PIN32>
++        <NAME>[PD7:T2]</NAME>
++        <TEXT/>
++      </PIN32>
++      <PIN33>
++        <NAME>[PE0:'WR]</NAME>
++        <TEXT/>
++      </PIN33>
++      <PIN34>
++        <NAME>[PE1:'RD]</NAME>
++        <TEXT/>
++      </PIN34>
++      <PIN35>
++        <NAME>[PC0:A8]</NAME>
++        <TEXT/>
++      </PIN35>
++      <PIN36>
++        <NAME>[PC1:A9]</NAME>
++        <TEXT/>
++      </PIN36>
++      <PIN37>
++        <NAME>[PC2:A10]</NAME>
++        <TEXT/>
++      </PIN37>
++      <PIN38>
++        <NAME>[PC3:A11:T3]</NAME>
++        <TEXT/>
++      </PIN38>
++      <PIN39>
++        <NAME>[PC4:A12:OC3C]</NAME>
++        <TEXT/>
++      </PIN39>
++      <PIN40>
++        <NAME>[PC5:A13:OC3B]</NAME>
++        <TEXT/>
++      </PIN40>
++      <PIN41>
++        <NAME>[PC6:A14:OC3A]</NAME>
++        <TEXT/>
++      </PIN41>
++      <PIN42>
++        <NAME>[PC7:A15:IC3:CLKO]</NAME>
++        <TEXT/>
++      </PIN42>
++      <PIN43>
++        <NAME>[PG2:ALE:'HWB]</NAME>
++        <TEXT/>
++      </PIN43>
++      <PIN44>
++        <NAME>[PA7:AD7]</NAME>
++        <TEXT/>
++      </PIN44>
++      <PIN45>
++        <NAME>[PA6:AD6]</NAME>
++        <TEXT/>
++      </PIN45>
++      <PIN46>
++        <NAME>[PA5:AD5]</NAME>
++        <TEXT/>
++      </PIN46>
++      <PIN47>
++        <NAME>[PA4:AD4]</NAME>
++        <TEXT/>
++      </PIN47>
++      <PIN48>
++        <NAME>[PA3:AD3]</NAME>
++        <TEXT/>
++      </PIN48>
++      <PIN49>
++        <NAME>[PA2:AD2]</NAME>
++        <TEXT/>
++      </PIN49>
++      <PIN50>
++        <NAME>[PA1:AD1]</NAME>
++        <TEXT/>
++      </PIN50>
++      <PIN51>
++        <NAME>[PA0:AD0]</NAME>
++        <TEXT/>
++      </PIN51>
++      <PIN52>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN52>
++      <PIN53>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN53>
++      <PIN54>
++        <NAME>[PF7:ADC7:TDI]</NAME>
++        <TEXT/>
++      </PIN54>
++      <PIN55>
++        <NAME>[PF6:ADC6:TDO]</NAME>
++        <TEXT/>
++      </PIN55>
++      <PIN56>
++        <NAME>[PF5:ADC5:TMS]</NAME>
++        <TEXT/>
++      </PIN56>
++      <PIN57>
++        <NAME>[PF4:ADC4:TCK]</NAME>
++        <TEXT/>
++      </PIN57>
++      <PIN58>
++        <NAME>[PF3:ADC3]</NAME>
++        <TEXT/>
++      </PIN58>
++      <PIN59>
++        <NAME>[PF2:ADC2]</NAME>
++        <TEXT/>
++      </PIN59>
++      <PIN60>
++        <NAME>[PF1:ADC1]</NAME>
++        <TEXT/>
++      </PIN60>
++      <PIN61>
++        <NAME>[PF0:ADC0]</NAME>
++        <TEXT/>
++      </PIN61>
++      <PIN62>
++        <NAME>[AREF]</NAME>
++        <TEXT/>
++      </PIN62>
++      <PIN63>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN63>
++      <PIN64>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN64>
++    </TQFP>
++  </PACKAGE>
+   <MEMORY>
+     <ID>AVRSimMemory8bit.SimMemory8bit</ID>
+     <PROG_FLASH>131072</PROG_FLASH>
+diff -rupN xmlPartDescriptionOriginal/AT90USB162.xml xmlPartDescription/AT90USB162.xml
+--- xmlPartDescriptionOriginal/AT90USB162.xml	2010-11-12 22:18:28.626792605 -0500
++++ xmlPartDescription/AT90USB162.xml	2010-11-13 13:46:15.106580867 -0500
+@@ -743,6 +743,140 @@
+       <DEFINITION>Store Program Memory Read</DEFINITION>
+     </VECTOR29>
+   </INTERRUPT_VECTOR>
++   <PACKAGE>
++    <PACKAGES>[TQFP]</PACKAGES>
++    <TQFP>
++      <NMB_PIN>32</NMB_PIN>
++      <PIN1>
++        <NAME>[XTAL1]</NAME>
++        <TEXT/>
++      </PIN1>
++      <PIN2>
++        <NAME>[PC0:XTAL2]</NAME>
++        <TEXT/>
++      </PIN2>
++      <PIN3>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN3>
++      <PIN4>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN4>
++      <PIN5>
++        <NAME>[PC2:PCINT11]</NAME>
++        <TEXT/>
++      </PIN5>
++      <PIN6>
++        <NAME>[PD0:OC0B:INT0]</NAME>
++        <TEXT/>
++      </PIN6>
++      <PIN7>
++        <NAME>[PD1:AIN0:INT1]</NAME>
++        <TEXT/>
++      </PIN7>
++      <PIN8>
++        <NAME>[PD2:RXD1:AIN1:INT2]</NAME>
++        <TEXT/>
++      </PIN8>
++      <PIN9>
++        <NAME>[PD3:TXD1:INT3]</NAME>
++        <TEXT/>
++      </PIN9>
++      <PIN10>
++        <NAME>[PD4:INT5]</NAME>
++        <TEXT/>
++      </PIN10>
++      <PIN11>
++        <NAME>[PD5:XCK1:PCINT12]</NAME>
++        <TEXT/>
++      </PIN11>
++      <PIN12>
++        <NAME>[PD6:'RTS:INT6]</NAME>
++        <TEXT/>
++      </PIN12>
++      <PIN13>
++        <NAME>[PD7:'CTS:'HWB:T0:INT7]</NAME>
++        <TEXT/>
++      </PIN13>
++      <PIN14>
++        <NAME>[PB0:'SS:PCINT0]</NAME>
++        <TEXT/>
++      </PIN14>
++      <PIN15>
++        <NAME>[PB1:SCLK:PCINT1]</NAME>
++        <TEXT/>
++      </PIN15>
++      <PIN16>
++        <NAME>[PB2:PDI:MOSI:PCINT2]</NAME>
++        <TEXT/>
++      </PIN16>
++      <PIN17>
++        <NAME>[PB3:PDO:MISO:PCINT3]</NAME>
++        <TEXT/>
++      </PIN17>
++      <PIN18>
++        <NAME>[PB4:T1:PCINT4]</NAME>
++        <TEXT/>
++      </PIN18>
++      <PIN19>
++        <NAME>[PB5:PCINT5]</NAME>
++        <TEXT/>
++      </PIN19>
++      <PIN20>
++        <NAME>[PB6:PCINT6]</NAME>
++        <TEXT/>
++      </PIN20>
++      <PIN21>
++        <NAME>[PB7:PCINT7:OC0A:OC1C]</NAME>
++        <TEXT/>
++      </PIN21>
++      <PIN22>
++        <NAME>[PC7:INT4:ICP1:CLKO]</NAME>
++        <TEXT/>
++      </PIN22>
++      <PIN23>
++        <NAME>[PC6:OC1A:PCINT8]</NAME>
++        <TEXT/>
++      </PIN23>
++      <PIN24>
++        <NAME>[PC1:'RESET:dW]</NAME>
++        <TEXT/>
++      </PIN24>
++      <PIN25>
++        <NAME>[PC5:PCINT9:OC1B]</NAME>
++        <TEXT/>
++      </PIN25>
++      <PIN26>
++        <NAME>[PC4:PCINT10]</NAME>
++        <TEXT/>
++      </PIN26>
++      <PIN27>
++        <NAME>[UCAP]</NAME>
++        <TEXT/>
++      </PIN27>
++      <PIN28>
++        <NAME>[UGND]</NAME>
++        <TEXT/>
++      </PIN28>
++      <PIN29>
++        <NAME>[D:SCK]</NAME>
++        <TEXT/>
++      </PIN29>
++      <PIN30>
++        <NAME>[D-:SDATA]</NAME>
++        <TEXT/>
++      </PIN30>
++      <PIN31>
++        <NAME>[UVCC]</NAME>
++        <TEXT/>
++      </PIN31>
++      <PIN32>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN32>
++    </TQFP>
++  </PACKAGE>
+   <MEMORY>
+     <ID>AVRSimMemory8bit.SimMemory8bit</ID>
+     <PROG_FLASH>16384</PROG_FLASH>
+diff -rupN xmlPartDescriptionOriginal/AT90USB646.xml xmlPartDescription/AT90USB646.xml
+--- xmlPartDescriptionOriginal/AT90USB646.xml	2010-11-12 22:18:28.640792445 -0500
++++ xmlPartDescription/AT90USB646.xml	2010-11-13 13:47:03.712580978 -0500
+@@ -318,6 +318,268 @@
+     <FlashPageSize>256</FlashPageSize>
+     <EepromPageSize>8</EepromPageSize>
+   </PROGRAMMING>
++  <PACKAGE>
++    <PACKAGES>[TQFP]</PACKAGES>
++    <TQFP>
++      <NMB_PIN>64</NMB_PIN>
++      <PIN1>
++        <NAME>[PE6:INT6:AIN0]</NAME>
++        <TEXT/>
++      </PIN1>
++      <PIN2>
++        <NAME>[PE7INT7:AIN1:VCON]</NAME>
++        <TEXT/>
++      </PIN2>
++      <PIN3>
++        <NAME>[UVCC]</NAME>
++        <TEXT/>
++      </PIN3>
++      <PIN4>
++        <NAME>[D-]</NAME>
++        <TEXT/>
++      </PIN4>
++      <PIN5>
++        <NAME>[D]</NAME>
++        <TEXT/>
++      </PIN5>
++      <PIN6>
++        <NAME>[UGND]</NAME>
++        <TEXT/>
++      </PIN6>
++      <PIN7>
++        <NAME>[UCAP]</NAME>
++        <TEXT/>
++      </PIN7>
++      <PIN8>
++        <NAME>[VBUS]</NAME>
++        <TEXT/>
++      </PIN8>
++      <PIN9>
++        <NAME>[PE3:IUID]</NAME>
++        <TEXT/>
++      </PIN9>
++      <PIN10>
++        <NAME>[PB0:'SS:PCINT0]</NAME>
++        <TEXT/>
++      </PIN10>
++      <PIN11>
++        <NAME>[PB1:SCK:PCINT1]</NAME>
++        <TEXT/>
++      </PIN11>
++      <PIN12>
++        <NAME>[PB2:MOSI:PCINT2:PDI]</NAME>
++        <TEXT/>
++      </PIN12>
++      <PIN13>
++        <NAME>[PB3:MISO:PCINT3:PDO]</NAME>
++        <TEXT/>
++      </PIN13>
++      <PIN14>
++        <NAME>[PB4:OC2A:PCINT4]</NAME>
++        <TEXT/>
++      </PIN14>
++      <PIN15>
++        <NAME>[PB5:OC1A:PCINT5]</NAME>
++        <TEXT/>
++      </PIN15>
++      <PIN16>
++        <NAME>[PB6:OC1B:PCINT6]</NAME>
++        <TEXT/>
++      </PIN16>
++      <PIN17>
++        <NAME>[PB7:OC0A:OC1C:PCINT7]</NAME>
++        <TEXT/>
++      </PIN17>
++      <PIN18>
++        <NAME>[PE4:INT4:TOSC1]</NAME>
++        <TEXT/>
++      </PIN18>
++      <PIN19>
++        <NAME>[PE5:INT5:TOSC2]</NAME>
++        <TEXT/>
++      </PIN19>
++      <PIN20>
++        <NAME>['RESET]</NAME>
++        <TEXT/>
++      </PIN20>
++      <PIN21>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN21>
++      <PIN22>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN22>
++      <PIN23>
++        <NAME>[XTAL2]</NAME>
++        <TEXT/>
++      </PIN23>
++      <PIN24>
++        <NAME>[XTAL1]</NAME>
++        <TEXT/>
++      </PIN24>
++      <PIN25>
++        <NAME>[PD0:SCL:INT0:OC0B]</NAME>
++        <TEXT/>
++      </PIN25>
++      <PIN26>
++        <NAME>[PD1:SDA:INT1:OC2B]</NAME>
++        <TEXT/>
++      </PIN26>
++      <PIN27>
++        <NAME>[PD2:RXD1:INT2]</NAME>
++        <TEXT/>
++      </PIN27>
++      <PIN28>
++        <NAME>[PD3:TXD1:INT3]</NAME>
++        <TEXT/>
++      </PIN28>
++      <PIN29>
++        <NAME>[PD4:IC1]</NAME>
++        <TEXT/>
++      </PIN29>
++      <PIN30>
++        <NAME>[PD5:XCK1]</NAME>
++        <TEXT/>
++      </PIN30>
++      <PIN31>
++        <NAME>[PD6:T1]</NAME>
++        <TEXT/>
++      </PIN31>
++      <PIN32>
++        <NAME>[PD7:T2]</NAME>
++        <TEXT/>
++      </PIN32>
++      <PIN33>
++        <NAME>[PE0:'WR]</NAME>
++        <TEXT/>
++      </PIN33>
++      <PIN34>
++        <NAME>[PE1:'RD]</NAME>
++        <TEXT/>
++      </PIN34>
++      <PIN35>
++        <NAME>[PC0:A8]</NAME>
++        <TEXT/>
++      </PIN35>
++      <PIN36>
++        <NAME>[PC1:A9]</NAME>
++        <TEXT/>
++      </PIN36>
++      <PIN37>
++        <NAME>[PC2:A10]</NAME>
++        <TEXT/>
++      </PIN37>
++      <PIN38>
++        <NAME>[PC3:A11:T3]</NAME>
++        <TEXT/>
++      </PIN38>
++      <PIN39>
++        <NAME>[PC4:A12:OC3C]</NAME>
++        <TEXT/>
++      </PIN39>
++      <PIN40>
++        <NAME>[PC5:A13:OC3B]</NAME>
++        <TEXT/>
++      </PIN40>
++      <PIN41>
++        <NAME>[PC6:A14:OC3A]</NAME>
++        <TEXT/>
++      </PIN41>
++      <PIN42>
++        <NAME>[PC7:A15:IC3:CLKO]</NAME>
++        <TEXT/>
++      </PIN42>
++      <PIN43>
++        <NAME>[PG2:ALE:'HWB]</NAME>
++        <TEXT/>
++      </PIN43>
++      <PIN44>
++        <NAME>[PA7:AD7]</NAME>
++        <TEXT/>
++      </PIN44>
++      <PIN45>
++        <NAME>[PA6:AD6]</NAME>
++        <TEXT/>
++      </PIN45>
++      <PIN46>
++        <NAME>[PA5:AD5]</NAME>
++        <TEXT/>
++      </PIN46>
++      <PIN47>
++        <NAME>[PA4:AD4]</NAME>
++        <TEXT/>
++      </PIN47>
++      <PIN48>
++        <NAME>[PA3:AD3]</NAME>
++        <TEXT/>
++      </PIN48>
++      <PIN49>
++        <NAME>[PA2:AD2]</NAME>
++        <TEXT/>
++      </PIN49>
++      <PIN50>
++        <NAME>[PA1:AD1]</NAME>
++        <TEXT/>
++      </PIN50>
++      <PIN51>
++        <NAME>[PA0:AD0]</NAME>
++        <TEXT/>
++      </PIN51>
++      <PIN52>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN52>
++      <PIN53>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN53>
++      <PIN54>
++        <NAME>[PF7:ADC7:TDI]</NAME>
++        <TEXT/>
++      </PIN54>
++      <PIN55>
++        <NAME>[PF6:ADC6:TDO]</NAME>
++        <TEXT/>
++      </PIN55>
++      <PIN56>
++        <NAME>[PF5:ADC5:TMS]</NAME>
++        <TEXT/>
++      </PIN56>
++      <PIN57>
++        <NAME>[PF4:ADC4:TCK]</NAME>
++        <TEXT/>
++      </PIN57>
++      <PIN58>
++        <NAME>[PF3:ADC3]</NAME>
++        <TEXT/>
++      </PIN58>
++      <PIN59>
++        <NAME>[PF2:ADC2]</NAME>
++        <TEXT/>
++      </PIN59>
++      <PIN60>
++        <NAME>[PF1:ADC1]</NAME>
++        <TEXT/>
++      </PIN60>
++      <PIN61>
++        <NAME>[PF0:ADC0]</NAME>
++        <TEXT/>
++      </PIN61>
++      <PIN62>
++        <NAME>[AREF]</NAME>
++        <TEXT/>
++      </PIN62>
++      <PIN63>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN63>
++      <PIN64>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN64>
++    </TQFP>
++  </PACKAGE>
+   <ADMIN>
+     <PART_NAME>AT90USB646</PART_NAME>
+     <SPEED>16MHZ</SPEED>
+diff -rupN xmlPartDescriptionOriginal/AT90USB647.xml xmlPartDescription/AT90USB647.xml
+--- xmlPartDescriptionOriginal/AT90USB647.xml	2010-11-12 22:18:28.611907947 -0500
++++ xmlPartDescription/AT90USB647.xml	2010-11-13 13:47:40.469580978 -0500
+@@ -211,6 +211,268 @@
+       <DEFINITION>Store Program Memory Read</DEFINITION>
+     </VECTOR38>
+   </INTERRUPT_VECTOR>
++  <PACKAGE>
++    <PACKAGES>[TQFP]</PACKAGES>
++    <TQFP>
++      <NMB_PIN>64</NMB_PIN>
++      <PIN1>
++        <NAME>[PE6:INT6:AIN0]</NAME>
++        <TEXT/>
++      </PIN1>
++      <PIN2>
++        <NAME>[PE7INT7:AIN1:VCON]</NAME>
++        <TEXT/>
++      </PIN2>
++      <PIN3>
++        <NAME>[UVCC]</NAME>
++        <TEXT/>
++      </PIN3>
++      <PIN4>
++        <NAME>[D-]</NAME>
++        <TEXT/>
++      </PIN4>
++      <PIN5>
++        <NAME>[D]</NAME>
++        <TEXT/>
++      </PIN5>
++      <PIN6>
++        <NAME>[UGND]</NAME>
++        <TEXT/>
++      </PIN6>
++      <PIN7>
++        <NAME>[UCAP]</NAME>
++        <TEXT/>
++      </PIN7>
++      <PIN8>
++        <NAME>[VBUS]</NAME>
++        <TEXT/>
++      </PIN8>
++      <PIN9>
++        <NAME>[PE3:IUID]</NAME>
++        <TEXT/>
++      </PIN9>
++      <PIN10>
++        <NAME>[PB0:'SS:PCINT0]</NAME>
++        <TEXT/>
++      </PIN10>
++      <PIN11>
++        <NAME>[PB1:SCK:PCINT1]</NAME>
++        <TEXT/>
++      </PIN11>
++      <PIN12>
++        <NAME>[PB2:MOSI:PCINT2:PDI]</NAME>
++        <TEXT/>
++      </PIN12>
++      <PIN13>
++        <NAME>[PB3:MISO:PCINT3:PDO]</NAME>
++        <TEXT/>
++      </PIN13>
++      <PIN14>
++        <NAME>[PB4:OC2A:PCINT4]</NAME>
++        <TEXT/>
++      </PIN14>
++      <PIN15>
++        <NAME>[PB5:OC1A:PCINT5]</NAME>
++        <TEXT/>
++      </PIN15>
++      <PIN16>
++        <NAME>[PB6:OC1B:PCINT6]</NAME>
++        <TEXT/>
++      </PIN16>
++      <PIN17>
++        <NAME>[PB7:OC0A:OC1C:PCINT7]</NAME>
++        <TEXT/>
++      </PIN17>
++      <PIN18>
++        <NAME>[PE4:INT4:TOSC1]</NAME>
++        <TEXT/>
++      </PIN18>
++      <PIN19>
++        <NAME>[PE5:INT5:TOSC2]</NAME>
++        <TEXT/>
++      </PIN19>
++      <PIN20>
++        <NAME>['RESET]</NAME>
++        <TEXT/>
++      </PIN20>
++      <PIN21>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN21>
++      <PIN22>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN22>
++      <PIN23>
++        <NAME>[XTAL2]</NAME>
++        <TEXT/>
++      </PIN23>
++      <PIN24>
++        <NAME>[XTAL1]</NAME>
++        <TEXT/>
++      </PIN24>
++      <PIN25>
++        <NAME>[PD0:SCL:INT0:OC0B]</NAME>
++        <TEXT/>
++      </PIN25>
++      <PIN26>
++        <NAME>[PD1:SDA:INT1:OC2B]</NAME>
++        <TEXT/>
++      </PIN26>
++      <PIN27>
++        <NAME>[PD2:RXD1:INT2]</NAME>
++        <TEXT/>
++      </PIN27>
++      <PIN28>
++        <NAME>[PD3:TXD1:INT3]</NAME>
++        <TEXT/>
++      </PIN28>
++      <PIN29>
++        <NAME>[PD4:IC1]</NAME>
++        <TEXT/>
++      </PIN29>
++      <PIN30>
++        <NAME>[PD5:XCK1]</NAME>
++        <TEXT/>
++      </PIN30>
++      <PIN31>
++        <NAME>[PD6:T1]</NAME>
++        <TEXT/>
++      </PIN31>
++      <PIN32>
++        <NAME>[PD7:T2]</NAME>
++        <TEXT/>
++      </PIN32>
++      <PIN33>
++        <NAME>[PE0:'WR]</NAME>
++        <TEXT/>
++      </PIN33>
++      <PIN34>
++        <NAME>[PE1:'RD]</NAME>
++        <TEXT/>
++      </PIN34>
++      <PIN35>
++        <NAME>[PC0:A8]</NAME>
++        <TEXT/>
++      </PIN35>
++      <PIN36>
++        <NAME>[PC1:A9]</NAME>
++        <TEXT/>
++      </PIN36>
++      <PIN37>
++        <NAME>[PC2:A10]</NAME>
++        <TEXT/>
++      </PIN37>
++      <PIN38>
++        <NAME>[PC3:A11:T3]</NAME>
++        <TEXT/>
++      </PIN38>
++      <PIN39>
++        <NAME>[PC4:A12:OC3C]</NAME>
++        <TEXT/>
++      </PIN39>
++      <PIN40>
++        <NAME>[PC5:A13:OC3B]</NAME>
++        <TEXT/>
++      </PIN40>
++      <PIN41>
++        <NAME>[PC6:A14:OC3A]</NAME>
++        <TEXT/>
++      </PIN41>
++      <PIN42>
++        <NAME>[PC7:A15:IC3:CLKO]</NAME>
++        <TEXT/>
++      </PIN42>
++      <PIN43>
++        <NAME>[PG2:ALE:'HWB]</NAME>
++        <TEXT/>
++      </PIN43>
++      <PIN44>
++        <NAME>[PA7:AD7]</NAME>
++        <TEXT/>
++      </PIN44>
++      <PIN45>
++        <NAME>[PA6:AD6]</NAME>
++        <TEXT/>
++      </PIN45>
++      <PIN46>
++        <NAME>[PA5:AD5]</NAME>
++        <TEXT/>
++      </PIN46>
++      <PIN47>
++        <NAME>[PA4:AD4]</NAME>
++        <TEXT/>
++      </PIN47>
++      <PIN48>
++        <NAME>[PA3:AD3]</NAME>
++        <TEXT/>
++      </PIN48>
++      <PIN49>
++        <NAME>[PA2:AD2]</NAME>
++        <TEXT/>
++      </PIN49>
++      <PIN50>
++        <NAME>[PA1:AD1]</NAME>
++        <TEXT/>
++      </PIN50>
++      <PIN51>
++        <NAME>[PA0:AD0]</NAME>
++        <TEXT/>
++      </PIN51>
++      <PIN52>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN52>
++      <PIN53>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN53>
++      <PIN54>
++        <NAME>[PF7:ADC7:TDI]</NAME>
++        <TEXT/>
++      </PIN54>
++      <PIN55>
++        <NAME>[PF6:ADC6:TDO]</NAME>
++        <TEXT/>
++      </PIN55>
++      <PIN56>
++        <NAME>[PF5:ADC5:TMS]</NAME>
++        <TEXT/>
++      </PIN56>
++      <PIN57>
++        <NAME>[PF4:ADC4:TCK]</NAME>
++        <TEXT/>
++      </PIN57>
++      <PIN58>
++        <NAME>[PF3:ADC3]</NAME>
++        <TEXT/>
++      </PIN58>
++      <PIN59>
++        <NAME>[PF2:ADC2]</NAME>
++        <TEXT/>
++      </PIN59>
++      <PIN60>
++        <NAME>[PF1:ADC1]</NAME>
++        <TEXT/>
++      </PIN60>
++      <PIN61>
++        <NAME>[PF0:ADC0]</NAME>
++        <TEXT/>
++      </PIN61>
++      <PIN62>
++        <NAME>[AREF]</NAME>
++        <TEXT/>
++      </PIN62>
++      <PIN63>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN63>
++      <PIN64>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN64>
++    </TQFP>
++  </PACKAGE>
+   <LOCKBIT>
+     <ICON/>
+     <ID/>
+diff -rupN xmlPartDescriptionOriginal/AT90USB82.xml xmlPartDescription/AT90USB82.xml
+--- xmlPartDescriptionOriginal/AT90USB82.xml	2010-11-12 22:18:28.633792367 -0500
++++ xmlPartDescription/AT90USB82.xml	2010-11-13 13:48:08.677705964 -0500
+@@ -725,6 +725,142 @@
+       <DEFINITION>Store Program Memory Read</DEFINITION>
+     </VECTOR29>
+   </INTERRUPT_VECTOR>
++
++   </INTERRUPT_VECTOR>
++  <PACKAGE>
++    <PACKAGES>[TQFP]</PACKAGES>
++    <TQFP>
++      <NMB_PIN>32</NMB_PIN>
++      <PIN1>
++        <NAME>[XTAL1]</NAME>
++        <TEXT/>
++      </PIN1>
++      <PIN2>
++        <NAME>[PC0:XTAL2]</NAME>
++        <TEXT/>
++      </PIN2>
++      <PIN3>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN3>
++      <PIN4>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN4>
++      <PIN5>
++        <NAME>[PC2:PCINT11]</NAME>
++        <TEXT/>
++      </PIN5>
++      <PIN6>
++        <NAME>[PD0:OC0B:INT0]</NAME>
++        <TEXT/>
++      </PIN6>
++      <PIN7>
++        <NAME>[PD1:AIN0:INT1]</NAME>
++        <TEXT/>
++      </PIN7>
++      <PIN8>
++        <NAME>[PD2:RXD1:AIN1:INT2]</NAME>
++        <TEXT/>
++      </PIN8>
++      <PIN9>
++        <NAME>[PD3:TXD1:INT3]</NAME>
++        <TEXT/>
++      </PIN9>
++      <PIN10>
++        <NAME>[PD4:INT5]</NAME>
++        <TEXT/>
++      </PIN10>
++      <PIN11>
++        <NAME>[PD5:XCK1:PCINT12]</NAME>
++        <TEXT/>
++      </PIN11>
++      <PIN12>
++        <NAME>[PD6:'RTS:INT6]</NAME>
++        <TEXT/>
++      </PIN12>
++      <PIN13>
++        <NAME>[PD7:'CTS:'HWB:T0:INT7]</NAME>
++        <TEXT/>
++      </PIN13>
++      <PIN14>
++        <NAME>[PB0:'SS:PCINT0]</NAME>
++        <TEXT/>
++      </PIN14>
++      <PIN15>
++        <NAME>[PB1:SCLK:PCINT1]</NAME>
++        <TEXT/>
++      </PIN15>
++      <PIN16>
++        <NAME>[PB2:PDI:MOSI:PCINT2]</NAME>
++        <TEXT/>
++      </PIN16>
++      <PIN17>
++        <NAME>[PB3:PDO:MISO:PCINT3]</NAME>
++        <TEXT/>
++      </PIN17>
++      <PIN18>
++        <NAME>[PB4:T1:PCINT4]</NAME>
++        <TEXT/>
++      </PIN18>
++      <PIN19>
++        <NAME>[PB5:PCINT5]</NAME>
++        <TEXT/>
++      </PIN19>
++      <PIN20>
++        <NAME>[PB6:PCINT6]</NAME>
++        <TEXT/>
++      </PIN20>
++      <PIN21>
++        <NAME>[PB7:PCINT7:OC0A:OC1C]</NAME>
++        <TEXT/>
++      </PIN21>
++      <PIN22>
++        <NAME>[PC7:INT4:ICP1:CLKO]</NAME>
++        <TEXT/>
++      </PIN22>
++      <PIN23>
++        <NAME>[PC6:OC1A:PCINT8]</NAME>
++        <TEXT/>
++      </PIN23>
++      <PIN24>
++        <NAME>[PC1:'RESET:dW]</NAME>
++        <TEXT/>
++      </PIN24>
++      <PIN25>
++        <NAME>[PC5:PCINT9:OC1B]</NAME>
++        <TEXT/>
++      </PIN25>
++      <PIN26>
++        <NAME>[PC4:PCINT10]</NAME>
++        <TEXT/>
++      </PIN26>
++      <PIN27>
++        <NAME>[UCAP]</NAME>
++        <TEXT/>
++      </PIN27>
++      <PIN28>
++        <NAME>[UGND]</NAME>
++        <TEXT/>
++      </PIN28>
++      <PIN29>
++        <NAME>[D:SCK]</NAME>
++        <TEXT/>
++      </PIN29>
++      <PIN30>
++        <NAME>[D-:SDATA]</NAME>
++        <TEXT/>
++      </PIN30>
++      <PIN31>
++        <NAME>[UVCC]</NAME>
++        <TEXT/>
++      </PIN31>
++      <PIN32>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN32>
++    </TQFP>
++  </PACKAGE>
+   <PROGRAMMING>
+     <ISPInterface>
+       <FuseReadMask>0xff,0xff</FuseReadMask>
+diff -rupN xmlPartDescriptionOriginal/ATmega1280.xml xmlPartDescription/ATmega1280.xml
+--- xmlPartDescriptionOriginal/ATmega1280.xml	2010-11-12 22:18:28.664792373 -0500
++++ xmlPartDescription/ATmega1280.xml	2010-11-13 13:48:42.086955722 -0500
+@@ -436,7 +436,7 @@
+         <DESCRIPTION/>
+       </PIN1>
+       <PIN2>
+-        <PIN_NAME>[RXD:PCINT8]</PIN_NAME>
++        <PIN_NAME>[RXD0:PCINT8]</PIN_NAME>
+         <ALT_NAME>[PE0]</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN2>
+@@ -446,7 +446,7 @@
+         <DESCRIPTION/>
+       </PIN3>
+       <PIN4>
+-        <PIN_NAME>[XCK:AIN0]</PIN_NAME>
++        <PIN_NAME>[XCK0:AIN0]</PIN_NAME>
+         <ALT_NAME>[PE2]</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN4>
+diff -rupN xmlPartDescriptionOriginal/ATmega1284P.xml xmlPartDescription/ATmega1284P.xml
+--- xmlPartDescriptionOriginal/ATmega1284P.xml	2010-11-12 22:18:28.593808051 -0500
++++ xmlPartDescription/ATmega1284P.xml	2010-11-13 13:49:27.051715546 -0500
+@@ -2056,11 +2056,11 @@
+         <TEXT/>
+       </PIN8>
+       <PIN9>
+-        <NAME>[PD0:RXD:PCINT24]</NAME>
++        <NAME>[PD0:RXD0:PCINT24]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART Receiver is enabled, this pin is configured as an input, regard-less of the value of DDD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN9>
+       <PIN10>
+-        <NAME>[PD1:TXD:PCINT25]</NAME>
++        <NAME>[PD1:TXD0:PCINT25]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART Transmitter is enabled, this pin is configured as an output, regardless of the value of DDD1.</TEXT>
+       </PIN10>
+       <PIN11>
+@@ -2180,7 +2180,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:XCK:T0:PCINT8]</NAME>
++        <NAME>[PB0:XCK0:T0:PCINT8]</NAME>
+         <TEXT>T0, Timer/Counter0 counter source. See the timer description for further details. XCK, USART external clock. See the USART description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+diff -rupN xmlPartDescriptionOriginal/ATmega1284.xml xmlPartDescription/ATmega1284.xml
+--- xmlPartDescriptionOriginal/ATmega1284.xml	2010-11-12 22:18:28.619907813 -0500
++++ xmlPartDescription/ATmega1284.xml	2010-11-13 13:49:49.340580927 -0500
+@@ -2036,11 +2036,11 @@
+         <TEXT/>
+       </PIN8>
+       <PIN9>
+-        <NAME>[PD0:RXD:PCINT24]</NAME>
++        <NAME>[PD0:RXD0:PCINT24]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART Receiver is enabled, this pin is configured as an input, regard-less of the value of DDD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN9>
+       <PIN10>
+-        <NAME>[PD1:TXD:PCINT25]</NAME>
++        <NAME>[PD1:TXD0:PCINT25]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART Transmitter is enabled, this pin is configured as an output, regardless of the value of DDD1.</TEXT>
+       </PIN10>
+       <PIN11>
+@@ -2160,7 +2160,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:XCK:T0:PCINT8]</NAME>
++        <NAME>[PB0:XCK0:T0:PCINT8]</NAME>
+         <TEXT>T0, Timer/Counter0 counter source. See the timer description for further details. XCK, USART external clock. See the USART description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+diff -rupN xmlPartDescriptionOriginal/ATmega128RFA1.xml xmlPartDescription/ATmega128RFA1.xml
+--- xmlPartDescriptionOriginal/ATmega128RFA1.xml	2010-11-12 22:18:28.627792188 -0500
++++ xmlPartDescription/ATmega128RFA1.xml	2010-11-13 13:50:09.088830736 -0500
+@@ -613,7 +613,7 @@
+         <TEXT>Digital ground supply (IO)</TEXT>
+       </PIN35>
+       <PIN36>
+-        <NAME>[PB0:SSN:PCINT0]</NAME>
++        <NAME>[PB0:'SN:PCINT0]</NAME>
+         <TEXT>SSN: Slave port select input. When the SPI is enabled as a slave, this pin is configured as an input regardless of the setting of DDB0. As a slave, the SPI is activated when this pin is driven low. When the SPI is enabled as a master, the data direction of this pin is controlled by DDB0. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB0 bit.</TEXT>
+       </PIN36>
+       <PIN37>
+diff -rupN xmlPartDescriptionOriginal/ATmega161comp.xml xmlPartDescription/ATmega161comp.xml
+--- xmlPartDescriptionOriginal/ATmega161comp.xml	2010-11-12 22:18:28.591800476 -0500
++++ xmlPartDescription/ATmega161comp.xml	2010-11-13 13:50:43.960955597 -0500
+@@ -243,7 +243,7 @@
+         <TEXT/>
+       </PIN28>
+       <PIN29>
+-        <NAME>[PE0:ICP/INT2]</NAME>
++        <NAME>[PE0:ICP:INT2]</NAME>
+         <TEXT/>
+       </PIN29>
+       <PIN30>
+@@ -287,11 +287,11 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:OC0/T0]</NAME>
++        <NAME>[PB0:OC0:T0]</NAME>
+         <TEXT>T0: Timer/Counter0 counter source. See the timer description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+-        <NAME>[PB1:OC2/T1]</NAME>
++        <NAME>[PB1:OC2:T1]</NAME>
+         <TEXT>T1: Timer/Counter1 counter source. See the timer description for further details</TEXT>
+       </PIN41>
+       <PIN42>
+diff -rupN xmlPartDescriptionOriginal/ATmega161.xml xmlPartDescription/ATmega161.xml
+--- xmlPartDescriptionOriginal/ATmega161.xml	2010-11-12 22:18:28.648792306 -0500
++++ xmlPartDescription/ATmega161.xml	2010-11-13 13:51:23.928705991 -0500
+@@ -879,7 +879,7 @@
+         <TEXT/>
+       </PIN4>
+       <PIN5>
+-        <NAME>[PD0:RXD]</NAME>
++        <NAME>[PD0:RXD0]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART receiver is enabled, this pin is configured as an input, regardless of the value of DDRD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN5>
+       <PIN6>
+@@ -887,7 +887,7 @@
+         <TEXT/>
+       </PIN6>
+       <PIN7>
+-        <NAME>[PD1:TXD]</NAME>
++        <NAME>[PD1:TXD0]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART transmitter is enabled, this pin is configured as an output, regardless of the value of DDRD1.</TEXT>
+       </PIN7>
+       <PIN8>
+@@ -975,7 +975,7 @@
+         <TEXT/>
+       </PIN28>
+       <PIN29>
+-        <NAME>[PE0:ICP/INT2]</NAME>
++        <NAME>[PE0:ICP:INT2]</NAME>
+         <TEXT/>
+       </PIN29>
+       <PIN30>
+@@ -1019,11 +1019,11 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:OC0/T0]</NAME>
++        <NAME>[PB0:OC0:T0]</NAME>
+         <TEXT>T0: Timer/Counter0 counter source. See the timer description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+-        <NAME>[PB1:OC2/T1]</NAME>
++        <NAME>[PB1:OC2:T1]</NAME>
+         <TEXT>T1: Timer/Counter1 counter source. See the timer description for further details</TEXT>
+       </PIN41>
+       <PIN42>
+diff -rupN xmlPartDescriptionOriginal/ATmega162.xml xmlPartDescription/ATmega162.xml
+--- xmlPartDescriptionOriginal/ATmega162.xml	2010-11-12 22:18:28.667792763 -0500
++++ xmlPartDescription/ATmega162.xml	2010-11-13 13:53:40.850955584 -0500
+@@ -1729,7 +1729,7 @@
+         <TEXT>MISO:Master data input,slave data output pin for SPI channel.When the SPI is enabled as a master,this pin is configured as an input regardless of the setting of DDB6.When the SPI is enabled as a slave,the data direction of this pin is controlled by DDB6.When the pin is forced by the SPI to be an input,the pull-up can still be controlled by the PORTB6 bit.   </TEXT>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PB7_SCK]</NAME>
++        <NAME>[PB7:SCK]</NAME>
+         <TEXT>SCK:Master clock output,slave clock input pin for SPI channel.When the SPI is enabled as a slave,this pin is configured as an input regardless of the setting of DDB7. When the SPI is enabled as a master,the data direction of this pin is controlled by DDB7.When the pin is forced by the SPI to be an input,the pull-up can still be controlled by the PORTB7 bit.      </TEXT>
+       </PIN3>
+       <PIN4>
+@@ -1737,7 +1737,7 @@
+         <TEXT/>
+       </PIN4>
+       <PIN5>
+-        <NAME>[PDO:RXD0]</NAME>
++        <NAME>[PD0:RXD0]</NAME>
+         <TEXT>RXD0,Receive Data (Data input pin for USART0).When the USART0 receiver is enabled this pin is configured as an input regardless of the value of DDD0.When USART0 forces this pin to be an input,the pull-up can still be controlled by the PORTD0 bit.     </TEXT>
+       </PIN5>
+       <PIN6>
+@@ -1753,7 +1753,7 @@
+         <TEXT>INT0,External Interrupt source 0:The PD2 pin can serve as an external interrupt source. XCK1,USART1 external clock.The Data Direction Register (DDD2)controls whether the clock is output (DDD2 set)or input (DDD2 cleared).The XCK1 pin is active only when USART1 operates in synchronous mode.      </TEXT>
+       </PIN8>
+       <PIN9>
+-        <NAME>[PD3:INT1:XCK1]</NAME>
++        <NAME>[PD3:INT1:ICP3]</NAME>
+         <TEXT>INT1,External Interrupt source 1:The PD3 pin can serve as an external interrupt source. ICP3 -Input Capture Pin:The PD3 pin can act as an input capture pin for Timer/Counter3.     </TEXT>
+       </PIN9>
+       <PIN10>
+@@ -1769,11 +1769,11 @@
+         <TEXT>WR is the external data memory write control strobe.</TEXT>
+       </PIN12>
+       <PIN13>
+-        <NAME>[INT1:ICP3:PD3]</NAME>
++        <NAME>[PD7:'RD]</NAME>
+         <TEXT/>
+       </PIN13>
+       <PIN14>
+-        <NAME>[TOSC1:XCK0:OC3A]</NAME>
++        <NAME>[XTAL2]</NAME>
+         <TEXT/>
+       </PIN14>
+       <PIN15>
+diff -rupN xmlPartDescriptionOriginal/ATmega163.xml xmlPartDescription/ATmega163.xml
+--- xmlPartDescriptionOriginal/ATmega163.xml	2010-11-12 22:18:28.671792362 -0500
++++ xmlPartDescription/ATmega163.xml	2010-11-13 13:53:54.255581005 -0500
+@@ -882,7 +882,7 @@
+         <TEXT>MISO: Master data input, slave data output pin for SPI channel. When the SPI is enabled as a master, this pin is configured as an input regardless of the setting of DDB6. When the SPI is enabled as a slave, the data direction of this pin is controlled by DDB6. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB6 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PB7_SCK]</NAME>
++        <NAME>[PB7:SCK]</NAME>
+         <TEXT>SCK: Master clock output, slave clock input pin for SPI channel. When the SPI is enabled as a slave, this pin is configured as an input regardless of the setting of DDB7. When the SPI is enabled as a master, the data direction of this pin is con-trolled by DDB7. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB7 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN3>
+       <PIN4>
+diff -rupN xmlPartDescriptionOriginal/ATmega164A.xml xmlPartDescription/ATmega164A.xml
+--- xmlPartDescriptionOriginal/ATmega164A.xml	2010-11-12 22:18:28.647792381 -0500
++++ xmlPartDescription/ATmega164A.xml	2010-11-13 13:55:00.229725952 -0500
+@@ -1396,23 +1396,23 @@
+         <TEXT/>
+       </PIN8>
+       <PIN9>
+-        <NAME>[PD0:RXD:PCINT24]</NAME>
++        <NAME>[PD0:RXD0:PCINT24]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART Receiver is enabled, this pin is configured as an input, regard-less of the value of DDD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN9>
+       <PIN10>
+-        <NAME>[PD1:TXD:PCINT25]</NAME>
++        <NAME>[PD1:TXD0:PCINT25]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART Transmitter is enabled, this pin is configured as an output, regardless of the value of DDD1.</TEXT>
+       </PIN10>
+       <PIN11>
+-        <NAME>[PD2:INT0:PCINT26]</NAME>
++        <NAME>[PD2:INT0:RXD1:PCINT26]</NAME>
+         <TEXT>INT0, External Interrupt source 0: The PD2 pin can serve as an external interrupt source to the MCU. See the interrupt description for further details and how to enable the source.</TEXT>
+       </PIN11>
+       <PIN12>
+-        <NAME>[PD3:INT1:PCINT27]</NAME>
++        <NAME>[PD3:INT1:TXD1PCINT27]</NAME>
+         <TEXT>INT1, External Interrupt source 1: The PD3 pin can serve as an external interrupt source to the MCU. See the interrupt description for further details and how to enable the source.</TEXT>
+       </PIN12>
+       <PIN13>
+-        <NAME>[PD4:OC1B:PCINT28]</NAME>
++        <NAME>[PD4:OC1B:XCK1:PCINT28]</NAME>
+         <TEXT>OC1B, Output compare matchB output: The PD4 pin can serve as an external output for the Timer/Counter1 output com-pareB. The pin has to be configured as an output (DDD4 set [one]) to serve this function. See the timer description on how to enable this function. The OC1B pin is also the output pin for the PWM mode timer function.</TEXT>
+       </PIN13>
+       <PIN14>
+@@ -1520,7 +1520,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:XCK:T0:PCINT8]</NAME>
++        <NAME>[PB0:XCK0:T0:PCINT8]</NAME>
+         <TEXT>T0, Timer/Counter0 counter source. See the timer description for further details. XCK, USART external clock. See the USART description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+diff -rupN xmlPartDescriptionOriginal/ATmega164P.xml xmlPartDescription/ATmega164P.xml
+--- xmlPartDescriptionOriginal/ATmega164P.xml	2010-11-12 22:18:28.650792478 -0500
++++ xmlPartDescription/ATmega164P.xml	2010-11-13 13:55:55.939580876 -0500
+@@ -1416,23 +1416,23 @@
+         <TEXT/>
+       </PIN8>
+       <PIN9>
+-        <NAME>[PD0:RXD:PCINT24]</NAME>
++        <NAME>[PD0:RXD0:PCINT24]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART Receiver is enabled, this pin is configured as an input, regard-less of the value of DDD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN9>
+       <PIN10>
+-        <NAME>[PD1:TXD:PCINT25]</NAME>
++        <NAME>[PD1:TXD0:PCINT25]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART Transmitter is enabled, this pin is configured as an output, regardless of the value of DDD1.</TEXT>
+       </PIN10>
+       <PIN11>
+-        <NAME>[PD2:INT0:PCINT26]</NAME>
++        <NAME>[PD2:INT0:RXD1:PCINT26]</NAME>
+         <TEXT>INT0, External Interrupt source 0: The PD2 pin can serve as an external interrupt source to the MCU. See the interrupt description for further details and how to enable the source.</TEXT>
+       </PIN11>
+       <PIN12>
+-        <NAME>[PD3:INT1:PCINT27]</NAME>
++        <NAME>[PD3:INT1:TXD1:PCINT27]</NAME>
+         <TEXT>INT1, External Interrupt source 1: The PD3 pin can serve as an external interrupt source to the MCU. See the interrupt description for further details and how to enable the source.</TEXT>
+       </PIN12>
+       <PIN13>
+-        <NAME>[PD4:OC1B:PCINT28]</NAME>
++        <NAME>[PD4:OC1B:XCK1:PCINT28]</NAME>
+         <TEXT>OC1B, Output compare matchB output: The PD4 pin can serve as an external output for the Timer/Counter1 output com-pareB. The pin has to be configured as an output (DDD4 set [one]) to serve this function. See the timer description on how to enable this function. The OC1B pin is also the output pin for the PWM mode timer function.</TEXT>
+       </PIN13>
+       <PIN14>
+@@ -1540,7 +1540,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:XCK:T0:PCINT8]</NAME>
++        <NAME>[PB0:XCK0:T0:PCINT8]</NAME>
+         <TEXT>T0, Timer/Counter0 counter source. See the timer description for further details. XCK, USART external clock. See the USART description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+diff -rupN xmlPartDescriptionOriginal/ATmega169PA.xml xmlPartDescription/ATmega169PA.xml
+--- xmlPartDescriptionOriginal/ATmega169PA.xml	2010-11-12 22:18:28.684792473 -0500
++++ xmlPartDescription/ATmega169PA.xml	2010-11-13 13:58:46.498715087 -0500
+@@ -1431,7 +1431,7 @@
+         <DESCRIPTION/>
+       </PIN13>
+       <PIN14>
+-        <PIN_NAME>[OC0:PCINT12]</PIN_NAME>
++        <PIN_NAME>[OC0A:PCINT12]</PIN_NAME>
+         <ALT_NAME>PB4</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN14>
+@@ -1446,7 +1446,7 @@
+         <DESCRIPTION/>
+       </PIN16>
+       <PIN17>
+-        <PIN_NAME>[OC2:PCINT15]</PIN_NAME>
++        <PIN_NAME>[OC2A:PCINT15]</PIN_NAME>
+         <ALT_NAME>PB7</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN17>
+diff -rupN xmlPartDescriptionOriginal/ATmega169P.xml xmlPartDescription/ATmega169P.xml
+--- xmlPartDescriptionOriginal/ATmega169P.xml	2010-11-12 22:18:28.674784031 -0500
++++ xmlPartDescription/ATmega169P.xml	2010-11-13 13:59:06.327580913 -0500
+@@ -1429,7 +1429,7 @@
+         <DESCRIPTION/>
+       </PIN13>
+       <PIN14>
+-        <PIN_NAME>[OC0:PCINT12]</PIN_NAME>
++        <PIN_NAME>[OC0A:PCINT12]</PIN_NAME>
+         <ALT_NAME>PB4</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN14>
+@@ -1444,7 +1444,7 @@
+         <DESCRIPTION/>
+       </PIN16>
+       <PIN17>
+-        <PIN_NAME>[OC2:PCINT15]</PIN_NAME>
++        <PIN_NAME>[OC2A:PCINT15]</PIN_NAME>
+         <ALT_NAME>PB7</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN17>
+diff -rupN xmlPartDescriptionOriginal/ATmega169.xml xmlPartDescription/ATmega169.xml
+--- xmlPartDescriptionOriginal/ATmega169.xml	2010-11-12 22:18:28.655793027 -0500
++++ xmlPartDescription/ATmega169.xml	2010-11-13 13:59:26.151580938 -0500
+@@ -1441,7 +1441,7 @@
+         <DESCRIPTION/>
+       </PIN13>
+       <PIN14>
+-        <PIN_NAME>[OC0:PCINT12]</PIN_NAME>
++        <PIN_NAME>[OC0A:PCINT12]</PIN_NAME>
+         <ALT_NAME>PB4</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN14>
+@@ -1456,7 +1456,7 @@
+         <DESCRIPTION/>
+       </PIN16>
+       <PIN17>
+-        <PIN_NAME>[OC2:PCINT15]</PIN_NAME>
++        <PIN_NAME>[OC2A:PCINT15]</PIN_NAME>
+         <ALT_NAME>PB7</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN17>
+diff -rupN xmlPartDescriptionOriginal/ATmega16A.xml xmlPartDescription/ATmega16A.xml
+--- xmlPartDescriptionOriginal/ATmega16A.xml	2010-11-12 22:18:28.628792354 -0500
++++ xmlPartDescription/ATmega16A.xml	2010-11-13 14:00:03.196831170 -0500
+@@ -1053,7 +1053,7 @@
+         <TEXT>MISO: Master data input, slave data output pin for SPI channel. When the SPI is enabled as a master, this pin is configured as an input regardless of the setting of DDB6. When the SPI is enabled as a slave, the data direction of this pin is controlled by DDB6. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB6 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PB7_SCK]</NAME>
++        <NAME>[PB7:SCK]</NAME>
+         <TEXT>SCK: Master clock output, slave clock input pin for SPI channel. When the SPI is enabled as a slave, this pin is configured as an input regardless of the setting of DDB7. When the SPI is enabled as a master, the data direction of this pin is con-trolled by DDB7. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB7 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN3>
+       <PIN4>
+@@ -1201,7 +1201,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:T0]</NAME>
++        <NAME>[PB0:T0:XCK]</NAME>
+         <TEXT>T0: Timer/Counter0 counter source. See the timer description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+@@ -1213,7 +1213,7 @@
+         <TEXT>AIN0: Analog Comparator Positive Input. When configured as an input (DDB2 is cleared [zero]) and with the internal MOS pull-up resistor switched off (PB2 is cleared [zero]), this pin also serves as the positive input of the on-chip Analog Comparator.</TEXT>
+       </PIN42>
+       <PIN43>
+-        <NAME>[PB3:AIN1]</NAME>
++        <NAME>[PB3:AIN1OC0]</NAME>
+         <TEXT>AIN1: Analog Comparator Negative Input. When configured as an input (DDB3 is cleared [zero]) and with the internal MOS pull-up resistor switched off (PB3 is cleared [zero]), this pin also serves as the negative input of the on-chip Analog Comparator.</TEXT>
+       </PIN43>
+       <PIN44>
+diff -rupN xmlPartDescriptionOriginal/ATmega16M1.xml xmlPartDescription/ATmega16M1.xml
+--- xmlPartDescriptionOriginal/ATmega16M1.xml	2010-11-12 22:18:28.677792258 -0500
++++ xmlPartDescription/ATmega16M1.xml	2010-11-13 14:00:33.162580977 -0500
+@@ -2126,7 +2126,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:PSCIN0:CLK0:PCINT17]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO:PCINT17]</NAME>
+         <TEXT/>
+       </PIN32>
+     </QFN>
+@@ -2257,7 +2257,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:PSCIN0:CLK0:PCINT17]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO:PCINT17]</NAME>
+         <TEXT/>
+       </PIN32>
+     </TQFP>
+diff -rupN xmlPartDescriptionOriginal/ATmega16U2.xml xmlPartDescription/ATmega16U2.xml
+--- xmlPartDescriptionOriginal/ATmega16U2.xml	2010-11-12 22:18:28.660793068 -0500
++++ xmlPartDescription/ATmega16U2.xml	2010-11-13 14:01:11.578705773 -0500
+@@ -743,6 +743,222 @@
+       <DEFINITION>Store Program Memory Read</DEFINITION>
+     </VECTOR29>
+   </INTERRUPT_VECTOR>
++
++         <DESCRIPTION/>
++       </PIN17>
++diff -rupN ./ATmega169.xml /home/ecliptien/src/avr-drv/xmlPartDescription/ATmega169.xml
++--- ./ATmega169.xml	2010-02-25 10:07:50.000000000 -0500
+++++ /home/ecliptien/src/avr-drv/xmlPartDescription/ATmega169.xml	2010-08-18 13:33:18.255320569 -0400
++@@ -1441,7 +1441,7 @@
++         <DESCRIPTION/>
++       </PIN13>
++       <PIN14>
++-        <PIN_NAME>[OC0:PCINT12]</PIN_NAME>
+++        <PIN_NAME>[OC0A:PCINT12]</PIN_NAME>
++         <ALT_NAME>PB4</ALT_NAME>
++         <DESCRIPTION/>
++       </PIN14>
++@@ -1456,7 +1456,7 @@
++         <DESCRIPTION/>
++       </PIN16>
++       <PIN17>
++-        <PIN_NAME>[OC2:PCINT15]</PIN_NAME>
+++        <PIN_NAME>[OC2A:PCINT15]</PIN_NAME>
++         <ALT_NAME>PB7</ALT_NAME>
++         <DESCRIPTION/>
++       </PIN17>
++diff -rupN ./ATmega16A.xml /home/ecliptien/src/avr-drv/xmlPartDescription/ATmega16A.xml
++--- ./ATmega16A.xml	2010-02-25 10:07:52.000000000 -0500
+++++ /home/ecliptien/src/avr-drv/xmlPartDescription/ATmega16A.xml	2010-08-17 22:22:20.637818301 -0400
++@@ -1053,7 +1053,7 @@
++         <TEXT>MISO: Master data input, slave data output pin for SPI channel. When the SPI is enabled as a master, this pin is configured as an input regardless of the setting of DDB6. When the SPI is enabled as a slave, the data direction of this pin is controlled by DDB6. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB6 bit. See the description of the SPI port for further details.</TEXT>
++       </PIN2>
++       <PIN3>
++-        <NAME>[PB7_SCK]</NAME>
+++        <NAME>[PB7:SCK]</NAME>
++         <TEXT>SCK: Master clock output, slave clock input pin for SPI channel. When the SPI is enabled as a slave, this pin is configured as an input regardless of the setting of DDB7. When the SPI is enabled as a master, the data direction of this pin is con-trolled by DDB7. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB7 bit. See the description of the SPI port for further details.</TEXT>
++       </PIN3>
++       <PIN4>
++@@ -1201,7 +1201,7 @@
++         <TEXT/>
++       </PIN39>
++       <PIN40>
++-        <NAME>[PB0:T0]</NAME>
+++        <NAME>[PB0:T0:XCK]</NAME>
++         <TEXT>T0: Timer/Counter0 counter source. See the timer description for further details.</TEXT>
++       </PIN40>
++       <PIN41>
++@@ -1213,7 +1213,7 @@
++         <TEXT>AIN0: Analog Comparator Positive Input. When configured as an input (DDB2 is cleared [zero]) and with the internal MOS pull-up resistor switched off (PB2 is cleared [zero]), this pin also serves as the positive input of the on-chip Analog Comparator.</TEXT>
++       </PIN42>
++       <PIN43>
++-        <NAME>[PB3:AIN1]</NAME>
+++        <NAME>[PB3:AIN1:OC0]</NAME>
++         <TEXT>AIN1: Analog Comparator Negative Input. When configured as an input (DDB3 is cleared [zero]) and with the internal MOS pull-up resistor switched off (PB3 is cleared [zero]), this pin also serves as the negative input of the on-chip Analog Comparator.</TEXT>
++       </PIN43>
++       <PIN44>
++diff -rupN ./ATmega16M1.xml /home/ecliptien/src/avr-drv/xmlPartDescription/ATmega16M1.xml
++--- ./ATmega16M1.xml	2010-02-25 10:07:56.000000000 -0500
+++++ /home/ecliptien/src/avr-drv/xmlPartDescription/ATmega16M1.xml	2010-08-15 11:21:39.546568789 -0400
++@@ -2126,7 +2126,7 @@
++         <TEXT/>
++       </PIN31>
++       <PIN32>
++-        <NAME>[PD1:PSCIN0:CLK0:PCINT17]</NAME>
+++        <NAME>[PD1:PSCIN0:CLKO:PCINT17]</NAME>
++         <TEXT/>
++       </PIN32>
++     </QFN>
++@@ -2257,7 +2257,7 @@
++         <TEXT/>
++       </PIN31>
++       <PIN32>
++-        <NAME>[PD1:PSCIN0:CLK0:PCINT17]</NAME>
+++        <NAME>[PD1:PSCIN0:CLKO:PCINT17]</NAME>
++         <TEXT/>
++       </PIN32>
++     </TQFP>
++diff -rupN ./ATmega16U2.xml /home/ecliptien/src/avr-drv/xmlPartDescription/ATmega16U2.xml
++--- ./ATmega16U2.xml	2010-02-25 10:07:56.000000000 -0500
+++++ /home/ecliptien/src/avr-drv/xmlPartDescription/ATmega16U2.xml	2010-08-14 18:21:13.964068495 -0400
++@@ -743,6 +743,140 @@
++       <DEFINITION>Store Program Memory Read</DEFINITION>
++     </VECTOR29>
++   </INTERRUPT_VECTOR>
++  <PACKAGE>
++    <PACKAGES>[TQFP]</PACKAGES>
++    <TQFP>
++      <NMB_PIN>32</NMB_PIN>
++      <PIN1>
++        <NAME>[XTAL1]</NAME>
++        <TEXT/>
++      </PIN1>
++      <PIN2>
++        <NAME>[PC0:XTAL2]</NAME>
++        <TEXT/>
++      </PIN2>
++      <PIN3>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN3>
++      <PIN4>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN4>
++      <PIN5>
++        <NAME>[PC2:PCINT11:AIN2]</NAME>
++        <TEXT/>
++      </PIN5>
++      <PIN6>
++        <NAME>[PD0:OC0B:INT0]</NAME>
++        <TEXT/>
++      </PIN6>
++      <PIN7>
++        <NAME>[PD1:AIN0:INT1]</NAME>
++        <TEXT/>
++      </PIN7>
++      <PIN8>
++        <NAME>[PD2:RXD1:AIN1:INT2]</NAME>
++        <TEXT/>
++      </PIN8>
++      <PIN9>
++        <NAME>[PD3:TXD1:INT3]</NAME>
++        <TEXT/>
++      </PIN9>
++      <PIN10>
++        <NAME>[PD4:INT5:AIN3]</NAME>
++        <TEXT/>
++      </PIN10>
++      <PIN11>
++        <NAME>[PD5:XCK1:AIN4:PCINT12]</NAME>
++        <TEXT/>
++      </PIN11>
++      <PIN12>
++        <NAME>[PD6:'RTS:AIN5:INT6]</NAME>
++        <TEXT/>
++      </PIN12>
++      <PIN13>
++        <NAME>[PD7:'CTS:'HWB:AIN6:T0:INT7]</NAME>
++        <TEXT/>
++      </PIN13>
++      <PIN14>
++        <NAME>[PB0:'SS:PCINT0]</NAME>
++        <TEXT/>
++      </PIN14>
++      <PIN15>
++        <NAME>[PB1:SCLK:PCINT1]</NAME>
++        <TEXT/>
++      </PIN15>
++      <PIN16>
++        <NAME>[PB2:PDI:MOSI:PCINT2]</NAME>
++        <TEXT/>
++      </PIN16>
++      <PIN17>
++        <NAME>[PB3:PDO:MISO:PCINT3]</NAME>
++        <TEXT/>
++      </PIN17>
++      <PIN18>
++        <NAME>[PB4:T1:PCINT4]</NAME>
++        <TEXT/>
++      </PIN18>
++      <PIN19>
++        <NAME>[PB5:PCINT5]</NAME>
++        <TEXT/>
++      </PIN19>
++      <PIN20>
++        <NAME>[PB6:PCINT6]</NAME>
++        <TEXT/>
++      </PIN20>
++      <PIN21>
++        <NAME>[PB7:PCINT7:OC0A:OC1C]</NAME>
++        <TEXT/>
++      </PIN21>
++      <PIN22>
++        <NAME>[PC7:INT4:ICP1:CLKO]</NAME>
++        <TEXT/>
++      </PIN22>
++      <PIN23>
++        <NAME>[PC6:OC1A:PCINT8]</NAME>
++        <TEXT/>
++      </PIN23>
++      <PIN24>
++        <NAME>[PC1:'RESET:dW]</NAME>
++        <TEXT/>
++      </PIN24>
++      <PIN25>
++        <NAME>[PC5:PCINT9:OC1B]</NAME>
++        <TEXT/>
++      </PIN25>
++      <PIN26>
++        <NAME>[PC4:PCINT10]</NAME>
++        <TEXT/>
++      </PIN26>
++      <PIN27>
++        <NAME>[UCAP]</NAME>
++        <TEXT/>
++      </PIN27>
++      <PIN28>
++        <NAME>[UGND]</NAME>
++        <TEXT/>
++      </PIN28>
++      <PIN29>
++        <NAME>[D]</NAME>
++        <TEXT/>
++      </PIN29>
++      <PIN30>
++        <NAME>[D-]</NAME>
++        <TEXT/>
++      </PIN30>
++      <PIN31>
++        <NAME>[UVCC]</NAME>
++        <TEXT/>
++      </PIN31>
++      <PIN32>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN32>
++    </TQFP>
++  </PACKAGE>
+   <MEMORY>
+     <ID>AVRSimMemory8bit.SimMemory8bit</ID>
+     <PROG_FLASH>16384</PROG_FLASH>
+diff -rupN xmlPartDescriptionOriginal/ATmega16U4.xml xmlPartDescription/ATmega16U4.xml
+--- xmlPartDescriptionOriginal/ATmega16U4.xml	2010-11-12 22:18:28.665792863 -0500
++++ xmlPartDescription/ATmega16U4.xml	2010-11-13 14:02:11.389955802 -0500
+@@ -343,6 +343,188 @@
+     <FlashPageSize>128</FlashPageSize>
+     <EepromPageSize>4</EepromPageSize>
+   </PROGRAMMING>
++  <PACKAGE>
++    <PACKAGES>[TQFP]</PACKAGES>
++    <TQFP>
++      <NMB_PIN>32</NMB_PIN>
++      <PIN1>
++        <NAME>[PE6:INT6:AIN0]</NAME>
++        <TEXT/>
++      </PIN1>
++      <PIN2>
++        <NAME>[UVCC]</NAME>
++        <TEXT/>
++      </PIN2>
++      <PIN3>
++        <NAME>[D-]</NAME>
++        <TEXT/>
++      </PIN3>
++      <PIN4>
++        <NAME>[D]</NAME>
++        <TEXT/>
++      </PIN4>
++      <PIN5>
++        <NAME>[UGND]</NAME>
++        <TEXT/>
++      </PIN5>
++      <PIN6>
++        <NAME>[UCAP]</NAME>
++        <TEXT/>
++      </PIN6>
++      <PIN7>
++        <NAME>[VBUS]</NAME>
++        <TEXT/>
++      </PIN7>
++      <PIN8>
++        <NAME>[PB0:'SS:PCINT0]</NAME>
++        <TEXT/>
++      </PIN8>
++      <PIN9>
++        <NAME>[PB1:SCLK:PCINT1]</NAME>
++        <TEXT/>
++      </PIN9>
++      <PIN10>
++        <NAME>[PB2:PDI:MOSI:PCINT2]</NAME>
++        <TEXT/>
++      </PIN10>
++      <PIN11>
++        <NAME>[PB3:PDO:MISO:PCINT3]</NAME>
++        <TEXT/>
++      </PIN11>
++      <PIN12>
++        <NAME>[PB7:PCINT7:OC0A:OC1C:'RTS]</NAME>
++        <TEXT/>
++      </PIN12>
++      <PIN13>
++        <NAME>['RESET]</NAME>
++        <TEXT/>
++      </PIN13>
++      <PIN14>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN14>
++      <PIN15>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN15>
++      <PIN16>
++        <NAME>[XTAL2]</NAME>
++        <TEXT/>
++      </PIN16>
++      <PIN17>
++        <NAME>[XTAL1]</NAME>
++        <TEXT/>
++      </PIN17>
++      <PIN18>
++        <NAME>[PD0:OC0B:SCL:INT0]</NAME>
++        <TEXT/>
++      </PIN18>
++      <PIN19>
++        <NAME>[PD1:SDA:INT1]</NAME>
++        <TEXT/>
++      </PIN19>
++      <PIN20>
++        <NAME>[PD2:RXD1:INT2]</NAME>
++        <TEXT/>
++      </PIN20>
++      <PIN21>
++        <NAME>[PD3:TXD1:INT3]</NAME>
++        <TEXT/>
++      </PIN21>
++      <PIN22>
++        <NAME>[PD5:XCK1:'CTS]</NAME>
++        <TEXT/>
++      </PIN22>
++      <PIN23>
++        <NAME>[GNS]</NAME>
++        <TEXT/>
++      </PIN23>
++      <PIN24>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN24>
++      <PIN25>
++        <NAME>[PD4:ICP1:ADC8]</NAME>
++        <TEXT/>
++      </PIN25>
++      <PIN26>
++        <NAME>[PD6:T1:'OC4D:ADC9]</NAME>
++        <TEXT/>
++      </PIN26>
++      <PIN27>
++        <NAME>[PD7:T0:OC4D:ADC10]</NAME>
++        <TEXT/>
++      </PIN27>
++      <PIN28>
++        <NAME>[PB4:PCINT4:ADC11]</NAME>
++        <TEXT/>
++      </PIN28>
++      <PIN29>
++        <NAME>[PB5:PCINT5:OC1A:'OC4B:ADC12]</NAME>
++        <TEXT/>
++      </PIN29>
++      <PIN30>
++        <NAME>[PB6:PCINT6:OC1B:OC4B:ADC13]</NAME>
++        <TEXT/>
++      </PIN30>
++      <PIN31>
++        <NAME>[PC6:OC3A:'OC4A]</NAME>
++        <TEXT/>
++      </PIN31>
++      <PIN32>
++        <NAME>[PC7:ICP3:CLKO:OC4A]</NAME>
++        <TEXT/>
++      </PIN32>
++      <PIN33>
++        <NAME>[PE3:'HWB]</NAME>
++        <TEXT/>
++      </PIN33>
++      <PIN34>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN34>
++      <PIN35>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN35>
++      <PIN36>
++        <NAME>[PF7:ADC7:TDI]</NAME>
++        <TEXT/>
++      </PIN36>
++      <PIN37>
++        <NAME>[PF6:ADC6:TDO]</NAME>
++        <TEXT/>
++      </PIN37>
++      <PIN38>
++        <NAME>[PF5:ADC5:TMS]</NAME>
++        <TEXT/>
++      </PIN38>
++      <PIN39>
++        <NAME>[PF4:ADC4:TCK]</NAME>
++        <TEXT/>
++      </PIN39>
++      <PIN40>
++        <NAME>[PF1:ADC1]</NAME>
++        <TEXT/>
++      </PIN40>
++      <PIN41>
++        <NAME>[PF0:ADC0]</NAME>
++        <TEXT/>
++      </PIN41>
++      <PIN42>
++        <NAME>[AREF]</NAME>
++        <TEXT/>
++      </PIN42>
++      <PIN43>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN43>
++      <PIN44>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN44>
++    </TQFP>
++  </PACKAGE>
+   <MEMORY>
+     <ID>AVRSimMemory8bit.SimMemory8bit</ID>
+     <PROG_FLASH>16384</PROG_FLASH>
+diff -rupN xmlPartDescriptionOriginal/ATmega16.xml xmlPartDescription/ATmega16.xml
+--- xmlPartDescriptionOriginal/ATmega16.xml	2010-11-12 22:18:28.613908222 -0500
++++ xmlPartDescription/ATmega16.xml	2010-11-13 14:02:55.261718404 -0500
+@@ -1053,7 +1053,7 @@
+         <TEXT>MISO: Master data input, slave data output pin for SPI channel. When the SPI is enabled as a master, this pin is configured as an input regardless of the setting of DDB6. When the SPI is enabled as a slave, the data direction of this pin is controlled by DDB6. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB6 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PB7_SCK]</NAME>
++        <NAME>[PB7:SCK]</NAME>
+         <TEXT>SCK: Master clock output, slave clock input pin for SPI channel. When the SPI is enabled as a slave, this pin is configured as an input regardless of the setting of DDB7. When the SPI is enabled as a master, the data direction of this pin is con-trolled by DDB7. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB7 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN3>
+       <PIN4>
+@@ -1201,7 +1201,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:T0]</NAME>
++        <NAME>[PB0:T0:XCK]</NAME>
+         <TEXT>T0: Timer/Counter0 counter source. See the timer description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+@@ -1213,7 +1213,7 @@
+         <TEXT>AIN0: Analog Comparator Positive Input. When configured as an input (DDB2 is cleared [zero]) and with the internal MOS pull-up resistor switched off (PB2 is cleared [zero]), this pin also serves as the positive input of the on-chip Analog Comparator.</TEXT>
+       </PIN42>
+       <PIN43>
+-        <NAME>[PB3:AIN1]</NAME>
++        <NAME>[PB3:AIN1:OC0]</NAME>
+         <TEXT>AIN1: Analog Comparator Negative Input. When configured as an input (DDB3 is cleared [zero]) and with the internal MOS pull-up resistor switched off (PB3 is cleared [zero]), this pin also serves as the negative input of the on-chip Analog Comparator.</TEXT>
+       </PIN43>
+       <PIN44>
+diff -rupN xmlPartDescriptionOriginal/ATmega2560.xml xmlPartDescription/ATmega2560.xml
+--- xmlPartDescriptionOriginal/ATmega2560.xml	2010-11-12 22:18:28.678792825 -0500
++++ xmlPartDescription/ATmega2560.xml	2010-11-13 14:03:36.611955604 -0500
+@@ -3017,17 +3017,17 @@
+         <DESCRIPTION/>
+       </PIN1>
+       <PIN2>
+-        <PIN_NAME>[RXD:PCINT8]</PIN_NAME>
++        <PIN_NAME>[RXD0:PDI:PCINT8]</PIN_NAME>
+         <ALT_NAME>[PE0]</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN2>
+       <PIN3>
+-        <PIN_NAME>[TXD0]</PIN_NAME>
++        <PIN_NAME>[TXD0:PDO]</PIN_NAME>
+         <ALT_NAME>[PE1]</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN3>
+       <PIN4>
+-        <PIN_NAME>[XCK:AIN0]</PIN_NAME>
++        <PIN_NAME>[XCK0:AIN0]</PIN_NAME>
+         <ALT_NAME>[PE2]</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN4>
+diff -rupN xmlPartDescriptionOriginal/ATmega323.xml xmlPartDescription/ATmega323.xml
+--- xmlPartDescriptionOriginal/ATmega323.xml	2010-11-12 22:18:28.637907770 -0500
++++ xmlPartDescription/ATmega323.xml	2010-11-13 14:03:51.676581105 -0500
+@@ -1051,7 +1051,7 @@
+         <TEXT>MISO: Master data input, slave data output pin for SPI channel. When the SPI is enabled as a master, this pin is configured as an input regardless of the setting of DDB6. When the SPI is enabled as a slave, the data direction of this pin is controlled by DDB6. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB6 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PB7_SCK]</NAME>
++        <NAME>[PB7:SCK]</NAME>
+         <TEXT>SCK: Master clock output, slave clock input pin for SPI channel. When the SPI is enabled as a slave, this pin is configured as an input regardless of the setting of DDB7. When the SPI is enabled as a master, the data direction of this pin is con-trolled by DDB7. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB7 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN3>
+       <PIN4>
+diff -rupN xmlPartDescriptionOriginal/ATmega324A.xml xmlPartDescription/ATmega324A.xml
+--- xmlPartDescriptionOriginal/ATmega324A.xml	2010-11-12 22:18:28.641792416 -0500
++++ xmlPartDescription/ATmega324A.xml	2010-11-13 14:04:50.338580789 -0500
+@@ -1396,23 +1396,23 @@
+         <TEXT/>
+       </PIN8>
+       <PIN9>
+-        <NAME>[PD0:RXD:PCINT24]</NAME>
++        <NAME>[PD0:RXD0:PCINT24]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART Receiver is enabled, this pin is configured as an input, regard-less of the value of DDD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN9>
+       <PIN10>
+-        <NAME>[PD1:TXD:PCINT25]</NAME>
++        <NAME>[PD1:TXD0:PCINT25]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART Transmitter is enabled, this pin is configured as an output, regardless of the value of DDD1.</TEXT>
+       </PIN10>
+       <PIN11>
+-        <NAME>[PD2:INT0:PCINT26]</NAME>
++        <NAME>[PD2:INT0:RXD1:PCINT26]</NAME>
+         <TEXT>INT0, External Interrupt source 0: The PD2 pin can serve as an external interrupt source to the MCU. See the interrupt description for further details and how to enable the source.</TEXT>
+       </PIN11>
+       <PIN12>
+-        <NAME>[PD3:INT1:PCINT27]</NAME>
++        <NAME>[PD3:INT1:TXD1:PCINT27]</NAME>
+         <TEXT>INT1, External Interrupt source 1: The PD3 pin can serve as an external interrupt source to the MCU. See the interrupt description for further details and how to enable the source.</TEXT>
+       </PIN12>
+       <PIN13>
+-        <NAME>[PD4:OC1B:PCINT28]</NAME>
++        <NAME>[PD4:OC1B:XCK1:PCINT28]</NAME>
+         <TEXT>OC1B, Output compare matchB output: The PD4 pin can serve as an external output for the Timer/Counter1 output com-pareB. The pin has to be configured as an output (DDD4 set [one]) to serve this function. See the timer description on how to enable this function. The OC1B pin is also the output pin for the PWM mode timer function.</TEXT>
+       </PIN13>
+       <PIN14>
+@@ -1520,7 +1520,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:XCK:T0:PCINT8]</NAME>
++        <NAME>[PB0:XCK0:T0:PCINT8]</NAME>
+         <TEXT>T0, Timer/Counter0 counter source. See the timer description for further details. XCK, USART external clock. See the USART description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+diff -rupN xmlPartDescriptionOriginal/ATmega324PA.xml xmlPartDescription/ATmega324PA.xml
+--- xmlPartDescriptionOriginal/ATmega324PA.xml	2010-11-12 22:18:28.585034253 -0500
++++ xmlPartDescription/ATmega324PA.xml	2010-11-13 14:05:39.708580899 -0500
+@@ -1398,23 +1398,23 @@
+         <TEXT/>
+       </PIN8>
+       <PIN9>
+-        <NAME>[PD0:RXD:PCINT24]</NAME>
++        <NAME>[PD0:RXD0:PCINT24]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART Receiver is enabled, this pin is configured as an input, regard-less of the value of DDD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN9>
+       <PIN10>
+-        <NAME>[PD1:TXD:PCINT25]</NAME>
++        <NAME>[PD1:TXD0:PCINT25]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART Transmitter is enabled, this pin is configured as an output, regardless of the value of DDD1.</TEXT>
+       </PIN10>
+       <PIN11>
+-        <NAME>[PD2:INT0:PCINT26]</NAME>
++        <NAME>[PD2:INT0:RXD1:PCINT26]</NAME>
+         <TEXT>INT0, External Interrupt source 0: The PD2 pin can serve as an external interrupt source to the MCU. See the interrupt description for further details and how to enable the source.</TEXT>
+       </PIN11>
+       <PIN12>
+-        <NAME>[PD3:INT1:PCINT27]</NAME>
++        <NAME>[PD3:INT1:TXD1:PCINT27]</NAME>
+         <TEXT>INT1, External Interrupt source 1: The PD3 pin can serve as an external interrupt source to the MCU. See the interrupt description for further details and how to enable the source.</TEXT>
+       </PIN12>
+       <PIN13>
+-        <NAME>[PD4:OC1B:PCINT28]</NAME>
++        <NAME>[PD4:OC1B:XCK1:PCINT28]</NAME>
+         <TEXT>OC1B, Output compare matchB output: The PD4 pin can serve as an external output for the Timer/Counter1 output com-pareB. The pin has to be configured as an output (DDD4 set [one]) to serve this function. See the timer description on how to enable this function. The OC1B pin is also the output pin for the PWM mode timer function.</TEXT>
+       </PIN13>
+       <PIN14>
+@@ -1522,7 +1522,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:XCK:T0:PCINT8]</NAME>
++        <NAME>[PB0:XCK0:T0:PCINT8]</NAME>
+         <TEXT>T0, Timer/Counter0 counter source. See the timer description for further details. XCK, USART external clock. See the USART description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+diff -rupN xmlPartDescriptionOriginal/ATmega324P.xml xmlPartDescription/ATmega324P.xml
+--- xmlPartDescriptionOriginal/ATmega324P.xml	2010-11-12 22:18:28.636907915 -0500
++++ xmlPartDescription/ATmega324P.xml	2010-11-13 14:06:11.019706026 -0500
+@@ -1421,23 +1421,23 @@
+         <TEXT/>
+       </PIN8>
+       <PIN9>
+-        <NAME>[PD0:RXD:PCINT24]</NAME>
++        <NAME>[PD0:RXD0:PCINT24]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART Receiver is enabled, this pin is configured as an input, regard-less of the value of DDD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN9>
+       <PIN10>
+-        <NAME>[PD1:TXD:PCINT25]</NAME>
++        <NAME>[PD1:TXD0:PCINT25]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART Transmitter is enabled, this pin is configured as an output, regardless of the value of DDD1.</TEXT>
+       </PIN10>
+       <PIN11>
+-        <NAME>[PD2:INT0:PCINT26]</NAME>
++        <NAME>[PD2:INT0:RXD1:PCINT26]</NAME>
+         <TEXT>INT0, External Interrupt source 0: The PD2 pin can serve as an external interrupt source to the MCU. See the interrupt description for further details and how to enable the source.</TEXT>
+       </PIN11>
+       <PIN12>
+-        <NAME>[PD3:INT1:PCINT27]</NAME>
++        <NAME>[PD3:INT1:TXD1:PCINT27]</NAME>
+         <TEXT>INT1, External Interrupt source 1: The PD3 pin can serve as an external interrupt source to the MCU. See the interrupt description for further details and how to enable the source.</TEXT>
+       </PIN12>
+       <PIN13>
+-        <NAME>[PD4:OC1B:PCINT28]</NAME>
++        <NAME>[PD4:OC1B:XCK1:PCINT28]</NAME>
+         <TEXT>OC1B, Output compare matchB output: The PD4 pin can serve as an external output for the Timer/Counter1 output com-pareB. The pin has to be configured as an output (DDD4 set [one]) to serve this function. See the timer description on how to enable this function. The OC1B pin is also the output pin for the PWM mode timer function.</TEXT>
+       </PIN13>
+       <PIN14>
+@@ -1545,7 +1545,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:XCK:T0:PCINT8]</NAME>
++        <NAME>[PB0:XCK0:T0:PCINT8]</NAME>
+         <TEXT>T0, Timer/Counter0 counter source. See the timer description for further details. XCK, USART external clock. See the USART description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+diff -rupN xmlPartDescriptionOriginal/ATmega3290P.xml xmlPartDescription/ATmega3290P.xml
+--- xmlPartDescriptionOriginal/ATmega3290P.xml	2010-11-12 22:18:28.691793083 -0500
++++ xmlPartDescription/ATmega3290P.xml	2010-11-13 14:06:42.560831023 -0500
+@@ -219,7 +219,7 @@
+         <DESCRIPTION/>
+       </PIN13>
+       <PIN14>
+-        <PIN_NAME>[PCINT25:SEG33]</PIN_NAME>
++        <PIN_NAME>[PCINT25:SEG34]</PIN_NAME>
+         <ALT_NAME>PJ1</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN14>
+diff -rupN xmlPartDescriptionOriginal/ATmega3290.xml xmlPartDescription/ATmega3290.xml
+--- xmlPartDescriptionOriginal/ATmega3290.xml	2010-11-12 22:18:28.608908072 -0500
++++ xmlPartDescription/ATmega3290.xml	2010-11-13 14:07:01.249705935 -0500
+@@ -237,7 +237,7 @@
+         <DESCRIPTION/>
+       </PIN13>
+       <PIN14>
+-        <PIN_NAME>[PCINT25:SEG33]</PIN_NAME>
++        <PIN_NAME>[PCINT25:SEG34]</PIN_NAME>
+         <ALT_NAME>PJ1</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN14>
+diff -rupN xmlPartDescriptionOriginal/ATmega329A.xml xmlPartDescription/ATmega329A.xml
+--- xmlPartDescriptionOriginal/ATmega329A.xml	2010-11-12 22:18:28.634792225 -0500
++++ xmlPartDescription/ATmega329A.xml	2010-11-13 14:08:16.108705468 -0500
+@@ -1474,7 +1474,7 @@
+         <DESCRIPTION/>
+       </PIN13>
+       <PIN14>
+-        <PIN_NAME>[OC0:PCINT12]</PIN_NAME>
++        <PIN_NAME>[OC0A:PCINT12]</PIN_NAME>
+         <ALT_NAME>PB4</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN14>
+@@ -1489,7 +1489,7 @@
+         <DESCRIPTION/>
+       </PIN16>
+       <PIN17>
+-        <PIN_NAME>[OC2:PCINT15]</PIN_NAME>
++        <PIN_NAME>[OC2A:PCINT15]</PIN_NAME>
+         <ALT_NAME>PB7</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN17>
+diff -rupN xmlPartDescriptionOriginal/ATmega329PA.xml xmlPartDescription/ATmega329PA.xml
+--- xmlPartDescriptionOriginal/ATmega329PA.xml	2010-11-12 22:18:28.594796783 -0500
++++ xmlPartDescription/ATmega329PA.xml	2010-11-13 14:07:29.639580938 -0500
+@@ -1476,7 +1476,7 @@
+         <DESCRIPTION/>
+       </PIN13>
+       <PIN14>
+-        <PIN_NAME>[OC0:PCINT12]</PIN_NAME>
++        <PIN_NAME>[OC0A:PCINT12]</PIN_NAME>
+         <ALT_NAME>PB4</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN14>
+@@ -1491,7 +1491,7 @@
+         <DESCRIPTION/>
+       </PIN16>
+       <PIN17>
+-        <PIN_NAME>[OC2:PCINT15]</PIN_NAME>
++        <PIN_NAME>[OC2A:PCINT15]</PIN_NAME>
+         <ALT_NAME>PB7</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN17>
+diff -rupN xmlPartDescriptionOriginal/ATmega329P.xml xmlPartDescription/ATmega329P.xml
+--- xmlPartDescriptionOriginal/ATmega329P.xml	2010-11-12 22:18:28.607907965 -0500
++++ xmlPartDescription/ATmega329P.xml	2010-11-13 14:07:42.957581064 -0500
+@@ -1476,7 +1476,7 @@
+         <DESCRIPTION/>
+       </PIN13>
+       <PIN14>
+-        <PIN_NAME>[OC0:PCINT12]</PIN_NAME>
++        <PIN_NAME>[OC0A:PCINT12]</PIN_NAME>
+         <ALT_NAME>PB4</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN14>
+@@ -1491,7 +1491,7 @@
+         <DESCRIPTION/>
+       </PIN16>
+       <PIN17>
+-        <PIN_NAME>[OC2:PCINT15]</PIN_NAME>
++        <PIN_NAME>[OC2A:PCINT15]</PIN_NAME>
+         <ALT_NAME>PB7</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN17>
+diff -rupN xmlPartDescriptionOriginal/ATmega329.xml xmlPartDescription/ATmega329.xml
+--- xmlPartDescriptionOriginal/ATmega329.xml	2010-11-12 22:18:28.690792548 -0500
++++ xmlPartDescription/ATmega329.xml	2010-11-13 14:08:03.077715399 -0500
+@@ -1489,7 +1489,7 @@
+         <DESCRIPTION/>
+       </PIN13>
+       <PIN14>
+-        <PIN_NAME>[OC0:PCINT12]</PIN_NAME>
++        <PIN_NAME>[OC0A:PCINT12]</PIN_NAME>
+         <ALT_NAME>PB4</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN14>
+@@ -1504,7 +1504,7 @@
+         <DESCRIPTION/>
+       </PIN16>
+       <PIN17>
+-        <PIN_NAME>[OC2:PCINT15]</PIN_NAME>
++        <PIN_NAME>[OC2A:PCINT15]</PIN_NAME>
+         <ALT_NAME>PB7</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN17>
+diff -rupN xmlPartDescriptionOriginal/ATmega32A.xml xmlPartDescription/ATmega32A.xml
+--- xmlPartDescriptionOriginal/ATmega32A.xml	2010-11-12 22:18:28.654784030 -0500
++++ xmlPartDescription/ATmega32A.xml	2010-11-13 14:08:33.758591041 -0500
+@@ -1041,7 +1041,7 @@
+         <TEXT>MISO: Master data input, slave data output pin for SPI channel. When the SPI is enabled as a master, this pin is configured as an input regardless of the setting of DDB6. When the SPI is enabled as a slave, the data direction of this pin is controlled by DDB6. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB6 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PB7_SCK]</NAME>
++        <NAME>[PB7:SCK]</NAME>
+         <TEXT>SCK: Master clock output, slave clock input pin for SPI channel. When the SPI is enabled as a slave, this pin is configured as an input regardless of the setting of DDB7. When the SPI is enabled as a master, the data direction of this pin is con-trolled by DDB7. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB7 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN3>
+       <PIN4>
+diff -rupN xmlPartDescriptionOriginal/ATmega32C1.xml xmlPartDescription/ATmega32C1.xml
+--- xmlPartDescriptionOriginal/ATmega32C1.xml	2010-11-12 22:18:28.594796783 -0500
++++ xmlPartDescription/ATmega32C1.xml	2010-11-13 14:08:54.689955715 -0500
+@@ -1837,7 +1837,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:CLK0:PCINT17]</NAME>
++        <NAME>[PD1:CLKO:PCINT17]</NAME>
+         <TEXT/>
+       </PIN32>
+     </QFN>
+@@ -1968,7 +1968,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:CLK0:PCINT17]</NAME>
++        <NAME>[PD1:CLKO:PCINT17]</NAME>
+         <TEXT/>
+       </PIN32>
+     </TQFP>
+diff -rupN xmlPartDescriptionOriginal/ATmega32M1.xml xmlPartDescription/ATmega32M1.xml
+--- xmlPartDescriptionOriginal/ATmega32M1.xml	2010-11-12 22:18:28.651792385 -0500
++++ xmlPartDescription/ATmega32M1.xml	2010-11-13 14:09:17.632707313 -0500
+@@ -2126,7 +2126,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:PSCIN0:CLK0:PCINT17]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO:PCINT17]</NAME>
+         <TEXT/>
+       </PIN32>
+     </QFN>
+@@ -2257,7 +2257,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:PSCIN0:CLK0:PCINT17]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO:PCINT17]</NAME>
+         <TEXT/>
+       </PIN32>
+     </TQFP>
+diff -rupN xmlPartDescriptionOriginal/ATmega32U2.xml xmlPartDescription/ATmega32U2.xml
+--- xmlPartDescriptionOriginal/ATmega32U2.xml	2010-11-12 22:18:28.646792090 -0500
++++ xmlPartDescription/ATmega32U2.xml	2010-11-13 14:09:46.008955675 -0500
+@@ -289,6 +289,140 @@
+     <FlashPageSize>128</FlashPageSize>
+     <EepromPageSize>4</EepromPageSize>
+   </PROGRAMMING>
++  <PACKAGE>
++    <PACKAGES>[TQFP]</PACKAGES>
++    <TQFP>
++      <NMB_PIN>32</NMB_PIN>
++      <PIN1>
++        <NAME>[XTAL1]</NAME>
++        <TEXT/>
++      </PIN1>
++      <PIN2>
++        <NAME>[PC0:XTAL2]</NAME>
++        <TEXT/>
++      </PIN2>
++      <PIN3>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN3>
++      <PIN4>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN4>
++      <PIN5>
++        <NAME>[PC2:PCINT11:AIN2]</NAME>
++        <TEXT/>
++      </PIN5>
++      <PIN6>
++        <NAME>[PD0:OC0B:INT0]</NAME>
++        <TEXT/>
++      </PIN6>
++      <PIN7>
++        <NAME>[PD1:AIN0:INT1]</NAME>
++        <TEXT/>
++      </PIN7>
++      <PIN8>
++        <NAME>[PD2:RXD1:AIN1:INT2]</NAME>
++        <TEXT/>
++      </PIN8>
++      <PIN9>
++        <NAME>[PD3:TXD1:INT3]</NAME>
++        <TEXT/>
++      </PIN9>
++      <PIN10>
++        <NAME>[PD4:INT5:AIN3]</NAME>
++        <TEXT/>
++      </PIN10>
++      <PIN11>
++        <NAME>[PD5:XCK1:AIN4:PCINT12]</NAME>
++        <TEXT/>
++      </PIN11>
++      <PIN12>
++        <NAME>[PD6:'RTS:AIN5:INT6]</NAME>
++        <TEXT/>
++      </PIN12>
++      <PIN13>
++        <NAME>[PD7:'CTS:'HWB:AIN6:T0:INT7]</NAME>
++        <TEXT/>
++      </PIN13>
++      <PIN14>
++        <NAME>[PB0:'SS:PCINT0]</NAME>
++        <TEXT/>
++      </PIN14>
++      <PIN15>
++        <NAME>[PB1:SCLK:PCINT1]</NAME>
++        <TEXT/>
++      </PIN15>
++      <PIN16>
++        <NAME>[PB2:PDI:MOSI:PCINT2]</NAME>
++        <TEXT/>
++      </PIN16>
++      <PIN17>
++        <NAME>[PB3:PDO:MISO:PCINT3]</NAME>
++        <TEXT/>
++      </PIN17>
++      <PIN18>
++        <NAME>[PB4:T1:PCINT4]</NAME>
++        <TEXT/>
++      </PIN18>
++      <PIN19>
++        <NAME>[PB5:PCINT5]</NAME>
++        <TEXT/>
++      </PIN19>
++      <PIN20>
++        <NAME>[PB6:PCINT6]</NAME>
++        <TEXT/>
++      </PIN20>
++      <PIN21>
++        <NAME>[PB7:PCINT7:OC0A:OC1C]</NAME>
++        <TEXT/>
++      </PIN21>
++      <PIN22>
++        <NAME>[PC7:INT4:ICP1:CLKO]</NAME>
++        <TEXT/>
++      </PIN22>
++      <PIN23>
++        <NAME>[PC6:OC1A:PCINT8]</NAME>
++        <TEXT/>
++      </PIN23>
++      <PIN24>
++        <NAME>[PC1:'RESET:dW]</NAME>
++        <TEXT/>
++      </PIN24>
++      <PIN25>
++        <NAME>[PC5:PCINT9:OC1B]</NAME>
++        <TEXT/>
++      </PIN25>
++      <PIN26>
++        <NAME>[PC4:PCINT10]</NAME>
++        <TEXT/>
++      </PIN26>
++      <PIN27>
++        <NAME>[UCAP]</NAME>
++        <TEXT/>
++      </PIN27>
++      <PIN28>
++        <NAME>[UGND]</NAME>
++        <TEXT/>
++      </PIN28>
++      <PIN29>
++        <NAME>[D]</NAME>
++        <TEXT/>
++      </PIN29>
++      <PIN30>
++        <NAME>[D-]</NAME>
++        <TEXT/>
++      </PIN30>
++      <PIN31>
++        <NAME>[UVCC]</NAME>
++        <TEXT/>
++      </PIN31>
++      <PIN32>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN32>
++    </TQFP>
++  </PACKAGE>
+   <MEMORY>
+     <ID>AVRSimMemory8bit.SimMemory8bit</ID>
+     <PROG_FLASH>32768</PROG_FLASH>
+diff -rupN xmlPartDescriptionOriginal/ATmega32U4.xml xmlPartDescription/ATmega32U4.xml
+--- xmlPartDescriptionOriginal/ATmega32U4.xml	2010-11-12 22:18:28.654784030 -0500
++++ xmlPartDescription/ATmega32U4.xml	2010-11-13 14:11:58.555580788 -0500
+@@ -2313,6 +2313,188 @@
+       <DEFINITION>Timer/Counter4 Fault Protection Interrupt</DEFINITION>
+     </VECTOR43>
+   </INTERRUPT_VECTOR>
++  <PACKAGE>
++    <PACKAGES>[TQFP]</PACKAGES>
++    <TQFP>
++      <NMB_PIN>32</NMB_PIN>
++      <PIN1>
++        <NAME>[PE6:INT6:AIN0]</NAME>
++        <TEXT/>
++      </PIN1>
++      <PIN2>
++        <NAME>[UVCC]</NAME>
++        <TEXT/>
++      </PIN2>
++      <PIN3>
++        <NAME>[D-]</NAME>
++        <TEXT/>
++      </PIN3>
++      <PIN4>
++        <NAME>[D]</NAME>
++        <TEXT/>
++      </PIN4>
++      <PIN5>
++        <NAME>[UGND]</NAME>
++        <TEXT/>
++      </PIN5>
++      <PIN6>
++        <NAME>[UCAP]</NAME>
++        <TEXT/>
++      </PIN6>
++      <PIN7>
++        <NAME>[VBUS]</NAME>
++        <TEXT/>
++      </PIN7>
++      <PIN8>
++        <NAME>[PB0:'SS:PCINT0]</NAME>
++        <TEXT/>
++      </PIN8>
++      <PIN9>
++        <NAME>[PB1:SCLK:PCINT1]</NAME>
++        <TEXT/>
++      </PIN9>
++      <PIN10>
++        <NAME>[PB2:PDI:MOSI:PCINT2]</NAME>
++        <TEXT/>
++      </PIN10>
++      <PIN11>
++        <NAME>[PB3:PDO:MISO:PCINT3]</NAME>
++        <TEXT/>
++      </PIN11>
++      <PIN12>
++        <NAME>[PB7:PCINT7:OC0A:OC1C:'RTS]</NAME>
++        <TEXT/>
++      </PIN12>
++      <PIN13>
++        <NAME>['RESET]</NAME>
++        <TEXT/>
++      </PIN13>
++      <PIN14>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN14>
++      <PIN15>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN15>
++      <PIN16>
++        <NAME>[XTAL2]</NAME>
++        <TEXT/>
++      </PIN16>
++      <PIN17>
++        <NAME>[XTAL1]</NAME>
++        <TEXT/>
++      </PIN17>
++      <PIN18>
++        <NAME>[PD0:OC0B:SCL:INT0]</NAME>
++        <TEXT/>
++      </PIN18>
++      <PIN19>
++        <NAME>[PD1:SDA:INT1]</NAME>
++        <TEXT/>
++      </PIN19>
++      <PIN20>
++        <NAME>[PD2:RXD1:INT2]</NAME>
++        <TEXT/>
++      </PIN20>
++      <PIN21>
++        <NAME>[PD3:TXD1:INT3]</NAME>
++        <TEXT/>
++      </PIN21>
++      <PIN22>
++        <NAME>[PD5:XCK1:'CTS]</NAME>
++        <TEXT/>
++      </PIN22>
++      <PIN23>
++        <NAME>[GNS]</NAME>
++        <TEXT/>
++      </PIN23>
++      <PIN24>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN24>
++      <PIN25>
++        <NAME>[PD4:ICP1:ADC8]</NAME>
++        <TEXT/>
++      </PIN25>
++      <PIN26>
++        <NAME>[PD6:T1:'OC4D:ADC9]</NAME>
++        <TEXT/>
++      </PIN26>
++      <PIN27>
++        <NAME>[PD7:T0:OC4D:ADC10]</NAME>
++        <TEXT/>
++      </PIN27>
++      <PIN28>
++        <NAME>[PB4:PCINT4:ADC11]</NAME>
++        <TEXT/>
++      </PIN28>
++      <PIN29>
++        <NAME>[PB5:PCINT5:OC1A:'OC4B:ADC12]</NAME>
++        <TEXT/>
++      </PIN29>
++      <PIN30>
++        <NAME>[PB6:PCINT6:OC1B:OC4B:ADC13]</NAME>
++        <TEXT/>
++      </PIN30>
++      <PIN31>
++        <NAME>[PC6:OC3A:'OC4A]</NAME>
++        <TEXT/>
++      </PIN31>
++      <PIN32>
++        <NAME>[PC7:ICP3:CLKO:OC4A]</NAME>
++        <TEXT/>
++      </PIN32>
++      <PIN33>
++        <NAME>[PE3:'HWB]</NAME>
++        <TEXT/>
++      </PIN33>
++      <PIN34>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN34>
++      <PIN35>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN35>
++      <PIN36>
++        <NAME>[PF7:ADC7:TDI]</NAME>
++        <TEXT/>
++      </PIN36>
++      <PIN37>
++        <NAME>[PF6:ADC6:TDO]</NAME>
++        <TEXT/>
++      </PIN37>
++      <PIN38>
++        <NAME>[PF5:ADC5:TMS]</NAME>
++        <TEXT/>
++      </PIN38>
++      <PIN39>
++        <NAME>[PF4:ADC4:TCK]</NAME>
++        <TEXT/>
++      </PIN39>
++      <PIN40>
++        <NAME>[PF1:ADC1]</NAME>
++        <TEXT/>
++      </PIN40>
++      <PIN41>
++        <NAME>[PF0:ADC0]</NAME>
++        <TEXT/>
++      </PIN41>
++      <PIN42>
++        <NAME>[AREF]</NAME>
++        <TEXT/>
++      </PIN42>
++      <PIN43>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN43>
++      <PIN44>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN44>
++    </TQFP>
++  </PACKAGE>
+   <ADMIN>
+     <PART_NAME>ATmega32U4</PART_NAME>
+     <SPEED>16MHZ</SPEED>
+@@ -3079,7 +3261,7 @@
+       <UBRR1H>
+         <NAME>UBRR1H</NAME>
+         <DESCRIPTION>USART Baud Rate Register High Byte</DESCRIPTION>
+-        <TEXT>This is a 12-bit register which contains the USART baud rate. The UBRR0H contains the 4 most significant bits, and the UBRR0L contains the 8 least significant bits of the USART baud rate. Ongoing transmissions by the transmitter and receiver will be corrupted if the baud rate is changed. Writing UBRR0L will trigger an immediate update of the baud rate prescaler.</TEXT>
++        <TEXT>This is a 12-bit register which contains the USART baud rate. The UBRR1H contains the 4 most significant bits, and the UBRR1L contains the 8 least significant bits of the USART baud rate. Ongoing transmissions by the transmitter and receiver will be corrupted if the baud rate is changed. Writing UBRR1L will trigger an immediate update of the baud rate prescaler.</TEXT>
+         <IO_ADDR>NA</IO_ADDR>
+         <MEM_ADDR>$CD</MEM_ADDR>
+         <ICON>io_com.bmp</ICON>
+@@ -3116,7 +3298,7 @@
+       <UBRR1L>
+         <NAME>UBRR1L</NAME>
+         <DESCRIPTION>USART Baud Rate Register Low Byte</DESCRIPTION>
+-        <TEXT>This is a 12-bit register which contains the USART baud rate. The UBRR0H contains the 4 most significant bits, and the UBRR0L contains the 8 least significant bits of the USART baud rate. Ongoing transmissions by the transmitter and receiver will be corrupted if the baud rate is changed. Writing UBRR0L will trigger an immediate update of the baud rate prescaler.</TEXT>
++        <TEXT>This is a 12-bit register which contains the USART baud rate. The UBRR1H contains the 4 most significant bits, and the UBRR1L contains the 8 least significant bits of the USART baud rate. Ongoing transmissions by the transmitter and receiver will be corrupted if the baud rate is changed. Writing UBRR1L will trigger an immediate update of the baud rate prescaler.</TEXT>
+         <IO_ADDR>NA</IO_ADDR>
+         <MEM_ADDR>$CC</MEM_ADDR>
+         <ICON>io_com.bmp</ICON>
+diff -rupN xmlPartDescriptionOriginal/ATmega32U6.xml xmlPartDescription/ATmega32U6.xml
+--- xmlPartDescriptionOriginal/ATmega32U6.xml	2010-11-12 22:18:28.674784031 -0500
++++ xmlPartDescription/ATmega32U6.xml	2010-11-13 14:13:04.158581015 -0500
+@@ -318,6 +318,268 @@
+     <FlashPageSize>128</FlashPageSize>
+     <EepromPageSize>4</EepromPageSize>
+   </PROGRAMMING>
++  <PACKAGE>
++    <PACKAGES>[TQFP]</PACKAGES>
++    <TQFP>
++      <NMB_PIN>64</NMB_PIN>
++      <PIN1>
++        <NAME>[PE6:INT6:AIN0]</NAME>
++        <TEXT/>
++      </PIN1>
++      <PIN2>
++        <NAME>[PE7INT7:AIN1:VCON]</NAME>
++        <TEXT/>
++      </PIN2>
++      <PIN3>
++        <NAME>[UVCC]</NAME>
++        <TEXT/>
++      </PIN3>
++      <PIN4>
++        <NAME>[D-]</NAME>
++        <TEXT/>
++      </PIN4>
++      <PIN5>
++        <NAME>[D]</NAME>
++        <TEXT/>
++      </PIN5>
++      <PIN6>
++        <NAME>[UGND]</NAME>
++        <TEXT/>
++      </PIN6>
++      <PIN7>
++        <NAME>[UCAP]</NAME>
++        <TEXT/>
++      </PIN7>
++      <PIN8>
++        <NAME>[VBUS]</NAME>
++        <TEXT/>
++      </PIN8>
++      <PIN9>
++        <NAME>[PE3:IUID]</NAME>
++        <TEXT/>
++      </PIN9>
++      <PIN10>
++        <NAME>[PB0:'SS:PCINT0]</NAME>
++        <TEXT/>
++      </PIN10>
++      <PIN11>
++        <NAME>[PB1:SCK:PCINT1]</NAME>
++        <TEXT/>
++      </PIN11>
++      <PIN12>
++        <NAME>[PB2:MOSI:PCINT2:PDI]</NAME>
++        <TEXT/>
++      </PIN12>
++      <PIN13>
++        <NAME>[PB3:MISO:PCINT3:PDO]</NAME>
++        <TEXT/>
++      </PIN13>
++      <PIN14>
++        <NAME>[PB4:OC2A:PCINT4]</NAME>
++        <TEXT/>
++      </PIN14>
++      <PIN15>
++        <NAME>[PB5:OC1A:PCINT5]</NAME>
++        <TEXT/>
++      </PIN15>
++      <PIN16>
++        <NAME>[PB6:OC1B:PCINT6]</NAME>
++        <TEXT/>
++      </PIN16>
++      <PIN17>
++        <NAME>[PB7:OC0A:OC1C:PCINT7]</NAME>
++        <TEXT/>
++      </PIN17>
++      <PIN18>
++        <NAME>[PE4:INT4:TOSC1]</NAME>
++        <TEXT/>
++      </PIN18>
++      <PIN19>
++        <NAME>[PE5:INT5:TOSC2]</NAME>
++        <TEXT/>
++      </PIN19>
++      <PIN20>
++        <NAME>['RESET]</NAME>
++        <TEXT/>
++      </PIN20>
++      <PIN21>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN21>
++      <PIN22>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN22>
++      <PIN23>
++        <NAME>[XTAL2]</NAME>
++        <TEXT/>
++      </PIN23>
++      <PIN24>
++        <NAME>[XTAL1]</NAME>
++        <TEXT/>
++      </PIN24>
++      <PIN25>
++        <NAME>[PD0:SCL:INT0:OC0B]</NAME>
++        <TEXT/>
++      </PIN25>
++      <PIN26>
++        <NAME>[PD1:SDA:INT1:OC2B]</NAME>
++        <TEXT/>
++      </PIN26>
++      <PIN27>
++        <NAME>[PD2:RXD1:INT2]</NAME>
++        <TEXT/>
++      </PIN27>
++      <PIN28>
++        <NAME>[PD3:TXD1:INT3]</NAME>
++        <TEXT/>
++      </PIN28>
++      <PIN29>
++        <NAME>[PD4:IC1]</NAME>
++        <TEXT/>
++      </PIN29>
++      <PIN30>
++        <NAME>[PD5:XCK1]</NAME>
++        <TEXT/>
++      </PIN30>
++      <PIN31>
++        <NAME>[PD6:T1]</NAME>
++        <TEXT/>
++      </PIN31>
++      <PIN32>
++        <NAME>[PD7:T2]</NAME>
++        <TEXT/>
++      </PIN32>
++      <PIN33>
++        <NAME>[PE0:'WR]</NAME>
++        <TEXT/>
++      </PIN33>
++      <PIN34>
++        <NAME>[PE1:'RD]</NAME>
++        <TEXT/>
++      </PIN34>
++      <PIN35>
++        <NAME>[PC0:A8]</NAME>
++        <TEXT/>
++      </PIN35>
++      <PIN36>
++        <NAME>[PC1:A9]</NAME>
++        <TEXT/>
++      </PIN36>
++      <PIN37>
++        <NAME>[PC2:A10]</NAME>
++        <TEXT/>
++      </PIN37>
++      <PIN38>
++        <NAME>[PC3:A11:T3]</NAME>
++        <TEXT/>
++      </PIN38>
++      <PIN39>
++        <NAME>[PC4:A12:OC3C]</NAME>
++        <TEXT/>
++      </PIN39>
++      <PIN40>
++        <NAME>[PC5:A13:OC3B]</NAME>
++        <TEXT/>
++      </PIN40>
++      <PIN41>
++        <NAME>[PC6:A14:OC3A]</NAME>
++        <TEXT/>
++      </PIN41>
++      <PIN42>
++        <NAME>[PC7:A15:IC3:CLKO]</NAME>
++        <TEXT/>
++      </PIN42>
++      <PIN43>
++        <NAME>[PG2:ALE:'HWB]</NAME>
++        <TEXT/>
++      </PIN43>
++      <PIN44>
++        <NAME>[PA7:AD7]</NAME>
++        <TEXT/>
++      </PIN44>
++      <PIN45>
++        <NAME>[PA6:AD6]</NAME>
++        <TEXT/>
++      </PIN45>
++      <PIN46>
++        <NAME>[PA5:AD5]</NAME>
++        <TEXT/>
++      </PIN46>
++      <PIN47>
++        <NAME>[PA4:AD4]</NAME>
++        <TEXT/>
++      </PIN47>
++      <PIN48>
++        <NAME>[PA3:AD3]</NAME>
++        <TEXT/>
++      </PIN48>
++      <PIN49>
++        <NAME>[PA2:AD2]</NAME>
++        <TEXT/>
++      </PIN49>
++      <PIN50>
++        <NAME>[PA1:AD1]</NAME>
++        <TEXT/>
++      </PIN50>
++      <PIN51>
++        <NAME>[PA0:AD0]</NAME>
++        <TEXT/>
++      </PIN51>
++      <PIN52>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN52>
++      <PIN53>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN53>
++      <PIN54>
++        <NAME>[PF7:ADC7:TDI]</NAME>
++        <TEXT/>
++      </PIN54>
++      <PIN55>
++        <NAME>[PF6:ADC6:TDO]</NAME>
++        <TEXT/>
++      </PIN55>
++      <PIN56>
++        <NAME>[PF5:ADC5:TMS]</NAME>
++        <TEXT/>
++      </PIN56>
++      <PIN57>
++        <NAME>[PF4:ADC4:TCK]</NAME>
++        <TEXT/>
++      </PIN57>
++      <PIN58>
++        <NAME>[PF3:ADC3]</NAME>
++        <TEXT/>
++      </PIN58>
++      <PIN59>
++        <NAME>[PF2:ADC2]</NAME>
++        <TEXT/>
++      </PIN59>
++      <PIN60>
++        <NAME>[PF1:ADC1]</NAME>
++        <TEXT/>
++      </PIN60>
++      <PIN61>
++        <NAME>[PF0:ADC0]</NAME>
++        <TEXT/>
++      </PIN61>
++      <PIN62>
++        <NAME>[AREF]</NAME>
++        <TEXT/>
++      </PIN62>
++      <PIN63>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN63>
++      <PIN64>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN64>
++    </TQFP>
++  </PACKAGE>
+   <MEMORY>
+     <ID>AVRSimMemory8bit.SimMemory8bit</ID>
+     <PROG_FLASH>32768</PROG_FLASH>
+@@ -4491,7 +4753,7 @@
+       <UBRR1H>
+         <NAME>UBRR1H</NAME>
+         <DESCRIPTION>USART Baud Rate Register High Byte</DESCRIPTION>
+-        <TEXT>This is a 12-bit register which contains the USART baud rate. The UBRR0H contains the 4 most significant bits, and the UBRR0L contains the 8 least significant bits of the USART baud rate. Ongoing transmissions by the transmitter and receiver will be corrupted if the baud rate is changed. Writing UBRR0L will trigger an immediate update of the baud rate prescaler.</TEXT>
++        <TEXT>This is a 12-bit register which contains the USART baud rate. The UBRR1H contains the 4 most significant bits, and the UBRR1L contains the 8 least significant bits of the USART baud rate. Ongoing transmissions by the transmitter and receiver will be corrupted if the baud rate is changed. Writing UBRR1L will trigger an immediate update of the baud rate prescaler.</TEXT>
+         <IO_ADDR>NA</IO_ADDR>
+         <MEM_ADDR>$CD</MEM_ADDR>
+         <ICON>io_com.bmp</ICON>
+@@ -4528,7 +4790,7 @@
+       <UBRR1L>
+         <NAME>UBRR1L</NAME>
+         <DESCRIPTION>USART Baud Rate Register Low Byte</DESCRIPTION>
+-        <TEXT>This is a 12-bit register which contains the USART baud rate. The UBRR0H contains the 4 most significant bits, and the UBRR0L contains the 8 least significant bits of the USART baud rate. Ongoing transmissions by the transmitter and receiver will be corrupted if the baud rate is changed. Writing UBRR0L will trigger an immediate update of the baud rate prescaler.</TEXT>
++        <TEXT>This is a 12-bit register which contains the USART baud rate. The UBRR1H contains the 4 most significant bits, and the UBRR1L contains the 8 least significant bits of the USART baud rate. Ongoing transmissions by the transmitter and receiver will be corrupted if the baud rate is changed. Writing UBRR1L will trigger an immediate update of the baud rate prescaler.</TEXT>
+         <IO_ADDR>NA</IO_ADDR>
+         <MEM_ADDR>$CC</MEM_ADDR>
+         <ICON>io_com.bmp</ICON>
+diff -rupN xmlPartDescriptionOriginal/ATmega32.xml xmlPartDescription/ATmega32.xml
+--- xmlPartDescriptionOriginal/ATmega32.xml	2010-11-12 22:18:28.605908066 -0500
++++ xmlPartDescription/ATmega32.xml	2010-11-13 14:13:38.020715689 -0500
+@@ -1041,7 +1041,7 @@
+         <TEXT>MISO: Master data input, slave data output pin for SPI channel. When the SPI is enabled as a master, this pin is configured as an input regardless of the setting of DDB6. When the SPI is enabled as a slave, the data direction of this pin is controlled by DDB6. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB6 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN2>
+       <PIN3>
+-        <NAME>[PB7_SCK]</NAME>
++        <NAME>[PB7:SCK]</NAME>
+         <TEXT>SCK: Master clock output, slave clock input pin for SPI channel. When the SPI is enabled as a slave, this pin is configured as an input regardless of the setting of DDB7. When the SPI is enabled as a master, the data direction of this pin is con-trolled by DDB7. When the pin is forced to be an input, the pull-up can still be controlled by the PORTB7 bit. See the description of the SPI port for further details.</TEXT>
+       </PIN3>
+       <PIN4>
+diff -rupN xmlPartDescriptionOriginal/ATmega640.xml xmlPartDescription/ATmega640.xml
+--- xmlPartDescriptionOriginal/ATmega640.xml	2010-11-12 22:18:28.673792932 -0500
++++ xmlPartDescription/ATmega640.xml	2010-11-13 14:14:10.355831091 -0500
+@@ -436,7 +436,7 @@
+         <DESCRIPTION/>
+       </PIN1>
+       <PIN2>
+-        <PIN_NAME>[RXD:PCINT8]</PIN_NAME>
++        <PIN_NAME>[RXD0:PCINT8]</PIN_NAME>
+         <ALT_NAME>[PE0]</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN2>
+@@ -446,7 +446,7 @@
+         <DESCRIPTION/>
+       </PIN3>
+       <PIN4>
+-        <PIN_NAME>[XCK:AIN0]</PIN_NAME>
++        <PIN_NAME>[XCK0:AIN0]</PIN_NAME>
+         <ALT_NAME>[PE2]</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN4>
+diff -rupN xmlPartDescriptionOriginal/ATmega644A.xml xmlPartDescription/ATmega644A.xml
+--- xmlPartDescriptionOriginal/ATmega644A.xml	2010-11-12 22:18:28.636907915 -0500
++++ xmlPartDescription/ATmega644A.xml	2010-11-13 14:14:32.950830698 -0500
+@@ -1864,11 +1864,11 @@
+         <TEXT/>
+       </PIN8>
+       <PIN9>
+-        <NAME>[PD0:RXD:PCINT24]</NAME>
++        <NAME>[PD0:RXD0:PCINT24]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART Receiver is enabled, this pin is configured as an input, regard-less of the value of DDD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN9>
+       <PIN10>
+-        <NAME>[PD1:TXD:PCINT25]</NAME>
++        <NAME>[PD1:TXD0:PCINT25]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART Transmitter is enabled, this pin is configured as an output, regardless of the value of DDD1.</TEXT>
+       </PIN10>
+       <PIN11>
+@@ -1988,7 +1988,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:XCK:T0:PCINT8]</NAME>
++        <NAME>[PB0:XCK0:T0:PCINT8]</NAME>
+         <TEXT>T0, Timer/Counter0 counter source. See the timer description for further details. XCK, USART external clock. See the USART description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+diff -rupN xmlPartDescriptionOriginal/ATmega644PA.xml xmlPartDescription/ATmega644PA.xml
+--- xmlPartDescriptionOriginal/ATmega644PA.xml	2010-11-12 22:18:28.672792388 -0500
++++ xmlPartDescription/ATmega644PA.xml	2010-11-13 14:14:52.218590562 -0500
+@@ -1884,11 +1884,11 @@
+         <TEXT/>
+       </PIN8>
+       <PIN9>
+-        <NAME>[PD0:RXD:PCINT24]</NAME>
++        <NAME>[PD0:RXD0:PCINT24]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART Receiver is enabled, this pin is configured as an input, regard-less of the value of DDD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN9>
+       <PIN10>
+-        <NAME>[PD1:TXD:PCINT25]</NAME>
++        <NAME>[PD1:TXD0:PCINT25]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART Transmitter is enabled, this pin is configured as an output, regardless of the value of DDD1.</TEXT>
+       </PIN10>
+       <PIN11>
+@@ -2008,7 +2008,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:XCK:T0:PCINT8]</NAME>
++        <NAME>[PB0:XCK0:T0:PCINT8]</NAME>
+         <TEXT>T0, Timer/Counter0 counter source. See the timer description for further details. XCK, USART external clock. See the USART description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+diff -rupN xmlPartDescriptionOriginal/ATmega644P.xml xmlPartDescription/ATmega644P.xml
+--- xmlPartDescriptionOriginal/ATmega644P.xml	2010-11-12 22:18:28.678792825 -0500
++++ xmlPartDescription/ATmega644P.xml	2010-11-13 14:15:12.621597765 -0500
+@@ -1884,11 +1884,11 @@
+         <TEXT/>
+       </PIN8>
+       <PIN9>
+-        <NAME>[PD0:RXD:PCINT24]</NAME>
++        <NAME>[PD0:RXD0:PCINT24]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART Receiver is enabled, this pin is configured as an input, regard-less of the value of DDD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN9>
+       <PIN10>
+-        <NAME>[PD1:TXD:PCINT25]</NAME>
++        <NAME>[PD1:TXD0:PCINT25]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART Transmitter is enabled, this pin is configured as an output, regardless of the value of DDD1.</TEXT>
+       </PIN10>
+       <PIN11>
+@@ -2008,7 +2008,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:XCK:T0:PCINT8]</NAME>
++        <NAME>[PB0:XCK0:T0:PCINT8]</NAME>
+         <TEXT>T0, Timer/Counter0 counter source. See the timer description for further details. XCK, USART external clock. See the USART description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+diff -rupN xmlPartDescriptionOriginal/ATmega644.xml xmlPartDescription/ATmega644.xml
+--- xmlPartDescriptionOriginal/ATmega644.xml	2010-11-12 22:18:28.663793004 -0500
++++ xmlPartDescription/ATmega644.xml	2010-11-13 14:15:35.565581181 -0500
+@@ -1798,11 +1798,11 @@
+         <TEXT/>
+       </PIN8>
+       <PIN9>
+-        <NAME>[PD0:RXD:PCINT24]</NAME>
++        <NAME>[PD0:RXD0:PCINT24]</NAME>
+         <TEXT>Receive Data (data input pin for the UART). When the UART Receiver is enabled, this pin is configured as an input, regard-less of the value of DDD0. When the UART forces this pin to be an input, a logical &#x201C;1&#x201D; in PORTD0 will turn on the internal pull-up.</TEXT>
+       </PIN9>
+       <PIN10>
+-        <NAME>[PD1:TXD:PCINT25]</NAME>
++        <NAME>[PD1:TXD0:PCINT25]</NAME>
+         <TEXT>Transmit Data (data output pin for the UART). When the UART Transmitter is enabled, this pin is configured as an output, regardless of the value of DDD1.</TEXT>
+       </PIN10>
+       <PIN11>
+@@ -1922,7 +1922,7 @@
+         <TEXT/>
+       </PIN39>
+       <PIN40>
+-        <NAME>[PB0:XCK:T0:PCINT8]</NAME>
++        <NAME>[PB0:XCK0:T0:PCINT8]</NAME>
+         <TEXT>T0, Timer/Counter0 counter source. See the timer description for further details. XCK, USART external clock. See the USART description for further details.</TEXT>
+       </PIN40>
+       <PIN41>
+diff -rupN xmlPartDescriptionOriginal/ATmega6490.xml xmlPartDescription/ATmega6490.xml
+--- xmlPartDescriptionOriginal/ATmega6490.xml	2010-11-12 22:18:28.689791917 -0500
++++ xmlPartDescription/ATmega6490.xml	2010-11-13 14:15:55.789705996 -0500
+@@ -1596,7 +1596,7 @@
+         <DESCRIPTION/>
+       </PIN13>
+       <PIN14>
+-        <PIN_NAME>[PCINT25:SEG33]</PIN_NAME>
++        <PIN_NAME>[PCINT25:SEG34]</PIN_NAME>
+         <ALT_NAME>PJ1</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN14>
+diff -rupN xmlPartDescriptionOriginal/ATmega649P.xml xmlPartDescription/ATmega649P.xml
+--- xmlPartDescriptionOriginal/ATmega649P.xml	2010-11-12 22:18:28.669792842 -0500
++++ xmlPartDescription/ATmega649P.xml	2010-11-13 14:16:30.481706156 -0500
+@@ -295,7 +295,7 @@
+         <DESCRIPTION/>
+       </PIN13>
+       <PIN14>
+-        <PIN_NAME>[OC0:PCINT12]</PIN_NAME>
++        <PIN_NAME>[OC0A:PCINT12]</PIN_NAME>
+         <ALT_NAME>PB4</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN14>
+@@ -310,7 +310,7 @@
+         <DESCRIPTION/>
+       </PIN16>
+       <PIN17>
+-        <PIN_NAME>[OC2:PCINT15]</PIN_NAME>
++        <PIN_NAME>[OC2A:PCINT15]</PIN_NAME>
+         <ALT_NAME>PB7</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN17>
+diff -rupN xmlPartDescriptionOriginal/ATmega649.xml xmlPartDescription/ATmega649.xml
+--- xmlPartDescriptionOriginal/ATmega649.xml	2010-11-12 22:18:28.666792547 -0500
++++ xmlPartDescription/ATmega649.xml	2010-11-13 14:16:46.331581753 -0500
+@@ -295,7 +295,7 @@
+         <DESCRIPTION/>
+       </PIN13>
+       <PIN14>
+-        <PIN_NAME>[OC0:PCINT12]</PIN_NAME>
++        <PIN_NAME>[OC0A:PCINT12]</PIN_NAME>
+         <ALT_NAME>PB4</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN14>
+@@ -310,7 +310,7 @@
+         <DESCRIPTION/>
+       </PIN16>
+       <PIN17>
+-        <PIN_NAME>[OC2:PCINT15]</PIN_NAME>
++        <PIN_NAME>[OC2A:PCINT15]</PIN_NAME>
+         <ALT_NAME>PB7</ALT_NAME>
+         <DESCRIPTION/>
+       </PIN17>
+diff -rupN xmlPartDescriptionOriginal/ATmega64C1.xml xmlPartDescription/ATmega64C1.xml
+--- xmlPartDescriptionOriginal/ATmega64C1.xml	2010-11-12 22:18:28.610907937 -0500
++++ xmlPartDescription/ATmega64C1.xml	2010-11-13 14:17:10.982832159 -0500
+@@ -1838,7 +1838,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:CLK0:PCINT17]</NAME>
++        <NAME>[PD1:CLKO:PCINT17]</NAME>
+         <TEXT/>
+       </PIN32>
+     </QFN>
+@@ -1969,7 +1969,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:CLK0:PCINT17]</NAME>
++        <NAME>[PD1:CLKO:PCINT17]</NAME>
+         <TEXT/>
+       </PIN32>
+     </TQFP>
+diff -rupN xmlPartDescriptionOriginal/ATmega64M1.xml xmlPartDescription/ATmega64M1.xml
+--- xmlPartDescriptionOriginal/ATmega64M1.xml	2010-11-12 22:18:28.660793068 -0500
++++ xmlPartDescription/ATmega64M1.xml	2010-11-13 14:17:33.550580925 -0500
+@@ -2127,7 +2127,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:PSCIN0:CLK0:PCINT17]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO:PCINT17]</NAME>
+         <TEXT/>
+       </PIN32>
+     </QFN>
+@@ -2258,7 +2258,7 @@
+         <TEXT/>
+       </PIN31>
+       <PIN32>
+-        <NAME>[PD1:PSCIN0:CLK0:PCINT17]</NAME>
++        <NAME>[PD1:PSCIN0:CLKO:PCINT17]</NAME>
+         <TEXT/>
+       </PIN32>
+     </TQFP>
+diff -rupN xmlPartDescriptionOriginal/ATmega8U2.xml xmlPartDescription/ATmega8U2.xml
+--- xmlPartDescriptionOriginal/ATmega8U2.xml	2010-11-12 22:18:28.603907865 -0500
++++ xmlPartDescription/ATmega8U2.xml	2010-11-13 14:18:02.620580794 -0500
+@@ -743,6 +743,140 @@
+       <DEFINITION>Store Program Memory Read</DEFINITION>
+     </VECTOR29>
+   </INTERRUPT_VECTOR>
++  <PACKAGE>
++    <PACKAGES>[TQFP]</PACKAGES>
++    <TQFP>
++      <NMB_PIN>32</NMB_PIN>
++      <PIN1>
++        <NAME>[XTAL1]</NAME>
++        <TEXT/>
++      </PIN1>
++      <PIN2>
++        <NAME>[PC0:XTAL2]</NAME>
++        <TEXT/>
++      </PIN2>
++      <PIN3>
++        <NAME>[GND]</NAME>
++        <TEXT/>
++      </PIN3>
++      <PIN4>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
++      </PIN4>
++      <PIN5>
++        <NAME>[PC2:PCINT11:AIN2]</NAME>
++        <TEXT/>
++      </PIN5>
++      <PIN6>
++        <NAME>[PD0:OC0B:INT0]</NAME>
++        <TEXT/>
++      </PIN6>
++      <PIN7>
++        <NAME>[PD1:AIN0:INT1]</NAME>
++        <TEXT/>
++      </PIN7>
++      <PIN8>
++        <NAME>[PD2:RXD1:AIN1:INT2]</NAME>
++        <TEXT/>
++      </PIN8>
++      <PIN9>
++        <NAME>[PD3:TXD1:INT3]</NAME>
++        <TEXT/>
++      </PIN9>
++      <PIN10>
++        <NAME>[PD4:INT5:AIN3]</NAME>
++        <TEXT/>
++      </PIN10>
++      <PIN11>
++        <NAME>[PD5:XCK1:AIN4:PCINT12]</NAME>
++        <TEXT/>
++      </PIN11>
++      <PIN12>
++        <NAME>[PD6:'RTS:AIN5:INT6]</NAME>
++        <TEXT/>
++      </PIN12>
++      <PIN13>
++        <NAME>[PD7:'CTS:'HWB:AIN6:T0:INT7]</NAME>
++        <TEXT/>
++      </PIN13>
++      <PIN14>
++        <NAME>[PB0:'SS:PCINT0]</NAME>
++        <TEXT/>
++      </PIN14>
++      <PIN15>
++        <NAME>[PB1:SCLK:PCINT1]</NAME>
++        <TEXT/>
++      </PIN15>
++      <PIN16>
++        <NAME>[PB2:PDI:MOSI:PCINT2]</NAME>
++        <TEXT/>
++      </PIN16>
++      <PIN17>
++        <NAME>[PB3:PDO:MISO:PCINT3]</NAME>
++        <TEXT/>
++      </PIN17>
++      <PIN18>
++        <NAME>[PB4:T1:PCINT4]</NAME>
++        <TEXT/>
++      </PIN18>
++      <PIN19>
++        <NAME>[PB5:PCINT5]</NAME>
++        <TEXT/>
++      </PIN19>
++      <PIN20>
++        <NAME>[PB6:PCINT6]</NAME>
++        <TEXT/>
++      </PIN20>
++      <PIN21>
++        <NAME>[PB7:PCINT7:OC0A:OC1C]</NAME>
++        <TEXT/>
++      </PIN21>
++      <PIN22>
++        <NAME>[PC7:INT4:ICP1:CLKO]</NAME>
++        <TEXT/>
++      </PIN22>
++      <PIN23>
++        <NAME>[PC6:OC1A:PCINT8]</NAME>
++        <TEXT/>
++      </PIN23>
++      <PIN24>
++        <NAME>[PC1:'RESET:dW]</NAME>
++        <TEXT/>
++      </PIN24>
++      <PIN25>
++        <NAME>[PC5:PCINT9:OC1B]</NAME>
++        <TEXT/>
++      </PIN25>
++      <PIN26>
++        <NAME>[PC4:PCINT10]</NAME>
++        <TEXT/>
++      </PIN26>
++      <PIN27>
++        <NAME>[UCAP]</NAME>
++        <TEXT/>
++      </PIN27>
++      <PIN28>
++        <NAME>[UGND]</NAME>
++        <TEXT/>
++      </PIN28>
++      <PIN29>
++        <NAME>[D]</NAME>
++        <TEXT/>
++      </PIN29>
++      <PIN30>
++        <NAME>[D-]</NAME>
++        <TEXT/>
++      </PIN30>
++      <PIN31>
++        <NAME>[UVCC]</NAME>
++        <TEXT/>
++      </PIN31>
++      <PIN32>
++        <NAME>[AVCC]</NAME>
++        <TEXT/>
++      </PIN32>
++    </TQFP>
++  </PACKAGE>
+   <PROGRAMMING>
+     <ISPInterface>
+       <FuseReadMask>0xff,0xff</FuseReadMask>
+diff -rupN xmlPartDescriptionOriginal/ATtiny43U.xml xmlPartDescription/ATtiny43U.xml
+--- xmlPartDescriptionOriginal/ATtiny43U.xml	2010-11-12 22:18:28.680907765 -0500
++++ xmlPartDescription/ATtiny43U.xml	2010-11-13 14:23:09.792831058 -0500
+@@ -726,87 +726,87 @@
+     </VECTOR16>
+   </INTERRUPT_VECTOR>
+   <PACKAGE>
+-    <PACKAGES>[PDIP:SOIC]</PACKAGES>
+-    <PDIP>
++    <PACKAGES>[SOIC]</PACKAGES>
++    <SOIC>
+       <NMB_PIN>20</NMB_PIN>
+       <PIN1>
+-        <NAME>[MOSI:DI_B:SDA_B:'_OC1A:PCINT8:PB0]</NAME>
++        <NAME>[T0PCINT8:PB0]</NAME>
+         <TEXT>DI: Data input in USI 3-wire mode. USI 3-wire mode does not override normal port functions., so pin must be configure as an input. SDA: Serial data in USI 2-wire mode. Serial data pin is bi-directional and uses open-col-lector output. The SDA pin is enabled by setting the pin as an output. The pin is pulled low when the PORTB0 or USI shiftregister is zero when DDB0 is set (one). Pull-up is disabled in USI 2-wire mode. OC1A: Inverted Timer/Counter1 PWM Output A: The PB0 pin can serve as an Inverted output for the PWM mode if not used in programming or USI. The PB0 pin has to be configured as an output (DDB0 set (one)) to serve this function. For further reading on PCINT0 please refer to the man</TEXT>
+       </PIN1>
+       <PIN2>
+-        <NAME>[MISO:DO_B:OC1A:PCINT9:PB1]</NAME>
++        <NAME>[OC0A:PCINT9:PB1]</NAME>
+         <TEXT>DO: Data output in USI 3-wire mode. Data output (DO) overrides PORTB1 value and it is driven to the port when the data direction bit DDB1 is set (one). However the PORTB1 bit still controls the pullup, enabling pullup if direction is input and PORTB1 is set(one). OC1A: Output compare match output: The PB1 pin can serve as an output for the Timer/Counter1 compare match A. The PB1 pin has to be configured as an output (DDB3 set (one)) to serve this function. The OC1B pin is also the output pin for the PWM mode timer function if not used in programming or USI. PCINT0: Pin Change Interrupt 0 pin. Pin change interrupt is enabled on pin when global interrupt is enabled, pin change interrupt is enabled and the alternate functions do not mask the interrupt. The masking alternate functions are the output compare match out-put OC1A and data output DO in USI 3-wire mode. Digital input is enabled on pin PB4 also in SLEEP modes, if the pin change interrupt is enabled and not masked by the alternate functi</TEXT>
+       </PIN2>
+       <PIN3>
+-        <NAME>[SCK:USCK_B:SCL_B:'OC1B:PCINT10:PB2]</NAME>
++        <NAME>[OC0B:PCINT10:PB2]</NAME>
+         <TEXT>SCK: Clock input or output in USI 3-wire mode. When the SPI is enabled this pin is con-figured</TEXT>
+       </PIN3>
+       <PIN4>
+-        <NAME>[OC1B:PCINT11:PB3]</NAME>
++        <NAME>[T1:CLKO:PCINT11:PB3]</NAME>
+         <TEXT>OC1B: Output compare match output: The PB3 pin can serve as an output for the Timer/Counter1 compare match B. The PB3 pin has to be configured as an output (DDB3 set (one)) to serve this function. The OC1B pin is also the output pin for the PWM mode. PCINT0: Pin Change Interrupt 0 pin. Pin change interrupt is enabled on pin when global interrupt is enabled, pin change interrupt is enabled and the alternate functions do not mask the interrupt. The masking alternate function is the output compare match output OC1B. Digital input is enabled on pin PB3 also in SLEEP modes, if the pin change interrupt is enabled and not masked by the alternate functi</TEXT>
+       </PIN4>
+       <PIN5>
+-        <NAME>[VCC]</NAME>
++        <NAME>[DI:OC1A:PCINT12:PB4]</NAME>
+         <TEXT/>
+       </PIN5>
+       <PIN6>
+-        <NAME>[GND]</NAME>
++        <NAME>[DO:OC1B:PCINT13:PB5]</NAME>
+         <TEXT/>
+       </PIN6>
+       <PIN7>
+-        <NAME>[ADC7:XTAL1:PCINT12:'_OC1D:CLKI:PB4]</NAME>
+-        <TEXT>ADC7: ADC input channel 7. Configure the port pins as inputs with the internal pull-ups switched off to avoid the digital port function from interfering with the function of the ana-log to digital converter. XTAL1: Chip clock oscillator pin 1. Used for all chip clock sources except internal cali-brateble RC oscillator and PLL clock. When used as a clock pin, the pin can not be used as an I/O pin. When using internal calibratable RC oscillator or PLL clock as chip clock sources, PB4 serves as an ordinary I/O pin. PCINT1: Pin Change Interrupt 1 pin. Pin change interrupt is enabled on pin when global interrupt is enabled, pin change interrupt is enabled and the alternate functions do not mask the interrupt. The masking alternate functions are the XTAL1 inputs. Digital input is enabled on pin PB4 also in SLEEP modes, if the pin change interrupt is enabled and not masked by the alternate functi</TEXT>
++        <NAME>[USCK:SCL:PCINT14:PB6]</NAME>
++        <TEXT/>
+       </PIN7>
+       <PIN8>
+-        <NAME>[ADC8:XTAL2:PCINT13:OC1D:CKLO:PB5]</NAME>
+-        <TEXT>ADC8: ADC input channel 8. Configure the port pins as inputs with the internal pull-ups switched off to avoid the digital port function from interfering with the function of the ana-log to digital converter. XTAL2: Chip clock oscillator pin 2. Used as clock pin for all chip clock sources except internal calibrateble RC oscillator, external clock and PLL clock. When used as a clock pin, the pin can not be used as an I/O pin. When using internal calibratable RC oscillator, external clock or PLL clock as chip clock sources, PB5 serves as an ordinary I/O pin. PCINT1: Pin Change Interrupt 1 pin. Pin change interrupt is enabled on pin when global interrupt is enabled, pin change interrupt is enabled and the alternate functions do not mask the interrupt. The masking alternate functions are the XTAL2 outputs. Digital input is enabled on pin PB5 also in SLEEP modes, if the pin change interrupt is enabled and not masked by the alternate functio</TEXT>
++        <NAME>[INT0:PCINT15:PB7]</NAME>
++        <TEXT/>
+       </PIN8>
+       <PIN9>
+-        <NAME>[ADC9:INT0:T0:PCINT14:PB6]</NAME>
+-        <TEXT>ADC9: ADC input channel 9. Configure the port pins as inputs with the internal pull-ups switched off to avoid the digital port function from interfering with the function of the analog to digital converter. INT0: External Interrupt source 0: The PB6 pin can serve as an external interrupt source enabled by setting (one) the bit INT0 in the general input mask register (GIMSK). T0: Timer/Counter0 External Counter Clock Input is enabled by setting (one) the bits CS02 and CS01 in the Timer/Counter0 control register (TCCR0). PCINT1: Pin Change Interrupt 1 pin. Pin change interrupt is enabled on pin when global interrupt is enabled, pin change interrupt is enabled and the alternate functions do not mask the interrupt. The masking alternate functions are the external low level Interrupt source 0 (INT0) and the Timer/Counter0 external counter clock input (T0). Digital input is enabled on pin PB6 also in SLEEP modes, if the pin change interrupt is enabled and not masked by the alternate func</TEXT>
++        <NAME>[VCC]</NAME>
++        <TEXT/>
+       </PIN9>
+       <PIN10>
+-        <NAME>[ADC10:'RESET:PCINT15:PB7]</NAME>
+-        <TEXT>ADC10: ADC input channel 10. Configure the port pins as inputs with the internal pull-ups switched off to avoid the digital port function from interfering with the function of the analog to digital converter. RESET: External Reset Input is active low and enabled by unprogramming (&#x201C;1&#x201D;) the RSTDISBL fuse. Pullup is activated and output driver and digital input are deactivated when the pin is used as the RESET pin. PCINT1: Pin Change Interrupt 1 pin. Pin change interrupt is enabled on pin when global interrupt is enabled, pin change interrupt is enabled and the alternate function do not mask the interrupt. The masking alternate function is the pin usage as RESET. Digital input is enabled on pin PB7 also in SLEEP modes, if the pin change interrupt is enabled and not masked by the alternate func</TEXT>
++        <NAME>[GND]</NAME>
++        <TEXT/>
+       </PIN10>
+       <PIN11>
+-        <NAME>[ADC6:AIN1:PCINT7:PA7]</NAME>
+-        <TEXT>AIN1: Analog Comparator Negative Input and ADC6: ADC input channel 6. Configure the port pin as input with the internal pull-up switched off to avoid the digital port function from interfering with the function of the analog comparator or analog to digital converter. PCINT1: Pin Change Interrupt 1 pin. Pin change interrupt is enabled on pin when global interrupt is enabled, pin change interrupt is enabled and the alternate function do not mask the interrupt. The masking alternate function is the analog comparator.Digital input is enabled on pin PA7 also in SLEEP modes, if the pin change interrupt is enabled and not masked by the alternate functi</TEXT>
++        <NAME>[LSW]</NAME>
++        <TEXT/>
+       </PIN11>
+       <PIN12>
+-        <NAME>[ADC5:AIN0:PCINT6:PA6]</NAME>
+-        <TEXT>AIN0: Analog Comparator Positive Input and ADC5: ADC input channel 5. Configure the port pin as input with the internal pull-up switched off to avoid the digital port function from interfering with the function of the analog comparator or analog to digital converter. PCINT1: Pin Change Interrupt 1 pin. Pin change interrupt is enabled on pin when global interrupt is enabled, pin change interrupt is enabled and the alternate function do not mask the interrupt. The masking alternate function is the analog comparator.Digital input is enabled on pin PA6 also in SLEEP modes, if the pin change interrupt is enabled and not masked by the alternate funct</TEXT>
++        <NAME>[VBAT]</NAME>
++        <TEXT/>
+       </PIN12>
+       <PIN13>
+-        <NAME>[ADC4:AIN2:PCINT5:PA5]</NAME>
+-        <TEXT>ADC4/ADC3: ADC input channel 4 and 3. Configure the port pins as inputs with the internal pull-ups switched off to avoid the digital port function from interfering with the function of the analog to digital converter.</TEXT>
++        <NAME>[ADC0:PCINT0:PA0]</NAME>
++        <TEXT/>
+       </PIN13>
+       <PIN14>
+-        <NAME>[ADC3:ICP0:PCINT4:PA4]</NAME>
+-        <TEXT>ADC4/ADC3: ADC input channel 4 and 3. Configure the port pins as inputs with the internal pull-ups switched off to avoid the digital port function from interfering with the function of the analog to digital converter.</TEXT>
++        <NAME>[ADC1:PCINT1:PA1]</NAME>
++        <TEXT/>
+       </PIN14>
+       <PIN15>
+-        <NAME>[AVCC]</NAME>
++        <NAME>[ADC2:PCINT2:PA2]</NAME>
+         <TEXT/>
+       </PIN15>
+       <PIN16>
+-        <NAME>[AGND]</NAME>
++        <NAME>[ADC3:PCINT3:PA3]</NAME>
+         <TEXT/>
+       </PIN16>
+       <PIN17>
+-        <NAME>[AREF:PCINT3:PA3]</NAME>
+-        <TEXT>AREF: External reference for ADC. Pullup and output driver are disabled on PA3 when the pin is used as an external reference or Internal Voltage Reference (2.56V) with external capacitor at the AREF pin by setting (one) the bit REFS0 in the ADC Multiplexer Selection Register (ADMUX). PCINT1: Pin Change Interrupt 1 pin. Pin change interrupt is enabled on pin when global interrupt is enabled, pin change interrupt is enabled and the alternate function do not mask the interrupt. The masking alternate function is the pin usage as an analog refer-ence for the ADC. Digital input is enabled on pin PA3 also in SLEEP modes, if the pin change interrupt is enabled and not masked by the alternate function. Please refer to the manual for further detail</TEXT>
++        <NAME>[AIN0:PCINT4:PA4]</NAME>
++        <TEXT/>
+       </PIN17>
+       <PIN18>
+-        <NAME>[ADC2:INT1:USCK_A:SCL_A:PCINT2:PA2]</NAME>
++        <NAME>[AIN1:PA5]</NAME>
+         <TEXT/>
+       </PIN18>
+       <PIN19>
+-        <NAME>[ADC1:DO_A:PCINT1:PA1]</NAME>
++        <NAME>[CLKI:PCINT6:PA6]</NAME>
+         <TEXT/>
+       </PIN19>
+       <PIN20>
+-        <NAME>[ADC0:DI_A:SDA_A:PCINT0:PA0]</NAME>
++        <NAME>['RESET:dW:PCINT7:PA7]</NAME>
+         <TEXT/>
+       </PIN20>
+     </PDIP>
